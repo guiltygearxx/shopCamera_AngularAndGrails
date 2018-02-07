@@ -1,0 +1,27 @@
+<div class="form-group {{this.customClass}}" [class.has-error]="isError">
+
+  <label class="cut-text" for="{{this.inputId}}" title="{{this.title}}">
+
+    <i class="fa fa-times-circle-o" *ngIf="isError"></i>
+
+    <span *ngIf="this.icon" class="{{this.icon}}"></span>
+
+    {{this.title}}
+
+    <span *ngIf="this.isRequired" class="requiredIndicator">*</span>
+  </label>
+
+  <br/>
+
+  <select #inputElement id="{{this.inputId}}" class="select2" data-toggle="tooltip"
+          style="width: 100%;">
+
+    <option *ngFor="let selectOption of this.selectOptions" value="{{selectOption.id}}">
+      {{selectOption.name}}
+    </option>
+
+  </select>
+
+  <span class="help-block" *ngIf="isError">{{errorMessage}}</span>
+
+</div>

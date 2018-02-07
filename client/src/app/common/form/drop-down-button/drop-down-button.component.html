@@ -1,0 +1,18 @@
+<div class="btn-group pull-right" *ngIf="this.actionConfigs && this.actionConfigs.length > 0">
+
+  <button type="button" class="btn btn-primary {{this.customClass}}" (click)="this.selectAction(this.primitiveAction.code)">
+    {{this.primitiveAction.label | uppercase}}
+  </button>
+
+  <button type="button" class="btn btn-default {{this.customClass}} dropdown-toggle" data-toggle="dropdown"
+          *ngIf="this.otherActions && this.otherActions.length > 0">
+    <span class="caret"></span>
+  </button>
+
+  <ul class="dropdown-menu" role="menu" *ngIf="this.otherActions && this.otherActions.length > 0">
+    <li *ngFor="let config of this.otherActions">
+      <a href="#" (click)="this.selectAction(config.code); $event.preventDefault()">{{config.label | uppercase}}</a>
+    </li>
+  </ul>
+
+</div>

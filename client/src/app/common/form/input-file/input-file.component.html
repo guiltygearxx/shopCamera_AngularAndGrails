@@ -1,0 +1,22 @@
+<div class="form-group {{this.customClass}}" [class.has-error]="isError">
+
+  <label class="cut-text" for="{{this.inputId}}" title="{{this.title}}">
+
+    <i class="fa fa-times-circle-o" *ngIf="isError"></i>
+
+    <span *ngIf="this.icon" class="{{this.icon}}"></span>
+
+    {{this.title}}
+
+    <span *ngIf="this.isRequired" class="requiredIndicator">*</span>
+  </label>
+
+  <input #inputElement type="file" id="{{this.inputId}}" (change)="inputValueChanged()" [disabled]="this.disabled"/>
+
+  <span class="help-block" *ngIf="isError">{{errorMessage}}</span>
+
+  <a href="./assets/template/test2.xls">
+    <i class="fa fa-fw fa-arrow-circle-down"></i> Tải mẫu tài liệu nhập
+  </a>
+
+</div>

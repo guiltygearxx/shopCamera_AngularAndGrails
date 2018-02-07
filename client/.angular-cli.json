@@ -19,9 +19,32 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "../src/assets/css/bootstrap.css",
+        "../src/assets/css/creditly.css",
+        "../src/assets/css/custom.css",
+        "../src/assets/css/easy-responsive-tabs.css",
+        "../src/assets/css/flexslider.css",
+        "../src/assets/css/font-awesome.css",
+        "../src/assets/css/style.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/bignumber.js/bignumber.js",
+        "../node_modules/moment/moment.js",
+        "../src/assets/js/bootstrap.min.js",
+        "../src/assets/js/counterup.min.js",
+        "../src/assets/js/creditly.js",
+        "../src/assets/js/easing.js",
+        "../src/assets/js/easyResponsiveTabs.js",
+        "../src/assets/js/jquery.flexslider.js",
+        "../src/assets/js/jquery.wmuSlider.js",
+        "../src/assets/js/jquery-1.11.1.min.js",
+        "../src/assets/js/minicart.js",
+        "../src/assets/js/move-top.js",
+        "../src/assets/js/okzoom.js",
+        "../src/assets/js/waypoints.min.js"
+
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
