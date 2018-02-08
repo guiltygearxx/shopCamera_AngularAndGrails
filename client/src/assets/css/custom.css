@@ -67,12 +67,10 @@ a {
 }
 
 .logo_product {
-  width: 800px;
-  margin: 0 auto;
 }
 
 .w3ls_logo_products_left10 {
-  float: left;
+  float: right;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
   padding-left: 1em;
@@ -195,4 +193,12 @@ a {
   margin: 0;
   color: #fff;
   text-transform: uppercase;
+}
+
+h6 .text_align_left{
+  text-align: left;
+}
+
+.products_padding_content{
+  padding-top:0.5em;
 }

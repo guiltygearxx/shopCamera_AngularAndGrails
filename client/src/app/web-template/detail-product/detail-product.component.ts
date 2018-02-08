@@ -13,14 +13,14 @@ export class DetailProductComponent implements OnInit {
   }
 
   ngOnInit() {
-    $(function () {
-      $('#example').okzoom({
-        width: 150,
-        height: 150,
-        border: "1px solid black",
-        shadow: "0 0 5px #000"
-      });
-    });
+    // $(function () {
+    //   $('#example').okzoom({
+    //     width: 150,
+    //     height: 150,
+    //     border: "1px solid black",
+    //     shadow: "0 0 5px #000"
+    //   });
+    // });
   }
 
 }

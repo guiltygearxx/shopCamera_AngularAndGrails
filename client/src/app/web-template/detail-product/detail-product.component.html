@@ -17,7 +17,8 @@
     <nav class="navbar nav_bottom">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header nav_2">
-        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                data-target="#bs-megadropdown-tabs">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -25,7 +26,6 @@
         </button>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
-
 
 
       <app-web-left-side></app-web-left-side>
@@ -37,7 +37,28 @@
     <div class="agileinfo_single">
       <h5>Camera giám sát hành trình 001</h5>
       <div class="col-md-4 agileinfo_single_left">
-        <img id="example" src="assets/images/76.png" alt=" " class="img-responsive" />
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner">
+            <div class="item active">
+              <img id="example" src="assets/images/76.png" alt=" " class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img id="example" src="assets/images/76.png" alt=" " class="img-responsive"/>
+            </div>
+            <div class="item">
+              <img id="example" src="assets/images/76.png" alt=" " class="img-responsive"/>
+            </div>
+          </div>
+
+          <!-- Controls -->
+          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+          </a>
+          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+          </a>
+        </div>
       </div>
       <div class="col-md-8 agileinfo_single_right">
 
@@ -59,16 +80,16 @@
           <div class="snipcart-details agileinfo_single_right_details">
             <form action="#" method="post">
               <fieldset>
-                <input type="hidden" name="cmd" value="_cart" />
-                <input type="hidden" name="add" value="1" />
-                <input type="hidden" name="business" value=" " />
-                <input type="hidden" name="item_name" value="pulao basmati rice" />
-                <input type="hidden" name="amount" value="21.00" />
-                <input type="hidden" name="discount_amount" value="1.00" />
-                <input type="hidden" name="currency_code" value="USD" />
-                <input type="hidden" name="return" value=" " />
-                <input type="hidden" name="cancel_return" value=" " />
-                <button type="submit" class="btn btn-danger">Mua hàng</button>
+                <input type="hidden" name="cmd" value="_cart"/>
+                <input type="hidden" name="add" value="1"/>
+                <input type="hidden" name="business" value=" "/>
+                <input type="hidden" name="item_name" value="pulao basmati rice"/>
+                <input type="hidden" name="amount" value="21.00"/>
+                <input type="hidden" name="discount_amount" value="1.00"/>
+                <input type="hidden" name="currency_code" value="USD"/>
+                <input type="hidden" name="return" value=" "/>
+                <input type="hidden" name="cancel_return" value=" "/>
+                <button type="submit" class="btn btn-primary">Mua hàng</button>
               </fieldset>
             </form>
           </div>
@@ -77,8 +98,8 @@
       </div>
       <div class="col-md-12 paddingDiv">
         <ul class="nav nav-pills">
-          <li  class="active">
-            <a data-toggle="pill" href="#menuThongTinChiTiet" >Thông tin chi tiết</a>
+          <li class="active">
+            <a data-toggle="pill" href="#menuThongTinChiTiet">Thông tin chi tiết</a>
           </li>
 
           <li>
@@ -93,56 +114,62 @@
 
         <div class="tab-content">
           <div id="menuThongTinChiTiet" class="tab-pane fade in active">
-            <table class="table table-bordered">
-              <tbody>
-              <tr>
-                <td class="confixByThread">Cảm biến ảnh</td>
-                <td class="confixByTbody">: Approx. 1/2.8 type CMOS image sensor</td>
-              </tr>
-              <tr>
-                <td class="confixByThread">Độ phân giải / Tốc độ khung</td>
-                <td class="confixByTbody">: 1080P(1920x1080) / 1.3 M (1280x960) / 720P (1280x720)/ D1 (704x576/704x480) / CIF (352×288/352×240)</td>
-              </tr>
 
-              <tr>
-                <td class="confixByThread">Chuẩn nén</td>
-                <td class="confixByTbody">: H.264/ H.264H/ H.264B/ MJPEG</td>
-              </tr>
+            <ul class="a-unordered-list a-vertical a-spacing-none">
 
-              <tr>
-                <td class="confixByThread">Ống kính</td>
-                <td class="confixByTbody">: 2.7 mm to 12 mm</td>
-              </tr>
+              <div id="hsx-rpp-bullet-fits-message" class="aok-hidden">
+                <div class="a-box a-alert-inline a-alert-inline-success hsx-rpp-fitment-bullets">
+                  <div class="a-box-inner a-alert-container"><i class="a-icon a-icon-alert"></i>
+                    <div class="a-alert-content">
+                      This fits your&nbsp;<span class="hsx-rpp-bullet-model-info"></span>.
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <tr>
-                <td class="confixByThread">Độ nhạy sáng</td>
-                <td class="confixByTbody"> : 0.2 lx / F1.4 (color)*, 0 lx / F1.4(IR on)</td>
-              </tr>
 
-              <tr>
-                <td class="confixByThread">Góc quan sát</td>
-                <td class="confixByTbody">: H: 93° to 34° V: 50° to 18°</td>
-              </tr>
+              <li id="replacementPartsFitmentBullet" data-doesntfitmessage="We're not sure this item fits your "
+                  data-fitsmessage="This fits your " class="aok-hidden"><span class="a-list-item">
+        <span id="replacementPartsFitmentBulletInner"> <a class="a-link-normal hsx-rpp-fitment-focus" href="#">Enter your model number</a>
+                <span>to make sure this fits.</span>
+        </span>
+</span></li>
 
-              <tr>
-                <td class="confixByThread">Tầm xa hồng ngoại</td>
-                <td class="confixByTbody">: 30 m</td>
-              </tr>
+              <script type="text/javascript">
+                P.when("ReplacementPartsBulletLoader").execute(function (module) {
+                  module.initializeDPX();
+                })
+              </script>
 
-              <tr>
-                <td class="confixByThread">Tiêu chuẩn bảo vệ </td>
-                <td class="confixByTbody">: IP66</td>
-              </tr>
 
-              <tr>
-                <td class="confixByThread">Nguồn / Công suất</td>
-                <td class="confixByTbody">: 12 V DC: 710 mA / Approx. 8.5 W PoE 48 V DC: 180 mA / Approx. 8.6 W</td>
-              </tr>
+              <li><span class="a-list-item">
+							COMPLETE PREMIUM SMART HOME IOT SURVEILLANCE KIT - View and record 4 critical points of your home or business on a built in 2TB security grade hard drive.
 
-              </tbody>
-            </table>
+						</span></li>
+
+              <li><span class="a-list-item">
+							SIMPLE PoE INSTALLATION - Power and data transmitted to your cameras through a single network cable for a true Plug-n-Play experience. Move, change, or upgrade your existing network without hassle.
+
+						</span></li>
+
+              <li><span class="a-list-item">
+							CUSTOMIZABLE ADVANCED MOTION DETECTION - Any movement detected will be recorded and notification will be sent immediately to your smart phone. Detection area can be customized directly form your NVR to minimize false alarms.
+
+						</span></li>
+
+              <li><span class="a-list-item">
+							SAFEGUARDED AND RELIABLE - Cameras are certified IP66 and capable of operating in extreme temperatures outdoors, - 22°F to 140°F. Multi-layer security and end-to-end video encryption protect your data.
+
+						</span></li>
+
+              <li><span class="a-list-item">
+							LIFETIME TECH SUPPORT AND FREE 12 MONTH WARRANTY - Technology experts available for chat and one button system upgrades whenever updates are released.
+
+						</span></li>
+
+            </ul>
           </div>
-          <div id="menuThongSoKyThuat" class="tab-pane fade in active">
+          <div id="menuThongSoKyThuat" class="tab-pane fade">
             <table class="table table-bordered">
               <tbody>
               <tr>
@@ -151,7 +178,9 @@
               </tr>
               <tr>
                 <td class="confixByThread">Độ phân giải / Tốc độ khung</td>
-                <td class="confixByTbody">: 1080P(1920x1080) / 1.3 M (1280x960) / 720P (1280x720)/ D1 (704x576/704x480) / CIF (352×288/352×240)</td>
+                <td class="confixByTbody">: 1080P(1920x1080) / 1.3 M (1280x960) / 720P (1280x720)/ D1 (704x576/704x480)
+                  / CIF (352×288/352×240)
+                </td>
               </tr>
 
               <tr>
@@ -180,7 +209,7 @@
               </tr>
 
               <tr>
-                <td class="confixByThread">Tiêu chuẩn bảo vệ </td>
+                <td class="confixByThread">Tiêu chuẩn bảo vệ</td>
                 <td class="confixByTbody">: IP66</td>
               </tr>
 
@@ -193,59 +222,91 @@
             </table>
           </div>
           <div id="menuKhuyenMai" class="tab-pane fade">
-            <table class="table table-bordered">
-              <tbody>
-              <tr>
-                <td class="confixByThread">Cảm biến ảnh</td>
-                <td class="confixByTbody">: Approx. 1/2.8 type CMOS image sensor</td>
-              </tr>
-              <tr>
-                <td class="confixByThread">Độ phân giải / Tốc độ khung</td>
-                <td class="confixByTbody">: 1080P(1920x1080) / 1.3 M (1280x960) / 720P (1280x720)/ D1 (704x576/704x480) / CIF (352×288/352×240)</td>
-              </tr>
+            <div class="prd-body">
+              <h4
+                style="box-sizing: border-box; margin: 10px 0px; padding: 0px; font-family: 'Open Sans', Tahoma, Arial, sans-serif; outline: 0px; line-height: 20.8px; font-size: 18px; text-align: justify;">
+                <span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: arial, helvetica, sans-serif; outline: 0px;"><strong
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: helvatica, sans-serif; outline: 0px;"><span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; outline: 0px; color: rgb(0, 0, 205);">Khi lắp đặt trọn bộ 2 camera HIKVISION&nbsp;khuyến mãi:</span></strong></span>
+              </h4>
 
-              <tr>
-                <td class="confixByThread">Chuẩn nén</td>
-                <td class="confixByTbody">: H.264/ H.264H/ H.264B/ MJPEG</td>
-              </tr>
+              <p
+                style="box-sizing: border-box; margin: 10px 0px; padding: 0px; font-family: 'Open Sans', Tahoma, Arial, sans-serif; outline: 0px; font-size: 15px; text-align: justify; line-height: 20.8px;">
+                <span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: arial, helvetica, sans-serif; outline: 0px;"><span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: helvatica, sans-serif; outline: 0px; color: rgb(255, 0, 0);"><strong
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; outline: 0px;">* 20 mét dây tín hiệu</strong></span>&nbsp;chuyên dành cho camera giám sát có độ chống nhiễu cao.</span>
+              </p>
 
-              <tr>
-                <td class="confixByThread">Ống kính</td>
-                <td class="confixByTbody">: 2.7 mm to 12 mm</td>
-              </tr>
+              <p
+                style="box-sizing: border-box; margin: 10px 0px; padding: 0px; font-family: 'Open Sans', Tahoma, Arial, sans-serif; outline: 0px; font-size: 15px; text-align: justify; line-height: 20.8px;">
+                <span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: arial, helvetica, sans-serif; outline: 0px;"><span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: helvatica, sans-serif; outline: 0px; color: rgb(255, 0, 0);">*&nbsp;<strong
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; outline: 0px;">Tên miền xem qua mạng&nbsp;VIP</strong></span>&nbsp;xem qua mạng từ xa cho 1 năm đầu tiên của toàn bộ hệ thống(Năm thứ 2 trở đi quý khách chỉ thêm 350,000đ để gia hạn sử dụng tiếp)</span>
+              </p>
 
-              <tr>
-                <td class="confixByThread">Độ nhạy sáng</td>
-                <td class="confixByTbody"> : 0.2 lx / F1.4 (color)*, 0 lx / F1.4(IR on)</td>
-              </tr>
+              <p
+                style="box-sizing: border-box; margin: 10px 0px; padding: 0px; font-family: 'Open Sans', Tahoma, Arial, sans-serif; outline: 0px; font-size: 15px; text-align: justify; line-height: 20.8px;">
+                <span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: arial, helvetica, sans-serif; outline: 0px;"><span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: helvatica, sans-serif; outline: 0px; color: rgb(255, 0, 0);">*&nbsp;<strong
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; outline: 0px;">Quý khách hàng nhận ngay</strong></span>&nbsp;150,000đ/ 1 camera nếu tự mua về lắp đặt, chúng tôi vẫn hỗ trợ cài đặt tên miền xem camera từ xa và các ưu đãi khác</span>
+              </p>
 
-              <tr>
-                <td class="confixByThread">Góc quan sát</td>
-                <td class="confixByTbody">: H: 93° to 34° V: 50° to 18°</td>
-              </tr>
+              <p
+                style="box-sizing: border-box; margin: 10px 0px; padding: 0px; font-family: 'Open Sans', Tahoma, Arial, sans-serif; outline: 0px; font-size: 15px; text-align: justify; line-height: 20.8px;">
+                <span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: arial, helvetica, sans-serif; outline: 0px;"><strong
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; font-family: helvatica, sans-serif; outline: 0px;"><span
+                  style="box-sizing: border-box; margin: 0px; padding: 0px; outline: 0px; color: rgb(255, 0, 0);">* Khuyến mãi giá ưu đãi</span></strong>&nbsp;nhất(Khuyến mãi áp dụng cập nhật theo tuần, tháng được công ty niêm yết giá trên website)</span><br>
+                &nbsp;</p>
 
-              <tr>
-                <td class="confixByThread">Tầm xa hồng ngoại</td>
-                <td class="confixByTbody">: 30 m</td>
-              </tr>
+              <table style="line-height: 20.8px; width: 910px;" border="1" cellspacing="10" cellpadding="10">
+                <tbody>
+                <tr>
+                  <td>Lắp đặt trọn bộ 1 camera HIKVISION<span style="font-size: 16px;">&nbsp;&nbsp;&nbsp;<strong><span
+                    style="color: rgb(255, 0, 0);"><span
+                    style="line-height: 20.8px;">Giá&nbsp;chỉ: 2,999,000đ</span></span></strong></span></td>
+                  <td>Lắp đặt trọn bộ 5 camera HIKVISION&nbsp;<span style="font-size: 16px;"><span
+                    style="line-height: 20.8px;">&nbsp;&nbsp;<strong><span style="color: rgb(255, 0, 0);">Giá chỉ: 7,899,000</span></strong>đ</span></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lắp đặt trọn bộ 2 camera HIKVISION<span style="font-size: 16px;"><span
+                    style="line-height: 20.8px;">&nbsp;&nbsp;&nbsp;<strong><span style="color: rgb(255, 0, 0);">Giá chỉ: 4,299,000đ</span></strong></span></span>
+                  </td>
+                  <td>Lắp đặt trọn bộ 6&nbsp;camera HIKVISION<span style="font-size: 16px;"><span
+                    style="line-height: 20.8px;">&nbsp;&nbsp;&nbsp;<strong><span style="color: rgb(255, 0, 0);">Giá chỉ: &nbsp;8,799,000</span></strong>đ</span></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lắp đặt trọn bộ 3 camera HIKVISION<span style="font-size: 16px;"><span
+                    style="line-height: 20.8px;">&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);"><strong>Giá chỉ: 5,199,000đ</strong></span></span></span>
+                  </td>
+                  <td>Lắp đặt trọn bộ 7 camera HIKVISION<span style="font-size: 16px;"><span
+                    style="line-height: 20.8px;">&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);"><strong>Giá chỉ: &nbsp;9,999,000</strong></span>đ</span></span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lắp đặt trọn bộ 4 camera HIKVISION<span style="font-size: 16px;"><span
+                    style="line-height: 20.8px;">&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);"><strong>Giá chỉ: 6,099,000đ</strong></span></span></span>
+                  </td>
+                  <td>Lắp đặt trọn bộ 8 camera HIKVISION<span style="font-size: 16px;"><span
+                    style="line-height: 20.8px;">&nbsp;&nbsp;&nbsp;<span style="color: rgb(255, 0, 0);"><strong>Giá chỉ: &nbsp;10,099,000</strong></span>đ</span></span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
 
-              <tr>
-                <td class="confixByThread">Tiêu chuẩn bảo vệ </td>
-                <td class="confixByTbody">: IP66</td>
-              </tr>
-
-              <tr>
-                <td class="confixByThread">Nguồn / Công suất</td>
-                <td class="confixByTbody">: 12 V DC: 710 mA / Approx. 8.5 W PoE 48 V DC: 180 mA / Approx. 8.6 W</td>
-              </tr>
-
-              </tbody>
-            </table>
+              <p>&nbsp;</p>
+            </div>
           </div>
         </div>
 
       </div>
-      <div class="clearfix"> </div>
+      <div class="clearfix"></div>
     </div>
   </div>
   <div class="clearfix"></div>
@@ -253,22 +314,26 @@
 <!-- //banner -->
 <!-- brands -->
 <div class="w3ls_w3l_banner_nav_right_grid w3ls_w3l_banner_nav_right_grid_popular">
-  <div class="container">
-    <h3>Sản phẩm tương tự</h3>
+  <div class="container" style="text-align: center">
+
     <div class="w3ls_w3l_banner_nav_right_grid1">
-      <h6>food</h6>
-      <div class="col-md-3 w3ls_w3l_banner_left">
+
+      <div class="col-md-12 header4">
+        <h1>Camera Dahua</h1>
+        <h2 style="display:none;">Camera Dahua</h2>
+
+        <div class="clear"></div>
+      </div>
+
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
         <div class="hover14 column">
           <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
             <div class="agile_top_brand_left_grid1">
               <figure>
                 <div class="snipcart-item block">
                   <div class="snipcart-thumb">
                     <a href="single.html">
-                      <img src="assets/images/5.png" alt=" " class="img-responsive" />
+                      <img src="assets/images/5.png" alt=" " class="img-responsive"/>
                     </a>
                     <p>knorr instant soup (100 gm)</p>
                     <h4>$3.00
@@ -278,16 +343,16 @@
                   <div class="snipcart-details">
                     <form action="#" method="post">
                       <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="knorr instant soup" />
-                        <input type="hidden" name="amount" value="3.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="knorr instant soup"/>
+                        <input type="hidden" name="amount" value="3.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
                       </fieldset>
                     </form>
                   </div>
@@ -297,18 +362,15 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
         <div class="hover14 column">
           <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
             <div class="agile_top_brand_left_grid1">
               <figure>
                 <div class="snipcart-item block">
                   <div class="snipcart-thumb">
                     <a href="single.html">
-                      <img src="assets/images/6.png" alt=" " class="img-responsive" />
+                      <img src="assets/images/6.png" alt=" " class="img-responsive"/>
                     </a>
                     <p>chings noodles (75 gm)</p>
                     <h4>$5.00
@@ -318,16 +380,16 @@
                   <div class="snipcart-details">
                     <form action="#" method="post">
                       <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="chings noodles" />
-                        <input type="hidden" name="amount" value="5.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="chings noodles"/>
+                        <input type="hidden" name="amount" value="5.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
                       </fieldset>
                     </form>
                   </div>
@@ -337,18 +399,15 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
         <div class="hover14 column">
           <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
             <div class="agile_top_brand_left_grid1">
               <figure>
                 <div class="snipcart-item block">
                   <div class="snipcart-thumb">
                     <a href="single.html">
-                      <img src="assets/images/7.png" alt=" " class="img-responsive" />
+                      <img src="assets/images/7.png" alt=" " class="img-responsive"/>
                     </a>
                     <p>lahsun sev (150 gm)</p>
                     <h4>$3.00
@@ -358,16 +417,16 @@
                   <div class="snipcart-details">
                     <form action="#" method="post">
                       <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="lahsun sev" />
-                        <input type="hidden" name="amount" value="3.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="lahsun sev"/>
+                        <input type="hidden" name="amount" value="3.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
                       </fieldset>
                     </form>
                   </div>
@@ -377,308 +436,17 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
         <div class="hover14 column">
           <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
             <div class="agile_top_brand_left_grid1">
               <figure>
                 <div class="snipcart-item block">
                   <div class="snipcart-thumb">
                     <a href="single.html">
-                      <img src="assets/images/8.png" alt=" " class="img-responsive" />
+                      <img src="assets/images/5.png" alt=" " class="img-responsive"/>
                     </a>
-                    <p>premium bake rusk (300 gm)</p>
-                    <h4>$5.00
-                      <span>$7.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="premium bake rusk" />
-                        <input type="hidden" name="amount" value="5.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix"> </div>
-    </div>
-    <div class="w3ls_w3l_banner_nav_right_grid1">
-      <h6>Sản phẩm khác</h6>
-      <div class="col-md-3 w3ls_w3l_banner_left">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/9.png" alt=" " class="img-responsive" />
-                    </a>
-                    <p>fresh spinach (palak)</p>
-                    <h4>$2.00
-                      <span>$3.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="fresh spinach" />
-                        <input type="hidden" name="amount" value="2.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/10.png" alt=" " class="img-responsive" />
-                    </a>
-                    <p>fresh mango dasheri (1 kg)</p>
-                    <h4>$5.00
-                      <span>$8.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="fresh mango dasheri" />
-                        <input type="hidden" name="amount" value="5.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="tag">
-              <img src="assets/images/tag.png" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/11.png" alt=" " class="img-responsive" />
-                    </a>
-                    <p>fresh apple red (1 kg)</p>
-                    <h4>$6.00
-                      <span>$8.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="fresh apple red" />
-                        <input type="hidden" name="amount" value="6.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/12.png" alt=" " class="img-responsive" />
-                    </a>
-                    <p>fresh broccoli (500 gm)</p>
-                    <h4>$4.00
-                      <span>$6.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="fresh broccoli" />
-                        <input type="hidden" name="amount" value="4.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="clearfix"> </div>
-    </div>
-    <div class="w3ls_w3l_banner_nav_right_grid1">
-      <h6>Sản phẩm mới</h6>
-      <div class="col-md-3 w3ls_w3l_banner_left">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/13.png" alt=" " class="img-responsive" />
-                    </a>
-                    <p>mixed fruit juice (1 ltr)</p>
-                    <h4>$3.00
-                      <span>$4.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="mixed fruit juice" />
-                        <input type="hidden" name="amount" value="3.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/14.png" alt=" " class="img-responsive" />
-                    </a>
-                    <p>prune juice - sunsweet (1 ltr)</p>
-                    <h4>$4.00
-                      <span>$5.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="prune juice - sunsweet" />
-                        <input type="hidden" name="amount" value="4.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="tag">
-              <img src="assets/images/tag.png" alt=" " class="img-responsive" />
-            </div>
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/15.png" alt=" " class="img-responsive" />
-                    </a>
-                    <p>coco cola zero can (330 ml)</p>
+                    <p>knorr instant soup (100 gm)</p>
                     <h4>$3.00
                       <span>$5.00</span>
                     </h4>
@@ -686,16 +454,16 @@
                   <div class="snipcart-details">
                     <form action="#" method="post">
                       <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="coco cola zero can" />
-                        <input type="hidden" name="amount" value="3.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="knorr instant soup"/>
+                        <input type="hidden" name="amount" value="3.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
                       </fieldset>
                     </form>
                   </div>
@@ -705,37 +473,34 @@
           </div>
         </div>
       </div>
-      <div class="col-md-3 w3ls_w3l_banner_left">
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
         <div class="hover14 column">
           <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid_pos">
-              <img src="assets/images/offer.png" alt=" " class="img-responsive" />
-            </div>
             <div class="agile_top_brand_left_grid1">
               <figure>
                 <div class="snipcart-item block">
                   <div class="snipcart-thumb">
                     <a href="single.html">
-                      <img src="assets/images/16.png" alt=" " class="img-responsive" />
+                      <img src="assets/images/6.png" alt=" " class="img-responsive"/>
                     </a>
-                    <p>sprite bottle (2 ltr)</p>
-                    <h4>$3.00
-                      <span>$4.00</span>
+                    <p>chings noodles (75 gm)</p>
+                    <h4>$5.00
+                      <span>$8.00</span>
                     </h4>
                   </div>
                   <div class="snipcart-details">
                     <form action="#" method="post">
                       <fieldset>
-                        <input type="hidden" name="cmd" value="_cart" />
-                        <input type="hidden" name="add" value="1" />
-                        <input type="hidden" name="business" value=" " />
-                        <input type="hidden" name="item_name" value="sprite bottle" />
-                        <input type="hidden" name="amount" value="3.00" />
-                        <input type="hidden" name="discount_amount" value="1.00" />
-                        <input type="hidden" name="currency_code" value="USD" />
-                        <input type="hidden" name="return" value=" " />
-                        <input type="hidden" name="cancel_return" value=" " />
-                        <input type="submit" name="submit" value="Add to cart" class="button" />
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="chings noodles"/>
+                        <input type="hidden" name="amount" value="5.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
                       </fieldset>
                     </form>
                   </div>
@@ -745,7 +510,203 @@
           </div>
         </div>
       </div>
-      <div class="clearfix"> </div>
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
+        <div class="hover14 column">
+          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+            <div class="agile_top_brand_left_grid1">
+              <figure>
+                <div class="snipcart-item block">
+                  <div class="snipcart-thumb">
+                    <a href="single.html">
+                      <img src="assets/images/7.png" alt=" " class="img-responsive"/>
+                    </a>
+                    <p>lahsun sev (150 gm)</p>
+                    <h4>$3.00
+                      <span>$5.00</span>
+                    </h4>
+                  </div>
+                  <div class="snipcart-details">
+                    <form action="#" method="post">
+                      <fieldset>
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="lahsun sev"/>
+                        <input type="hidden" name="amount" value="3.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="w3ls_w3l_banner_nav_right_grid1">
+
+      <div class="col-md-12 header4">
+        <h1>Sản phẩm mới</h1>
+        <h2 style="display:none;">Camera Dahua</h2>
+
+        <div class="clear"></div>
+      </div>
+
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
+        <div class="hover14 column">
+          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+            <div class="agile_top_brand_left_grid1">
+              <figure>
+                <div class="snipcart-item block">
+                  <div class="snipcart-thumb">
+                    <a href="single.html">
+                      <img src="assets/images/5.png" alt=" " class="img-responsive"/>
+                    </a>
+                    <p>knorr instant soup (100 gm)</p>
+                    <h4>$3.00
+                      <span>$5.00</span>
+                    </h4>
+                  </div>
+                  <div class="snipcart-details">
+                    <form action="#" method="post">
+                      <fieldset>
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="knorr instant soup"/>
+                        <input type="hidden" name="amount" value="3.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
+        <div class="hover14 column">
+          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+            <div class="agile_top_brand_left_grid1">
+              <figure>
+                <div class="snipcart-item block">
+                  <div class="snipcart-thumb">
+                    <a href="single.html">
+                      <img src="assets/images/6.png" alt=" " class="img-responsive"/>
+                    </a>
+                    <p>chings noodles (75 gm)</p>
+                    <h4>$5.00
+                      <span>$8.00</span>
+                    </h4>
+                  </div>
+                  <div class="snipcart-details">
+                    <form action="#" method="post">
+                      <fieldset>
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="chings noodles"/>
+                        <input type="hidden" name="amount" value="5.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
+        <div class="hover14 column">
+          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+            <div class="agile_top_brand_left_grid1">
+              <figure>
+                <div class="snipcart-item block">
+                  <div class="snipcart-thumb">
+                    <a href="single.html">
+                      <img src="assets/images/7.png" alt=" " class="img-responsive"/>
+                    </a>
+                    <p>lahsun sev (150 gm)</p>
+                    <h4>$3.00
+                      <span>$5.00</span>
+                    </h4>
+                  </div>
+                  <div class="snipcart-details">
+                    <form action="#" method="post">
+                      <fieldset>
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="lahsun sev"/>
+                        <input type="hidden" name="amount" value="3.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
+        <div class="hover14 column">
+          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+            <div class="agile_top_brand_left_grid1">
+              <figure>
+                <div class="snipcart-item block">
+                  <div class="snipcart-thumb">
+                    <a href="single.html">
+                      <img src="assets/images/5.png" alt=" " class="img-responsive"/>
+                    </a>
+                    <p>knorr instant soup (100 gm)</p>
+                    <h4>$3.00
+                      <span>$5.00</span>
+                    </h4>
+                  </div>
+                  <div class="snipcart-details">
+                    <form action="#" method="post">
+                      <fieldset>
+                        <input type="hidden" name="cmd" value="_cart"/>
+                        <input type="hidden" name="add" value="1"/>
+                        <input type="hidden" name="business" value=" "/>
+                        <input type="hidden" name="item_name" value="knorr instant soup"/>
+                        <input type="hidden" name="amount" value="3.00"/>
+                        <input type="hidden" name="discount_amount" value="1.00"/>
+                        <input type="hidden" name="currency_code" value="USD"/>
+                        <input type="hidden" name="return" value=" "/>
+                        <input type="hidden" name="cancel_return" value=" "/>
+                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
+                      </fieldset>
+                    </form>
+                  </div>
+                </div>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
     </div>
   </div>
 </div>
