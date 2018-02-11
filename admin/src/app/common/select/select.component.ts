@@ -1,6 +1,7 @@
 import {
   AfterContentChecked,
   AfterViewChecked,
+  AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -34,7 +35,7 @@ declare var $: any;
 })
 export class SelectComponent
   implements OnInit, BaseInputModal, SupportValidateInputModal,
-    AdminLteInputModal, SupportOnChangesComponentModal, OnChanges, AfterContentChecked, AfterViewChecked {
+    AdminLteInputModal, SupportOnChangesComponentModal, OnChanges, AfterContentChecked, AfterViewChecked, AfterViewInit {
 
   viewChangedAttrs: string[];
 
@@ -99,7 +100,7 @@ export class SelectComponent
 
     this.componentUtils.generateInputId(this);
 
-    this.select2SettingOptions = {};
+    this.select2SettingOptions = {minimumResultsForSearch: 5};
 
     this.afterContentCheckCallbacks = [
 
@@ -107,14 +108,12 @@ export class SelectComponent
 
       new OnChangeCallBack(["optionKey", "optionValue", "data", "autoSort"], (() => this.buildSelectOptions())),
 
-      new OnChangeCallBack(["optionKey", "optionValue", "data"], (() => this.select2SettingOptions.liveSearch = this.shouldLiveSearch())),
-
       new OnChangeCallBack(
         ["placeHolder"], (() => this.select2SettingOptions.placeholder = {id: null, text: this.placeHolder})
       ),
     ];
 
-    this.afterContentCheckCallbacks = [
+    this.afterViewCheckCallbacks = [
 
       new OnChangeCallBack(["optionKey", "optionValue", "data", "autoSort"], (() => this.refreshSelectPicker())),
     ]
@@ -135,6 +134,15 @@ export class SelectComponent
     this.componentUtils.runAfterViewCheckedCallback(this);
   }
 
+  ngAfterViewInit(): void {
+
+    $(this.inputElement.nativeElement).change((event: any) => {
+
+      this.value = $(event.target).val();
+
+      this.valueChange.emit(this.value);
+    });
+  }
 
   private buildSelectOptions(): void {
 
@@ -170,10 +178,5 @@ export class SelectComponent
   private refreshSelectPicker(): void {
 
     $(this.inputElement.nativeElement).select2(this.select2SettingOptions);
-  }
-
-  private shouldLiveSearch(): boolean {
-
-    return !isNullOrUndefined(this.selectOptions) && this.selectOptions.length > 5;
   }
 }

@@ -43,9 +43,29 @@
       <app-check-box [title]="'Check box'" [(value)]="booleanValue" (valueChange)="booleanValueChanged($event)">
       </app-check-box>
 
-      <app-check-box [title]="'Check box with value'" [(value)]="booleanValue"
+      <app-check-box [title]="'Check box with value'" [(value)]="checkBoxValue"
                      (valueChange)="checkBoxValueChanged($event)" [valueWhenChecked]="'someValueNotBoolean'">
       </app-check-box>
+
+    </div>
+
+  </div>
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <app-select [title]="'Simple Select (No Search & Auto sort)'" [(value)]="selectValue"
+                  [placeHolder]="'Select an option'"
+                  [data]="items" [optionKey]="'title'" [optionValue]="'value'"
+                  (valueChange)="selectValueChanged($event)">
+      </app-select>
+
+      <app-select [title]="'Simple Select (No sort & Enable Search)'" [(value)]="selectValue2"
+                  [placeHolder]="'Select an option'"
+                  [data]="items2" [optionKey]="'title'" [optionValue]="'value'"
+                  (valueChange)="selectValue2Changed($event)" [autoSort]="false">
+      </app-select>
 
     </div>
 
