@@ -9,6 +9,7 @@ import {ComponentUtils} from "./component-utils";
 import {BrowserModule} from "@angular/platform-browser";
 import {CheckBoxComponent} from './check-box/check-box.component';
 import {SelectComponent} from './select/select.component';
+import {DatePickerComponent} from './date-picker/date-picker.component';
 
 @NgModule({
 
@@ -16,7 +17,8 @@ import {SelectComponent} from './select/select.component';
     InputTextComponent,
     TextAreaComponent,
     CheckBoxComponent,
-    SelectComponent
+    SelectComponent,
+    DatePickerComponent
   ],
 
   imports: [
@@ -28,7 +30,8 @@ import {SelectComponent} from './select/select.component';
     InputTextComponent,
     TextAreaComponent,
     CheckBoxComponent,
-    SelectComponent
+    SelectComponent,
+    DatePickerComponent
   ],
 
   providers: [

@@ -24,6 +24,8 @@ export class FormComponent implements OnInit {
 
   items2: ExampleObject[];
 
+  dateValue: string;
+
   constructor() {
   }
 
@@ -69,5 +71,10 @@ export class FormComponent implements OnInit {
   selectValue2Changed(value: string) {
 
     console.log("selectValue2Changed: " + value);
+  }
+
+  dateValueChanged(value: string) {
+
+    console.log("dateValueChanged: " + value);
   }
 }

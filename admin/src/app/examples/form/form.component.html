@@ -71,5 +71,17 @@
 
   </div>
 
+  <div class="box">
+
+    <div class="box-body">
+
+      <app-date-picker [title]="'Simple Select (No Search & Auto sort)'" [(value)]="dateValue"
+                       [placeHolder]="'Pick a date'" (valueChange)="dateValueChanged($event)">
+      </app-date-picker>
+
+    </div>
+
+  </div>
+
 </section>
 <!-- /.content -->
