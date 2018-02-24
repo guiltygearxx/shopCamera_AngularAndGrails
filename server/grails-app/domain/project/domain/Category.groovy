@@ -9,8 +9,8 @@ class Category implements BaseDomain {
 
     static constraints = {
 
-        id size: 36
-        name blank: false
+        id size: 36..36
+        name blank: false, maxSize: 255
         lastModifiedTime nullable: false
         lastModifiedUser nullable: false
     }
