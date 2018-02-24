@@ -16,6 +16,7 @@ import {DateFormatter} from "./common/formater/date-formatter";
 import {NumberFormatter} from "./common/formater/number-formatter";
 import {ApplicationUtils} from "./common/application-utils";
 import {ComponentUtils} from "./common/component-utils";
+import {ValidateUtils} from "./common/validate/validate-utils";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import {ComponentUtils} from "./common/component-utils";
     BrowserModule,
     AppRoutingModule,
     AdminModule,
-    AppBaseModule
+    AppBaseModule,
   ],
 
   providers: [
@@ -40,6 +41,7 @@ import {ComponentUtils} from "./common/component-utils";
     NumberFormatter,
     ApplicationUtils,
     ComponentUtils,
+    ValidateUtils
   ],
 
   bootstrap: [AppComponent]

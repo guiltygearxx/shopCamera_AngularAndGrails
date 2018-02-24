@@ -75,10 +75,69 @@
 
     <div class="box-body">
 
-      <app-date-picker [title]="'Simple Select (No Search & Auto sort)'" [(value)]="dateValue"
+      <app-date-picker [title]="'Date picker'" [(value)]="dateValue"
                        [placeHolder]="'Pick a date'" (valueChange)="dateValueChanged($event)">
       </app-date-picker>
 
+    </div>
+
+  </div>
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <app-input-text [title]="'InList Field (inList=[Joe,Fred,Bob])'" [placeHolder]="'Enter text here'"
+                      [(value)]="form.inListField"
+                      [errorMessage]="getErrorMessage('inListField')"
+                      (valueChange)="formFieldChanged($event, 'inListField')">
+      </app-input-text>
+
+      <app-input-text [title]="'Nullable Field'" [placeHolder]="'Enter text here'" [(value)]="form.nullableField"
+                      [isRequired]="true" [errorMessage]="getErrorMessage('nullableField')"
+                      (valueChange)="formFieldChanged($event, 'nullableField')">
+      </app-input-text>
+
+      <app-input-text [title]="'EmailField Field'" [placeHolder]="'Enter text here'" [(value)]="form.emailField"
+                      [errorMessage]="getErrorMessage('emailField')"
+                      (valueChange)="formFieldChanged($event, 'emailField')">
+      </app-input-text>
+
+      <app-input-text [title]="'MatchesField Field (matches=matches:[a-zA-Z]+)'" [placeHolder]="'Enter text here'"
+                      [(value)]="form.matchesField"
+                      [errorMessage]="getErrorMessage('matchesField')"
+                      (valueChange)="formFieldChanged($event, 'matchesField')">
+      </app-input-text>
+
+      <app-input-text [title]="'MaxSizeField Field (maxSize=10)'" [placeHolder]="'Enter text here'"
+                      [(value)]="form.maxSizeField"
+                      [errorMessage]="getErrorMessage('maxSizeField')"
+                      (valueChange)="formFieldChanged($event, 'maxSizeField')">
+      </app-input-text>
+
+      <app-input-text [title]="'MinSizeField Field (minSize=2)'" [placeHolder]="'Enter text here'"
+                      [(value)]="form.minSizeField"
+                      [errorMessage]="getErrorMessage('minSizeField')"
+                      (valueChange)="formFieldChanged($event, 'minSizeField')">
+      </app-input-text>
+
+      <app-input-text [title]="'SizeField Field (size=[2,8])'" [placeHolder]="'Enter text here'"
+                      [(value)]="form.sizeField"
+                      [errorMessage]="getErrorMessage('sizeField')"
+                      (valueChange)="formFieldChanged($event, 'sizeField')">
+      </app-input-text>
+
+      <app-input-text [title]="'NotEqualField Field (notEqual=Bob)'" [placeHolder]="'Enter text here'"
+                      [(value)]="form.notEqualField"
+                      [errorMessage]="getErrorMessage('notEqualField')"
+                      (valueChange)="formFieldChanged($event, 'notEqualField')">
+      </app-input-text>
+
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-default">Bỏ qua</button>
+      <button type="submit" class="btn btn-info pull-right" (click)="save($event)">Lưu</button>
     </div>
 
   </div>

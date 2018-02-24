@@ -3,6 +3,7 @@ import {isNullOrUndefined} from "util";
 import {DATE_FORMAT} from "./application-constants";
 import * as moment from "moment";
 import BigNumber from "bignumber.js";
+import {i18n} from "./i18n";
 
 @Injectable()
 export class ApplicationUtils {
@@ -101,5 +102,32 @@ export class ApplicationUtils {
     }
 
     return str1.localeCompare(str2);
+  }
+
+  message(code: string, params ?: any[]) {
+
+    let message = i18n[code];
+
+    if (this.isStringEmpty(message)) {
+
+      message = code;
+    } else {
+
+      if (!isNullOrUndefined(params) && params.length > 0) {
+
+        let paramIndex: number = 0;
+
+        for (let param of params) {
+
+          if (isNullOrUndefined(param)) param = "";
+
+          message = message.split("{" + paramIndex + "}").join(param);
+
+          paramIndex++;
+        }
+      }
+    }
+
+    return message;
   }
 }

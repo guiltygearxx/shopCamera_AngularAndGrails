@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Validateable} from "./validateable";
-import {isNullOrUndefined} from "util";
+import {isNullOrUndefined, isString} from "util";
 import {DefaultErrors} from "./default-errors";
 import {
   CONSTRAIN_EMAIL,
@@ -26,86 +26,70 @@ import {
   ERROR_SIZE_TOOBIG,
   ERROR_SIZE_TOOSMALL
 } from "../application-constants";
+import {ApplicationUtils} from "../application-utils";
+import {Errors} from "./errors";
 
 type ErrorHandleFnType = ((value: any, errorCode: string, args: any[]) => void);
 
 @Injectable()
 export class ValidateUtils {
 
-  validate(obj: Validateable): boolean {
+  constructor(private applicationUtils: ApplicationUtils) {
+  }
 
-    if (isNullOrUndefined(obj)) return true;
+  getFieldErrorMessage(field: string, obj: Validateable, prefix ?: string): string {
 
-    let constrains = obj["constrains"];
+    if (isNullOrUndefined(obj) || isNullOrUndefined(obj.errors)) return null;
 
-    if (isNullOrUndefined(constrains)) return true;
+    let fieldErrors = obj.errors.getFieldErrors(field);
+
+    if (isNullOrUndefined(fieldErrors) || !fieldErrors.length) return null;
+
+    let firstError = fieldErrors[0];
+
+    let code = (this.applicationUtils.isStringEmpty(prefix) ? "" : (prefix + ".")) + firstError.errorCode;
+
+    return this.applicationUtils.message(code, firstError.params);
+  }
+
+  validate(obj: Validateable, constrains: any): boolean {
+
+    if (isNullOrUndefined(obj) || isNullOrUndefined(constrains)) return true;
 
     let errors = obj.errors;
 
     if (isNullOrUndefined(errors))
-      errors = (obj.errors = new DefaultErrors());
+      errors = (obj.errors = new DefaultErrors(this.applicationUtils));
+
+    errors.resetFieldErrors();
 
     let isOK: boolean = true;
 
     Object.keys(constrains).forEach((field) => {
 
-      let fieldValue = obj[field];
-
-      let fieldConstrains = constrains[field];
-
-      Object.keys(fieldConstrains).forEach((constrainName) => {
-
-        let validateResult: boolean = true;
-
-        let constrainConfig: any = fieldConstrains[constrainName];
-
-        let errorHandleFn: ErrorHandleFnType =
-          ((value: any, errorCode: string, args: any[]) => errors.rejectValue(field, fieldValue, errorCode, args));
-
-        switch (constrainName) {
-
-          case CONSTRAIN_NULLABLE:
-            return (isOK = isOK && this.nullable(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_EMAIL:
-            return (isOK = isOK && this.email(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_INLIST:
-            return (isOK = isOK && this.inList(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_MATCHES:
-            return (isOK = isOK && this.matches(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_MAXSIZE:
-            return (isOK = isOK && this.maxSize(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_MINSIZE:
-            return (isOK = isOK && this.minSize(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_NOTEQUAL:
-            return (isOK = isOK && this.notEqual(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_MAX:
-            return (isOK = isOK && this.max(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_MIN:
-            return (isOK = isOK && this.min(fieldValue, constrainConfig, errorHandleFn));
-
-          case CONSTRAIN_SIZE:
-            return (isOK = isOK && this.size(fieldValue, constrainConfig, errorHandleFn));
-
-          default:
-            return;
-        }
-      })
+      if (!this.validateField_(obj, constrains, field, errors)) isOK = false;
     });
 
     return isOK;
   }
 
+  validateField(obj: Validateable, constrains: any, field: string): boolean {
+
+    if (isNullOrUndefined(obj) || isNullOrUndefined(constrains)) return true;
+
+    let errors = obj.errors;
+
+    if (isNullOrUndefined(errors))
+      errors = (obj.errors = new DefaultErrors(this.applicationUtils));
+
+    errors.resetFieldErrors(field);
+
+    return this.validateField_(obj, constrains, field, errors);
+  }
+
   nullable(value: any, nullable: boolean, errorHandleFn: ErrorHandleFnType): boolean {
 
-    if (isNullOrUndefined(value) && !nullable) {
+    if (isNullOrUndefined(value) || ((isString(value) && this.applicationUtils.isStringEmpty(value))) && !nullable) {
 
       errorHandleFn(value, ERROR_NULLABLE, null);
 
@@ -131,7 +115,7 @@ export class ValidateUtils {
 
     if (list.indexOf(value) == -1) {
 
-      errorHandleFn(value, ERROR_INLIST, list);
+      errorHandleFn(value, ERROR_INLIST, [list]);
 
       return false;
     }
@@ -237,5 +221,60 @@ export class ValidateUtils {
     }
 
     return true;
+  }
+
+  private validateField_(obj: Validateable, constrains: any, field: string, errors: Errors): boolean {
+
+    let isOK: boolean = true;
+
+    let fieldValue = obj[field];
+
+    let fieldConstrains = constrains[field];
+
+    Object.keys(fieldConstrains).forEach((constrainName) => {
+
+      let constrainConfig: any = fieldConstrains[constrainName];
+
+      let errorHandleFn: ErrorHandleFnType =
+        ((value: any, errorCode: string, args: any[]) => errors.rejectValue(field, fieldValue, errorCode, args));
+
+      switch (constrainName) {
+
+        case CONSTRAIN_NULLABLE:
+          return (isOK = isOK && this.nullable(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_EMAIL:
+          return (isOK = isOK && this.email(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_INLIST:
+          return (isOK = isOK && this.inList(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_MATCHES:
+          return (isOK = isOK && this.matches(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_MAXSIZE:
+          return (isOK = isOK && this.maxSize(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_MINSIZE:
+          return (isOK = isOK && this.minSize(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_NOTEQUAL:
+          return (isOK = isOK && this.notEqual(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_MAX:
+          return (isOK = isOK && this.max(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_MIN:
+          return (isOK = isOK && this.min(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_SIZE:
+          return (isOK = isOK && this.size(fieldValue, constrainConfig, errorHandleFn));
+
+        default:
+          return;
+      }
+    })
+
+    return isOK;
   }
 }

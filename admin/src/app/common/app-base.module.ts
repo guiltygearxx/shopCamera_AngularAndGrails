@@ -10,6 +10,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {CheckBoxComponent} from './check-box/check-box.component';
 import {SelectComponent} from './select/select.component';
 import {DatePickerComponent} from './date-picker/date-picker.component';
+import {ValidateUtils} from "./validate/validate-utils";
 
 @NgModule({
 
@@ -39,6 +40,7 @@ import {DatePickerComponent} from './date-picker/date-picker.component';
     NumberFormatter,
     ApplicationUtils,
     ComponentUtils,
+    ValidateUtils
   ],
 })
 export class AppBaseModule {

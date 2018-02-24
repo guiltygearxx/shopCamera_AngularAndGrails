@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ExampleObject} from "../example-object";
+import {ExampleForm} from "../example-form";
+import {ValidateUtils} from "../../common/validate/validate-utils";
 
 @Component({
   selector: 'app-form',
@@ -26,7 +28,9 @@ export class FormComponent implements OnInit {
 
   dateValue: string;
 
-  constructor() {
+  form: ExampleForm;
+
+  constructor(protected validateUtils: ValidateUtils) {
   }
 
   ngOnInit() {
@@ -46,6 +50,8 @@ export class FormComponent implements OnInit {
       new ExampleObject("Item No 2", "value2"),
       new ExampleObject("Item No 4", "value4"),
     ]
+
+    this.form = new ExampleForm();
   }
 
   inputTextValueChanged(value: string) {
@@ -76,5 +82,24 @@ export class FormComponent implements OnInit {
   dateValueChanged(value: string) {
 
     console.log("dateValueChanged: " + value);
+  }
+
+  getErrorMessage(field: string): string {
+
+    return this.validateUtils.getFieldErrorMessage(field, this.form);
+  }
+
+  formFieldChanged(value: any, field: string): void {
+
+    this.validateUtils.validateField(this.form, ExampleForm.constrains, field);
+  }
+
+  save(event: any): void {
+
+    event.preventDefault();
+
+    this.validateUtils.validate(this.form, ExampleForm.constrains);
+
+    console.log(JSON.stringify(this.form.errors.getFieldErrors()));
   }
 }
