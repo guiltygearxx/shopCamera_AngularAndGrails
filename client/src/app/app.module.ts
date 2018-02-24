@@ -22,6 +22,8 @@ import { DetailProductComponent } from './web-template/detail-product/detail-pro
 import { IndexContentComponent } from './web-template/index-content/index-content.component';
 import { WebLeftSideComponent } from './web-template/web-left-side/web-left-side.component';
 import { ListProductsComponent } from './web-template/list-products/list-products.component';
+import { CheckoutComponent } from './web-template/checkout/checkout.component';
+import { AloPhoneServiceComponent } from './service/alo-phone-service/alo-phone-service.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,8 @@ import { ListProductsComponent } from './web-template/list-products/list-product
     IndexContentComponent,
     WebLeftSideComponent,
     ListProductsComponent,
+    CheckoutComponent,
+    AloPhoneServiceComponent,
   ],
   imports: [
     BrowserModule,
