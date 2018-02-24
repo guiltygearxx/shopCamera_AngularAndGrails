@@ -1,18 +1,17 @@
 package project.domain
 
-import grails.rest.Resource
+class Order implements BaseDomain {
 
-@Resource(uri = '/category')
-class Category implements BaseDomain {
-
-    String name;
-    String parentCategoryId;
+    String code;
+    String tenNguoiMua;
+    String sdt;
+    String email;
+    String diaChi;
+    String description;
 
     static constraints = {
 
         id size: 36..36
-        name blank: false, maxSize: 255
-        parentCategoryId nullable: true;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

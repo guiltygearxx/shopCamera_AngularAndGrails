@@ -58,6 +58,7 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     runtime 'mysql:mysql-connector-java:5.1.29'
+    compile "org.grails.plugins:grails3-cors-interceptor:1.2.1"
 }
 
 bootRun {

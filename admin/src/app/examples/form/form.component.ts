@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ExampleObject} from "../example-object";
 import {ExampleForm} from "../example-form";
 import {ValidateUtils} from "../../common/validate/validate-utils";
+import {CategoryService} from "../category.service";
+import {Category} from "../category";
 
 @Component({
   selector: 'app-form',
@@ -30,7 +32,8 @@ export class FormComponent implements OnInit {
 
   form: ExampleForm;
 
-  constructor(protected validateUtils: ValidateUtils) {
+  constructor(protected validateUtils: ValidateUtils,
+              protected categoryService: CategoryService) {
   }
 
   ngOnInit() {
@@ -101,5 +104,46 @@ export class FormComponent implements OnInit {
     this.validateUtils.validate(this.form, ExampleForm.constrains);
 
     console.log(JSON.stringify(this.form.errors.getFieldErrors()));
+  }
+
+  get(event: any): void {
+
+    event.preventDefault();
+
+    console.log("test get");
+
+    this.categoryService.get().subscribe((categories) => console.log(JSON.stringify(categories)));
+  }
+
+  getById(event: any): void {
+
+    event.preventDefault();
+
+    console.log("test getById");
+
+    let categoryId: string = '28ff3667-89e1-4dec-a631-4568b456e7f3';
+
+    this.categoryService.getById(categoryId).subscribe((category) => console.log(JSON.stringify(category)));
+  }
+
+  post(event: any): void {
+
+    event.preventDefault();
+
+    console.log("test getById");
+
+    let category: Category = new Category();
+
+    category.name = "Category Test 04";
+
+    this.categoryService.post(category).subscribe((category_) => console.log(JSON.stringify(category_)));
+  }
+
+  put(event: any): void {
+
+  }
+
+  delete(event: any): void {
+
   }
 }

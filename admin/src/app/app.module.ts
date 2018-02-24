@@ -17,6 +17,8 @@ import {NumberFormatter} from "./common/formater/number-formatter";
 import {ApplicationUtils} from "./common/application-utils";
 import {ComponentUtils} from "./common/component-utils";
 import {ValidateUtils} from "./common/validate/validate-utils";
+import {CategoryService} from "./examples/category.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,7 @@ import {ValidateUtils} from "./common/validate/validate-utils";
     AppRoutingModule,
     AdminModule,
     AppBaseModule,
+    HttpClientModule,
   ],
 
   providers: [
@@ -41,7 +44,8 @@ import {ValidateUtils} from "./common/validate/validate-utils";
     NumberFormatter,
     ApplicationUtils,
     ComponentUtils,
-    ValidateUtils
+    ValidateUtils,
+    CategoryService,
   ],
 
   bootstrap: [AppComponent]
