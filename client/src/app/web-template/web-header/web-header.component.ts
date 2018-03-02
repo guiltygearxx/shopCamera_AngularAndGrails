@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
+import {MenuItem} from "../../bean/menu-item";
 
 declare var $: any;
 
@@ -9,8 +11,21 @@ declare var $: any;
 })
 export class WebHeaderComponent implements OnInit {
 
-  constructor() {
+  menuItems: MenuItem[] = [
+
+    new MenuItem("lienHe", "Liên hệ"),
+    new MenuItem("ttdt", "Trung tâm đào tạo"),
+    new MenuItem("daiLy", "Đại lý"),
+    new MenuItem("tuyenDung", "Tuyển dụng"),
+    new MenuItem("ttsk", "Tin tức - Sự kiện"),
+    new MenuItem("giaiPhap", "Giải pháp Camera"),
+    new MenuItem("gioiThieu", "Giới thiệu"),
+    new MenuItem("trangChu", "Trang chủ"),
+  ]
+
+  constructor(private router: Router) {
   }
+
 
   ngOnInit() {
 
@@ -28,4 +43,10 @@ export class WebHeaderComponent implements OnInit {
     });
   }
 
+  goToMenuIndex(event: any, menuItem: MenuItem): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/" + menuItem.id]);
+  }
 }

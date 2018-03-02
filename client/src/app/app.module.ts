@@ -2,18 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { CheckBoxComponent } from './common/form/check-box/check-box.component';
-import { TextAreaComponent } from './common/form/text-area/text-area.component';
-import { InputFileComponent } from './common/form/input-file/input-file.component';
-import { InputTextComponent } from './common/form/input-text/input-text.component';
-import { SelectComponent } from './common/form/select/select.component';
-import { MultiSelectComponent } from './common/form/multi-select/multi-select.component';
-import { RadioButtonComponent } from './common/form/radio-button/radio-button.component';
-import { DefaultModalFooterComponent } from './common/dialog/default-modal-footer/default-modal-footer.component';
-import { DefaultModalHeaderComponent } from './common/dialog/default-modal-header/default-modal-header.component';
-import { DropDownButtonComponent } from './common/form/drop-down-button/drop-down-button.component';
-import { ConfirmDialogComponent } from './common/confirm-dialog/confirm-dialog.component';
-import { IcheckComponent } from './common/form/icheck/icheck.component';
 import {AppRoutingModule} from "./app-routing/app-routing.module";
 import { WebHeaderComponent } from './web-template/web-header/web-header.component';
 import { WebContentComponent } from './web-template/web-content/web-content.component';
@@ -24,22 +12,18 @@ import { WebLeftSideComponent } from './web-template/web-left-side/web-left-side
 import { ListProductsComponent } from './web-template/list-products/list-products.component';
 import { CheckoutComponent } from './web-template/checkout/checkout.component';
 import { AloPhoneServiceComponent } from './service/alo-phone-service/alo-phone-service.component';
+import {ValidateUtils} from "./common/validate/validate-utils";
+import {ComponentUtils} from "./common/component-utils";
+import {ApplicationUtils} from "./common/application-utils";
+import {DateFormatter} from "./common/formater/date-formatter";
+import {NumberFormatter} from "./common/formater/number-formatter";
+import {AppBaseModule} from "./common/app-base.module";
+import {HttpClientModule} from "@angular/common/http";
+import {ProductService} from "./service/product/product.service";
 
 @NgModule({
   declarations: [
     AppComponent,
-    CheckBoxComponent,
-    TextAreaComponent,
-    InputFileComponent,
-    InputTextComponent,
-    SelectComponent,
-    MultiSelectComponent,
-    RadioButtonComponent,
-    DefaultModalFooterComponent,
-    DefaultModalHeaderComponent,
-    DropDownButtonComponent,
-    ConfirmDialogComponent,
-    IcheckComponent,
     WebHeaderComponent,
     WebContentComponent,
     WebFooterComponent,
@@ -52,9 +36,18 @@ import { AloPhoneServiceComponent } from './service/alo-phone-service/alo-phone-
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppBaseModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    DateFormatter,
+    NumberFormatter,
+    ApplicationUtils,
+    ComponentUtils,
+    ValidateUtils,
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

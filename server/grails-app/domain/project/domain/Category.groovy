@@ -7,6 +7,7 @@ class Category implements BaseDomain {
 
     String name;
     String parentCategoryId;
+    String code;
 
     static constraints = {
 

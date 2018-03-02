@@ -3,125 +3,28 @@
     <p>DANH MỤC SẢN PHẨM</p>
   </div>
   <ul class="nav navbar-nav nav_1">
-    <li class="dropdown mega-dropdown active">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Camera trọn bộ
-        <span class="caret"></span>
-      </a>
-      <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-        <div class="w3ls_vegetables">
-          <ul>
-            <li>
-              <a href="vegetables.html">Trọn bộ camera giá rẻ</a>
-            </li>
-            <li>
-              <a href="vegetables.html">Camera nhập khẩu</a>
-            </li>
-          </ul>
+
+    <ng-container *ngFor="let parentCategory of getParentCategories()">
+      <li class="dropdown mega-dropdown active">
+        <a (click)="goToCategory($event, parentCategory)" class="dropdown-toggle" data-toggle="dropdown">
+          {{parentCategory.label}}
+          <span class="caret"></span>
+        </a>
+
+        <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+          <div class="w3ls_vegetables">
+            <ul>
+              <ng-container *ngFor="let subCategory of getSubCategories(parentCategory)">
+                <li>
+                  <a (click)="goToSubCategory($event, parentCategory, subCategory)">{{subCategory.label}}</a>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
         </div>
-      </div>
-    </li>
-    <li class="dropdown mega-dropdown active">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Camera giám sát
-        <span class="caret"></span>
-      </a>
-      <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-        <div class="w3ls_vegetables">
-          <ul>
-            <li>
-              <a href="vegetables.html">Camera theo hãng </a>
-            </li>
-            <li>
-              <a href="vegetables.html">Camera theo loại</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-    <li class="dropdown mega-dropdown active">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Đầu ghi hình camera
-        <span class="caret"></span>
-      </a>
-      <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-        <div class="w3ls_vegetables">
-          <ul>
-            <li>
-              <a href="vegetables.html">Đầu ghi hình theo hãng</a>
-            </li>
-            <li>
-              <a href="vegetables.html">Đầu ghi hình theo loại</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-    <li class="dropdown mega-dropdown active">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Phụ kiện camera
-        <span class="caret"></span>
-      </a>
-      <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-        <div class="w3ls_vegetables">
-          <ul>
-            <li>
-              <a href="drinks.html">Ổ lưu dữ liệu</a>
-            </li>
-            <li>
-              <a href="drinks.html">Phụ kiện chính hãng</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-    <li class="dropdown mega-dropdown active">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Thiết bị an ninh
-        <span class="caret"></span>
-      </a>
-      <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-        <div class="w3ls_vegetables">
-          <ul>
-            <li>
-              <a href="drinks.html">Thiết bị chống trộm</a>
-            </li>
-            <li>
-              <a href="drinks.html">Chuông</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-    <li class="dropdown mega-dropdown active">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Máy chấm công
-        <span class="caret"></span>
-      </a>
-      <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-        <div class="w3ls_vegetables">
-          <ul>
-            <li>
-              <a href="frozen.html">Theo hãng</a>
-            </li>
-            <li>
-              <a href="frozen.html">Theo loại ứng dụng</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-    <li class="dropdown mega-dropdown active">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Giải pháp camera
-        <span class="caret"></span>
-      </a>
-      <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-        <div class="w3ls_vegetables">
-          <ul>
-            <li>
-              <a href="frozen.html">Giải pháp an ninh</a>
-            </li>
-            <li>
-              <a href="frozen.html">Giải pháp bảo mật</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
+      </li>
+    </ng-container>
+
   </ul>
 
   <div class="process_category">

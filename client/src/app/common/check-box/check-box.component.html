@@ -1,0 +1,7 @@
+<div class="checkbox">
+  <label class="cut-text">
+    <input #inputElement type="checkbox" [disabled]="this.disabled" [(ngModel)]="checked"
+           (ngModelChange)="checkedChanged($event)">
+    {{this.title}}
+  </label>
+</div>
