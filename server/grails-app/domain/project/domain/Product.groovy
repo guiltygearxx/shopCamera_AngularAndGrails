@@ -6,11 +6,13 @@ import grails.rest.Resource
 class Product implements BaseDomain {
 
     String name;
+    String image1;
+    String image2;
+    String image3;
+    String image4;
     String hangSanXuat;
     String baoHanh;
     String khoHang;
-    String sdtLienHe;
-    String emailLienHe;
     BigDecimal gia;
     BigDecimal giaTruocKhiHa;
 
@@ -22,6 +24,10 @@ class Product implements BaseDomain {
 
         id size: 36..36
         name blank: false, maxSize: 255
+        image1 nullable: true
+        image2 nullable: true
+        image3 nullable: true
+        image4 nullable: true
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true
