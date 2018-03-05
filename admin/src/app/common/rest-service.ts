@@ -1,6 +1,7 @@
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../environments/environment";
+import {isNullOrUndefined} from "util";
 
 export class RestService<T> {
 
@@ -11,9 +12,19 @@ export class RestService<T> {
 
   get(params?: any): Observable<T[]> {
 
+    let httpParams = new HttpParams();
+
+    if (!isNullOrUndefined(params)) {
+
+      Object.keys(params).forEach((key) => {
+
+        httpParams = httpParams.set(key, params[key])
+      });
+    }
+
     var url = environment.serviceBaseURL + this.resource;
 
-    return this.http.get<T[]>(url, {params: params});
+    return this.http.get<T[]>(url, {params: httpParams});
   }
 
   getById(id: any): Observable<T> {
