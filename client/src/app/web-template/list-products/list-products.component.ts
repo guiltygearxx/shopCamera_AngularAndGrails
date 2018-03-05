@@ -3,6 +3,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ListProductLogic} from "./list-product-logic";
 import {ProductService} from "../../service/product/product.service";
 import {Product} from "../../bean/product";
+import {CategoryService} from "../../service/category/category.service";
+import {CategoryItem} from "../../bean/category-item";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-list-products',
@@ -13,29 +16,43 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
 
   constructor(private router: Router,
               protected route: ActivatedRoute,
-              protected productService: ProductService) {
-    super(productService);
+              protected productService: ProductService,
+              protected categoryService: CategoryService) {
+    super(productService, categoryService);
   }
 
   ngOnInit() {
 
-    let categoryId: string = this.route.snapshot.paramMap.get("categoryId");
-
-    console.log(categoryId);
-
-    this.getListProduct(categoryId);
+    this.getListCategory();
   }
 
-  goToChiTietSanPham(): void {
+  goToChiTietSanPham(event: any, product: Product): void {
 
-    this.router.navigate(["", "chiTietSanPham"]);
+    event.preventDefault();
+
+    this.router.navigate(["/chiTietSanPham", product.id]);
   }
 
 
-  afterGetListProduct(product: Product[]): void {
-    super.afterGetListProduct(product);
+  afterGetListCategory(categoryItems: CategoryItem[]): void {
+    super.afterGetListCategory(categoryItems);
 
-    console.log(JSON.stringify(this.productList));
 
+    let categoryCode: string = this.route.snapshot.paramMap.get("categoryCode");
+
+    let categoryItem = this.categoryList.find((category) => category.code == categoryCode);
+
+    this.categoryName = categoryItem.name;
+
+    this.getListProduct(categoryItem.id);
   }
+
+  isAvailbaleProduct(): Product[] {
+
+    if (isNullOrUndefined(this.productList)) return null;
+
+    return this.productList;
+  }
+
+
 }

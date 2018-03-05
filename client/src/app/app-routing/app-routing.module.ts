@@ -11,8 +11,8 @@ import {IndexContentComponent} from "../web-template/index-content/index-content
     RouterModule.forRoot([
       {path: '', redirectTo: 'trangChu', pathMatch: 'full'},
       {path: 'trangChu', component: IndexContentComponent},
-      {path: 'danhSachSanPham/:categoryId/:subCategory', component: ListProductsComponent},
-      {path: 'chiTietSanPham', component: DetailProductComponent},
+      {path: 'danhSachSanPham/:categoryCode/:subCategory', component: ListProductsComponent},
+      {path: 'chiTietSanPham/:productId', component: DetailProductComponent},
       {path: 'gioHangSanPham', component: CheckoutComponent}
     ])
   ],

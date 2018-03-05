@@ -35,8 +35,8 @@
   <div class="w3l_banner_nav_right">
 
     <div class="col-md-12 header4">
-      <h1>Camera Dahua</h1>
-      <h2 style="display:none;">Camera Dahua</h2>
+      <h1>{{this.categoryName}}</h1>
+      <h2 style="display:none;">{{this.categoryName}}</h2>
 
       <div class="clear"></div>
       <select style="float:right;margin-top:3px;" onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);">
@@ -48,6 +48,8 @@
     <!-- brands -->
     <div class="col-md-12 col-xs-12" style="text-align: center">
       <div class="paddingDiv centerListProduct">
+
+        <ng-container *ngFor="let product of isAvailbaleProduct()">
         <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
           <div class="hover14 column">
             <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
@@ -55,12 +57,12 @@
                 <figure>
                   <div class="snipcart-item block">
                     <div class="snipcart-thumb">
-                      <a (click)="goToChiTietSanPham()">
-                        <img src="assets/images/5.png" alt=" " class="img-responsive"/>
+                      <a (click)="goToChiTietSanPham($event,product)">
+                        <img src="assets/images/{{product.image1}}.png" alt=" " class="img-responsive"/>
                       </a>
-                      <p>knorr instant soup (100 gm)</p>
-                      <h4>$3.00
-                        <span>$5.00</span>
+                      <p>{{product.name}}</p>
+                      <h4>{{product.gia}} Đ
+                        <span>{{product.giaTruocKhiHa}} Đ</span>
                       </h4>
                     </div>
                     <div class="snipcart-details">
@@ -85,265 +87,7 @@
             </div>
           </div>
         </div>
-        <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-          <div class="hover14 column">
-            <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-              <div class="agile_top_brand_left_grid1">
-                <figure>
-                  <div class="snipcart-item block">
-                    <div class="snipcart-thumb">
-                      <a href="single.html">
-                        <img src="assets/images/6.png" alt=" " class="img-responsive"/>
-                      </a>
-                      <p>chings noodles (75 gm)</p>
-                      <h4>$5.00
-                        <span>$8.00</span>
-                      </h4>
-                    </div>
-                    <div class="snipcart-details">
-                      <form action="#" method="post">
-                        <fieldset>
-                          <input type="hidden" name="cmd" value="_cart"/>
-                          <input type="hidden" name="add" value="1"/>
-                          <input type="hidden" name="business" value=" "/>
-                          <input type="hidden" name="item_name" value="chings noodles"/>
-                          <input type="hidden" name="amount" value="5.00"/>
-                          <input type="hidden" name="discount_amount" value="1.00"/>
-                          <input type="hidden" name="currency_code" value="USD"/>
-                          <input type="hidden" name="return" value=" "/>
-                          <input type="hidden" name="cancel_return" value=" "/>
-                          <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                        </fieldset>
-                      </form>
-                    </div>
-                  </div>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-          <div class="hover14 column">
-            <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-              <div class="agile_top_brand_left_grid1">
-                <figure>
-                  <div class="snipcart-item block">
-                    <div class="snipcart-thumb">
-                      <a href="single.html">
-                        <img src="assets/images/7.png" alt=" " class="img-responsive"/>
-                      </a>
-                      <p>lahsun sev (150 gm)</p>
-                      <h4>$3.00
-                        <span>$5.00</span>
-                      </h4>
-                    </div>
-                    <div class="snipcart-details">
-                      <form action="#" method="post">
-                        <fieldset>
-                          <input type="hidden" name="cmd" value="_cart"/>
-                          <input type="hidden" name="add" value="1"/>
-                          <input type="hidden" name="business" value=" "/>
-                          <input type="hidden" name="item_name" value="lahsun sev"/>
-                          <input type="hidden" name="amount" value="3.00"/>
-                          <input type="hidden" name="discount_amount" value="1.00"/>
-                          <input type="hidden" name="currency_code" value="USD"/>
-                          <input type="hidden" name="return" value=" "/>
-                          <input type="hidden" name="cancel_return" value=" "/>
-                          <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                        </fieldset>
-                      </form>
-                    </div>
-                  </div>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/8.png" alt=" " class="img-responsive"/>
-                    </a>
-                    <p>premium bake rusk (300 gm)</p>
-                    <h4>$5.00
-                      <span>$7.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="premium bake rusk"/>
-                        <input type="hidden" name="amount" value="5.00"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-          <div class="hover14 column">
-            <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-              <div class="agile_top_brand_left_grid1">
-                <figure>
-                  <div class="snipcart-item block">
-                    <div class="snipcart-thumb">
-                      <a href="single.html">
-                        <img src="assets/images/8.png" alt=" " class="img-responsive"/>
-                      </a>
-                      <p>premium bake rusk (300 gm)</p>
-                      <h4>$5.00
-                        <span>$7.00</span>
-                      </h4>
-                    </div>
-                    <div class="snipcart-details">
-                      <form action="#" method="post">
-                        <fieldset>
-                          <input type="hidden" name="cmd" value="_cart"/>
-                          <input type="hidden" name="add" value="1"/>
-                          <input type="hidden" name="business" value=" "/>
-                          <input type="hidden" name="item_name" value="premium bake rusk"/>
-                          <input type="hidden" name="amount" value="5.00"/>
-                          <input type="hidden" name="discount_amount" value="1.00"/>
-                          <input type="hidden" name="currency_code" value="USD"/>
-                          <input type="hidden" name="return" value=" "/>
-                          <input type="hidden" name="cancel_return" value=" "/>
-                          <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                        </fieldset>
-                      </form>
-                    </div>
-                  </div>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-          <div class="hover14 column">
-            <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-              <div class="agile_top_brand_left_grid1">
-                <figure>
-                  <div class="snipcart-item block">
-                    <div class="snipcart-thumb">
-                      <a href="single.html">
-                        <img src="assets/images/8.png" alt=" " class="img-responsive"/>
-                      </a>
-                      <p>premium bake rusk (300 gm)</p>
-                      <h4>$5.00
-                        <span>$7.00</span>
-                      </h4>
-                    </div>
-                    <div class="snipcart-details">
-                      <form action="#" method="post">
-                        <fieldset>
-                          <input type="hidden" name="cmd" value="_cart"/>
-                          <input type="hidden" name="add" value="1"/>
-                          <input type="hidden" name="business" value=" "/>
-                          <input type="hidden" name="item_name" value="premium bake rusk"/>
-                          <input type="hidden" name="amount" value="5.00"/>
-                          <input type="hidden" name="discount_amount" value="1.00"/>
-                          <input type="hidden" name="currency_code" value="USD"/>
-                          <input type="hidden" name="return" value=" "/>
-                          <input type="hidden" name="cancel_return" value=" "/>
-                          <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                        </fieldset>
-                      </form>
-                    </div>
-                  </div>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-          <div class="hover14 column">
-            <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-              <div class="agile_top_brand_left_grid1">
-                <figure>
-                  <div class="snipcart-item block">
-                    <div class="snipcart-thumb">
-                      <a href="single.html">
-                        <img src="assets/images/8.png" alt=" " class="img-responsive"/>
-                      </a>
-                      <p>premium bake rusk (300 gm)</p>
-                      <h4>$5.00
-                        <span>$7.00</span>
-                      </h4>
-                    </div>
-                    <div class="snipcart-details">
-                      <form action="#" method="post">
-                        <fieldset>
-                          <input type="hidden" name="cmd" value="_cart"/>
-                          <input type="hidden" name="add" value="1"/>
-                          <input type="hidden" name="business" value=" "/>
-                          <input type="hidden" name="item_name" value="premium bake rusk"/>
-                          <input type="hidden" name="amount" value="5.00"/>
-                          <input type="hidden" name="discount_amount" value="1.00"/>
-                          <input type="hidden" name="currency_code" value="USD"/>
-                          <input type="hidden" name="return" value=" "/>
-                          <input type="hidden" name="cancel_return" value=" "/>
-                          <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                        </fieldset>
-                      </form>
-                    </div>
-                  </div>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-          <div class="hover14 column">
-            <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-              <div class="agile_top_brand_left_grid1">
-                <figure>
-                  <div class="snipcart-item block">
-                    <div class="snipcart-thumb">
-                      <a href="single.html">
-                        <img src="assets/images/8.png" alt=" " class="img-responsive"/>
-                      </a>
-                      <p>premium bake rusk (300 gm)</p>
-                      <h4>$5.00
-                        <span>$7.00</span>
-                      </h4>
-                    </div>
-                    <div class="snipcart-details">
-                      <form action="#" method="post">
-                        <fieldset>
-                          <input type="hidden" name="cmd" value="_cart"/>
-                          <input type="hidden" name="add" value="1"/>
-                          <input type="hidden" name="business" value=" "/>
-                          <input type="hidden" name="item_name" value="premium bake rusk"/>
-                          <input type="hidden" name="amount" value="5.00"/>
-                          <input type="hidden" name="discount_amount" value="1.00"/>
-                          <input type="hidden" name="currency_code" value="USD"/>
-                          <input type="hidden" name="return" value=" "/>
-                          <input type="hidden" name="cancel_return" value=" "/>
-                          <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                        </fieldset>
-                      </form>
-                    </div>
-                  </div>
-                </figure>
-              </div>
-            </div>
-          </div>
-        </div>
+        </ng-container>
         <div class="clearfix"></div>
 
         <div class="container" style="text-align: left">

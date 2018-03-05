@@ -1,4 +1,8 @@
 import {Component, OnInit} from '@angular/core';
+import {ProductService} from "../../service/product/product.service";
+import {DetailProductLogic} from "./detail-product-logic";
+import {ActivatedRoute} from "@angular/router";
+import {isNullOrUndefined} from "util";
 
 declare var $: any;
 
@@ -7,20 +11,23 @@ declare var $: any;
   templateUrl: './detail-product.component.html',
   styleUrls: ['./detail-product.component.css']
 })
-export class DetailProductComponent implements OnInit {
+export class DetailProductComponent extends DetailProductLogic implements OnInit {
 
-  constructor() {
+  constructor(protected productService: ProductService,
+              protected route: ActivatedRoute) {
+    super(productService);
   }
 
   ngOnInit() {
-    // $(function () {
-    //   $('#example').okzoom({
-    //     width: 150,
-    //     height: 150,
-    //     border: "1px solid black",
-    //     shadow: "0 0 5px #000"
-    //   });
-    // });
+
+    let productId: string = this.route.snapshot.paramMap.get("productId");
+
+    this.getProductById(productId);
+  }
+
+  isAvailbaleProduct(): boolean {
+    if (isNullOrUndefined(this.product)) return false;
+    return true;
   }
 
 }

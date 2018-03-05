@@ -39,8 +39,6 @@ class Product implements BaseDomain {
         hangSanXuat nullable: true;
         baoHanh nullable: true;
         khoHang nullable: true;
-        sdtLienHe nullable: true;
-        emailLienHe nullable: true;
         gia nullable: true;
         giaTruocKhiHa nullable: true;
         thongTinChiTiet nullable: true;

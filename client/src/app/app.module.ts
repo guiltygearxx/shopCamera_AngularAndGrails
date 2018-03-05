@@ -20,6 +20,7 @@ import {NumberFormatter} from "./common/formater/number-formatter";
 import {AppBaseModule} from "./common/app-base.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./service/product/product.service";
+import {CategoryService} from "./service/category/category.service";
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import {ProductService} from "./service/product/product.service";
     ApplicationUtils,
     ComponentUtils,
     ValidateUtils,
-    ProductService
+    ProductService,
+    CategoryService
   ],
   bootstrap: [AppComponent]
 })

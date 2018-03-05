@@ -3,11 +3,10 @@
     <p>DANH MỤC SẢN PHẨM</p>
   </div>
   <ul class="nav navbar-nav nav_1">
-
     <ng-container *ngFor="let parentCategory of getParentCategories()">
       <li class="dropdown mega-dropdown active">
         <a (click)="goToCategory($event, parentCategory)" class="dropdown-toggle" data-toggle="dropdown">
-          {{parentCategory.label}}
+          {{parentCategory.name}}
           <span class="caret"></span>
         </a>
 
@@ -16,7 +15,7 @@
             <ul>
               <ng-container *ngFor="let subCategory of getSubCategories(parentCategory)">
                 <li>
-                  <a (click)="goToSubCategory($event, parentCategory, subCategory)">{{subCategory.label}}</a>
+                  <a (click)="goToSubCategory($event, parentCategory, subCategory)">{{subCategory.name}}</a>
                 </li>
               </ng-container>
             </ul>
