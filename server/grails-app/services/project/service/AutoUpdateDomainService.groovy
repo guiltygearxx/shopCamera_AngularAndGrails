@@ -14,13 +14,7 @@ class AutoUpdateDomainService {
 
     private void updateCommon(AbstractPersistenceEvent event) {
 
-        println(event.entityObject instanceof BaseDomain);
-
         if (event.entityObject instanceof BaseDomain) {
-
-            println "123123";
-
-//            println(event.entityAccess as JSON);
 
             event.entityAccess.setProperty("lastModifiedUser", 'admin1');
             event.entityAccess.setProperty("lastModifiedTime", new Date());
@@ -31,15 +25,11 @@ class AutoUpdateDomainService {
     @Listener(Category)
     void preInsert(PreInsertEvent event) {
 
-        println("preInsert");
-
         updateCommon(event);
     }
 
     @Listener(Category)
     void preUpdate(PreUpdateEvent event) {
-
-        println("preUpdate");
 
         updateCommon(event);
     }

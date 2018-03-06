@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {RestService} from "../common/rest-service";
-import {Category} from "./category";
+import {Category} from "../examples/category";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable()

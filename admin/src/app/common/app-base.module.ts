@@ -11,6 +11,8 @@ import {CheckBoxComponent} from './check-box/check-box.component';
 import {SelectComponent} from './select/select.component';
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {ValidateUtils} from "./validate/validate-utils";
+import {InputFileComponent} from './input-file/input-file.component';
+import {BoxErrorsComponent} from './box-errors/box-errors.component';
 
 @NgModule({
 
@@ -19,7 +21,9 @@ import {ValidateUtils} from "./validate/validate-utils";
     TextAreaComponent,
     CheckBoxComponent,
     SelectComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    InputFileComponent,
+    BoxErrorsComponent
   ],
 
   imports: [
@@ -32,7 +36,9 @@ import {ValidateUtils} from "./validate/validate-utils";
     TextAreaComponent,
     CheckBoxComponent,
     SelectComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    InputFileComponent,
+    BoxErrorsComponent
   ],
 
   providers: [

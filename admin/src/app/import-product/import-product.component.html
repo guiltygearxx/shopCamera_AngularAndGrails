@@ -1,0 +1,55 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    <!--Import sản phẩm-->
+    <!--<small>Quản lí sản phẩm</small>-->
+  </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Your Page Content Here -->
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <app-input-file [title]="'Import File'" [placeHolder]="'Import File'"
+                      [(value)]="form.importFile" [isRequired]="true" (valueChange)="importFileChanged($event)">
+      </app-input-file>
+
+    </div>
+
+  </div>
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <app-box-errors [errorMessages]="errorMessages"></app-box-errors>
+
+      <div style="width: 100%" #hotTableContainer>
+
+        <ng-container *ngIf="isAbleToRenderHotTable">
+
+          <hotTable [data]="items" [colHeaders]="colHeaders" [columns]="columns" [options]="options"
+                    [colWidths]="colWidths" (afterChange)="cellValuesChanged($event)">
+          </hotTable>
+
+        </ng-container>
+
+      </div>
+
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-info pull-right" (click)="save($event)">Lưu</button>
+    </div>
+
+
+  </div>
+
+
+</section>
+<!-- /.content -->
