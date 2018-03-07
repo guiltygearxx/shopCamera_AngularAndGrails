@@ -65,7 +65,7 @@ export class ImportProductComponent
               protected applicationUtils: ApplicationUtils,
               protected categoryService: CategoryService) {
 
-    super(importProductService, categoryService);
+    super(importProductService, categoryService, applicationUtils);
   }
 
   ngOnInit() {
@@ -144,7 +144,7 @@ export class ImportProductComponent
 
   private buildErrorMessageRow(itemIndex: number, errorMessage: string): string {
 
-    return this.applicationUtils.message("importProduct.message.row", [itemIndex, errorMessage]);
+    return this.applicationUtils.message("importProduct.message.row", [itemIndex + 1, errorMessage]);
   }
 
   private buildErrorMessageField(item: ImportProductRow, itemIndex: number, field: string): string {
