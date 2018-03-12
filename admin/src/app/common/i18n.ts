@@ -1,5 +1,7 @@
 export const i18n = {
 
+  "default.success": "Cập nhật thành công.",
+
   "inList": "Giá trị trường phải thuộc danh sách [{1}].",
   "matches": "Giá trị trường không đúng định dạng.",
   "nullable": "Giá trị trường bắt buộc.",
@@ -28,6 +30,8 @@ export const i18n = {
   "importProduct.field.thongSoKiThuat": "thongSoKiThuat",
   "importProduct.field.khuyenMai": "khuyenMai",
 
-  "importProduct.categoryName.notFound": "Không tìm thấy category với tên [{0}}.",
-  "importProduct.duplicateProductName": "Tên sản phẩm [{0}} trùng lặp.",
+  "importProduct.categoryName.notFound": "Không tìm thấy category với tên [{0}].",
+  "importProduct.duplicateProductName": "Tên sản phẩm [{0}] trùng lặp.",
+
+  "addProductService.existedName": "Product với tên [{0}] đã tồn tại."
 }

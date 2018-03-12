@@ -5,6 +5,7 @@ import grails.rest.RestfulController
 class DefaultRestfulController<T> extends RestfulController<T> {
 
     def restfulQueryService;
+    def queryPagingService
 
     DefaultRestfulController(Class<T> resource) {
 

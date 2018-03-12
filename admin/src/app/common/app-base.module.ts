@@ -13,6 +13,7 @@ import {DatePickerComponent} from './date-picker/date-picker.component';
 import {ValidateUtils} from "./validate/validate-utils";
 import {InputFileComponent} from './input-file/input-file.component';
 import {BoxErrorsComponent} from './box-errors/box-errors.component';
+import {PaginationFooterComponent} from './pagination-footer/pagination-footer.component';
 
 @NgModule({
 
@@ -23,7 +24,8 @@ import {BoxErrorsComponent} from './box-errors/box-errors.component';
     SelectComponent,
     DatePickerComponent,
     InputFileComponent,
-    BoxErrorsComponent
+    BoxErrorsComponent,
+    PaginationFooterComponent
   ],
 
   imports: [
@@ -38,7 +40,8 @@ import {BoxErrorsComponent} from './box-errors/box-errors.component';
     SelectComponent,
     DatePickerComponent,
     InputFileComponent,
-    BoxErrorsComponent
+    BoxErrorsComponent,
+    PaginationFooterComponent
   ],
 
   providers: [

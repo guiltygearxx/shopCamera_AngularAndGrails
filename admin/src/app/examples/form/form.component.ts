@@ -3,7 +3,7 @@ import {ExampleObject} from "../../bean/example-object";
 import {ExampleForm} from "../../bean/example-form";
 import {ValidateUtils} from "../../common/validate/validate-utils";
 import {CategoryService} from "../../service/category.service";
-import {Category} from "../category";
+import {Category} from "../../bean/category";
 
 @Component({
   selector: 'app-form',

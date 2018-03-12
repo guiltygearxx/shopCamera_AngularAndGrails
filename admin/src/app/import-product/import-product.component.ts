@@ -1,12 +1,12 @@
 import {AfterContentInit, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {ImportProductForm} from "./import-product-form";
+import {ImportProductForm} from "../bean/import-product-form";
 import {ImportProductLogic} from "./import-product-logic";
 import {ImportProductService} from "../service/import-product.service";
 import {isNullOrUndefined} from "util";
 import {ValidateUtils} from "../common/validate/validate-utils";
-import {ImportProductRow} from "./import-product-row";
 import {ApplicationUtils} from "../common/application-utils";
 import {CategoryService} from "../service/category.service";
+import {FormFlowManager} from "../common/form-flow-manager";
 
 @Component({
   selector: 'app-import-product',
@@ -53,19 +53,15 @@ export class ImportProductComponent
 
   colWidths: any = "200px";
 
-  errorMessages: string[];
-
-  get isHasData(): boolean {
-
-    return !isNullOrUndefined(this.items) && this.items.length > 0;
-  }
+  errorMessages: string[] = [];
 
   constructor(protected importProductService: ImportProductService,
               protected validateUtils: ValidateUtils,
               protected applicationUtils: ApplicationUtils,
-              protected categoryService: CategoryService) {
+              protected categoryService: CategoryService,
+              protected formFlowManager: FormFlowManager) {
 
-    super(importProductService, categoryService, applicationUtils);
+    super(importProductService, categoryService, applicationUtils, validateUtils, formFlowManager);
   }
 
   ngOnInit() {
@@ -118,114 +114,6 @@ export class ImportProductComponent
 
     event.preventDefault();
 
-    this.errorMessages = [];
-
-    if (!this.validate()) return;
-
-    this.updateProducts();
+    this.formFlowManager.submitForm(this);
   }
-
-  private convertToErrorMessages(): void {
-
-    let fields: string[] = Object.keys(ImportProductRow.constraints);
-
-    this.items.forEach((item, itemIndex) => {
-
-      fields.forEach((field) => {
-
-        let errorMessage = this.buildErrorMessageField(item, itemIndex, field);
-
-        if (this.applicationUtils.isStringEmpty(errorMessage)) return;
-
-        this.errorMessages.push(errorMessage);
-      })
-    });
-  }
-
-  private buildErrorMessageRow(itemIndex: number, errorMessage: string): string {
-
-    return this.applicationUtils.message("importProduct.message.row", [itemIndex + 1, errorMessage]);
-  }
-
-  private buildErrorMessageField(item: ImportProductRow, itemIndex: number, field: string): string {
-
-    let errorMessage = this.validateUtils.getFieldErrorMessage(field, item);
-
-    if (this.applicationUtils.isStringEmpty(errorMessage)) return null;
-
-    return this.applicationUtils.message("importProduct.message.field", [
-
-      itemIndex + 1, this.applicationUtils.message("importProduct.field." + field), errorMessage
-    ]);
-  }
-
-  private validate(): boolean {
-
-    if (!this.isHasData) return true;
-
-    return this.validateForm() && this.validateCategoryNames() && this.validateDuplicateName();
-  }
-
-  private validateDuplicateName(): boolean {
-
-    let isOK = true;
-
-    let names_: string[] = [];
-
-    this.items.forEach((item, itemIndex) => {
-
-      if (names_.indexOf(item.name) != -1) {
-
-        isOK = true;
-
-        let errorMessage = this.applicationUtils.message("importProduct.duplicateProductName", [item.name]);
-
-        this.errorMessages.push(this.buildErrorMessageRow(itemIndex, errorMessage));
-
-      } else {
-
-        names_.push(item.name);
-      }
-    })
-
-    return isOK;
-  }
-
-  private validateForm(): boolean {
-
-    let invalidItems = this.items.filter((item) => {
-
-      let validateResult = !this.validateUtils.validate(item, ImportProductRow.constraints);
-
-      return validateResult;
-    });
-
-    let validateResult = isNullOrUndefined(invalidItems) || invalidItems.length == 0;
-
-    if (!validateResult) this.convertToErrorMessages();
-
-    return validateResult;
-  }
-
-  private validateCategoryNames(): boolean {
-
-    let isOK = true;
-
-    this.items.forEach((item, itemIndex) => {
-
-      let category = this.getCategoryByName(item.categoryName);
-
-      if (isNullOrUndefined(category)) {
-
-        isOK = false;
-
-        let errorMessage = this.applicationUtils.message("importProduct.categoryName.notFound", [item.categoryName]);
-
-        this.errorMessages.push(this.buildErrorMessageRow(itemIndex, errorMessage));
-      }
-    });
-
-    return isOK;
-  }
-
 }

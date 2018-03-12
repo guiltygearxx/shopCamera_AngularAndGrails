@@ -1,4 +1,4 @@
-import {BaseDomain} from "../bean/base-domain";
+import {BaseDomain} from "./base-domain";
 
 export class Category implements BaseDomain {
 

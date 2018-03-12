@@ -1,9 +1,9 @@
 import {Injectable} from "@angular/core";
-import {ImportProductRow} from "../import-product/import-product-row";
+import {ImportProductRow} from "../bean/import-product-row";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 import {environment} from "../../environments/environment";
-import {ImportProductsForm} from "../import-product/import-products-form";
+import {ImportProductsForm} from "../bean/import-products-form";
 import {ResultBean} from "../common/result-bean";
 
 @Injectable()

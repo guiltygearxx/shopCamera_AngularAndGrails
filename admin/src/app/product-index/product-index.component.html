@@ -1,0 +1,86 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <!--<h1>-->
+  <!--Danh sách sản phẩm-->
+  <!--<small>Quản lí sản phẩm</small>-->
+  <!--</h1>-->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Your Page Content Here -->
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="col-md-3">
+        <app-select [title]="'Category'" [(value)]="filterForm.categoryId" [placeHolder]="'Select a category'"
+                    [data]="categories" [optionKey]="'id'" [optionValue]="'name'">
+        </app-select>
+      </div>
+
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-info pull-right" (click)="search($event)">Tìm kiếm</button>
+    </div>
+
+  </div>
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                 aria-describedby="example2_info">
+            <thead>
+            <tr role="row">
+
+              <th class="{{getSortingClass('name')}}" (click)="doSort('name')" tabindex="0">Tên</th>
+              <th class="{{getSortingClass('hangSanXuat')}}" (click)="doSort('hangSanXuat')" tabindex="0">
+                Hãng sản xuất
+              </th>
+              <th class="{{getSortingClass('baoHanh')}}" (click)="doSort('baoHanh')" tabindex="0">Bảo hành</th>
+              <th class="{{getSortingClass('khoHang')}}" (click)="doSort('khoHang')" tabindex="0">Kho hàng</th>
+              <th class="{{getSortingClass('gia')}}" (click)="doSort('gia')" tabindex="0">Giá</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <ng-container *ngFor="let product of products">
+              <tr role="row">
+
+                <td>{{product.name}}</td>
+                <td>{{product.hangSanXuat}}</td>
+                <td>{{product.baoHanh}}</td>
+                <td>{{product.khoHang}}</td>
+                <td>{{product.gia}}</td>
+
+              </tr>
+            </ng-container>
+
+            </tbody>
+
+          </table>
+
+          <app-pagination-footer [dataSize]="count" [maxPageSize]="maxPageSize" [pageIndex]="curPageIndex"
+                                 (goToPage)="goToPage($event)">
+          </app-pagination-footer>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- /.content -->

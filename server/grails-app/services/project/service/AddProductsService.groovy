@@ -10,7 +10,7 @@ import project.domain.Product
 @Transactional
 class AddProductsService implements BaseService {
 
-    static scope = "request";
+    static scope = "request"
 
     def applicationUtilsService;
 
@@ -121,7 +121,7 @@ class AddProductsService implements BaseService {
                     thongSoKiThuat: item.thongSoKiThuat,
                     khuyenMai: item.khuyenMai,
 
-                    isDeleted: true,
+                    isDeleted: false,
                     lastModifiedTime: new Date(),
                     lastModifiedUser: "admin"
             )

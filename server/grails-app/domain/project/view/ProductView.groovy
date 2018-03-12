@@ -1,20 +1,26 @@
 package project.view
 
-class ProductView {
+import project.domain.BaseDomain
 
-    String id;
+class ProductView implements BaseDomain {
+
+    String categoryId;
     String name;
-    BigDecimal gia;
-    String giaTruocKhiHa;
     String image1;
+    String image2;
+    String image3;
+    String image4;
+    String hangSanXuat;
+    String baoHanh;
+    String khoHang;
+    BigDecimal gia;
+    BigDecimal giaTruocKhiHa;
 
     static constraints = {
-
     }
 
     static mapping = {
 
-        table("v_product")
-        version(false);
+        table("product")
     }
 }
