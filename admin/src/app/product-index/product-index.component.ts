@@ -87,6 +87,13 @@ export class ProductIndexComponent
     return this.sortableTableFlow.getSortingClass(this, field);
   }
 
+  addNew(event: any): void {
+
+    event.preventDefault();
+
+
+  }
+
   protected loadCategories(): void {
 
     this.categoryService.get().subscribe((categories) => this.categories = categories);
