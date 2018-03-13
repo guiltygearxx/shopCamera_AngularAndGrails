@@ -4,6 +4,9 @@ class UrlMappings {
 
     static mappings = {
 
+        "/productView/paginate"(controller: "productView", action: "paginate", method: "GET");
+        "/productView"(resources: "productView")
+
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here

@@ -9,12 +9,16 @@ class ProductController extends DefaultRestfulController<Product> {
     def applicationUtilsService;
     def updateProductServiceProxy;
 
+    ProductController() {
+        super(Product);
+    }
+
     ProductController(Class<Product> resource) {
 
         super(resource);
     }
 
-    ProductController(Class<Product> resource, Boolean readOnly) {
+    ProductController(Class<Product> resource, boolean readOnly) {
 
         super(resource, readOnly);
     }
