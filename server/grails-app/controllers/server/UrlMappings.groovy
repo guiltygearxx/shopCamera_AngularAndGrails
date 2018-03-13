@@ -7,6 +7,9 @@ class UrlMappings {
         "/productView/paginate"(controller: "productView", action: "paginate", method: "GET");
         "/productView"(resources: "productView")
 
+        "/product/updateProduct"(controller: "product", action: "updateProduct", method: "POST");
+        "/product"(resources: "product")
+
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here

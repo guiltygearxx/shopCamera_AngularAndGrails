@@ -1,0 +1,113 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Chi tiết sản phẩm
+    <small>Quản lí sản phẩm</small>
+  </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Your Page Content Here -->
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <app-box-errors [errorMessages]="errorMessages"></app-box-errors>
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <app-select [title]="'Category'" [(value)]="form.categoryId" [placeHolder]="'Select a category'"
+                      [data]="categories" [optionKey]="'id'" [optionValue]="'name'" [isRequired]="true"
+                      [errorMessage]="getErrorMessage('categoryId')">
+          </app-select>
+        </div>
+
+        <div class="col-md-6">
+          <app-input-text [title]="'Tên'" [placeHolder]="'Tên'" [(value)]="form.name" [isRequired]="true"
+                          [errorMessage]="getErrorMessage('name')">
+          </app-input-text>
+        </div>
+
+      </div>
+
+
+      <app-input-text [title]="'Link ảnh 1'" [placeHolder]="'Link ảnh 1'" [(value)]="form.image1"
+                      [errorMessage]="getErrorMessage('image1')">
+      </app-input-text>
+
+      <app-input-text [title]="'Link ảnh 2'" [placeHolder]="'Link ảnh 2'" [(value)]="form.image2"
+                      [errorMessage]="getErrorMessage('image2')">
+      </app-input-text>
+
+      <app-input-text [title]="'Link ảnh 3'" [placeHolder]="'Link ảnh 3'" [(value)]="form.image3"
+                      [errorMessage]="getErrorMessage('image3')">
+      </app-input-text>
+
+      <app-input-text [title]="'Link ảnh 4'" [placeHolder]="'Link ảnh 4'" [(value)]="form.image4"
+                      [errorMessage]="getErrorMessage('image4')">
+      </app-input-text>
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <app-input-text [title]="'Hãng sản xuất'" [placeHolder]="'Hãng sản xuất'" [(value)]="form.hangSanXuat"
+                          [errorMessage]="getErrorMessage('hangSanXuat')">
+          </app-input-text>
+        </div>
+
+        <div class="col-md-3">
+          <app-input-text [title]="'Bảo hành'" [placeHolder]="'Bảo hành'" [(value)]="form.baoHanh"
+                          [errorMessage]="getErrorMessage('baoHanh')">
+          </app-input-text>
+        </div>
+
+        <div class="col-md-3">
+          <app-input-text [title]="'Kho hàng'" [placeHolder]="'Kho hàng'" [(value)]="form.khoHang"
+                          [errorMessage]="getErrorMessage('khoHang')">
+          </app-input-text>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <app-input-text [title]="'Giá'" [placeHolder]="'Giá'" [(value)]="form.gia"
+                          [errorMessage]="getErrorMessage('gia')" [formatType]="'number'">
+          </app-input-text>
+        </div>
+
+        <div class="col-md-3">
+          <app-input-text [title]="'Giá (trước khi hạ)'" [placeHolder]="'Giá (trước khi hạ)'"
+                          [(value)]="form.giaTruocKhiHa"
+                          [errorMessage]="getErrorMessage('giaTruocKhiHa')" [formatType]="'number'">
+          </app-input-text>
+        </div>
+
+      </div>
+
+      <app-text-area [title]="'Thông tin chi tiết (HTML)'" [placeHolder]="'Thông tin chi tiết (HTML)'"
+                     [(value)]="form.thongTinChiTiet" [errorMessage]="getErrorMessage('thongTinChiTiet')">
+      </app-text-area>
+
+      <app-text-area [title]="'Thông số kĩ thuật (HTML)'" [placeHolder]="'Thông số kĩ thuật (HTML)'"
+                     [(value)]="form.thongSoKiThuat" [errorMessage]="getErrorMessage('thongSoKiThuat')">
+      </app-text-area>
+
+      <app-text-area [title]="'Khuyến mại (HTML)'" [placeHolder]="'Khuyến mại (HTML)'" [(value)]="form.khuyenMai"
+                     [errorMessage]="getErrorMessage('khuyenMai')">
+      </app-text-area>
+
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-info pull-right" (click)="save($event)">Lưu</button>
+    </div>
+
+  </div>
+
+</section>

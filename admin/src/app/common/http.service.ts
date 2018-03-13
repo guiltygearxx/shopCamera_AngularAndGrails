@@ -33,7 +33,7 @@ export class HttpService {
 
     var url = environment.serviceBaseURL + url;
 
-    return this.http.get<any>(url, {params: httpParams});
+    return this.http.get<any>(url, {params: httpParams, responseType: "json"});
   }
 
   post(url: string, body: any, params: any): Observable<any> {

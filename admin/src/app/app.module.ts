@@ -29,6 +29,8 @@ import {HttpService} from "./common/http.service";
 import {FormFlowManager} from "./common/form-flow-manager";
 import {ProductViewService} from "./service/product-view-service";
 import {SortableTableFlow} from "./common/sortable-table-flow";
+import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {ProductService} from './service/product.service';
 
 @NgModule({
 
@@ -43,6 +45,7 @@ import {SortableTableFlow} from "./common/sortable-table-flow";
     FormComponent,
     ImportProductComponent,
     ProductIndexComponent,
+    ProductDetailComponent,
   ],
 
   imports: [
@@ -68,6 +71,7 @@ import {SortableTableFlow} from "./common/sortable-table-flow";
     FormFlowManager,
     ProductViewService,
     SortableTableFlow,
+    ProductService,
   ],
 
   bootstrap: [AppComponent]

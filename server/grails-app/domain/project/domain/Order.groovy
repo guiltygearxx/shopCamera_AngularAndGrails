@@ -11,8 +11,6 @@ class Order implements BaseDomain {
 
     static constraints = {
 
-        id size: 36..36
-
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true
         isDeleted nullable: true
