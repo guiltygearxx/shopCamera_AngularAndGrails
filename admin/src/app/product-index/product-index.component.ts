@@ -54,6 +54,10 @@ export class ProductIndexComponent
   search(event: any): void {
 
     event.preventDefault();
+
+    this.curPageIndex = 0;
+
+    this.loadProducts();
   }
 
   doSort(field: string) {
