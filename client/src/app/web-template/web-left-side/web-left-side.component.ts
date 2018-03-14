@@ -28,6 +28,9 @@ export class WebLeftSideComponent extends WebLeftSideLogic implements OnInit {
 
     event.preventDefault();
 
+    console.log(category.code);
+
+    this.router.navigated = false;
     this.router.navigate(["/danhSachSanPham", category.code, ""]);
   }
 
@@ -35,6 +38,7 @@ export class WebLeftSideComponent extends WebLeftSideLogic implements OnInit {
 
     event.preventDefault();
 
+    this.router.navigated = false;
     this.router.navigate(["/danhSachSanPham", category.code, subCategory.code]);
   }
 

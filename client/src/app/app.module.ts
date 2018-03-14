@@ -21,6 +21,18 @@ import {AppBaseModule} from "./common/app-base.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./service/product/product.service";
 import {CategoryService} from "./service/category/category.service";
+import {ProductViewService} from "./service/product/product-view.service";
+import { WebContactComponent } from './web-template/web-contact/web-contact.component';
+import { WebTrungtamdaotaoComponent } from './web-template/web-trungtamdaotao/web-trungtamdaotao.component';
+import { WebDailyComponent } from './web-template/web-daily/web-daily.component';
+import { WebTuyendungComponent } from './web-template/web-tuyendung/web-tuyendung.component';
+import { WebGiaiphapComponent } from './web-template/web-giaiphap/web-giaiphap.component';
+import { WebTintucsukienComponent } from './web-template/web-tintucsukien/web-tintucsukien.component';
+import { WebGioithieuComponent } from './web-template/web-gioithieu/web-gioithieu.component';
+import {SolutionService} from "./service/solution/solution.service";
+import {NewsService} from "./service/news/news.service";
+import { WebGiaiphapChitietComponent } from './web-template/web-giaiphap-chitiet/web-giaiphap-chitiet.component';
+import { WebTintucsukienChitietComponent } from './web-template/web-tintucsukien-chitiet/web-tintucsukien-chitiet.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +46,15 @@ import {CategoryService} from "./service/category/category.service";
     ListProductsComponent,
     CheckoutComponent,
     AloPhoneServiceComponent,
+    WebContactComponent,
+    WebTrungtamdaotaoComponent,
+    WebDailyComponent,
+    WebTuyendungComponent,
+    WebGiaiphapComponent,
+    WebTintucsukienComponent,
+    WebGioithieuComponent,
+    WebGiaiphapChitietComponent,
+    WebTintucsukienChitietComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +69,10 @@ import {CategoryService} from "./service/category/category.service";
     ComponentUtils,
     ValidateUtils,
     ProductService,
-    CategoryService
+    ProductViewService,
+    CategoryService,
+    SolutionService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

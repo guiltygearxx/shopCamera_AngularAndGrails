@@ -23,77 +23,19 @@
   </div>
   <div class="w3l_banner_nav_right">
     <div class="col-xs-12">
-      <div class="col-xs-12 col-md-3 col-lg-3 hidden-md configBorder">
-        <div class="imageView">
-          <img alt="Camera Vantech Giá Rẻ"
-               src="https://baomoi-photo-3-td.zadn.vn/w300_r3x2/18/02/01/61/24823475/1_127498.jpg" width="250px"
-               class="processImage">
+
+      <ng-container *ngFor="let news of danhSachTinTuc">
+
+      <div class="col-xs-12 col-md-3 col-lg-3  configBorder">
+        <div class="newpic">
+          <a (click)="goToChiTietTinTuc($event,news)">
+            <img src="{{news.hinhAnh}}" border="0" hspace="5" vspace="5" width="220" height="150"/>
+          </a>
         </div>
-        <div class="titleView">
-          <a href="http://fptcamera.vn/camera-hikvision">
-            Cảnh sát Thái tịch biên 30 nhà cửa, đất đai của bà Yingluck</a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-md-3 col-lg-3 hidden-md configBorder">
-        <div class="imageView">
-          <img alt="Camera Vantech Giá Rẻ"
-               src="https://baomoi-photo-2-td.zadn.vn/w300_r3x2/18/02/01/3/24823894/2_64630.jpg" width="250px"
-               class="processImage">
-        </div>
-        <div class="titleView">
-          <a href="http://fptcamera.vn/camera-hikvision">
-            Cảnh sát Thái tịch biên 30 nhà cửa, đất đai của bà Yingluck</a>
-        </div>
-      </div>
-      <div class="col-xs-12 col-md-3 col-lg-3 hidden-md configBorder">
-        <div class="imageView">
-          <img alt="Camera Vantech Giá Rẻ"
-               src="https://baomoi-photo-1-td.zadn.vn/w300_r3x2/18/02/01/18/24823176/1_85779.jpg" width="250px"
-               class="processImage">
-        </div>
-        <div class="titleView">
-          <a href="http://fptcamera.vn/camera-hikvision">
-            Cảnh sát Thái tịch biên 30 nhà cửa, đất đai của bà Yingluck</a>
-        </div>
+        <h5><a (click)="goToChiTietTinTuc($event,news)">{{news.tieuDe}}</a></h5>
       </div>
 
-      <div class="col-xs-12 col-md-3 col-lg-3 hidden-md configBorder">
-        <div class="imageView">
-          <img alt="Camera Vantech Giá Rẻ"
-               src="https://baomoi-photo-1-td.zadn.vn/w300_r3x2/18/02/01/18/24823176/1_85779.jpg" width="250px"
-               class="processImage">
-        </div>
-        <div class="titleView">
-          <a href="http://fptcamera.vn/camera-hikvision">
-            Cảnh sát Thái tịch biên 30 nhà cửa, đất đai của bà Yingluck</a>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-md-3 col-lg-3 hidden-md configBorder">
-        <div class="imageView">
-          <img alt="Camera Vantech Giá Rẻ"
-               src="https://baomoi-photo-1-td.zadn.vn/w300_r3x2/18/02/01/18/24823176/1_85779.jpg" width="250px"
-               class="processImage">
-        </div>
-        <div class="titleView">
-          <a href="http://fptcamera.vn/camera-hikvision">
-            Cảnh sát Thái tịch biên 30 nhà cửa, đất đai của bà Yingluck</a>
-        </div>
-      </div>
-
-      <div class="col-xs-12 col-md-3 col-lg-3 hidden-md configBorder">
-        <div class="imageView">
-          <img alt="Camera Vantech Giá Rẻ"
-               src="https://baomoi-photo-1-td.zadn.vn/w300_r3x2/18/02/01/18/24823176/1_85779.jpg" width="250px"
-               class="processImage">
-        </div>
-        <div class="titleView">
-          <a href="http://fptcamera.vn/camera-hikvision">
-            Cảnh sát Thái tịch biên 30 nhà cửa, đất đai của bà Yingluck</a>
-        </div>
-      </div>
-
-
+      </ng-container>
     </div>
   </div>
   <div class="clearfix"></div>
@@ -106,176 +48,66 @@
   <div class="container">
     <ul class="nav nav-tabs custom-tabs " role="tablist">
       <li role="presentation" class="active">
-        <a href="" style="background-color:red; color: white; font-weight: bolder">CAMERA
+        <a style="background-color:red; color: white; font-weight: bolder">CAMERA
           GIÁM SÁT</a>
       </li>
       <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="">Camera Hikvision</a>
+        <a (click)="goToCategory($event, 'cameraTronBo')">Camera Trọn bộ</a>
       </li>
       <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="">Camera Benco</a>
+        <a (click)="goToCategory($event, 'cameraGiamSat')">Camera Giám sát</a>
       </li>
       <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="">Camera Không Dây</a>
+        <a (click)="goToCategory($event, 'thietBiAnNinh')">Thiết bị an ninh</a>
       </li>
       <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="">Camera giá rẻ</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="">Camera ngụy trang</a>
+        <a (click)="goToCategory($event, 'dauGhiHinhCamera')">Đầu ghi hình Camera</a>
       </li>
     </ul>
     <div class="agile_top_brands_grids">
-      <div class="col-md-3 top_brand_left text-center-align">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img title=" " alt=" " src="assets/images/1.png"/>
-                    </a>
-                    <p> Lắp đặt 1 camera HIKVISION </p>
-                    <h4>2.099.000 đ
-                      <span>2.950.000 đ</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <form action="checkout.html" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="Fortune Sunflower Oil"/>
-                        <input type="hidden" name="amount" value="7.99"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
 
-                    </form>
+      <ng-container *ngFor="let productCamera of this.productListCameraGiamSat">
+        <div class="col-md-3 top_brand_left text-center-align margin-top-20">
+          <div class="hover14 column">
+            <div class="agile_top_brand_left_grid">
+              <div class="agile_top_brand_left_grid1">
+                <figure>
+                  <div class="snipcart-item block">
+                    <div class="snipcart-thumb">
+                      <a (click)="goToChiTietSanPham($event, productCamera)">
+                        <img title=" " alt=" " src="assets/images/{{productCamera.image1}}.png" width="140" height="140"/>
+                      </a>
+                      <p> {{productCamera.name}} </p>
+                      <h4>{{productCamera.gia}} đ
+                        <span>{{productCamera.giaTruocKhiHa}} đ</span>
+                      </h4>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details">
+                      <form action="checkout.html" method="post">
+                        <fieldset>
+                          <input type="hidden" name="cmd" value="_cart"/>
+                          <input type="hidden" name="add" value="1"/>
+                          <input type="hidden" name="business" value=" "/>
+                          <input type="hidden" name="item_name" value="Fortune Sunflower Oil"/>
+                          <input type="hidden" name="amount" value="7.99"/>
+                          <input type="hidden" name="discount_amount" value="1.00"/>
+                          <input type="hidden" name="currency_code" value="USD"/>
+                          <input type="hidden" name="return" value=" "/>
+                          <input type="hidden" name="cancel_return" value=" "/>
+                          <input type="submit" name="submit" value="Mua ngay" class="button"/>
+                        </fieldset>
 
+                      </form>
+
+                    </div>
                   </div>
-                </div>
-              </figure>
+                </figure>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3 top_brand_left text-center-align">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img title=" " alt=" " src="assets/images/2.png"/>
-                    </a>
-                    <p>Lắp 2 Camera HIKVISION</p>
-                    <h4>2.999.000 đ
-                      <span>3.500.000 đ</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="basmati rise"/>
-                        <input type="hidden" name="amount" value="11.99"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 top_brand_left text-center-align">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/3.png" alt=" " class="img-responsive"/>
-                    </a>
-                    <p>Lắp đặt 3 camera Hikvision</p>
-                    <h4>3.799.000 đ
-                      <span>4.300.000 đ</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="Pepsi soft drink"/>
-                        <input type="hidden" name="amount" value="8.00"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 top_brand_left text-center-align">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/4.png" alt=" " class="img-responsive"/>
-                    </a>
-                    <p>Lắp đặt 4 camera Hikvision</p>
-                    <h4>4.899.000 đ
-                      <span>5.900.000 đ</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="dogs food"/>
-                        <input type="hidden" name="amount" value="9.00"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
+      </ng-container>
+
       <div class="clearfix"></div>
     </div>
   </div>
@@ -283,177 +115,58 @@
   <div class="container">
     <ul class="nav nav-tabs custom-tabs " role="tablist">
       <li role="presentation" class="active">
-        <a href="http://fptcamera.vn/camera-giam-sat" style="background-color:red; color: white; font-weight: bolder">CAMERA
-          QUAN SÁT</a>
+        <a  style="background-color:red; color: white; font-weight: bolder">Giải pháp Camera</a>
       </li>
       <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="http://fptcamera.vn/camera-hikvision">Camera Hikvision</a>
+        <a (click)="goToCategory($event, 'phuKienCamera')">Phụ kiện Camera</a>
       </li>
       <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="http://fptcamera.vn/camera-benco">Camera Benco</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="http://fptcamera.vn/camera-khong-day">Camera Không Dây</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="http://fptcamera.vn/camera-gia-re">Camera giá rẻ</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a href="http://fptcamera.vn/camera-nguy-trang">Camera ngụy trang</a>
+        <a (click)="goToCategory($event, 'mayChamCong')">Máy chấm công</a>
       </li>
     </ul>
 
     <div class="agile_top_brands_grids">
-      <div class="col-md-3 top_brand_left text-center-align">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img title=" " alt=" " src="assets/images/5.png"/>
-                    </a>
-                    <p>fortune sunflower oil</p>
-                    <h4>$7.99
-                      <span>$10.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <form action="checkout.html" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="Fortune Sunflower Oil"/>
-                        <input type="hidden" name="amount" value="7.99"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
+      <ng-container *ngFor="let productCamera of this.productListGiaiPhapCamera">
+        <div class="col-md-3 top_brand_left text-center-align margin-top-20">
+          <div class="hover14 column">
+            <div class="agile_top_brand_left_grid">
+              <div class="agile_top_brand_left_grid1">
+                <figure>
+                  <div class="snipcart-item block">
+                    <div class="snipcart-thumb">
+                      <a (click)="goToChiTietSanPham($event, productCamera)">
+                        <img title=" " alt=" " src="assets/images/{{productCamera.image1}}.png" width="140" height="140"/>
+                      </a>
+                      <p> {{productCamera.name}} </p>
+                      <h4>{{productCamera.gia}} đ
+                        <span>{{productCamera.giaTruocKhiHa}} đ</span>
+                      </h4>
+                    </div>
+                    <div class="snipcart-details top_brand_home_details">
+                      <form action="checkout.html" method="post">
+                        <fieldset>
+                          <input type="hidden" name="cmd" value="_cart"/>
+                          <input type="hidden" name="add" value="1"/>
+                          <input type="hidden" name="business" value=" "/>
+                          <input type="hidden" name="item_name" value="Fortune Sunflower Oil"/>
+                          <input type="hidden" name="amount" value="7.99"/>
+                          <input type="hidden" name="discount_amount" value="1.00"/>
+                          <input type="hidden" name="currency_code" value="USD"/>
+                          <input type="hidden" name="return" value=" "/>
+                          <input type="hidden" name="cancel_return" value=" "/>
+                          <input type="submit" name="submit" value="Mua ngay" class="button"/>
+                        </fieldset>
 
-                    </form>
+                      </form>
 
+                    </div>
                   </div>
-                </div>
-              </figure>
+                </figure>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-3 top_brand_left text-center-align">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img title=" " alt=" " src="assets/images/6.png"/>
-                    </a>
-                    <p>basmati rise (5 Kg)</p>
-                    <h4>$11.99
-                      <span>$15.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="basmati rise"/>
-                        <input type="hidden" name="amount" value="11.99"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 top_brand_left text-center-align">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/7.png" alt=" " class="img-responsive"/>
-                    </a>
-                    <p>Pepsi soft drink (2 Ltr)</p>
-                    <h4>$8.00
-                      <span>$10.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="Pepsi soft drink"/>
-                        <input type="hidden" name="amount" value="8.00"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-3 top_brand_left text-center-align">
-        <div class="hover14 column">
-          <div class="agile_top_brand_left_grid">
-            <div class="agile_top_brand_left_grid1">
-              <figure>
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a href="single.html">
-                      <img src="assets/images/8.png" alt=" " class="img-responsive"/>
-                    </a>
-                    <p>dogs food (4 Kg)</p>
-                    <h4>$9.00
-                      <span>$11.00</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <form action="#" method="post">
-                      <fieldset>
-                        <input type="hidden" name="cmd" value="_cart"/>
-                        <input type="hidden" name="add" value="1"/>
-                        <input type="hidden" name="business" value=" "/>
-                        <input type="hidden" name="item_name" value="dogs food"/>
-                        <input type="hidden" name="amount" value="9.00"/>
-                        <input type="hidden" name="discount_amount" value="1.00"/>
-                        <input type="hidden" name="currency_code" value="USD"/>
-                        <input type="hidden" name="return" value=" "/>
-                        <input type="hidden" name="cancel_return" value=" "/>
-                        <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                      </fieldset>
-                    </form>
-                  </div>
-                </div>
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
+      </ng-container>
       <div class="clearfix"></div>
     </div>
 

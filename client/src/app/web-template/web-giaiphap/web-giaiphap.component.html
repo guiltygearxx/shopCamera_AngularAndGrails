@@ -1,0 +1,109 @@
+<div class="products-breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+        <a href="index.html">Trang chủ</a>
+        <span>|</span>
+      </li>
+      <li>Giải pháp camera</li>
+    </ul>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="w3l_banner_nav_left">
+    <nav class="navbar nav_bottom">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header nav_2">
+        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+                data-target="#bs-megadropdown-tabs">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+
+
+      <app-web-left-side></app-web-left-side>
+
+      <!-- /.navbar-collapse -->
+    </nav>
+  </div>
+  <div class="w3l_banner_nav_right">
+    <div class="col-md-12 col-xs-12 col-md-12">
+      <div class="col-md-9 col-xs-9 col-md-9">
+        <table class="tablenews margin-top-20 border-style-table-giaiphap" width="100%" cellspacing="0" cellpadding="0">
+          <tbody>
+          <ng-container *ngFor="let solution of solutionList">
+
+            <tr class="border-style-table-giaiphap">
+              <td valign="top" width="105">
+                <div class="newpic"><a (click)="goToChiTietGiaiPhap($event,solution)">
+                  <img src="{{solution.hinhAnh}}" border="0" hspace="5" vspace="5" width="120" height="80"/></a>
+                </div>
+              </td>
+              <td style="padding-right: 5px;" align="left" valign="top">
+                <h4><a (click)="goToChiTietGiaiPhap($event,solution)">{{solution.tieuDe}}</a></h4>
+                <div>
+                  {{solution.noiDungNgan}}
+                </div>
+                <p class="viewmore" align="right"><a (click)="goToChiTietGiaiPhap($event,solution)">Xem tiếp</a></p>
+              </td>
+            </tr>
+
+          </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-3 col-xs-3 col-md-3">
+        <div class="tieuDeTinMoiNhat margin-top-20"><h4>TIN MỚI NHẤT</h4></div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+        <div class="listcat">
+          <a href="#"><span>Biển Bạc du xuân đón chào năm mới <img src="assets/images/hot.gif" border="0"> </span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+<div class="newsletter">
+  <div class="container">
+    <div class="w3agile_newsletter_left">
+      <h3>sign up for our newsletter</h3>
+    </div>
+    <div class="w3agile_newsletter_right">
+      <form action="#" method="post">
+        <input type="email" name="Email" value="Email" onfocus="this.value = '';"
+               onblur="if (this.value == '') {this.value = 'Email';}" required="">
+        <input type="submit" value="subscribe now">
+      </form>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>

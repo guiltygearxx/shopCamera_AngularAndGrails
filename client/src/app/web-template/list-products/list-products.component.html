@@ -49,7 +49,8 @@
     <div class="col-md-12 col-xs-12" style="text-align: center">
       <div class="paddingDiv centerListProduct">
 
-        <ng-container *ngFor="let product of isAvailbaleProduct()">
+        <ng-container *ngFor="let product of this.productList">
+
         <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
           <div class="hover14 column">
             <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
@@ -58,7 +59,7 @@
                   <div class="snipcart-item block">
                     <div class="snipcart-thumb">
                       <a (click)="goToChiTietSanPham($event,product)">
-                        <img src="assets/images/{{product.image1}}.png" alt=" " class="img-responsive"/>
+                        <img src="assets/images/{{product.image1}}.png" alt=" " class="img-responsive" width="140" height="140"/>
                       </a>
                       <p>{{product.name}}</p>
                       <h4>{{product.gia}} Đ
@@ -90,7 +91,7 @@
         </ng-container>
         <div class="clearfix"></div>
 
-        <div class="container" style="text-align: left">
+        <div style="text-align: left">
           <ul class="pagination">
             <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
             <li class="page-item"><a class="page-link" href="#">...</a></li>

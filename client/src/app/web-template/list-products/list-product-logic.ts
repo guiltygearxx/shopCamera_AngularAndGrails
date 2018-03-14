@@ -1,28 +1,38 @@
-import {Product} from "../../bean/product";
-import {ProductService} from "../../service/product/product.service";
+import {ProductView} from "../../bean/product-view";
 import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
+import {ProductViewService} from "../../service/product/product-view.service";
+import {isNullOrUndefined} from "util";
 
 export class ListProductLogic {
 
-  constructor(protected productService: ProductService, protected categoryService: CategoryService) {
+  constructor(protected productViewService: ProductViewService, protected categoryService: CategoryService) {
   }
 
   categoryName: string;
 
   categoryList: CategoryItem[];
 
-  productList: Product[];
+  productList: ProductView[];
 
   getListProduct(categoryId: string) {
 
-    categoryId = '201110fd-8494-46da-a6a2-044e37c9d095';
+    let subCategoryIds = this.categoryList
+      .filter((category) => category.parentCategoryId == categoryId)
+      .map((category) => category.id);
 
-    let params = {categoryId: categoryId};
 
-    this.productService
+    let categoryIds = [categoryId];
+
+    if (!isNullOrUndefined(subCategoryIds))
+      categoryIds = categoryIds.concat(subCategoryIds)
+
+    let params = {categoryIds: categoryIds.join(";"), max: 100};
+
+
+    this.productViewService
       .get(params)
-      .subscribe((product) => this.afterGetListProduct(product));
+      .subscribe((productView) => this.afterGetListProduct(productView));
 
   }
 
@@ -39,8 +49,9 @@ export class ListProductLogic {
   }
 
 
-  afterGetListProduct(product: Product[]): void {
-    this.productList = product;
+  afterGetListProduct(productViews: ProductView[]): void {
+
+    this.productList = productViews;
   }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {

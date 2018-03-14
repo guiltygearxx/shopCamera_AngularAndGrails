@@ -7,13 +7,11 @@ class DefaultRestfulController<T> extends RestfulController<T> {
     def restfulQueryService;
 
     DefaultRestfulController(Class<T> resource) {
-
-        super(resource);
+        super(resource)
     }
 
-    DefaultRestfulController(Class<T> resource, Boolean readOnly) {
-
-        super(resource, readOnly);
+    DefaultRestfulController(Class<T> resource, boolean readOnly) {
+        super(resource, readOnly)
     }
 
     @Override

@@ -1,15 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {IndexContentLogic} from "./index-content-logic";
+import {ProductViewService} from "../../service/product/product-view.service";
+import {CategoryService} from "../../service/category/category.service";
+import {CategoryItem} from "../../bean/category-item";
+import {Router} from "@angular/router";
+import {ProductView} from "../../bean/product-view";
+import {News} from "../../bean/news";
+import {NewsService} from "../../service/news/news.service";
 
 @Component({
   selector: 'app-index-content',
   templateUrl: './index-content.component.html',
   styleUrls: ['./index-content.component.css']
 })
-export class IndexContentComponent implements OnInit {
+export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, protected productViewService: ProductViewService,
+              protected categoryService: CategoryService, protected newsService: NewsService) {
+    super(productViewService, categoryService, newsService);
+  }
 
   ngOnInit() {
+    this.getListCategory();
+
+    this.getListNews();
+
+    // get list camera giam sat
+  }
+
+  afterGetListCategory(categoryItems: CategoryItem[]): void {
+    super.afterGetListCategory(categoryItems);
+
+    this.getListProductCameraGiamSat("9a40cd52-99fe-42cc-bda3-5e43fb1f5439");
+
+    this.getListProductGiaiPhapCamera("f2ea6507-8169-455a-92cd-0dfbeeee796c");
+
+  }
+
+  goToCategory(event: any, code: string): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/danhSachSanPham", code, ""]);
+  }
+
+  goToChiTietSanPham(event: any, productView: ProductView): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/chiTietSanPham", productView.id]);
+  }
+
+  goToChiTietTinTuc(event: any, news: News): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/chiTietTinTuc", news.id]);
   }
 
 }

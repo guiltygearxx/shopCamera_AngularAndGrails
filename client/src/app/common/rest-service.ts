@@ -27,21 +27,11 @@ export class RestService<T> {
     return this.http.get<T[]>(url, {params: httpParams});
   }
 
-  getById(params?: any): Observable<T> {
+  getById(id: any): Observable<T> {
 
-    let httpParams = new HttpParams();
+    var url = environment.serviceBaseURL + this.resource + "/" + id.toString();
 
-    if (!isNullOrUndefined(params)) {
-
-      Object.keys(params).forEach((key) => {
-
-        httpParams = httpParams.set(key, params[key])
-      });
-    }
-
-    var url = environment.serviceBaseURL + this.resource;
-
-    return this.http.get<T>(url, {params: httpParams});
+    return this.http.get<T>(url);
   }
 
   post(category: T): Observable<T> {

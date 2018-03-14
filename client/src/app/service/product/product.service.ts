@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {RestService} from "../../common/rest-service";
-import {Product} from "../../bean/product";
 import {HttpClient} from "@angular/common/http";
+import {Product} from "../../bean/product";
 
 @Injectable()
 export class ProductService extends RestService<Product>{
@@ -12,4 +12,5 @@ export class ProductService extends RestService<Product>{
 
     super(http);
   }
+
 }
