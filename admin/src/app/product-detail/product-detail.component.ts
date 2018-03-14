@@ -8,6 +8,8 @@ import {FormFlowManager} from "../common/form-flow-manager";
 import {ProductService} from "../service/product.service";
 import {ApplicationUtils} from "../common/application-utils";
 import {ActivatedRoute} from '@angular/router';
+import {DialogService} from "ng2-bootstrap-modal";
+import {UploadFilePopupComponent} from "../upload-file-popup/upload-file-popup.component";
 
 @Component({
   selector: 'app-product-detail',
@@ -25,7 +27,8 @@ export class ProductDetailComponent
               protected formFlowManager: FormFlowManager,
               protected productService: ProductService,
               protected applicationUtils: ApplicationUtils,
-              protected route: ActivatedRoute) {
+              protected route: ActivatedRoute,
+              protected dialogService: DialogService) {
 
     super(validateUtils, productService, formFlowManager, applicationUtils);
   }
@@ -51,6 +54,21 @@ export class ProductDetailComponent
   getErrorMessage(field: string): string {
 
     return this.validateUtils.getFieldErrorMessage(field, this.form);
+  }
+
+  inputIconClick(event: any, field: string): void {
+
+    this.openUploadImagePopup(field);
+  }
+
+  protected openUploadImagePopup(field: string): void {
+
+    this.dialogService
+      .addDialog(UploadFilePopupComponent)
+      .subscribe((url) => {
+
+        if (!this.applicationUtils.isStringEmpty(url)) this.form[field] = url
+      });
   }
 
   protected loadCategories(): void {

@@ -35,21 +35,25 @@
       </div>
 
 
-      <app-input-text [title]="'Link ảnh 1'" [placeHolder]="'Link ảnh 1'" [(value)]="form.image1"
-                      [errorMessage]="getErrorMessage('image1')">
-      </app-input-text>
+      <app-input-text-with-icon [title]="'Link ảnh 1'" [placeHolder]="'Link ảnh 1'" [(value)]="form.image1"
+                                [errorMessage]="getErrorMessage('image1')" [inputIcon]="'fa-plus'"
+                                (inputIconClick)="inputIconClick($event, 'image1')">
+      </app-input-text-with-icon>
 
-      <app-input-text [title]="'Link ảnh 2'" [placeHolder]="'Link ảnh 2'" [(value)]="form.image2"
-                      [errorMessage]="getErrorMessage('image2')">
-      </app-input-text>
+      <app-input-text-with-icon [title]="'Link ảnh 2'" [placeHolder]="'Link ảnh 2'" [(value)]="form.image2"
+                                [errorMessage]="getErrorMessage('image2')" [inputIcon]="'fa-plus'"
+                                (inputIconClick)="inputIconClick($event, 'image2')">
+      </app-input-text-with-icon>
 
-      <app-input-text [title]="'Link ảnh 3'" [placeHolder]="'Link ảnh 3'" [(value)]="form.image3"
-                      [errorMessage]="getErrorMessage('image3')">
-      </app-input-text>
+      <app-input-text-with-icon [title]="'Link ảnh 3'" [placeHolder]="'Link ảnh 3'" [(value)]="form.image3"
+                                [errorMessage]="getErrorMessage('image3')" [inputIcon]="'fa-plus'"
+                                (inputIconClick)="inputIconClick($event, 'image3')">
+      </app-input-text-with-icon>
 
-      <app-input-text [title]="'Link ảnh 4'" [placeHolder]="'Link ảnh 4'" [(value)]="form.image4"
-                      [errorMessage]="getErrorMessage('image4')">
-      </app-input-text>
+      <app-input-text-with-icon [title]="'Link ảnh 4'" [placeHolder]="'Link ảnh 4'" [(value)]="form.image4"
+                                [errorMessage]="getErrorMessage('image4')" [inputIcon]="'fa-plus'"
+                                (inputIconClick)="inputIconClick($event, 'image4')">
+      </app-input-text-with-icon>
 
       <div class="row">
 

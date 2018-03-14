@@ -87,8 +87,6 @@ class UpdateProductService implements BaseService {
 
         this.form = form;
 
-        println form.productId;
-
         this.product = form.productId ? Product.get(form.productId) : null;
 
         if (!this.validate()) return false;

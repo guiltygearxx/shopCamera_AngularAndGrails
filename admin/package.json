@@ -52,7 +52,8 @@
     "raphael": "^2.2.7",
     "rxjs": "^5.5.5",
     "zone.js": "^0.8.17",
-    "angular2-toaster": "^4.0.1"
+    "angular2-toaster": "^4.0.1",
+    "ng2-bootstrap-modal": "latest"
   },
   "devDependencies": {
     "@angular/cli": "1.6.0",

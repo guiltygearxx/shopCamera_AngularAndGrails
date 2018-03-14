@@ -10,6 +10,8 @@ class UrlMappings {
         "/product/updateProduct"(controller: "product", action: "updateProduct", method: "POST");
         "/product"(resources: "product")
 
+        "/product"(resources: "product")
+
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here
