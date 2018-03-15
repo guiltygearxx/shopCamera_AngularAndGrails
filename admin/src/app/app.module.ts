@@ -17,10 +17,21 @@ import {NumberFormatter} from "./common/formater/number-formatter";
 import {ApplicationUtils} from "./common/application-utils";
 import {ComponentUtils} from "./common/component-utils";
 import {ValidateUtils} from "./common/validate/validate-utils";
-import {CategoryService} from "./examples/category.service";
+import {CategoryService} from "./service/category.service";
 import {HttpClientModule} from "@angular/common/http";
+import {ImportProductComponent} from './import-product/import-product.component';
+import {ImportProductService} from "./service/import-product.service";
+import {HotTableModule} from "ng2-handsontable";
+import {ToasterModule} from "angular2-toaster";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {ProductIndexComponent} from './product-index/product-index.component';
+import {HttpService} from "./common/http.service";
+import {FormFlowManager} from "./common/form-flow-manager";
+import {ProductViewService} from "./service/product-view-service";
+import {SortableTableFlow} from "./common/sortable-table-flow";
 
 @NgModule({
+
   declarations: [
     AppComponent,
     StarterComponent,
@@ -30,13 +41,19 @@ import {HttpClientModule} from "@angular/common/http";
     StarterFooterComponent,
     StarterControlSidebarComponent,
     FormComponent,
+    ImportProductComponent,
+    ProductIndexComponent,
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     AdminModule,
     AppBaseModule,
     HttpClientModule,
+    HotTableModule,
+    ToasterModule,
+    BrowserAnimationsModule,
   ],
 
   providers: [
@@ -46,6 +63,11 @@ import {HttpClientModule} from "@angular/common/http";
     ComponentUtils,
     ValidateUtils,
     CategoryService,
+    ImportProductService,
+    HttpService,
+    FormFlowManager,
+    ProductViewService,
+    SortableTableFlow,
   ],
 
   bootstrap: [AppComponent]

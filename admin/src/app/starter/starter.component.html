@@ -1,5 +1,5 @@
 <div class="wrapper">
-   <!-- Main Header -->
+  <!-- Main Header -->
   <app-starter-header></app-starter-header>
   <!-- Left side column. contains the logo and sidebar -->
   <app-starter-left-side></app-starter-left-side>
@@ -14,4 +14,8 @@
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
+
+  <toaster-container [toasterconfig]="toasterConfig">
+  </toaster-container>
+
 </div>

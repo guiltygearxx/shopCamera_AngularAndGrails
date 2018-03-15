@@ -1,17 +1,15 @@
 package project.service
 
 import grails.gorm.transactions.Transactional
-import grails.web.databinding.DataBindingUtils
-import project.domain.BaseDomain
 
 @Transactional
 class RestfulQueryService {
 
+    def applicationUtilsService;
+
     private bindData(def target, def source) {
 
-        DataBindingUtils.bindObjectToInstance(target, source, null, null, "");
-
-        return target;
+        return applicationUtilsService.bindData(target, source);
     }
 
     Closure buildCommonRestClosure(Class domainClass, def params) {
@@ -28,8 +26,6 @@ class RestfulQueryService {
 
                 eq(key, value);
             }
-
-            (BaseDomain.isAssignableFrom(domainClass)) && (eq("isDeleted", false));
         }
     }
 }

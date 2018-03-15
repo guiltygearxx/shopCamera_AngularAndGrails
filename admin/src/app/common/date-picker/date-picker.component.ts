@@ -1,5 +1,6 @@
 import {
   AfterContentChecked,
+  AfterViewChecked,
   AfterViewInit,
   Component,
   ElementRef,
@@ -26,7 +27,7 @@ import {ApplicationUtils} from "../application-utils";
 })
 export class DatePickerComponent
   implements OnInit, BaseInputModal, SupportValidateInputModal,
-    AdminLteInputModal, SupportOnChangesComponentModal, OnChanges, AfterContentChecked, AfterViewInit {
+    AdminLteInputModal, SupportOnChangesComponentModal, OnChanges, AfterContentChecked, AfterViewInit, AfterViewChecked {
 
   viewChangedAttrs: string[];
 
@@ -82,6 +83,11 @@ export class DatePickerComponent
 
       new OnChangeCallBack(["errorMessage"], (() => this.isError = !this.applicationUtils.isStringEmpty(this.errorMessage))),
     ];
+
+    this.afterViewCheckCallbacks = [
+
+      new OnChangeCallBack(["value"], (() => this.updateDatePicker())),
+    ]
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -97,8 +103,13 @@ export class DatePickerComponent
   ngAfterViewInit(): void {
 
     $(this.inputElement.nativeElement)
-      .datepicker({autoclose: true, format: "dd/mm/yyyy"})
+      .datepicker({autoclose: true, format: "dd/mm/yyyy", forceParse: false})
       .on("changeDate", (event) => this.changeDate(event));
+  }
+
+  ngAfterViewChecked(): void {
+
+    this.componentUtils.runAfterViewCheckedCallback(this);
   }
 
   inputValueChanged(event: any): void {
@@ -111,5 +122,13 @@ export class DatePickerComponent
     this.value = event.format();
 
     this.valueChange.emit(this.value);
+  }
+
+  private updateDatePicker(): void {
+
+    if (this.applicationUtils.isDateFormat(this.value)) {
+
+      $(this.inputElement.nativeElement).datepicker("update", this.applicationUtils.convertStringToDate(this.value));
+    }
   }
 }

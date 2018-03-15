@@ -1,0 +1,13 @@
+<ng-container *ngIf="isError">
+
+  <div class="alert alert-danger alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    <h4><i class="icon fa fa-ban"></i> Lỗi! </h4>
+
+    <ng-container *ngFor="let errorMessage of errorMessages">
+      {{errorMessage}}<br/>
+    </ng-container>
+
+  </div>
+
+</ng-container>

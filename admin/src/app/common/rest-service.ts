@@ -1,57 +1,54 @@
-import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
-import {environment} from "../../environments/environment";
+import {HttpService} from "./http.service";
+import {PaginationParams} from "./pagination-params";
+import {TableQueryResponse} from "./table-query-response";
 import {isNullOrUndefined} from "util";
 
 export class RestService<T> {
 
   resource: string;
 
-  constructor(protected http: HttpClient) {
+  constructor(protected httpService: HttpService) {
   }
 
   get(params?: any): Observable<T[]> {
 
-    let httpParams = new HttpParams();
-
-    if (!isNullOrUndefined(params)) {
-
-      Object.keys(params).forEach((key) => {
-
-        httpParams = httpParams.set(key, params[key])
-      });
-    }
-
-    var url = environment.serviceBaseURL + this.resource;
-
-    return this.http.get<T[]>(url, {params: httpParams});
+    return this.httpService.get(this.resource, params);
   }
 
   getById(id: any): Observable<T> {
 
-    var url = environment.serviceBaseURL + this.resource + "/" + id.toString();
-
-    return this.http.get<T>(url);
+    return this.httpService.get(this.resource + "/" + id.toString(), null);
   }
 
-  post(category: T): Observable<T> {
+  post(domain: T): Observable<T> {
 
-    var url = environment.serviceBaseURL + this.resource;
-
-    return this.http.post<T>(url, category);
+    return this.httpService.post(this.resource, domain, null);
   }
 
-  put(category: T): Observable<T> {
+  put(domain: T): Observable<T> {
 
-    var url = environment.serviceBaseURL + this.resource;
-
-    return this.http.put<T>(url, category);
+    return this.httpService.put(this.resource, domain, null);
   }
 
   delete(id: any): Observable<T> {
 
-    var url = environment.serviceBaseURL + this.resource + "/" + id.toString();
+    return this.httpService.delete(this.resource + "/" + id.toString(), null);
+  }
 
-    return this.http.delete<T>(url);
+  paginate(paginationParams: PaginationParams, params?: any): Observable<TableQueryResponse> {
+
+    if (isNullOrUndefined(params)) params = {};
+
+    Object.keys(paginationParams).forEach((key) => {
+
+      let value = paginationParams[key];
+
+      if (isNullOrUndefined(value)) return;
+
+      params[key] = value;
+    });
+
+    return this.httpService.get(this.resource + "/paginate", params);
   }
 }

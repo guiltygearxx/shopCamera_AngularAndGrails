@@ -1,19 +1,29 @@
-import { AdminDashboard2Component } from './../admin/admin-dashboard2/admin-dashboard2.component';
-import { AdminDashboard1Component } from './../admin/admin-dashboard1/admin-dashboard1.component';
-import { StarterComponent } from './../starter/starter.component';
-import { AdminComponent } from './../admin/admin.component';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import {StarterComponent} from './../starter/starter.component';
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {ImportProductComponent} from "../import-product/import-product.component";
+import {FormComponent} from "../examples/form/form.component";
+import {ProductIndexComponent} from "../product-index/product-index.component";
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
-      { path: '', redirectTo: 'starter', pathMatch: 'full' },
-      { path: 'starter', component: StarterComponent },
+      {path: '', redirectTo: 'starter', pathMatch: 'full'},
+      {
+        path: 'starter', component: StarterComponent,
+
+        children: [
+
+          {path: '', redirectTo: "productIndex", pathMatch: "full"},
+          {path: 'importProduct', component: ImportProductComponent},
+          {path: 'productIndex', component: ProductIndexComponent},
+          {path: 'example', component: FormComponent},
+        ]
+      },
     ])
   ],
   declarations: [],
-  exports: [ RouterModule]
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
