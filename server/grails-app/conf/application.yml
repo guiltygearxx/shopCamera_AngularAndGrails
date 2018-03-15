@@ -137,3 +137,6 @@ environments:
 corsInterceptor:
     includeEnvironments: ['development', 'test']
     excludeEnvironments: ['production']
+
+uploadFile:
+    baseDir: d:/uploadFile/

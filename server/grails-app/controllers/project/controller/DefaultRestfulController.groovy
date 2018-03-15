@@ -4,6 +4,7 @@ import grails.converters.JSON
 import grails.rest.RestfulController
 import project.bean.PaginationParams
 import project.bean.TableQueryResponse
+import project.domain.BaseDomain
 
 class DefaultRestfulController<T> extends RestfulController<T> {
 
@@ -37,6 +38,12 @@ class DefaultRestfulController<T> extends RestfulController<T> {
         render(result as JSON);
     }
 
+    @Override
+    def show() {
+
+        render(queryForResource(params.id) as JSON);
+    }
+
     protected List<T> _search() {
 
         return resource.createCriteria().list(params, this.buildFilterClosure());
@@ -50,8 +57,8 @@ class DefaultRestfulController<T> extends RestfulController<T> {
     @Override
     protected T queryForResource(Serializable id) {
 
-        if (resour)
+        T object = super.queryForResource(id);
 
-        return super.queryForResource(id);
+        return ((object instanceof BaseDomain) && (object as BaseDomain)?.isDeleted) ? null : object;
     }
 }

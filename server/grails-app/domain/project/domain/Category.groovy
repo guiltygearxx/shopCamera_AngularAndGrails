@@ -11,7 +11,6 @@ class Category implements BaseDomain {
 
     static constraints = {
 
-        id size: 36..36
         name blank: false, maxSize: 255
         parentCategoryId nullable: true;
 

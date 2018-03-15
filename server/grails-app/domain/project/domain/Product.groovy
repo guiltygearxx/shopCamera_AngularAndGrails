@@ -1,9 +1,5 @@
 package project.domain
 
-import grails.rest.Resource
-import project.controller.ProductController
-
-@Resource(uri = '/product', superClass = ProductController)
 class Product implements BaseDomain {
 
     String categoryId;
@@ -24,8 +20,6 @@ class Product implements BaseDomain {
 
     static constraints = {
 
-        id size: 36..36
-        categoryId size: 36..36
         name blank: false, maxSize: 255
         image1 nullable: true
         image2 nullable: true

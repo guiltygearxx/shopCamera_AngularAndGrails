@@ -1,13 +1,14 @@
 package project.controller
 
 import grails.converters.JSON
+import grails.gorm.transactions.Transactional
 import project.bean.ProductForm
 import project.domain.Product
 
 class ProductController extends DefaultRestfulController<Product> {
 
     def applicationUtilsService;
-    def updateProductServiceProxy;
+    def updateProductService;
 
     ProductController() {
         super(Product);
@@ -23,12 +24,13 @@ class ProductController extends DefaultRestfulController<Product> {
         super(resource, readOnly);
     }
 
+    @Transactional
     def updateProduct() {
 
         ProductForm form = applicationUtilsService.bindData(new ProductForm(), request.JSON);
 
-        this.updateProductServiceProxy.updateProduct(form);
+        this.updateProductService.updateProduct(form);
 
-        render(this.applicationUtilsService.getResultBean(this.updateProductServiceProxy) as JSON);
+        render(this.applicationUtilsService.getResultBean(this.updateProductService) as JSON);
     }
 }

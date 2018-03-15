@@ -90,7 +90,7 @@ export class ValidateUtils {
 
   nullable(value: any, nullable: boolean, errorHandleFn: ErrorHandleFnType): boolean {
 
-    if (isNullOrUndefined(value) || ((isString(value) && this.applicationUtils.isStringEmpty(value))) && !nullable) {
+    if ((isNullOrUndefined(value) || ((isString(value) && this.applicationUtils.isStringEmpty(value)))) && !nullable) {
 
       errorHandleFn(value, ERROR_NULLABLE, null);
 

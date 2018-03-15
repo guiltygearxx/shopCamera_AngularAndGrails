@@ -1,6 +1,7 @@
 export const i18n = {
 
   "default.success": "Cập nhật thành công.",
+  "default.form.error": "Có lỗi dữ liệu.",
 
   "inList": "Giá trị trường phải thuộc danh sách [{1}].",
   "matches": "Giá trị trường không đúng định dạng.",
@@ -33,5 +34,6 @@ export const i18n = {
   "importProduct.categoryName.notFound": "Không tìm thấy category với tên [{0}].",
   "importProduct.duplicateProductName": "Tên sản phẩm [{0}] trùng lặp.",
 
-  "addProductService.existedName": "Product với tên [{0}] đã tồn tại."
+  "addProductService.existedName": "Product với tên [{0}] đã tồn tại.",
+  "updateProductService.existedName": "Product với tên [{0}] đã tồn tại.",
 }

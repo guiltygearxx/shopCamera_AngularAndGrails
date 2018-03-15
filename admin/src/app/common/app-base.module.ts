@@ -14,6 +14,7 @@ import {ValidateUtils} from "./validate/validate-utils";
 import {InputFileComponent} from './input-file/input-file.component';
 import {BoxErrorsComponent} from './box-errors/box-errors.component';
 import {PaginationFooterComponent} from './pagination-footer/pagination-footer.component';
+import { InputTextWithIconComponent } from './input-text-with-icon/input-text-with-icon.component';
 
 @NgModule({
 
@@ -25,7 +26,8 @@ import {PaginationFooterComponent} from './pagination-footer/pagination-footer.c
     DatePickerComponent,
     InputFileComponent,
     BoxErrorsComponent,
-    PaginationFooterComponent
+    PaginationFooterComponent,
+    InputTextWithIconComponent
   ],
 
   imports: [
@@ -41,7 +43,8 @@ import {PaginationFooterComponent} from './pagination-footer/pagination-footer.c
     DatePickerComponent,
     InputFileComponent,
     BoxErrorsComponent,
-    PaginationFooterComponent
+    PaginationFooterComponent,
+    InputTextWithIconComponent
   ],
 
   providers: [

@@ -8,6 +8,8 @@ import {ProductViewService} from '../service/product-view-service';
 import {PaginationParams} from "../common/pagination-params";
 import {SortableTableFlow} from '../common/sortable-table-flow';
 import {ProductView} from "../bean/product-view";
+import {Router} from "@angular/router";
+import {ComponentUtils} from '../common/component-utils';
 
 @Component({
   selector: 'app-product-index',
@@ -35,7 +37,9 @@ export class ProductIndexComponent
 
   constructor(protected categoryService: CategoryService,
               protected productViewService: ProductViewService,
-              protected sortableTableFlow: SortableTableFlow) {
+              protected sortableTableFlow: SortableTableFlow,
+              protected router: Router,
+              protected componentUtils: ComponentUtils) {
   }
 
   ngOnInit(): void {
@@ -91,7 +95,19 @@ export class ProductIndexComponent
 
     event.preventDefault();
 
+    this.router.navigate(["/starter/productDetail"]);
+  }
 
+  viewProduct(event: any, product: ProductView): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/starter/productDetail/" + product.id]);
+  }
+
+  getFormattedNumber(value: string): string {
+
+    return this.componentUtils.formatValue(value, "number");
   }
 
   protected loadCategories(): void {

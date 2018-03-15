@@ -29,6 +29,11 @@ import {HttpService} from "./common/http.service";
 import {FormFlowManager} from "./common/form-flow-manager";
 import {ProductViewService} from "./service/product-view-service";
 import {SortableTableFlow} from "./common/sortable-table-flow";
+import {ProductDetailComponent} from './product-detail/product-detail.component';
+import {ProductService} from './service/product.service';
+import {BootstrapModalModule} from "ng2-bootstrap-modal";
+import {UploadFilePopupComponent} from './upload-file-popup/upload-file-popup.component';
+import {UploadFileService} from "./service/upload-file.service";
 
 @NgModule({
 
@@ -43,6 +48,8 @@ import {SortableTableFlow} from "./common/sortable-table-flow";
     FormComponent,
     ImportProductComponent,
     ProductIndexComponent,
+    ProductDetailComponent,
+    UploadFilePopupComponent,
   ],
 
   imports: [
@@ -54,6 +61,8 @@ import {SortableTableFlow} from "./common/sortable-table-flow";
     HotTableModule,
     ToasterModule,
     BrowserAnimationsModule,
+    BootstrapModalModule,
+    BootstrapModalModule.forRoot({container: document.body})
   ],
 
   providers: [
@@ -68,9 +77,16 @@ import {SortableTableFlow} from "./common/sortable-table-flow";
     FormFlowManager,
     ProductViewService,
     SortableTableFlow,
+    ProductService,
+    UploadFileService,
   ],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  entryComponents: [
+
+    UploadFilePopupComponent
+  ],
 })
 export class AppModule {
 }

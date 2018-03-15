@@ -8,7 +8,8 @@ import project.domain.Product
 class UpdateProductService implements BaseService {
 
     static scope = "request"
-    static proxy = true;
+
+    def applicationUtilsService;
 
     private ProductForm form;
 
@@ -53,15 +54,44 @@ class UpdateProductService implements BaseService {
         return true;
     }
 
+    private void updateProduct_() {
+
+        (!product) && (product = new Product());
+
+        product.with {
+
+            categoryId = form.categoryId;
+            name = form.name;
+            image1 = form.image1;
+            image2 = form.image2;
+            image3 = form.image3;
+            image4 = form.image4;
+            hangSanXuat = form.hangSanXuat;
+            baoHanh = form.baoHanh;
+            khoHang = form.khoHang;
+            gia = applicationUtilsService.convertToBigDecimal(form.gia);
+            giaTruocKhiHa = applicationUtilsService.convertToBigDecimal(form.giaTruocKhiHa);
+            thongTinChiTiet = form.thongTinChiTiet;
+            thongSoKiThuat = form.thongSoKiThuat;
+            khuyenMai = form.khuyenMai;
+
+            isDeleted = false;
+            lastModifiedTime = new Date();
+            lastModifiedUser = "admin";
+
+            save(flush: true);
+        }
+    }
+
     Boolean updateProduct(ProductForm form) {
 
         this.form = form;
 
-        this.product = form.productId ? Product.findAllById(form.productId) : null;
+        this.product = form.productId ? Product.get(form.productId) : null;
 
         if (!this.validate()) return false;
 
-        this.updateProduct();
+        this.updateProduct_();
 
         return true;
     }
