@@ -1,6 +1,7 @@
 package project.service
 
 import grails.gorm.transactions.Transactional
+import project.domain.BaseDomain
 
 @Transactional
 class RestfulQueryService {
@@ -25,6 +26,8 @@ class RestfulQueryService {
                 if (value == null) return;
 
                 eq(key, value);
+
+                (BaseDomain.isAssignableFrom(domainClass)) && (eq("isDeleted", false));
             }
         }
     }
