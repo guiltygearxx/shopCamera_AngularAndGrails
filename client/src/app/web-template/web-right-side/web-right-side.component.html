@@ -1,0 +1,32 @@
+<div class="col-md-3 col-xs-3 col-md-3">
+  <span class="header3">Sản phẩm bán chạy</span>
+
+  <ng-container *ngFor="let product of productList">
+
+    <div class="media products">
+      <div class="media-left">
+        <a (click)="goToChiTietSanPham($event,product)">
+          <img class="media-object" alt="{{product.name}}"
+               src="{{product.image1}}"
+               width="70" height="70">
+        </a>
+      </div>
+      <div class="media-body">
+        <a (click)="goToChiTietSanPham($event,product)">
+          <h4 class="media-heading">{{product.name}}</h4>
+        </a>
+        <span class="media-price">{{product.gia}} đ</span>
+      </div>
+    </div>
+
+  </ng-container>
+
+  <span class="header3" style="padding-bottom: 0px; margin-bottom: 0px">Tin mới nhất</span>
+
+  <ng-container *ngFor="let tintucs of tintuc">
+    <div class="listcat">
+      <a (click)="goToChiTietTinTuc($event,tintucs)"><span>{{tintucs.tieuDe}} <img src="assets/images/hot.gif" border="0"> </span></a>
+    </div>
+  </ng-container>
+
+</div>

@@ -26,7 +26,7 @@ class DefaultRestfulController<T> extends RestfulController<T> {
 
         params.max = Math.min(max ?: 10, 100);
 
-        respond _search(), model: [];
+        render(_search() as JSON);
     }
 
     def paginate(PaginationParams paginationParams) {

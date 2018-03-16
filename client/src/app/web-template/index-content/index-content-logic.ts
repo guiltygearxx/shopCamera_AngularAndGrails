@@ -71,7 +71,7 @@ export class IndexContentLogic{
   }
 
   getListNews(){
-    let getMaxItem: string = '10';
+    let getMaxItem: string = '8';
 
     let params = {max: getMaxItem};
 

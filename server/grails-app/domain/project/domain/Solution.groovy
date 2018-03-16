@@ -1,9 +1,9 @@
 package project.domain
 
 import grails.rest.Resource
-import project.controller.SolutionController
+import project.controller.DefaultRestfulController
 
-@Resource(uri = '/giaiPhap', superClass = SolutionController)
+@Resource(uri = '/giaiPhap', superClass = DefaultRestfulController)
 class Solution implements BaseDomain {
 
     String tieuDe;

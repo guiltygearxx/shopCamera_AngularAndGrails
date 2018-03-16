@@ -33,6 +33,7 @@ import {SolutionService} from "./service/solution/solution.service";
 import {NewsService} from "./service/news/news.service";
 import { WebGiaiphapChitietComponent } from './web-template/web-giaiphap-chitiet/web-giaiphap-chitiet.component';
 import { WebTintucsukienChitietComponent } from './web-template/web-tintucsukien-chitiet/web-tintucsukien-chitiet.component';
+import { WebRightSideComponent } from './web-template/web-right-side/web-right-side.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { WebTintucsukienChitietComponent } from './web-template/web-tintucsukien
     WebGioithieuComponent,
     WebGiaiphapChitietComponent,
     WebTintucsukienChitietComponent,
+    WebRightSideComponent,
   ],
   imports: [
     BrowserModule,

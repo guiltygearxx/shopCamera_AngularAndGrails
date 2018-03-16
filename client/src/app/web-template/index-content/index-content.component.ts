@@ -58,4 +58,11 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
     this.router.navigate(["/chiTietTinTuc", news.id]);
   }
 
+  goToChiTietTinTucById(event: any, newsId: string): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/chiTietTinTuc", newsId]);
+  }
+
 }

@@ -75,7 +75,7 @@
                   <div class="snipcart-item block">
                     <div class="snipcart-thumb">
                       <a (click)="goToChiTietSanPham($event, productCamera)">
-                        <img title=" " alt=" " src="assets/images/{{productCamera.image1}}.png" width="140" height="140"/>
+                        <img title=" " alt=" " src="{{productCamera.image1}}" width="140" height="140"/>
                       </a>
                       <p> {{productCamera.name}} </p>
                       <h4>{{productCamera.gia}} đ
@@ -135,7 +135,7 @@
                   <div class="snipcart-item block">
                     <div class="snipcart-thumb">
                       <a (click)="goToChiTietSanPham($event, productCamera)">
-                        <img title=" " alt=" " src="assets/images/{{productCamera.image1}}.png" width="140" height="140"/>
+                        <img title=" " alt=" " src="{{productCamera.image1}}" width="140" height="140"/>
                       </a>
                       <p> {{productCamera.name}} </p>
                       <h4>{{productCamera.gia}} đ
@@ -177,76 +177,9 @@
     <div class="agile_top_brands_grids">
       <div class="col-md-12 top_brand_left">
         <br/>
-        <div class="text-header">Camera các hãng</div>
-        <div class="galleryslider">
-
-          <div class="clear"></div>
-          <div class="flex-viewport" style="overflow: hidden; position: relative;">
-            <ul class="slides" style="width: 1800%; transition-duration: 0s; transform: translate3d(0px, 0px, 0px);">
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-vantech">
-                  <img alt="Camera Vantech Giá Rẻ"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-vantech.jpg">
-                </a>
-              </li>
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-benco">
-                  <img alt="Camera Benco Giá Rẻ"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-hang-benco1.jpg">
-                </a>
-              </li>
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-dahua">
-                  <img alt="Camera Dahua Đài Loan"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-dahua.jpg">
-                </a>
-              </li>
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-questek">
-                  <img alt="Camera Questek Việt Nam"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-questek.jpg">
-                </a>
-              </li>
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-hikvision">
-                  <img alt="Camera HIKVISION"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-hikvision-dai-loan.jpg">
-                </a>
-              </li>
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-spyeye">
-                  <img alt="Camera Spyeye"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-spyeye-gia-re1.jpg">
-                </a>
-              </li>
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-avtech">
-                  <img alt="Camera AVTECH ĐÀI LOAN"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-samsung.jpg">
-                </a>
-              </li>
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-kce">
-                  <img alt="Camera KCE HÀN QUỐC"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-KCE-han-quoc.jpg">
-                </a>
-              </li>
-              <li style="width: 122px; float: left; display: block;">
-                <a href="http://fptcamera.vn/camera-kce">
-                  <img alt="Camera SAMSUNG HÀN QUỐC"
-                       src="http://fptcamera.vn/resources/uploads/images/automatic/quang-cao/camera-hang-samsung.jpg">
-                </a>
-              </li>
-              <div class="clear"></div>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-12 top_brand_left">
-        <br/>
         <div class="text-header">Chấp nhận thanh toán</div>
         <img style="width:100%;margin:10px 0;" alt="Chấp nhận thanh toán"
-             src="http://fptcamera.vn/resources/ui_images/client/background/payments.png">
+             src="assets/images/payments.png">
       </div>
 
       <div class="col-md-12 col-xs-12 top_brand_left">
@@ -264,18 +197,18 @@
               <div class="claim_header">Hỗ trợ khách hàng</div>
               <ul>
                 <li>
-                  <a href="http://fptcamera.vn/tin-tuc/xem-camera-giam-sat-qua-dien-thoai">Xem camera giám sát qua điện
+                  <a (click)="goToChiTietTinTucById($event,'6af5da51-3e6b-43fe-ab9d-36bb473cb710')">Xem camera giám sát qua điện
                     thoại</a>
                 </li>
                 <li>
-                  <a href="http://fptcamera.vn/tin-tuc/xem-camera-quan-sat-qua-may-tinh">Xem camera quan sát qua máy
+                  <a (click)="goToChiTietTinTucById($event,'c82b9ffb-db34-4061-9589-64cafd269adb')">Xem camera quan sát qua máy
                     tính</a>
                 </li>
                 <li>
-                  <a href="http://fptcamera.vn/tin-tuc/download-tai-lieu">Download tài liệu</a>
+                  <a (click)="goToChiTietTinTucById($event,'d0268c1e-2281-49c9-9cb9-7e1153460943')">Download tài liệu</a>
                 </li>
                 <li>
-                  <a href="http://fptcamera.vn/tin-tuc/hd-cai-dat-phan-mem-teamviewer">HD cài đặt phần mềm
+                  <a (click)="goToChiTietTinTucById($event,'e8945b63-efb0-47ba-85e1-3d49b9a484ee')">HD cài đặt phần mềm
                     Teamviewer</a>
                 </li>
               </ul>
@@ -298,14 +231,14 @@
               <div id="social_us">
                 <div class="social_us_header">Kết nối với chúng tôi</div>
                 <div id="f_social">
-                  <a target="_blank" rel="nofollow" href="https://www.facebook.com/FptCamera.vn">
-                    <img src="http://fptcamera.vn/resources/ui_images/client/background/social/f_fb.png">
+                  <a target="_blank" rel="nofollow" href="https://www.facebook.com/namtv.vn">
+                    <img src="assets/images/f_fb.png">
                   </a>
-                  <a target="_blank" rel="nofollow" href="https://plus.google.com//+FptCamera">
-                    <img src="http://fptcamera.vn/resources/ui_images/client/background/social/f_gplus.png">
+                  <a target="_blank" rel="nofollow" href="https://plus.google.com//+namtv">
+                    <img src="assets/images/f_gplus.png">
                   </a>
-                  <a target="_blank" rel="nofollow" href="https://www.youtube.com/c/FptCamera">
-                    <img src="http://fptcamera.vn/resources/ui_images/client/background/social/f_yt.png">
+                  <a target="_blank" rel="nofollow" href="https://www.youtube.com/c/namtv">
+                    <img src="assets/images/f_yt.png">
                   </a>
                 </div>
               </div>

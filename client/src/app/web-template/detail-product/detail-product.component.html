@@ -43,7 +43,7 @@
             <div class="carousel-inner">
               <ng-container *ngFor="let imageView of listHinhAnhSanPham(this.product); let indexImage = index">
                 <div class="item " [class.active]="activeImage(indexImage)">
-                  <img id="example" src="assets/images/{{imageView}}.png" alt=" " class="img-responsive"/>
+                  <img id="example" src="{{imageView}}" alt=" " class="img-responsive"/>
                 </div>
               </ng-container>
             </div>

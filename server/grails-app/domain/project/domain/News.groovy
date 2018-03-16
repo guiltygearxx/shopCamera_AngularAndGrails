@@ -1,9 +1,9 @@
 package project.domain
 
 import grails.rest.Resource
-import project.controller.TinTucController
+import project.controller.DefaultRestfulController
 
-@Resource(uri = '/tintuc', superClass = TinTucController)
+@Resource(uri = '/tintuc', superClass = DefaultRestfulController)
 class News implements BaseDomain {
 
     String tieuDe;
