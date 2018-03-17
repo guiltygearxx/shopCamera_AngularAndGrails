@@ -34,6 +34,8 @@ import {NewsService} from "./service/news/news.service";
 import { WebGiaiphapChitietComponent } from './web-template/web-giaiphap-chitiet/web-giaiphap-chitiet.component';
 import { WebTintucsukienChitietComponent } from './web-template/web-tintucsukien-chitiet/web-tintucsukien-chitiet.component';
 import { WebRightSideComponent } from './web-template/web-right-side/web-right-side.component';
+import {FormsModule} from "@angular/forms";
+import {ContactService} from "./service/contact/contact.service";
 
 @NgModule({
   declarations: [
@@ -60,6 +62,7 @@ import { WebRightSideComponent } from './web-template/web-right-side/web-right-s
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AppBaseModule,
     HttpClientModule,
@@ -74,7 +77,8 @@ import { WebRightSideComponent } from './web-template/web-right-side/web-right-s
     ProductViewService,
     CategoryService,
     SolutionService,
-    NewsService
+    NewsService,
+    ContactService,
   ],
   bootstrap: [AppComponent]
 })

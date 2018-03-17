@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "../../bean/menu-item";
 
@@ -26,6 +26,9 @@ export class WebHeaderComponent implements OnInit {
   constructor(private router: Router) {
   }
 
+  @Input()
+  searchText: string;
+
 
   ngOnInit() {
 
@@ -48,5 +51,12 @@ export class WebHeaderComponent implements OnInit {
     event.preventDefault();
 
     this.router.navigate(["/" + menuItem.id]);
+  }
+
+  queryProduct(event: any): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/danhSachSanPham", this.searchText, ""]);
   }
 }

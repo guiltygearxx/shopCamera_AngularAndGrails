@@ -53,16 +53,18 @@
         <div class="col-md-8 agileinfo_mail_grid_right">
           <form action="#" method="post">
             <div class="col-md-6 wthree_contact_left_grid">
-              <input type="text" name="Name" value="Tên*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tên*';}" required="">
-              <input type="email" name="Email" value="Email*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email*';}" required="">
+              <input type="text" name="Tên" placeholder="Tên*" [(ngModel)]="this.form.name">
+              <input type="email" name="Email" placeholder="Email*" [(ngModel)]="this.form.email"
+              required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+">
             </div>
             <div class="col-md-6 wthree_contact_left_grid">
-              <input type="text" name="Telephone" value="Số điện thoại*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Số điện thoại*';}" required="">
-              <input type="text" name="Subject" value="Địa chỉ*" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Địa chỉ*';}" required="">
+              <input type="text" name="Số điện thoại" placeholder="Số điện thoại*" [(ngModel)]="this.form.phone">
+              <input type="text" name="Địa chỉ" placeholder="Địa chỉ*" [(ngModel)]="this.form.address">
             </div>
             <div class="clearfix"> </div>
-            <textarea  name="Nội dung yêu cầu" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Nội dung yêu cầu...';}" required="">Message...</textarea>
-            <input type="submit" value="Gửi yêu cầu">
+            <textarea  name="Nội dung yêu cầu" placeholder="Nội dung yêu cầu..."
+                       [(ngModel)]="this.form.comment"></textarea>
+            <input type="submit" value="Gửi yêu cầu" (click)="sentRequest()">
             <input type="reset" value="Làm mới">
           </form>
         </div>
