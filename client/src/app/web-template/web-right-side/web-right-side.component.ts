@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {WebRightSideLogic} from "./web-right-side-logic";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {NewsService} from "../../service/news/news.service";
@@ -13,12 +13,15 @@ import {Router} from "@angular/router";
 })
 export class WebRightSideComponent extends WebRightSideLogic implements OnInit {
 
-  constructor(private router: Router,protected productViewService: ProductViewService, protected newsService: NewsService) {
-    super(productViewService,newsService);
+  constructor(private router: Router, protected productViewService: ProductViewService, protected newsService: NewsService) {
+    super(productViewService, newsService);
   }
 
-  ngOnInit() {
+  @Input()
+  siteOfNews: string;
 
+  ngOnInit() {
+    this.maxSizeNews = this.siteOfNews;
     this.getListProduct();
 
     this.getListNews();
