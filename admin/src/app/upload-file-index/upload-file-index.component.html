@@ -60,9 +60,12 @@
 
               <th class="{{getSortingClass('name')}}" (click)="doSort('name')" tabindex="0">Tên</th>
               <th class="{{getSortingClass('fileSize')}}" (click)="doSort('fileSize')" tabindex="0">
-                Dung lượng
+                Dung lượng (bytes)
               </th>
               <th class="{{getSortingClass('extension')}}" (click)="doSort('extension')" tabindex="0">Định dạng</th>
+              <th class="{{getSortingClass('lastModifiedTime')}}" (click)="doSort('lastModifiedTime')" tabindex="0">Ngày
+                upload
+              </th>
               <th></th>
 
             </tr>
@@ -75,6 +78,7 @@
                 <td>{{item.name}}</td>
                 <td class="text-right">{{getFormattedNumber(item.fileSize)}}</td>
                 <td>{{item.extension}}</td>
+                <td>{{getFormattedTime(item.lastModifiedTime)}}</td>
 
                 <td class="text-center">
 
