@@ -5,12 +5,17 @@ import {HttpService} from "../common/http.service";
 import {UploadFile} from "../bean/upload-file";
 import {environment} from "../../environments/environment";
 import {ApplicationUtils} from "../common/application-utils";
+import {RestService} from "../common/rest-service";
 
 @Injectable()
-export class UploadFileService {
+export class UploadFileService extends RestService<UploadFile> {
+
+  resource: string = "uploadFile";
 
   constructor(protected httpService: HttpService,
               protected applicationUtils: ApplicationUtils) {
+
+    super(httpService);
   }
 
   uploadFile(file: File): Observable<ResultBean> {

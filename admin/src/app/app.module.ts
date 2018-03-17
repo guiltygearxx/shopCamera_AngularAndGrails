@@ -34,6 +34,7 @@ import {ProductService} from './service/product.service';
 import {BootstrapModalModule} from "ng2-bootstrap-modal";
 import {UploadFilePopupComponent} from './upload-file-popup/upload-file-popup.component';
 import {UploadFileService} from "./service/upload-file.service";
+import { UploadFileIndexComponent } from './upload-file-index/upload-file-index.component';
 
 @NgModule({
 
@@ -50,6 +51,7 @@ import {UploadFileService} from "./service/upload-file.service";
     ProductIndexComponent,
     ProductDetailComponent,
     UploadFilePopupComponent,
+    UploadFileIndexComponent,
   ],
 
   imports: [

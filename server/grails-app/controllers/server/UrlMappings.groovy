@@ -10,6 +10,11 @@ class UrlMappings {
         "/product/updateProduct"(controller: "product", action: "updateProduct", method: "POST");
         "/product"(resources: "product")
 
+        "/uploadFile/paginate"(controller: "uploadFile", action: "paginate", method: "GET");
+        "/uploadFile/uploadFile"(controller: "uploadFile", action: "uploadFile", method: "POST");
+        "/uploadFile/downloadFile/$id?(.$format)?"(controller: "uploadFile", action: "downloadFile", method: "GET");
+        "/uploadFile"(resources: "uploadFile")
+
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here

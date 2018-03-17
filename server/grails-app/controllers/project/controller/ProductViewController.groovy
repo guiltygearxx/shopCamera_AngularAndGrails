@@ -21,8 +21,6 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
     @Override
     protected Closure buildFilterClosure() {
 
-        println params.categoryIds;
-
         Closure defaultClosure = super.buildFilterClosure();
 
         return {
