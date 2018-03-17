@@ -13,6 +13,7 @@ import {FormFlowManager} from "../common/form-flow-manager";
 import {PaginationParams} from "../common/pagination-params";
 import {ConfirmDialogComponent} from "../common/confirm-dialog/confirm-dialog.component";
 import {UploadFilePopupComponent} from "../upload-file-popup/upload-file-popup.component";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-upload-file-index',
@@ -114,6 +115,11 @@ export class UploadFileIndexComponent
   getFormattedNumber(value: string): string {
 
     return this.componentUtils.formatValue(value, "number");
+  }
+
+  getFormattedTime(value: number): string {
+
+    return isNullOrUndefined(value) ? null : this.applicationUtils.formatDateTime(new Date(value));
   }
 
   protected loadUploadFiles(): void {
