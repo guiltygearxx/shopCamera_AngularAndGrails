@@ -4,6 +4,7 @@ export const INPUT_FORMAT_NUMBER = "number";
 export const INPUT_FORMAT_INT = "int";
 
 export const DATE_FORMAT = "DD/MM/YYYY";
+export const DATE_TIME_FORMAT = "DD/MM/YYYY HH:mm:ss";
 
 export const DECIMAL_LENGTH = 2;
 
@@ -17,6 +18,7 @@ export const CONSTRAIN_NOTEQUAL = "notEqual";
 export const CONSTRAIN_MAX = "max";
 export const CONSTRAIN_MIN = "min";
 export const CONSTRAIN_SIZE = "size";
+export const CONSTRAIN_BLANK = "blank";
 
 export const ERROR_NULLABLE = "nullable";
 export const ERROR_EMAIL = "email";

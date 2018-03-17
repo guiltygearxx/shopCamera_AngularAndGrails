@@ -11,6 +11,11 @@ import {CheckBoxComponent} from './check-box/check-box.component';
 import {SelectComponent} from './select/select.component';
 import {DatePickerComponent} from './date-picker/date-picker.component';
 import {ValidateUtils} from "./validate/validate-utils";
+import {InputFileComponent} from './input-file/input-file.component';
+import {BoxErrorsComponent} from './box-errors/box-errors.component';
+import {PaginationFooterComponent} from './pagination-footer/pagination-footer.component';
+import {InputTextWithIconComponent} from './input-text-with-icon/input-text-with-icon.component';
+import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
 
@@ -19,7 +24,12 @@ import {ValidateUtils} from "./validate/validate-utils";
     TextAreaComponent,
     CheckBoxComponent,
     SelectComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    InputFileComponent,
+    BoxErrorsComponent,
+    PaginationFooterComponent,
+    InputTextWithIconComponent,
+    ConfirmDialogComponent
   ],
 
   imports: [
@@ -32,7 +42,12 @@ import {ValidateUtils} from "./validate/validate-utils";
     TextAreaComponent,
     CheckBoxComponent,
     SelectComponent,
-    DatePickerComponent
+    DatePickerComponent,
+    InputFileComponent,
+    BoxErrorsComponent,
+    PaginationFooterComponent,
+    InputTextWithIconComponent,
+    ConfirmDialogComponent
   ],
 
   providers: [
@@ -41,6 +56,11 @@ import {ValidateUtils} from "./validate/validate-utils";
     ApplicationUtils,
     ComponentUtils,
     ValidateUtils
+  ],
+
+  entryComponents: [
+
+    ConfirmDialogComponent,
   ],
 })
 export class AppBaseModule {

@@ -1,19 +1,15 @@
 import {
   AfterContentChecked,
-  AfterViewChecked,
-  AfterViewInit,
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
-  ViewChild,
+  SimpleChanges
 } from '@angular/core';
 import {BaseInputModal} from "../base-input-modal";
-import {SupportValidateInputModal} from "../support-validate-input-modal";
+import {SupportValidateInputModal} from '../support-validate-input-modal';
 import {AdminLteInputModal} from "../admin-lte-input-modal";
 import {SupportOnChangesComponentModal} from "../support-on-changes-component-modal";
 import {OnChangeCallBack} from "../on-change-call-back";
@@ -21,13 +17,13 @@ import {ComponentUtils} from "../component-utils";
 import {ApplicationUtils} from "../application-utils";
 
 @Component({
-  selector: 'app-date-picker',
-  templateUrl: './date-picker.component.html',
-  styleUrls: ['./date-picker.component.css']
+  selector: 'app-input-file',
+  templateUrl: './input-file.component.html',
+  styleUrls: ['./input-file.component.css']
 })
-export class DatePickerComponent
+export class InputFileComponent
   implements OnInit, BaseInputModal, SupportValidateInputModal,
-    AdminLteInputModal, SupportOnChangesComponentModal, OnChanges, AfterContentChecked, AfterViewInit, AfterViewChecked {
+    AdminLteInputModal, SupportOnChangesComponentModal, OnChanges, AfterContentChecked {
 
   viewChangedAttrs: string[];
 
@@ -65,12 +61,6 @@ export class DatePickerComponent
   @Input()
   value: any;
 
-  @Input()
-  autoTrim: boolean = true;
-
-  @ViewChild("inputElement")
-  inputElement: ElementRef;
-
   constructor(protected componentUtils: ComponentUtils,
               protected applicationUtils: ApplicationUtils) {
   }
@@ -83,11 +73,6 @@ export class DatePickerComponent
 
       new OnChangeCallBack(["errorMessage"], (() => this.isError = !this.applicationUtils.isStringEmpty(this.errorMessage))),
     ];
-
-    this.afterViewCheckCallbacks = [
-
-      new OnChangeCallBack(["value"], (() => this.updateDatePicker())),
-    ]
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -100,35 +85,11 @@ export class DatePickerComponent
     this.componentUtils.runAfterContentCheckedCallback(this);
   }
 
-  ngAfterViewInit(): void {
-
-    $(this.inputElement.nativeElement)
-      .datepicker({autoclose: true, format: "dd/mm/yyyy", forceParse: false})
-      .on("changeDate", (event) => this.changeDate(event));
-  }
-
-  ngAfterViewChecked(): void {
-
-    this.componentUtils.runAfterViewCheckedCallback(this);
-  }
-
   inputValueChanged(event: any): void {
 
-    this.valueChange.emit(this.value);
-  }
-
-  private changeDate(event: any): void {
-
-    this.value = event.format();
+    this.value = $(event.target).prop("files")[0];
 
     this.valueChange.emit(this.value);
-  }
-
-  private updateDatePicker(): void {
-
-    if (this.applicationUtils.isDateFormat(this.value)) {
-
-      $(this.inputElement.nativeElement).datepicker("update", this.applicationUtils.convertStringToDate(this.value));
-    }
   }
 }
+
