@@ -14,7 +14,8 @@ import {ValidateUtils} from "./validate/validate-utils";
 import {InputFileComponent} from './input-file/input-file.component';
 import {BoxErrorsComponent} from './box-errors/box-errors.component';
 import {PaginationFooterComponent} from './pagination-footer/pagination-footer.component';
-import { InputTextWithIconComponent } from './input-text-with-icon/input-text-with-icon.component';
+import {InputTextWithIconComponent} from './input-text-with-icon/input-text-with-icon.component';
+import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
 
@@ -27,7 +28,8 @@ import { InputTextWithIconComponent } from './input-text-with-icon/input-text-wi
     InputFileComponent,
     BoxErrorsComponent,
     PaginationFooterComponent,
-    InputTextWithIconComponent
+    InputTextWithIconComponent,
+    ConfirmDialogComponent
   ],
 
   imports: [
@@ -44,7 +46,8 @@ import { InputTextWithIconComponent } from './input-text-with-icon/input-text-wi
     InputFileComponent,
     BoxErrorsComponent,
     PaginationFooterComponent,
-    InputTextWithIconComponent
+    InputTextWithIconComponent,
+    ConfirmDialogComponent
   ],
 
   providers: [
@@ -53,6 +56,11 @@ import { InputTextWithIconComponent } from './input-text-with-icon/input-text-wi
     ApplicationUtils,
     ComponentUtils,
     ValidateUtils
+  ],
+
+  entryComponents: [
+
+    ConfirmDialogComponent,
   ],
 })
 export class AppBaseModule {

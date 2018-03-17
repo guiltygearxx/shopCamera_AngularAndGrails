@@ -39,6 +39,8 @@
         </div>
       </div>
 
+      <br>
+
       <div class="row">
 
         <div class="col-sm-12">
@@ -69,10 +71,16 @@
                 <td>{{product.baoHanh}}</td>
                 <td>{{product.khoHang}}</td>
                 <td class="text-right">{{getFormattedNumber(product.gia)}}</td>
-                <td>
+                <td class="text-center">
+
                   <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="viewProduct($event, product)"
                      title="Xem chi tiết">
                     <i class="fa fa-info-circle"></i>
+                  </a>
+
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="deleteProduct($event, product)"
+                     title="Xóa sản phẩm">
+                    <i class="fa fa-remove"></i>
                   </a>
                 </td>
 
