@@ -1,9 +1,5 @@
 package project.domain
 
-import grails.rest.Resource
-import project.controller.DefaultRestfulController
-
-@Resource(uri = '/contact', superClass = DefaultRestfulController)
 class Contact implements BaseDomain {
 
     String name;
@@ -11,15 +7,16 @@ class Contact implements BaseDomain {
     String phone;
     String address;
     String comment;
+    String status;
 
     static constraints = {
 
-        id size: 36..36
         name nullable: true;
         email nullable: true;
         phone nullable: true;
         address nullable: true;
         comment nullable: true;
+        status nullable: false;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true
@@ -30,5 +27,6 @@ class Contact implements BaseDomain {
 
         id generator: 'uuid'
         isDeleted defaultValue: false
+        status defaultValue: "new"
     }
 }

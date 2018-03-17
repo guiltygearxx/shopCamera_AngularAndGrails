@@ -34,7 +34,9 @@ import {ProductService} from './service/product.service';
 import {BootstrapModalModule} from "ng2-bootstrap-modal";
 import {UploadFilePopupComponent} from './upload-file-popup/upload-file-popup.component';
 import {UploadFileService} from "./service/upload-file.service";
-import { UploadFileIndexComponent } from './upload-file-index/upload-file-index.component';
+import {UploadFileIndexComponent} from './upload-file-index/upload-file-index.component';
+import {ContactIndexComponent} from './contact-index/contact-index.component';
+import {ContactService} from "./service/contact.service";
 
 @NgModule({
 
@@ -52,6 +54,7 @@ import { UploadFileIndexComponent } from './upload-file-index/upload-file-index.
     ProductDetailComponent,
     UploadFilePopupComponent,
     UploadFileIndexComponent,
+    ContactIndexComponent,
   ],
 
   imports: [
@@ -81,6 +84,7 @@ import { UploadFileIndexComponent } from './upload-file-index/upload-file-index.
     SortableTableFlow,
     ProductService,
     UploadFileService,
+    ContactService,
   ],
 
   bootstrap: [AppComponent],

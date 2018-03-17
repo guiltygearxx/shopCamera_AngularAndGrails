@@ -21,13 +21,13 @@ class RestfulQueryService {
 
         return {
 
+            (BaseDomain.isAssignableFrom(domainClass)) && (eq("isDeleted", false));
+
             example.properties.each { String key, def value ->
 
                 if (value == null) return;
 
                 eq(key, value);
-
-                (BaseDomain.isAssignableFrom(domainClass)) && (eq("isDeleted", false));
             }
         }
     }

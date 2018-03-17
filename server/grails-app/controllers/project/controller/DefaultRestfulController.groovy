@@ -44,6 +44,25 @@ class DefaultRestfulController<T> extends RestfulController<T> {
         render(queryForResource(params.id) as JSON);
     }
 
+    protected void deleteResource(T domainInstance) {
+
+        if (domainInstance instanceof BaseDomain) {
+
+            (domainInstance as BaseDomain).with {
+
+                isDeleted = true;
+                lastModifiedTime = new Date();
+                lastModifiedUser = "admin";
+
+                save(flush: true);
+            }
+
+        } else {
+
+            super.deleteResource(domainInstance);
+        }
+    }
+
     protected List<T> _search() {
 
         return resource.createCriteria().list(params, this.buildFilterClosure());

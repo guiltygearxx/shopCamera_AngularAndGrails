@@ -15,7 +15,6 @@ class News implements BaseDomain {
 
     static constraints = {
 
-        id size: 36..36
         tieuDe nullable: true;
         hinhAnh nullable: true;
         noiDungNgan nullable: true;

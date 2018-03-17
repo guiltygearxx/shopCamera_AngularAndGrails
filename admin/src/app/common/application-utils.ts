@@ -137,4 +137,9 @@ export class ApplicationUtils {
 
     return message;
   }
+
+  getShortContent(value: string, maxLength: number): string {
+
+    return !this.isStringEmpty(value) && value.length > maxLength ? (value.substr(0, maxLength - 3) + "...") : value;
+  }
 }
