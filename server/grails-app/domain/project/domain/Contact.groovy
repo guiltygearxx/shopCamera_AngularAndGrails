@@ -11,6 +11,7 @@ class Contact implements BaseDomain {
     String phone;
     String address;
     String comment;
+    String status;
 
     static constraints = {
 

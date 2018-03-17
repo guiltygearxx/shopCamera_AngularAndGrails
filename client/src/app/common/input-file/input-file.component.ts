@@ -16,6 +16,8 @@ import {OnChangeCallBack} from "../on-change-call-back";
 import {ComponentUtils} from "../component-utils";
 import {ApplicationUtils} from "../application-utils";
 
+declare var $:any;
+
 @Component({
   selector: 'app-input-file',
   templateUrl: './input-file.component.html',

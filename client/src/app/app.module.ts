@@ -36,6 +36,9 @@ import { WebTintucsukienChitietComponent } from './web-template/web-tintucsukien
 import { WebRightSideComponent } from './web-template/web-right-side/web-right-side.component';
 import {FormsModule} from "@angular/forms";
 import {ContactService} from "./service/contact/contact.service";
+import {HttpService} from "./common/http.service";
+import {FormFlowManager} from "./common/form-flow-manager";
+import {ToasterModule} from "angular2-toaster/angular2-toaster";
 
 @NgModule({
   declarations: [
@@ -66,6 +69,7 @@ import {ContactService} from "./service/contact/contact.service";
     AppRoutingModule,
     AppBaseModule,
     HttpClientModule,
+    ToasterModule
   ],
   providers: [
     DateFormatter,
@@ -79,6 +83,8 @@ import {ContactService} from "./service/contact/contact.service";
     SolutionService,
     NewsService,
     ContactService,
+    HttpService,
+    FormFlowManager
   ],
   bootstrap: [AppComponent]
 })

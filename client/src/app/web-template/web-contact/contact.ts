@@ -1,9 +1,11 @@
-import {Validateable} from "../../common/validate/validateable";
-import {Errors} from "../../common/validate/errors";
+import {BaseDomain} from "../../common/base-domain";
 
-export class WebContactForm implements Validateable {
+export class Contact implements BaseDomain {
 
-  errors: Errors;
+  id: string;
+  lastModifiedTime: number;
+  lastModifiedUser: string;
+  isDeleted: boolean;
 
   name: string;
   email: string;
@@ -14,7 +16,7 @@ export class WebContactForm implements Validateable {
   static constraints = {
 
     name: {blank: false, maxSize: 255},
-    email: {nullable: false, email: true},
+    email: {nullable: false},
     phone: {nullable: false},
     address: {nullable: false},
     comment: {nullable: false},

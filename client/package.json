@@ -26,7 +26,9 @@
     "moment": "^2.20.1",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14",
-    "ng2-bootstrap-modal": "latest"
+    "ng2-bootstrap-modal": "latest",
+    "jquery": "^3.2.1",
+    "angular2-toaster": "^4.0.1"
   },
   "devDependencies": {
     "@angular/cli": "^1.6.7",

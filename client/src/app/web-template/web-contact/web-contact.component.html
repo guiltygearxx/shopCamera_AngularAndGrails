@@ -51,31 +51,40 @@
           </ul>
         </div>
         <div class="col-md-8 agileinfo_mail_grid_right">
-          <form action="#" method="post">
-            <div class="col-md-6 wthree_contact_left_grid">
-              <input type="text" name="Tên" placeholder="Tên*" [(ngModel)]="this.form.name">
-              <input type="email" name="Email" placeholder="Email*" [(ngModel)]="this.form.email"
-              required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+">
-            </div>
-            <div class="col-md-6 wthree_contact_left_grid">
-              <input type="text" name="Số điện thoại" placeholder="Số điện thoại*" [(ngModel)]="this.form.phone">
-              <input type="text" name="Địa chỉ" placeholder="Địa chỉ*" [(ngModel)]="this.form.address">
-            </div>
-            <div class="clearfix"> </div>
-            <textarea  name="Nội dung yêu cầu" placeholder="Nội dung yêu cầu..."
-                       [(ngModel)]="this.form.comment"></textarea>
-            <input type="submit" value="Gửi yêu cầu" (click)="sentRequest()">
-            <input type="reset" value="Làm mới">
-          </form>
+
+          <app-box-errors [errorMessages]="errorMessages"></app-box-errors>
+
+          <div class="col-md-6 wthree_contact_left_grid padding10px">
+            <input type="text" name="Tên" placeholder="Tên*" [(ngModel)]="this.form.name">
+          </div>
+          <div class="col-md-6 wthree_contact_left_grid padding10px">
+
+            <app-input-text [title]="'Email'" [placeHolder]="'Email'" [(value)]="form.email" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('email')">
+            </app-input-text>
+
+          </div>
+          <div class="col-md-6 wthree_contact_left_grid padding10px">
+            <input type="text" name="Số điện thoại" placeholder="Số điện thoại*" [(ngModel)]="this.form.phone">
+          </div>
+          <div class="col-md-6 wthree_contact_left_grid padding10px">
+            <input type="text" name="Địa chỉ" placeholder="Địa chỉ*" [(ngModel)]="this.form.address">
+          </div>
+          <textarea name="Nội dung yêu cầu" placeholder="Nội dung yêu cầu..."
+                    [(ngModel)]="this.form.comment"></textarea>
+          <input type="submit" value="Gửi yêu cầu" (click)="submit()">
+          <input type="reset" value="Làm mới">
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
       </div>
     </div>
   </div>
   <div class="clearfix"></div>
 </div>
 <div class="map">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d96748.15352429623!2d-74.25419879353115!3d40.731667701988506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sshopping+mall+in+New+York%2C+NY%2C+United+States!5e0!3m2!1sen!2sin!4v1467205237951" style="border:0"></iframe>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d96748.15352429623!2d-74.25419879353115!3d40.731667701988506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sshopping+mall+in+New+York%2C+NY%2C+United+States!5e0!3m2!1sen!2sin!4v1467205237951"
+    style="border:0"></iframe>
 </div>
 <div class="newsletter">
   <div class="container">
@@ -84,10 +93,11 @@
     </div>
     <div class="w3agile_newsletter_right">
       <form action="#" method="post">
-        <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+        <input type="email" name="Email" value="Email" onfocus="this.value = '';"
+               onblur="if (this.value == '') {this.value = 'Email';}" required="">
         <input type="submit" value="subscribe now">
       </form>
     </div>
-    <div class="clearfix"> </div>
+    <div class="clearfix"></div>
   </div>
 </div>

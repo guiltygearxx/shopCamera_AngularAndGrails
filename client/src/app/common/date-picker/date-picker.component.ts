@@ -20,6 +20,7 @@ import {OnChangeCallBack} from "../on-change-call-back";
 import {ComponentUtils} from "../component-utils";
 import {ApplicationUtils} from "../application-utils";
 
+declare var $:any;
 @Component({
   selector: 'app-date-picker',
   templateUrl: './date-picker.component.html',

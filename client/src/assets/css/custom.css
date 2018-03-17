@@ -283,6 +283,10 @@ h6 .text_align_left{
   color: #0178BA;
 }
 
+.padding10px{
+  padding-bottom: 8px !important;
+}
+
 .quick-alo-phone.quick-alo-static {
   opacity:.6;
 }

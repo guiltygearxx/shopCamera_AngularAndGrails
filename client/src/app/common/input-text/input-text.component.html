@@ -1,17 +1,6 @@
-<div class="form-group " [class.has-error]="isError">
+<div [class.has-error]="isError">
 
-  <label class="cut-text" for="{{inputId}}" title="{{title}}">
-
-    <i class="fa fa-times-circle-o" *ngIf="isError"></i>
-
-    <span *ngIf="icon" class="{{icon}}"></span>
-
-    {{title}}
-
-    <span *ngIf="isRequired" class="requiredIndicator">*</span>
-  </label>
-
-  <input class="form-control" id="{{inputId}}" placeholder="{{placeHolder}}"
+  <input id="{{inputId}}" placeholder="{{placeHolder}}" type="text"
          [(ngModel)]="displayValue" (change)="inputValueChanged($event)" [disabled]="disabled" (blur)="onBlur($event)"
          (focus)="onFocus($event)"/>
 

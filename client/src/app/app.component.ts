@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ToasterConfig} from "angular2-toaster/angular2-toaster";
 
 declare var $: any;
 
@@ -9,6 +10,10 @@ declare var $: any;
 })
 export class AppComponent implements OnInit {
   title = 'app';
+
+  toasterConfig: ToasterConfig = new ToasterConfig({
+    positionClass: 'toast-top-right'
+  });
 
   projectYears: number[] = [
     1, 2, 3, 4
@@ -24,5 +29,7 @@ export class AppComponent implements OnInit {
     });
 
   }
+
+
 
 }

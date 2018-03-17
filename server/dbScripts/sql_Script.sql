@@ -82,3 +82,20 @@ create table solution
 )
 ;
 
+
+-- auto-generated definition
+CREATE TABLE contact
+(
+  id                 VARCHAR(36)  NOT NULL
+    PRIMARY KEY,
+  version            BIGINT       NOT NULL,
+  phone              VARCHAR(255) NULL,
+  is_deleted         BIT          NULL,
+  last_modified_user VARCHAR(255) NULL,
+  address            VARCHAR(255) NULL,
+  comment            VARCHAR(255) NULL,
+  name               VARCHAR(255) NULL,
+  email              VARCHAR(255) NULL,
+  last_modified_time DATETIME     NULL,
+  status             VARCHAR(255) NULL
+);
