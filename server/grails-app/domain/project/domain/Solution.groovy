@@ -10,17 +10,13 @@ class Solution implements BaseDomain {
     String hinhAnh;
     String noiDungNgan;
     String noiDungChiTiet;
-    String ngayTao;
-
 
     static constraints = {
 
-        id size: 36..36
         tieuDe nullable: true;
         hinhAnh nullable: true;
         noiDungNgan nullable: true;
         noiDungChiTiet nullable: true;
-        ngayTao nullable: true;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

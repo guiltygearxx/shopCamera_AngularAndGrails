@@ -5,7 +5,6 @@ import {SupportSortingTable} from '../common/support-sorting-table';
 import {UploadFile} from "../bean/upload-file";
 import {UploadFileService} from "../service/upload-file.service";
 import {SortableTableFlow} from "../common/sortable-table-flow";
-import {Router} from "@angular/router";
 import {ComponentUtils} from "../common/component-utils";
 import {DialogService} from "ng2-bootstrap-modal";
 import {ApplicationUtils} from '../common/application-utils';
@@ -39,7 +38,6 @@ export class UploadFileIndexComponent
 
   constructor(protected uploadFileService: UploadFileService,
               protected sortableTableFlow: SortableTableFlow,
-              protected router: Router,
               protected componentUtils: ComponentUtils,
               protected dialogService: DialogService,
               protected applicationUtils: ApplicationUtils,

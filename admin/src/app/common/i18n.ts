@@ -37,4 +37,7 @@ export const i18n = {
 
   "addProductService.existedName": "Product với tên [{0}] đã tồn tại.",
   "updateProductService.existedName": "Product với tên [{0}] đã tồn tại.",
+
+  "contact.status.new": "Mới",
+  "contact.status.read": "Đã đọc",
 }

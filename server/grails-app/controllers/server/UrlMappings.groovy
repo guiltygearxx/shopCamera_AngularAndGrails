@@ -15,6 +15,10 @@ class UrlMappings {
         "/uploadFile/downloadFile/$id?(.$format)?"(controller: "uploadFile", action: "downloadFile", method: "GET");
         "/uploadFile"(resources: "uploadFile")
 
+        "/contact/updateStatus"(controller: "contact", action: "updateStatus")
+        "/contact/paginate"(controller: "contact", action: "paginate", method: "GET");
+        "/contact"(resources: "contact")
+
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here

@@ -6,6 +6,7 @@ import {FormComponent} from "../examples/form/form.component";
 import {ProductIndexComponent} from "../product-index/product-index.component";
 import {ProductDetailComponent} from "../product-detail/product-detail.component";
 import {UploadFileIndexComponent} from "../upload-file-index/upload-file-index.component";
+import {ContactIndexComponent} from "../contact-index/contact-index.component";
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import {UploadFileIndexComponent} from "../upload-file-index/upload-file-index.c
           {path: 'productDetail/:id', component: ProductDetailComponent},
           {path: 'productDetail', component: ProductDetailComponent},
           {path: 'uploadFileIndex', component: UploadFileIndexComponent},
+          {path: 'contactIndex', component: ContactIndexComponent},
           {path: 'example', component: FormComponent},
         ]
       },
