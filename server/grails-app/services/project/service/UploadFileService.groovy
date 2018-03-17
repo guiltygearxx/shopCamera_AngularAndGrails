@@ -20,4 +20,15 @@ class UploadFileService {
 
         return file.exists() ? file : null;
     }
+
+    void deleteFile(UploadFile uploadFile) {
+
+        if (!uploadFile) return;
+
+        String subFix = uploadFile.extension ? ".${uploadFile.extension}" : "";
+
+        File file = new File("${grailsApplication.config.uploadFile.baseDir}/${uploadFile.id}${subFix}");
+
+        (file.exists()) && (file.delete());
+    }
 }

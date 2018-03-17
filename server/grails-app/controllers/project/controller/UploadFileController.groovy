@@ -3,12 +3,25 @@ package project.controller
 import grails.converters.JSON
 import org.springframework.http.HttpStatus
 import org.springframework.web.multipart.MultipartFile
+import project.domain.UploadFile
 
-class UploadFileController {
+class UploadFileController extends DefaultRestfulController<UploadFile> {
 
     def updateUploadFileService;
     def applicationUtilsService;
     def uploadFileService;
+
+    UploadFileController() {
+        super(UploadFile);
+    }
+
+    UploadFileController(Class<UploadFile> resource) {
+        super(resource)
+    }
+
+    UploadFileController(Class<UploadFile> resource, boolean readOnly) {
+        super(resource, readOnly)
+    }
 
     private writeFileToRespond(File file) {
 
@@ -25,6 +38,22 @@ class UploadFileController {
         }
 
         response.outputStream.close();
+    }
+
+    @Override
+    protected Closure buildFilterClosure() {
+
+        Closure defaultClosure = super.buildFilterClosure();
+
+        return {
+
+            (params.sName) && (ilike("name", "%${params.sName.toLowerCase()}%"));
+            (params.sExtension) && (ilike("extension", "%${params.sExtension.toLowerCase()}%"));
+
+            defaultClosure.delegate = delegate;
+
+            defaultClosure.call();
+        }
     }
 
     def uploadFile() {
@@ -48,5 +77,15 @@ class UploadFileController {
         }
 
         this.writeFileToRespond(file);
+    }
+
+    @Override
+    def delete() {
+
+        UploadFile uploadFile = queryForResource(params.id);
+
+        super.delete();
+
+        this.uploadFileService.deleteFile(uploadFile);
     }
 }

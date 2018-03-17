@@ -1,9 +1,9 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
-  <!--<h1>-->
-  <!--Danh sách sản phẩm-->
-  <!--<small>Quản lí sản phẩm</small>-->
-  <!--</h1>-->
+  <h1>
+    Danh mục uploaded-files
+    <small>Quản lí uploaded-files</small>
+  </h1>
 </section>
 
 <!-- Main content -->
@@ -16,9 +16,17 @@
     <div class="box-body">
 
       <div class="col-md-3">
-        <app-select [title]="'Category'" [(value)]="filterForm.categoryId" [placeHolder]="'Select a category'"
-                    [data]="categories" [optionKey]="'id'" [optionValue]="'name'">
-        </app-select>
+
+        <app-input-text [title]="'Tên'" [(value)]="filterForm.sName" [placeHolder]="'Tên'"></app-input-text>
+
+
+      </div>
+
+      <div class="col-md-3">
+
+        <app-input-text [title]="'Định dạng'" [(value)]="filterForm.sExtension"
+                        [placeHolder]="'Định dạng'"></app-input-text>
+
       </div>
 
     </div>
@@ -51,34 +59,30 @@
             <tr role="row">
 
               <th class="{{getSortingClass('name')}}" (click)="doSort('name')" tabindex="0">Tên</th>
-              <th class="{{getSortingClass('hangSanXuat')}}" (click)="doSort('hangSanXuat')" tabindex="0">
-                Hãng sản xuất
+              <th class="{{getSortingClass('fileSize')}}" (click)="doSort('fileSize')" tabindex="0">
+                Dung lượng
               </th>
-              <th class="{{getSortingClass('baoHanh')}}" (click)="doSort('baoHanh')" tabindex="0">Bảo hành</th>
-              <th class="{{getSortingClass('khoHang')}}" (click)="doSort('khoHang')" tabindex="0">Kho hàng</th>
-              <th class="text-right {{getSortingClass('gia')}}" (click)="doSort('gia')" tabindex="0">Giá</th>
+              <th class="{{getSortingClass('extension')}}" (click)="doSort('extension')" tabindex="0">Định dạng</th>
               <th></th>
 
             </tr>
             </thead>
             <tbody>
 
-            <ng-container *ngFor="let product of products">
+            <ng-container *ngFor="let item of uploadFiles">
               <tr role="row">
 
-                <td>{{product.name}}</td>
-                <td>{{product.hangSanXuat}}</td>
-                <td>{{product.baoHanh}}</td>
-                <td>{{product.khoHang}}</td>
-                <td class="text-right">{{getFormattedNumber(product.gia)}}</td>
+                <td>{{item.name}}</td>
+                <td class="text-right">{{getFormattedNumber(item.fileSize)}}</td>
+                <td>{{item.extension}}</td>
+
                 <td class="text-center">
 
-                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="viewProduct($event, product)"
-                     title="Xem chi tiết">
-                    <i class="fa fa-info-circle"></i>
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" title="Download" [href]="getDownloadLink(item)">
+                    <i class="fa fa-download"></i>
                   </a>
 
-                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="deleteProduct($event, product)"
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="deleteUploadFile($event, item)"
                      title="Xóa sản phẩm">
                     <i class="fa fa-remove"></i>
                   </a>

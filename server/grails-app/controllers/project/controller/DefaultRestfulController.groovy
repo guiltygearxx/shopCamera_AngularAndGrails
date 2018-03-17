@@ -61,4 +61,18 @@ class DefaultRestfulController<T> extends RestfulController<T> {
 
         return ((object instanceof BaseDomain) && (object as BaseDomain)?.isDeleted) ? null : object;
     }
+
+    @Override
+    protected T createResource() {
+
+        T obj = super.createResource();
+
+        if (obj && obj instanceof BaseDomain) {
+
+            obj.lastModifiedTime = new Date();
+            obj.lastModifiedUser = "admin";
+        }
+
+        return obj;
+    }
 }

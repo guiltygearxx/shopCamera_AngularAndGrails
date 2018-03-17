@@ -2,6 +2,7 @@ export const i18n = {
 
   "default.success": "Cập nhật thành công.",
   "default.form.error": "Có lỗi dữ liệu.",
+  "default.confirmDelete": "Bạn có chắc chắn muốn xóa bản ghi ?",
 
   "inList": "Giá trị trường phải thuộc danh sách [{1}].",
   "matches": "Giá trị trường không đúng định dạng.",

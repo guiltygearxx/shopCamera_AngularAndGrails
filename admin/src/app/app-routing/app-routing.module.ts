@@ -5,6 +5,7 @@ import {ImportProductComponent} from "../import-product/import-product.component
 import {FormComponent} from "../examples/form/form.component";
 import {ProductIndexComponent} from "../product-index/product-index.component";
 import {ProductDetailComponent} from "../product-detail/product-detail.component";
+import {UploadFileIndexComponent} from "../upload-file-index/upload-file-index.component";
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {ProductDetailComponent} from "../product-detail/product-detail.component
           {path: 'productIndex', component: ProductIndexComponent},
           {path: 'productDetail/:id', component: ProductDetailComponent},
           {path: 'productDetail', component: ProductDetailComponent},
+          {path: 'uploadFileIndex', component: UploadFileIndexComponent},
           {path: 'example', component: FormComponent},
         ]
       },

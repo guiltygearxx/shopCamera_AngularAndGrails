@@ -1,27 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryService} from "../service/category.service";
-import {Category} from "../bean/category";
-import {ProductIndexFilterForm} from "../bean/product-index-filter-form";
+import {UploadFileIndexFilterForm} from "../bean/upload-file-index-filter-form";
 import {SupportPaginationTable} from "../common/support-pagination-table";
 import {SupportSortingTable} from '../common/support-sorting-table';
-import {ProductViewService} from '../service/product-view-service';
-import {PaginationParams} from "../common/pagination-params";
-import {SortableTableFlow} from '../common/sortable-table-flow';
-import {ProductView} from "../bean/product-view";
+import {UploadFile} from "../bean/upload-file";
+import {UploadFileService} from "../service/upload-file.service";
+import {SortableTableFlow} from "../common/sortable-table-flow";
 import {Router} from "@angular/router";
-import {ComponentUtils} from '../common/component-utils';
+import {ComponentUtils} from "../common/component-utils";
 import {DialogService} from "ng2-bootstrap-modal";
-import {ConfirmDialogComponent} from "../common/confirm-dialog/confirm-dialog.component";
-import {ApplicationUtils} from "../common/application-utils";
-import {ProductService} from "../service/product.service";
+import {ApplicationUtils} from '../common/application-utils';
 import {FormFlowManager} from "../common/form-flow-manager";
+import {PaginationParams} from "../common/pagination-params";
+import {ConfirmDialogComponent} from "../common/confirm-dialog/confirm-dialog.component";
+import {UploadFilePopupComponent} from "../upload-file-popup/upload-file-popup.component";
 
 @Component({
-  selector: 'app-product-index',
-  templateUrl: './product-index.component.html',
-  styleUrls: ['./product-index.component.css']
+  selector: 'app-upload-file-index',
+  templateUrl: './upload-file-index.component.html',
+  styleUrls: ['./upload-file-index.component.css']
 })
-export class ProductIndexComponent
+export class UploadFileIndexComponent
   implements OnInit, SupportPaginationTable, SupportSortingTable {
 
   sort: string;
@@ -34,34 +32,28 @@ export class ProductIndexComponent
 
   count: number;
 
-  filterForm: ProductIndexFilterForm;
+  filterForm: UploadFileIndexFilterForm;
 
-  categories: Category[];
+  uploadFiles: UploadFile[];
 
-  products: ProductView[];
-
-  constructor(protected categoryService: CategoryService,
-              protected productViewService: ProductViewService,
+  constructor(protected uploadFileService: UploadFileService,
               protected sortableTableFlow: SortableTableFlow,
               protected router: Router,
               protected componentUtils: ComponentUtils,
               protected dialogService: DialogService,
               protected applicationUtils: ApplicationUtils,
-              protected productService: ProductService,
               protected formFlowManager: FormFlowManager) {
   }
 
   ngOnInit(): void {
 
-    this.loadCategories();
-
-    this.filterForm = new ProductIndexFilterForm();
+    this.filterForm = new UploadFileIndexFilterForm();
 
     this.curPageIndex = 0;
 
     this.maxPageSize = 10;
 
-    this.loadProducts();
+    this.loadUploadFiles();
   }
 
   search(event: any): void {
@@ -70,7 +62,7 @@ export class ProductIndexComponent
 
     this.curPageIndex = 0;
 
-    this.loadProducts();
+    this.loadUploadFiles();
   }
 
   doSort(field: string) {
@@ -80,7 +72,7 @@ export class ProductIndexComponent
 
   _goToPage(): void {
 
-    this.loadProducts();
+    this.loadUploadFiles();
   }
 
   goToPage(event: any): void {
@@ -92,7 +84,7 @@ export class ProductIndexComponent
 
   doSort_(): void {
 
-    this.loadProducts();
+    this.loadUploadFiles();
   }
 
   getSortingClass(field: string): string {
@@ -104,21 +96,19 @@ export class ProductIndexComponent
 
     event.preventDefault();
 
-    this.router.navigate(["/starter/productDetail"]);
+    this.openUploadImagePopup();
   }
 
-  viewProduct(event: any, product: ProductView): void {
+  getDownloadLink(uploadFile: UploadFile): string {
+
+    return this.uploadFileService.getDownloadLink(uploadFile);
+  }
+
+  deleteUploadFile(event: any, uploadFile: UploadFile): void {
 
     event.preventDefault();
 
-    this.router.navigate(["/starter/productDetail/" + product.id]);
-  }
-
-  deleteProduct(event: any, product: ProductView): void {
-
-    event.preventDefault();
-
-    this.confirmDelete(product);
+    this.confirmDelete(uploadFile);
   }
 
   getFormattedNumber(value: string): string {
@@ -126,20 +116,15 @@ export class ProductIndexComponent
     return this.componentUtils.formatValue(value, "number");
   }
 
-  protected loadCategories(): void {
-
-    this.categoryService.get().subscribe((categories) => this.categories = categories);
-  }
-
-  protected loadProducts(): void {
+  protected loadUploadFiles(): void {
 
     let paginationParams = this.buildPaginationParams();
 
-    this.productViewService
+    this.uploadFileService
       .paginate(paginationParams, this.filterForm)
       .subscribe((result) => {
 
-        this.products = result.pageData;
+        this.uploadFiles = result.pageData;
 
         this.sortableTableFlow.afterPaginate(this, result);
       })
@@ -150,22 +135,35 @@ export class ProductIndexComponent
     return this.sortableTableFlow.buildPaginationParams(this);
   }
 
-  protected confirmDelete(product: ProductView): void {
+  protected confirmDelete(uploadFile: UploadFile): void {
 
     this.dialogService
       .addDialog(ConfirmDialogComponent, {message: this.applicationUtils.message("default.confirmDelete")})
-      .subscribe((confirm) => this.deleteProduct_(product));
+      .subscribe((confirm) => this.deleteUploadFile_(uploadFile));
   }
 
-  protected deleteProduct_(product: ProductView): void {
+  protected deleteUploadFile_(uploadFile: UploadFile): void {
 
-    this.productService.delete(product.id).subscribe((product) => {
+    this.uploadFileService.delete(uploadFile.id).subscribe((uploadFile) => {
 
       let successMessage = this.applicationUtils.message("default.success");
 
       this.formFlowManager.displaySuccessMessage(successMessage);
 
-      this.loadProducts();
+      this.loadUploadFiles();
     })
+  }
+
+  protected openUploadImagePopup(): void {
+
+    this.dialogService
+      .addDialog(UploadFilePopupComponent)
+      .subscribe((url) => {
+
+        if (!this.applicationUtils.isStringEmpty(url)) {
+
+          this.loadUploadFiles();
+        }
+      });
   }
 }
