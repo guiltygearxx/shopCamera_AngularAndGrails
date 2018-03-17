@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {isNullOrUndefined} from "util";
-import {DATE_FORMAT} from "./application-constants";
+import {DATE_FORMAT, DATE_TIME_FORMAT} from "./application-constants";
 import * as moment from "moment";
 import BigNumber from "bignumber.js";
 import {i18n} from "./i18n";
@@ -32,6 +32,13 @@ export class ApplicationUtils {
     if (isNullOrUndefined(date)) return null;
 
     return moment(date).format(DATE_FORMAT);
+  }
+
+  formatDateTime(date: Date) {
+
+    if (isNullOrUndefined(date)) return null;
+
+    return moment(date).format(DATE_TIME_FORMAT);
   }
 
   convertStringToDate(dateStr: string): Date {

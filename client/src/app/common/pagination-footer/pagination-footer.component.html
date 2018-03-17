@@ -1,0 +1,61 @@
+<div class="row" *ngIf="this.dataSize > 0">
+
+  <div class="col-sm-5">
+    <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">
+      Hiển thị từ vị trí {{this.startIndex + 1}} đến {{this.endIndex + 1}} của {{this.dataSize}} bản ghi
+    </div>
+  </div>
+
+  <div class="col-sm-7" *ngIf="this.pageCount > 1">
+
+    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+
+      <ul class="pagination">
+
+        <li class="paginate_button previous" [class.active]="this.pageIndex == 0"
+            id="example1_previous">
+
+          <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0"
+             (click)="goFirstPage($event); $event.preventDefault()">1</a>
+
+        </li>
+
+
+        <li class="paginate_button" *ngIf="this.pageIndex > 1 && this.pageIndex < this.pageCount">
+
+          <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0"
+             (click)="goPreviousPage($event);">
+            {{this.pageIndex}}
+          </a>
+
+        </li>
+
+        <li class="paginate_button active" *ngIf="this.pageIndex + 1 > 1 && this.pageIndex + 1 < this.pageCount">
+          <a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">
+            {{this.pageIndex + 1}}
+          </a>
+        </li>
+
+        <li class="paginate_button" *ngIf="this.pageIndex + 2 > 1 && this.pageIndex + 2 < this.pageCount">
+          <a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0"
+             (click)="goNextPage($event);">
+            {{this.pageIndex + 2}}
+          </a>
+        </li>
+
+        <li class="paginate_button next" [class.active]="this.pageIndex + 1 == this.pageCount" id="example1_next"
+            *ngIf="this.pageCount > 1">
+
+          <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0"
+             (click)="goLastPage($event);">
+            {{this.pageCount}}
+          </a>
+
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+
+</div>

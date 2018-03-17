@@ -11,8 +11,8 @@
     <span *ngIf="isRequired" class="requiredIndicator">*</span>
   </label>
 
-  <textarea class="form-control" id="{{inputId}}" placeholder="{{placeHolder}}"
-            [(ngModel)]="value" (change)="inputValueChanged($event)" [disabled]="disabled"></textarea>
+  <input id="{{inputId}}" placeholder="{{placeHolder}}" type="file" (change)="inputValueChanged($event)"
+         [disabled]="disabled"/>
 
   <span class="help-block" *ngIf="isError">{{errorMessage}}</span>
 

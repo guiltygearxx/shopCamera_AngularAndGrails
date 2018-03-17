@@ -3,6 +3,7 @@ import {Validateable} from "./validateable";
 import {isNullOrUndefined, isString} from "util";
 import {DefaultErrors} from "./default-errors";
 import {
+  CONSTRAIN_BLANK,
   CONSTRAIN_EMAIL,
   CONSTRAIN_INLIST,
   CONSTRAIN_MATCHES,
@@ -89,7 +90,19 @@ export class ValidateUtils {
 
   nullable(value: any, nullable: boolean, errorHandleFn: ErrorHandleFnType): boolean {
 
-    if (isNullOrUndefined(value) || ((isString(value) && this.applicationUtils.isStringEmpty(value))) && !nullable) {
+    if ((isNullOrUndefined(value) || ((isString(value) && this.applicationUtils.isStringEmpty(value)))) && !nullable) {
+
+      errorHandleFn(value, ERROR_NULLABLE, null);
+
+      return false;
+    }
+
+    return true;
+  }
+
+  blank(value: any, blank: boolean, errorHandleFn: ErrorHandleFnType): boolean {
+
+    if (!blank && (isNullOrUndefined(value) || this.applicationUtils.isStringEmpty(value))) {
 
       errorHandleFn(value, ERROR_NULLABLE, null);
 
@@ -242,6 +255,9 @@ export class ValidateUtils {
 
         case CONSTRAIN_NULLABLE:
           return (isOK = isOK && this.nullable(fieldValue, constrainConfig, errorHandleFn));
+
+        case CONSTRAIN_BLANK:
+          return (isOK = isOK && this.blank(fieldValue, constrainConfig, errorHandleFn));
 
         case CONSTRAIN_EMAIL:
           return (isOK = isOK && this.email(fieldValue, constrainConfig, errorHandleFn));
