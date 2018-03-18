@@ -9,6 +9,8 @@ import {UploadFileIndexComponent} from "../upload-file-index/upload-file-index.c
 import {ContactIndexComponent} from "../contact-index/contact-index.component";
 import {SolutionIndexComponent} from "../solution-index/solution-index.component";
 import {SolutionDetailComponent} from "../solution-detail/solution-detail.component";
+import {NewsIndexComponent} from "../news-index/news-index.component";
+import {NewsDetailComponent} from "../news-detail/news-detail.component";
 
 @NgModule({
   imports: [
@@ -21,14 +23,22 @@ import {SolutionDetailComponent} from "../solution-detail/solution-detail.compon
 
           {path: '', redirectTo: "productIndex", pathMatch: "full"},
           {path: 'importProduct', component: ImportProductComponent},
+
           {path: 'productIndex', component: ProductIndexComponent},
           {path: 'productDetail/:id', component: ProductDetailComponent},
           {path: 'productDetail', component: ProductDetailComponent},
+          
           {path: 'uploadFileIndex', component: UploadFileIndexComponent},
           {path: 'contactIndex', component: ContactIndexComponent},
+
           {path: 'solutionIndex', component: SolutionIndexComponent},
           {path: 'solutionDetail/:id', component: SolutionDetailComponent},
           {path: 'solutionDetail', component: SolutionDetailComponent},
+
+          {path: 'newsIndex', component: NewsIndexComponent},
+          {path: 'newsDetail/:id', component: NewsDetailComponent},
+          {path: 'newsDetail', component: NewsDetailComponent},
+
           {path: 'example', component: FormComponent},
         ]
       },

@@ -95,4 +95,16 @@ export class FormFlowManager {
       itemIndex + 1, getFieldTitleFn(field), errorMessage
     ]);
   }
+
+  validateForm(form: SupportSubmitForm<any>, formData: Validateable, constraints: any): boolean {
+
+    let validateResult = this.validateUtils.validate(formData, constraints);
+
+    if (!validateResult) {
+
+      form.errorMessages.push(this.applicationUtils.message("default.form.error"));
+    }
+
+    return validateResult;
+  }
 }

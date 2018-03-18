@@ -1,25 +1,18 @@
 package project.domain
 
-import grails.rest.Resource
-import project.controller.DefaultRestfulController
-
-@Resource(uri = '/tintuc', superClass = DefaultRestfulController)
 class News implements BaseDomain {
 
     String tieuDe;
     String hinhAnh;
     String noiDungNgan;
     String noiDungChiTiet;
-    String ngayTao;
-
 
     static constraints = {
 
-        tieuDe nullable: true;
+        tieuDe nullable: false;
         hinhAnh nullable: true;
-        noiDungNgan nullable: true;
-        noiDungChiTiet nullable: true;
-        ngayTao nullable: true;
+        noiDungNgan nullable: false;
+        noiDungChiTiet nullable: false;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

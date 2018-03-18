@@ -26,7 +26,7 @@ export class SolutionDetailComponent
               protected route: ActivatedRoute,
               protected dialogService: DialogService) {
 
-    super(validateUtils, solutionService, formFlowManager, applicationUtils);
+    super(solutionService, formFlowManager, applicationUtils);
   }
 
   ngOnInit() {
@@ -50,11 +50,12 @@ export class SolutionDetailComponent
     return this.validateUtils.getFieldErrorMessage(field, this.form);
   }
 
-  inputIconClick(event: any, field: string): void {
+  inputIconClick(event: any): void {
 
-    this.openUploadImagePopup(field);
+    event.preventDefault();
+
+    this.openUploadImagePopup();
   }
-
 
   afterSubmit(result: Solution): void {
 
@@ -63,7 +64,7 @@ export class SolutionDetailComponent
     this.initForEdit_(result);
   }
 
-  protected openUploadImagePopup(field: string): void {
+  protected openUploadImagePopup(): void {
 
     this.dialogService
       .addDialog(UploadFilePopupComponent)

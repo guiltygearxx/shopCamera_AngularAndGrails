@@ -39,7 +39,10 @@ import {ContactIndexComponent} from './contact-index/contact-index.component';
 import {ContactService} from "./service/contact.service";
 import {SolutionIndexComponent} from './solution-index/solution-index.component';
 import {SolutionService} from "./service/solution.service";
-import { SolutionDetailComponent } from './solution-detail/solution-detail.component';
+import {SolutionDetailComponent} from './solution-detail/solution-detail.component';
+import {NewsDetailComponent} from './news-detail/news-detail.component';
+import {NewsIndexComponent} from './news-index/news-index.component';
+import {NewsService} from "./service/news.service";
 
 @NgModule({
 
@@ -60,6 +63,8 @@ import { SolutionDetailComponent } from './solution-detail/solution-detail.compo
     ContactIndexComponent,
     SolutionIndexComponent,
     SolutionDetailComponent,
+    NewsDetailComponent,
+    NewsIndexComponent,
   ],
 
   imports: [
@@ -90,7 +95,8 @@ import { SolutionDetailComponent } from './solution-detail/solution-detail.compo
     ProductService,
     UploadFileService,
     ContactService,
-    SolutionService
+    SolutionService,
+    NewsService,
   ],
 
   bootstrap: [AppComponent],

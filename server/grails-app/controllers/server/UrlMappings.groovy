@@ -19,10 +19,13 @@ class UrlMappings {
         "/contact/paginate"(controller: "contact", action: "paginate", method: "GET");
         "/contact"(resources: "contact")
 
-//        "/giaiPhap"(resources: "solution")
-
         "/solution/paginate"(controller: "solution", action: "paginate", method: "GET");
         "/solution"(resources: "solution")
+        "/giaiPhap"(resources: "solution")
+
+        "/news/paginate"(controller: "news", action: "paginate", method: "GET");
+        "/news"(resources: "news")
+        "/tintuc"(resources: "news")
 
         "/$controller/$action?/$id?(.$format)?" {
             constraints {

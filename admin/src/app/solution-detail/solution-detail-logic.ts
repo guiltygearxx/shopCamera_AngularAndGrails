@@ -2,7 +2,6 @@ import {SupportSubmitForm} from "../common/support-submit-form";
 import {Solution} from "../bean/solution";
 import {Observable} from "rxjs/Observable";
 import {SolutionDetailForm} from "../bean/solution-detail-form";
-import {ValidateUtils} from "../common/validate/validate-utils";
 import {FormFlowManager} from "../common/form-flow-manager";
 import {ApplicationUtils} from "../common/application-utils";
 import {SolutionService} from "../service/solution.service";
@@ -15,8 +14,7 @@ export class SolutionDetailLogic implements SupportSubmitForm<Solution> {
 
   resultBean: Solution;
 
-  constructor(protected validateUtils: ValidateUtils,
-              protected solutionService: SolutionService,
+  constructor(protected solutionService: SolutionService,
               protected formFlowManager: FormFlowManager,
               protected applicationUtils: ApplicationUtils) {
   }
@@ -40,7 +38,7 @@ export class SolutionDetailLogic implements SupportSubmitForm<Solution> {
     this.form.id = result.id;
   }
 
-  private convertToSolution(): Solution {
+  protected convertToSolution(): Solution {
 
     let solution = new Solution();
 
@@ -53,15 +51,8 @@ export class SolutionDetailLogic implements SupportSubmitForm<Solution> {
     return solution;
   }
 
-  private validateForm(): boolean {
+  protected validateForm(): boolean {
 
-    let validateResult = this.validateUtils.validate(this.form, SolutionDetailForm.constraints);
-
-    if (!validateResult) {
-
-      this.errorMessages.push(this.applicationUtils.message("default.form.error"));
-    }
-
-    return validateResult;
+    return this.formFlowManager.validateForm(this, this.form, SolutionDetailForm.constraints);
   }
 }
