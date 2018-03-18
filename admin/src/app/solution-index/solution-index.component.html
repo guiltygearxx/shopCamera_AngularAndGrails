@@ -1,0 +1,108 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Danh mục Giải pháp
+    <small>Quản lí Giải pháp</small>
+  </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Your Page Content Here -->
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="col-md-3">
+
+        <app-input-text [title]="'Tên'" [(value)]="filterForm.sTieuDe" [placeHolder]="'Tiêu đề'"></app-input-text>
+      </div>
+
+      <div class="col-md-3">
+        <app-input-text [title]="'Email'" [(value)]="filterForm.sNoiDungNgan" [placeHolder]="'Nội dung ngắn'">
+        </app-input-text>
+      </div>
+
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-info pull-right" (click)="search($event)">Tìm kiếm</button>
+    </div>
+
+  </div>
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="row">
+        <div class="col-md-2">
+          <button type="button" class="btn btn-primary btn-md" (click)="addNew($event)">Thêm mới</button>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                 aria-describedby="example2_info">
+            <thead>
+            <tr role="row">
+
+              <th class="{{getSortingClass('tieuDe')}}" (click)="doSort('tieuDe')" tabindex="0">Tiêu đề</th>
+              <th class="{{getSortingClass('noiDungNgan')}}" (click)="doSort('noiDungNgan')" tabindex="0">Nội dung
+                ngắn
+              </th>
+
+              <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <ng-container *ngFor="let item of items">
+              <tr role="row">
+
+                <td>{{item.tieuDe}}</td>
+                <td [title]="item.noiDungNgan">{{getShortContent(item.noiDungNgan, 200)}}</td>
+
+                <td class="text-center">
+
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="viewDetail($event, item)"
+                     title="Xem chi tiết">
+                    <i class="fa fa-info-circle"></i>
+                  </a>
+
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="delete($event, item)"
+                     title="Xóa">
+                    <i class="fa fa-remove"></i>
+                  </a>
+
+                </td>
+
+              </tr>
+            </ng-container>
+
+            </tbody>
+
+          </table>
+
+          <app-pagination-footer [dataSize]="count" [maxPageSize]="maxPageSize" [pageIndex]="curPageIndex"
+                                 (goToPage)="goToPage($event)">
+          </app-pagination-footer>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- /.content -->

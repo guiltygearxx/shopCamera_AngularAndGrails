@@ -38,12 +38,6 @@ class DefaultRestfulController<T> extends RestfulController<T> {
         render(result as JSON);
     }
 
-    @Override
-    def show() {
-
-        render(queryForResource(params.id) as JSON);
-    }
-
     protected void deleteResource(T domainInstance) {
 
         if (domainInstance instanceof BaseDomain) {
@@ -88,10 +82,30 @@ class DefaultRestfulController<T> extends RestfulController<T> {
 
         if (obj && obj instanceof BaseDomain) {
 
-            obj.lastModifiedTime = new Date();
-            obj.lastModifiedUser = "admin";
+            autoBindBaseDomain(obj as BaseDomain);
+
+            obj.isDeleted = false;
         }
 
         return obj;
+    }
+
+    @Override
+    protected T updateResource(T resource) {
+
+        T obj = super.updateResource(resource);
+
+        if (obj && obj instanceof BaseDomain && obj.isDirty()) {
+
+            autoBindBaseDomain(obj as BaseDomain);
+        }
+
+        return obj;
+    }
+
+    protected autoBindBaseDomain(BaseDomain obj) {
+
+        obj.lastModifiedTime = new Date();
+        obj.lastModifiedUser = "admin";
     }
 }

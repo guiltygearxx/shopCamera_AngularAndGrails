@@ -1,9 +1,5 @@
 package project.domain
 
-import grails.rest.Resource
-import project.controller.DefaultRestfulController
-
-@Resource(uri = '/giaiPhap', superClass = DefaultRestfulController)
 class Solution implements BaseDomain {
 
     String tieuDe;
@@ -13,10 +9,10 @@ class Solution implements BaseDomain {
 
     static constraints = {
 
-        tieuDe nullable: true;
+        tieuDe nullable: false;
         hinhAnh nullable: true;
-        noiDungNgan nullable: true;
-        noiDungChiTiet nullable: true;
+        noiDungNgan nullable: false;
+        noiDungChiTiet nullable: false;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true
