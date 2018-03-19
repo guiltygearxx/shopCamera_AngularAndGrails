@@ -63,7 +63,7 @@
             </thead>
             <tbody>
 
-            <ng-container *ngFor="let product of products">
+            <ng-container *ngFor="let product of products; trackBy: product?.id">
               <tr role="row">
 
                 <td>{{product.name}}</td>

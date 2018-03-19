@@ -72,7 +72,7 @@
             </thead>
             <tbody>
 
-            <ng-container *ngFor="let item of uploadFiles">
+            <ng-container *ngFor="let item of uploadFiles; trackBy: item?.id">
               <tr role="row">
 
                 <td>{{item.name}}</td>

@@ -81,7 +81,7 @@
             </thead>
             <tbody>
 
-            <ng-container *ngFor="let item of items">
+            <ng-container *ngFor="let item of items; trackBy: item?.id">
               <tr role="row">
 
                 <td>{{item.name}}</td>
