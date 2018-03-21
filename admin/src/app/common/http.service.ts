@@ -35,7 +35,7 @@ export class HttpService {
     let accessToken = this.applicationService.accessToken;
 
     if (!isNullOrUndefined(accessToken))
-      httpHeaders.set(AUTHENTICATION_TYPE, this.applicationService.accessToken);
+      httpHeaders = httpHeaders.set(AUTHENTICATION_TYPE, this.applicationService.accessToken);
 
     return httpHeaders;
   }

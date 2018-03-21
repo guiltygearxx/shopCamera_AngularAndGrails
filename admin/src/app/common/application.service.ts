@@ -9,12 +9,26 @@ export class ApplicationService {
 
   private user_: UserInformation;
 
+  private accessToken_: string;
+
   constructor(protected storageService: StorageService) {
   }
 
   get accessToken(): string {
 
-    return this.storageService.getFromSessionStorage(STORAGE_ACCESS_TOKEN);
+    if (!isNullOrUndefined(this.accessToken_)) {
+
+      return this.accessToken_;
+
+    } else {
+
+      return (this.accessToken_ = this.storageService.getFromSessionStorage(STORAGE_ACCESS_TOKEN));
+    }
+  }
+
+  set accessToken(accessToken_: string) {
+
+    this.storageService.setToSessionStorage(STORAGE_ACCESS_TOKEN, (this.accessToken_ = accessToken_));
   }
 
   get user(): UserInformation {

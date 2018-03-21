@@ -103,7 +103,7 @@ export class LoginComponent
 
     this.applicationService.user = result;
 
-    this.storageService.setToSessionStorage(STORAGE_ACCESS_TOKEN, result.access_token);
+    this.applicationService.accessToken = result.access_token;
 
     this.router.navigate(["/starter"]);
   }
