@@ -5,6 +5,9 @@ import {ToasterService} from "angular2-toaster";
 import {ApplicationUtils} from "./application-utils";
 import {Validateable} from "./validate/validateable";
 import {ValidateUtils} from "./validate/validate-utils";
+import {RequestErrorHandler} from "./request-error-handler";
+import {isNullOrUndefined} from "util";
+import {HTTP_STATUS_FORBIDDEN} from "./application-constants";
 
 @Injectable()
 export class FormFlowManager {
@@ -12,6 +15,23 @@ export class FormFlowManager {
   constructor(protected toasterService: ToasterService,
               protected applicationUtils: ApplicationUtils,
               protected validateUtils: ValidateUtils) {
+  }
+
+  defaultHandleError(error: any): void {
+
+    switch (error.status) {
+
+      case HTTP_STATUS_FORBIDDEN:
+        var message = this.applicationUtils.message("default." + error.status);
+        this.displayErrorMessage(message);
+        break;
+
+      default:
+        var message = this.applicationUtils.message("default.unknownError");
+        this.displayErrorMessage(message);
+        console.log(error);
+        break;
+    }
   }
 
   submitForm(form: SupportSubmitForm<ResultBean>): void {
@@ -23,13 +43,26 @@ export class FormFlowManager {
     form.submit().subscribe((resultBean) => form.afterSubmit(resultBean));
   }
 
-  submitFormForDefaultRestService<T>(form: SupportSubmitForm<T>): void {
+  submitFormForDefaultRestService<T>(form: SupportSubmitForm<T>, errorHandler?: RequestErrorHandler): void {
 
     form.errorMessages = [];
 
     if (!form.validate()) return;
 
-    form.submit().subscribe((resultBean) => form.afterSubmit(resultBean));
+    form.submit().subscribe(
+      (resultBean) => form.afterSubmit(resultBean),
+
+      ((error) => {
+
+        if (!isNullOrUndefined(errorHandler)) {
+
+          errorHandler.handle(error);
+        } else {
+
+          this.defaultHandleError(error);
+        }
+      }),
+    );
   }
 
   processResultBean(form: SupportSubmitForm<ResultBean>, resultBean: ResultBean): void {
@@ -60,9 +93,14 @@ export class FormFlowManager {
     this.displaySuccessMessage(successMessage);
   }
 
-  displaySuccessMessage(successMessage: string): void {
+  displaySuccessMessage(message: string): void {
 
-    this.toasterService.pop({type: 'success', title: successMessage});
+    this.toasterService.pop({type: 'success', title: message});
+  }
+
+  displayErrorMessage(message: string): void {
+
+    this.toasterService.pop({type: 'error', title: message});
   }
 
   convertToErrorMessages(items: Validateable[], constraints: any, errorMessages: string[],

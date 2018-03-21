@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ApplicationService} from "../../common/application.service";
+import {Menu} from "../../common/menu";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-starter-left-side',
@@ -7,9 +10,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StarterLeftSideComponent implements OnInit {
 
-  constructor() { }
+  username: string;
 
-  ngOnInit() {
+  menuItems: Menu[] = [
+
+    new Menu(1, null, "Danh mục sản phẩm", "starter/productIndex"),
+    new Menu(2, null, "Danh mục tin tức", "starter/newsIndex"),
+    new Menu(1, null, "Danh mục giải pháp", "starter/solutionIndex"),
+    new Menu(1, null, "Danh mục uploaded-file", "starter/uploadFileIndex"),
+  ]
+
+  constructor(protected applicationService: ApplicationService,
+              protected router: Router) {
   }
 
+  ngOnInit() {
+
+    this.username = this.applicationService.user.username;
+  }
+
+  menuClicked(event: any, menu: Menu): void {
+
+    event.preventDefault();
+
+    this.router.navigate([menu.navigate]);
+  }
 }

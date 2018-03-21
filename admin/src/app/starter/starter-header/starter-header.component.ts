@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ApplicationService} from "../../common/application.service";
+import {LoginService} from "../../service/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-starter-header',
@@ -7,9 +10,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StarterHeaderComponent implements OnInit {
 
-  constructor() { }
+  username: string;
 
-  ngOnInit() {
+  constructor(protected applicationService: ApplicationService,
+              protected loginService: LoginService,
+              protected router: Router) {
   }
 
+  ngOnInit() {
+
+    this.username = this.applicationService.user.username;
+  }
+
+  signOut(event: any): void {
+
+    event.preventDefault();
+
+    this.loginService.logout();
+
+    this.applicationService.signOut();
+
+    this.router.navigate(["login"]);
+  }
 }

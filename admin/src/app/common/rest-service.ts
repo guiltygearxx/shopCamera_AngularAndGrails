@@ -13,7 +13,7 @@ export class RestService<T> {
 
   get(params?: any): Observable<T[]> {
 
-    return this.httpService.get(this.resource + ".json", params);
+    return this.httpService.get(this.resource, params);
   }
 
   getById(id: any): Observable<T> {
@@ -23,7 +23,7 @@ export class RestService<T> {
 
   post(domain: T): Observable<T> {
 
-    return this.httpService.post(this.resource + ".json", domain, null);
+    return this.httpService.post(this.resource, domain, null);
   }
 
   put(domain: T, id: any): Observable<T> {
