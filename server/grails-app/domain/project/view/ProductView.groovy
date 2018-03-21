@@ -15,12 +15,14 @@ class ProductView implements BaseDomain {
     String khoHang;
     BigDecimal gia;
     BigDecimal giaTruocKhiHa;
+    String code;
+    String categoryName;
 
     static constraints = {
     }
 
     static mapping = {
 
-        table("product")
+        table("v_product")
     }
 }

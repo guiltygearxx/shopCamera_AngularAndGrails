@@ -39,6 +39,7 @@ import {ContactService} from "./service/contact/contact.service";
 import {HttpService} from "./common/http.service";
 import {FormFlowManager} from "./common/form-flow-manager";
 import {ToasterModule} from "angular2-toaster/angular2-toaster";
+import {OrderService} from "./service/order/order.service";
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import {ToasterModule} from "angular2-toaster/angular2-toaster";
     SolutionService,
     NewsService,
     ContactService,
+    OrderService,
     HttpService,
     FormFlowManager
   ],

@@ -13,7 +13,7 @@
         <div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
           <div class="w3ls_vegetables">
             <ul>
-              <ng-container *ngFor="let subCategory of getSubCategories(parentCategory)">
+              <ng-container *ngFor="let subCategory of getSubCategories(parentCategory);">
                 <li>
                   <a (click)="goToSubCategory($event, parentCategory, subCategory)">{{subCategory.name}}</a>
                 </li>

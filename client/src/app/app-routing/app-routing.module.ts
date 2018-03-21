@@ -19,9 +19,9 @@ import {WebTintucsukienChitietComponent} from "../web-template/web-tintucsukien-
   imports: [
     RouterModule.forRoot([
       {path: '', redirectTo: 'trangChu', pathMatch: 'full'},
-      {path: '', component: IndexContentComponent},
       {path: 'trangChu', component: IndexContentComponent},
       {path: 'danhSachSanPham/:categoryCode/:subCategory', component: ListProductsComponent},
+      {path: 'danhSachSanPham/:paramsQuery', component: ListProductsComponent},
       {path: 'chiTietSanPham/:productId', component: DetailProductComponent},
       {path: 'gioHangSanPham', component: CheckoutComponent},
       {path: 'lienHe', component: WebContactComponent},

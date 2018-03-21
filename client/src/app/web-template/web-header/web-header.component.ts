@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "../../bean/menu-item";
+import {OrderService} from "../../service/order/order.service";
 
 declare var $: any;
 
@@ -23,11 +24,15 @@ export class WebHeaderComponent implements OnInit {
     new MenuItem("trangChu", "Trang chủ"),
   ]
 
-  constructor(private router: Router) {
+  constructor(private router: Router, protected orderService:OrderService) {
   }
 
   @Input()
   searchText: string;
+
+  getCount():number{
+    return this.orderService.getCount();
+  }
 
 
   ngOnInit() {
@@ -53,10 +58,17 @@ export class WebHeaderComponent implements OnInit {
     this.router.navigate(["/" + menuItem.id]);
   }
 
+  goToOrder(event: any): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/gioHangSanPham"]);
+  }
+
   queryProduct(event: any): void {
 
     event.preventDefault();
 
-    this.router.navigate(["/danhSachSanPham", this.searchText, ""]);
+    this.router.navigate(["/danhSachSanPham", this.searchText]);
   }
 }

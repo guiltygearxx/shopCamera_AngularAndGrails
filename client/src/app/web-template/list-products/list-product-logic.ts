@@ -36,6 +36,17 @@ export class ListProductLogic {
 
   }
 
+  getListProductByParamsQuery(paramsQuery: string) {
+
+    let params = {paramsQuery: paramsQuery, max: 100};
+
+
+    this.productViewService
+      .get(params)
+      .subscribe((productView) => this.afterGetListProduct(productView));
+
+  }
+
   getListCategory() {
 
     let getMaxItem: string = '30';

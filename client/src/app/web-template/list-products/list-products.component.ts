@@ -6,6 +6,7 @@ import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
 import {isNullOrUndefined} from "util";
 import {ProductViewService} from "../../service/product/product-view.service";
+import {OrderService} from "../../service/order/order.service";
 
 @Component({
   selector: 'app-list-products',
@@ -17,7 +18,7 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
   constructor(private router: Router,
               protected route: ActivatedRoute,
               protected productListService: ProductViewService,
-              protected categoryService: CategoryService) {
+              protected categoryService: CategoryService, protected orderService:OrderService) {
     super(productListService, categoryService);
   }
 
@@ -37,6 +38,10 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
     this.getListCategory();
   }
 
+  addCount():number{
+    return this.orderService.addCount();
+  }
+
   goToChiTietSanPham(event: any, productView: ProductView): void {
 
     event.preventDefault();
@@ -51,11 +56,29 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
 
     let categoryCode: string = this.route.snapshot.paramMap.get("categoryCode");
 
-    let categoryItem = this.categoryList.find((category) => category.code == categoryCode);
+    let subCategoryCode: string = this.route.snapshot.paramMap.get("subCategory");
 
-    this.categoryName = categoryItem.name;
+    let paramsQuery: string = this.route.snapshot.paramMap.get("paramsQuery");
 
-    this.getListProduct(categoryItem.id);
+
+    if (!isNullOrUndefined(categoryCode)) {
+
+      let categoryItem = this.categoryList.find((category) => category.code == categoryCode);
+
+      this.categoryName = categoryItem.name;
+
+      this.getListProduct(categoryItem.id);
+
+    }
+
+    if (!isNullOrUndefined(paramsQuery)) {
+
+      this.categoryName = 'Tìm kiếm sản phẩm';
+
+      this.getListProductByParamsQuery(paramsQuery);
+    }
+
+
   }
 
 

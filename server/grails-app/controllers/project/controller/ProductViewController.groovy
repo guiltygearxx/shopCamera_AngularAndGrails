@@ -25,6 +25,13 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
 
         return {
 
+            or {
+                (params.paramsQuery) && (ilike("name", "%${params.paramsQuery.toLowerCase()}%"));
+                (params.paramsQuery) && (ilike("hangSanXuat", "%${params.paramsQuery.toLowerCase()}%"));
+                (params.paramsQuery) && (ilike("code", "%${params.paramsQuery.toLowerCase()}%"));
+                (params.paramsQuery) && (ilike("categoryName", "%${params.paramsQuery.toLowerCase()}%"));
+            }
+
             (params.categoryIds) && (inList("categoryId", params.categoryIds.split(";")));
 
             defaultClosure.delegate = delegate;
