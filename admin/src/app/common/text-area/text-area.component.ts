@@ -74,7 +74,7 @@ export class TextAreaComponent
 
     this.afterContentCheckCallbacks = [
 
-      new OnChangeCallBack(["errorMessage"], (() => this.isError = !this.applicationUtils.isStringEmpty(this.value)))
+      new OnChangeCallBack(["errorMessage"], (() => this.isError = !this.applicationUtils.isStringEmpty(this.errorMessage)))
     ];
   }
 

@@ -7,7 +7,7 @@ import {ProductService} from "../service/product.service";
 import {FormFlowManager} from "../common/form-flow-manager";
 import {ApplicationUtils} from "../common/application-utils";
 
-export class ProductDetailLogic implements SupportSubmitForm {
+export class ProductDetailLogic implements SupportSubmitForm<ResultBean> {
 
   form: ProductForm;
 
@@ -47,5 +47,4 @@ export class ProductDetailLogic implements SupportSubmitForm {
 
     return validateResult;
   }
-
 }

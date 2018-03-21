@@ -14,7 +14,7 @@ import {ValidateUtils} from "../common/validate/validate-utils";
 import {FormFlowManager} from "../common/form-flow-manager";
 import {Validateable} from "../common/validate/validateable";
 
-export class ImportProductLogic implements SupportSubmitForm {
+export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
 
   errorMessages: string[];
 

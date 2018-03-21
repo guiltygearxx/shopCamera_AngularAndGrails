@@ -1,8 +1,8 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Danh sách sản phẩm
-    <small>Quản lí sản phẩm</small>
+    Danh mục Tin tức
+    <small>Quản lí Tin tức</small>
   </h1>
 </section>
 
@@ -16,9 +16,13 @@
     <div class="box-body">
 
       <div class="col-md-3">
-        <app-select [title]="'Category'" [(value)]="filterForm.categoryId" [placeHolder]="'Select a category'"
-                    [data]="categories" [optionKey]="'id'" [optionValue]="'name'">
-        </app-select>
+
+        <app-input-text [title]="'Tên'" [(value)]="filterForm.sTieuDe" [placeHolder]="'Tiêu đề'"></app-input-text>
+      </div>
+
+      <div class="col-md-3">
+        <app-input-text [title]="'Nội dung ngắn'" [(value)]="filterForm.sNoiDungNgan" [placeHolder]="'Nội dung ngắn'">
+        </app-input-text>
       </div>
 
     </div>
@@ -50,38 +54,35 @@
             <thead>
             <tr role="row">
 
-              <th class="{{getSortingClass('name')}}" (click)="doSort('name')" tabindex="0">Tên</th>
-              <th class="{{getSortingClass('hangSanXuat')}}" (click)="doSort('hangSanXuat')" tabindex="0">
-                Hãng sản xuất
+              <th class="{{getSortingClass('tieuDe')}}" (click)="doSort('tieuDe')" tabindex="0">Tiêu đề</th>
+              <th class="{{getSortingClass('noiDungNgan')}}" (click)="doSort('noiDungNgan')" tabindex="0">Nội dung
+                ngắn
               </th>
-              <th class="{{getSortingClass('baoHanh')}}" (click)="doSort('baoHanh')" tabindex="0">Bảo hành</th>
-              <th class="{{getSortingClass('khoHang')}}" (click)="doSort('khoHang')" tabindex="0">Kho hàng</th>
-              <th class="text-right {{getSortingClass('gia')}}" (click)="doSort('gia')" tabindex="0">Giá</th>
+
               <th></th>
 
             </tr>
             </thead>
             <tbody>
 
-            <ng-container *ngFor="let product of products; trackBy: product?.id">
+            <ng-container *ngFor="let item of items; trackBy: item?.id">
               <tr role="row">
 
-                <td>{{product.name}}</td>
-                <td>{{product.hangSanXuat}}</td>
-                <td>{{product.baoHanh}}</td>
-                <td>{{product.khoHang}}</td>
-                <td class="text-right">{{getFormattedNumber(product.gia)}}</td>
+                <td>{{item.tieuDe}}</td>
+                <td [title]="item.noiDungNgan">{{getShortContent(item.noiDungNgan, 200)}}</td>
+
                 <td class="text-center">
 
-                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="viewProduct($event, product)"
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="viewDetail($event, item)"
                      title="Xem chi tiết">
                     <i class="fa fa-info-circle"></i>
                   </a>
 
-                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="deleteProduct($event, product)"
-                     title="Xóa sản phẩm">
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="delete($event, item)"
+                     title="Xóa">
                     <i class="fa fa-remove"></i>
                   </a>
+
                 </td>
 
               </tr>

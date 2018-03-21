@@ -1,4 +1,7 @@
-import {AfterContentChecked, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {
+  AfterContentChecked, ChangeDetectionStrategy, Component, Input, OnChanges, OnInit,
+  SimpleChanges
+} from '@angular/core';
 import {SupportOnChangesComponentModal} from '../support-on-changes-component-modal';
 import {OnChangeCallBack} from "../on-change-call-back";
 import {isNullOrUndefined} from "util";
@@ -7,7 +10,8 @@ import {ComponentUtils} from "../component-utils";
 @Component({
   selector: 'app-box-errors',
   templateUrl: './box-errors.component.html',
-  styleUrls: ['./box-errors.component.css']
+  styleUrls: ['./box-errors.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BoxErrorsComponent
   implements OnInit, SupportOnChangesComponentModal, AfterContentChecked, OnChanges {

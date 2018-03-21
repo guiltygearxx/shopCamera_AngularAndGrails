@@ -15,7 +15,7 @@ import {UploadFile} from "../bean/upload-file";
   styleUrls: ['./upload-file-popup.component.css']
 })
 export class UploadFilePopupComponent extends DialogComponent<any, string>
-  implements OnInit, SupportSubmitForm {
+  implements OnInit, SupportSubmitForm<ResultBean> {
 
   errorMessages: string[];
 
