@@ -134,9 +134,9 @@ environments:
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
 
-corsInterceptor:
-    includeEnvironments: ['development', 'test']
-    excludeEnvironments: ['production']
+grails:
+    cors:
+        enabled: true
 
 uploadFile:
     baseDir: d:/uploadFile/

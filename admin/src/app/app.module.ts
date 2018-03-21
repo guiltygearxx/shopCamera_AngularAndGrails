@@ -43,6 +43,10 @@ import {SolutionDetailComponent} from './solution-detail/solution-detail.compone
 import {NewsDetailComponent} from './news-detail/news-detail.component';
 import {NewsIndexComponent} from './news-index/news-index.component';
 import {NewsService} from "./service/news.service";
+import {LoginComponent} from './login/login.component';
+import {LoginService} from "./service/login.service";
+import {ApplicationService} from "./common/application.service";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
 
@@ -65,6 +69,7 @@ import {NewsService} from "./service/news.service";
     SolutionDetailComponent,
     NewsDetailComponent,
     NewsIndexComponent,
+    LoginComponent,
   ],
 
   imports: [
@@ -77,6 +82,7 @@ import {NewsService} from "./service/news.service";
     ToasterModule,
     BrowserAnimationsModule,
     BootstrapModalModule,
+    FormsModule,
     BootstrapModalModule.forRoot({container: document.body})
   ],
 
@@ -97,6 +103,8 @@ import {NewsService} from "./service/news.service";
     ContactService,
     SolutionService,
     NewsService,
+    LoginService,
+    ApplicationService,
   ],
 
   bootstrap: [AppComponent],

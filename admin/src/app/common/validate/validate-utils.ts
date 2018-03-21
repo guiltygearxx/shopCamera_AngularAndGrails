@@ -29,6 +29,7 @@ import {
 } from "../application-constants";
 import {ApplicationUtils} from "../application-utils";
 import {Errors} from "./errors";
+import {FieldError} from "./field-error";
 
 type ErrorHandleFnType = ((value: any, errorCode: string, args: any[]) => void);
 
@@ -36,6 +37,13 @@ type ErrorHandleFnType = ((value: any, errorCode: string, args: any[]) => void);
 export class ValidateUtils {
 
   constructor(private applicationUtils: ApplicationUtils) {
+  }
+
+  buildFieldErrorMessage(error: FieldError, prefix ?: string): string {
+
+    let code = (this.applicationUtils.isStringEmpty(prefix) ? "" : (prefix + "." + error.field + ".")) + error.errorCode;
+
+    return this.applicationUtils.message(code, error.params);
   }
 
   getFieldErrorMessage(field: string, obj: Validateable, prefix ?: string): string {
@@ -46,11 +54,7 @@ export class ValidateUtils {
 
     if (isNullOrUndefined(fieldErrors) || !fieldErrors.length) return null;
 
-    let firstError = fieldErrors[0];
-
-    let code = (this.applicationUtils.isStringEmpty(prefix) ? "" : (prefix + ".")) + firstError.errorCode;
-
-    return this.applicationUtils.message(code, firstError.params);
+    return this.buildFieldErrorMessage(fieldErrors[0], prefix);
   }
 
   validate(obj: Validateable, constrains: any): boolean {

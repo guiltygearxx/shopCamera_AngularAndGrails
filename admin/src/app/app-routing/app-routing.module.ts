@@ -11,11 +11,14 @@ import {SolutionIndexComponent} from "../solution-index/solution-index.component
 import {SolutionDetailComponent} from "../solution-detail/solution-detail.component";
 import {NewsIndexComponent} from "../news-index/news-index.component";
 import {NewsDetailComponent} from "../news-detail/news-detail.component";
+import {LoginComponent} from "../login/login.component";
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
+
       {path: '', redirectTo: 'starter', pathMatch: 'full'},
+      {path: 'login', component: LoginComponent},
       {
         path: 'starter', component: StarterComponent,
 
@@ -27,7 +30,7 @@ import {NewsDetailComponent} from "../news-detail/news-detail.component";
           {path: 'productIndex', component: ProductIndexComponent},
           {path: 'productDetail/:id', component: ProductDetailComponent},
           {path: 'productDetail', component: ProductDetailComponent},
-          
+
           {path: 'uploadFileIndex', component: UploadFileIndexComponent},
           {path: 'contactIndex', component: ContactIndexComponent},
 
