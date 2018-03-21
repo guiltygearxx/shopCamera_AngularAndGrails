@@ -47,6 +47,9 @@ import {LoginComponent} from './login/login.component';
 import {LoginService} from "./service/login.service";
 import {ApplicationService} from "./common/application.service";
 import {FormsModule} from "@angular/forms";
+import {StorageService} from "./common/storage.service";
+import {LoginActivateGuard} from "./common/login-activate-guard";
+import {AuthActivateGuard} from "./common/auth-activate-guard";
 
 @NgModule({
 
@@ -105,6 +108,9 @@ import {FormsModule} from "@angular/forms";
     NewsService,
     LoginService,
     ApplicationService,
+    StorageService,
+    LoginActivateGuard,
+    AuthActivateGuard,
   ],
 
   bootstrap: [AppComponent],

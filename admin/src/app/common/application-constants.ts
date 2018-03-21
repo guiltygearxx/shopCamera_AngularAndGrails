@@ -40,3 +40,6 @@ export const CONTACT_STATUS_READ = "read";
 export const HTTP_STATUS_FORBIDDEN = 403;
 
 export const AUTHENTICATION_TYPE = "x-auth-token";
+
+export const STORAGE_ACCESS_TOKEN = "accessToken";
+export const STORAGE_USER_INFORMATION = "userInformation";

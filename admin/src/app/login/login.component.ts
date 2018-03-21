@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SupportSubmitForm} from "../common/support-submit-form";
 import {UserInformation} from "../bean/user-information";
 import {Observable} from "rxjs/Observable";
@@ -9,11 +9,12 @@ import {ApplicationService} from "../common/application.service";
 import {LoginService} from "../service/login.service";
 import {LoginSubmitData} from "../bean/login-submit-data";
 import {RequestErrorHandler} from "../common/request-error-handler";
-import {HTTP_STATUS_FORBIDDEN} from '../common/application-constants';
+import {HTTP_STATUS_FORBIDDEN, STORAGE_ACCESS_TOKEN, STORAGE_USER_INFORMATION} from '../common/application-constants';
 import {ApplicationUtils} from "../common/application-utils";
 import {ToasterConfig} from "angular2-toaster";
 import {isNullOrUndefined} from "util";
 import {Router} from "@angular/router";
+import {StorageService} from "../common/storage.service";
 
 declare var $: any;
 
@@ -24,6 +25,9 @@ declare var $: any;
 })
 export class LoginComponent
   implements SupportSubmitForm<UserInformation>, OnInit, AfterViewInit, OnDestroy, RequestErrorHandler {
+
+  @ViewChild("loginDiv")
+  loginDiv: ElementRef;
 
   toasterConfig: ToasterConfig = new ToasterConfig({
     positionClass: 'toast-top-right'
@@ -40,7 +44,8 @@ export class LoginComponent
               protected applicationService: ApplicationService,
               protected loginService: LoginService,
               protected applicationUtils: ApplicationUtils,
-              protected router: Router,) {
+              protected router: Router,
+              protected storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -51,6 +56,8 @@ export class LoginComponent
   ngAfterViewInit(): void {
 
     $("body").addClass("login-page");
+
+    this.bindEnterEvent();
   }
 
   ngOnDestroy(): void {
@@ -62,7 +69,7 @@ export class LoginComponent
 
     event.preventDefault();
 
-    this.formFlowManager.submitFormForDefaultRestService(this, this);
+    this.login_();
   }
 
   validate(): boolean {
@@ -92,9 +99,11 @@ export class LoginComponent
     return this.loginService.login(loginSubmitData);
   }
 
-  afterSubmit(resultBean: UserInformation): void {
+  afterSubmit(result: UserInformation): void {
 
-    this.applicationService.user = resultBean;
+    this.applicationService.user = result;
+
+    this.storageService.setToSessionStorage(STORAGE_ACCESS_TOKEN, result.access_token);
 
     this.router.navigate(["/starter"]);
   }
@@ -113,6 +122,24 @@ export class LoginComponent
         this.formFlowManager.defaultHandleError(error);
         break;
     }
+  }
+
+  protected login_(): void {
+
+    this.formFlowManager.submitFormForDefaultRestService(this, this);
+  }
+
+  protected bindEnterEvent(): void {
+
+    $(this.loginDiv.nativeElement).keypress((event) => {
+
+      if (event.keyCode == 13) {
+
+        this.login_();
+
+        event.preventDefault();
+      }
+    })
   }
 
   private displayErrorMessage(): void {

@@ -16,4 +16,18 @@ export class LoginService {
 
     return this.httpService.post(url, form, null);
   }
+
+  validate(): Observable<UserInformation> {
+
+    let url = "api/validate";
+
+    return this.httpService.get(url, null);
+  }
+
+  logout(): Observable<any> {
+
+    let url = "api/logout";
+
+    return this.httpService.post(url, null, null);
+  }
 }

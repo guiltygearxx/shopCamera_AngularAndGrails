@@ -12,15 +12,17 @@ import {SolutionDetailComponent} from "../solution-detail/solution-detail.compon
 import {NewsIndexComponent} from "../news-index/news-index.component";
 import {NewsDetailComponent} from "../news-detail/news-detail.component";
 import {LoginComponent} from "../login/login.component";
+import {AuthActivateGuard} from "../common/auth-activate-guard";
+import {LoginActivateGuard} from "../common/login-activate-guard";
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
 
       {path: '', redirectTo: 'starter', pathMatch: 'full'},
-      {path: 'login', component: LoginComponent},
+      {path: 'login', component: LoginComponent, canActivate: [LoginActivateGuard]},
       {
-        path: 'starter', component: StarterComponent,
+        path: 'starter', component: StarterComponent, canActivate: [AuthActivateGuard],
 
         children: [
 
