@@ -1,4 +1,4 @@
-import {UserInformation} from "../bean/user-information";
+import {UserInformation} from "./user-information";
 import {Injectable} from "@angular/core";
 import {isNullOrUndefined} from "util";
 import {StorageService} from "./storage.service";
