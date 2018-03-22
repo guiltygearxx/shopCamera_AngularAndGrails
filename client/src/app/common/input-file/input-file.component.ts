@@ -1,5 +1,5 @@
 import {
-  AfterContentChecked,
+  AfterContentChecked, ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -21,7 +21,8 @@ declare var $:any;
 @Component({
   selector: 'app-input-file',
   templateUrl: './input-file.component.html',
-  styleUrls: ['./input-file.component.css']
+  styleUrls: ['./input-file.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputFileComponent
   implements OnInit, BaseInputModal, SupportValidateInputModal,

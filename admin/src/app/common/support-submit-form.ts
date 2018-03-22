@@ -1,4 +1,3 @@
-import {ResultBean} from "./result-bean";
 import {Observable} from "rxjs/Observable";
 
 export interface SupportSubmitForm<T> {

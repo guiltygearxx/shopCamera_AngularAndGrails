@@ -18,7 +18,7 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
   constructor(private router: Router,
               protected route: ActivatedRoute,
               protected productListService: ProductViewService,
-              protected categoryService: CategoryService, protected orderService:OrderService) {
+              protected categoryService: CategoryService) {
     super(productListService, categoryService);
   }
 
@@ -36,10 +36,6 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
     // console.log(categoryCode);
 
     this.getListCategory();
-  }
-
-  addCount():number{
-    return this.orderService.addCount();
   }
 
   goToChiTietSanPham(event: any, productView: ProductView): void {

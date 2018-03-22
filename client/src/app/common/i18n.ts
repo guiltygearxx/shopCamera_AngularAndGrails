@@ -1,5 +1,8 @@
 export const i18n = {
 
+  "default.unknownError": "Có lỗi xảy ra !",
+  "default.403": "User không có quyền thực hiện thao tác !",
+
   "default.success": "Cập nhật thành công.",
   "default.form.error": "Có lỗi dữ liệu.",
   "default.confirmDelete": "Bạn có chắc chắn muốn xóa bản ghi ?",
@@ -37,4 +40,11 @@ export const i18n = {
 
   "addProductService.existedName": "Product với tên [{0}] đã tồn tại.",
   "updateProductService.existedName": "Product với tên [{0}] đã tồn tại.",
+
+  "contact.status.new": "Mới",
+  "contact.status.read": "Đã đọc",
+
+  "login.invalidUsernamePassword": "Đăng nhập thất bại. Đề nghị kiểm tra lại thông tin đăng nhập.",
+  "login.username.nullable": "Email bắt buộc phải nhập.",
+  "login.password.nullable": "Password bắt buộc phải nhập.",
 }

@@ -33,3 +33,13 @@ export const ERROR_SIZE_TOOBIG = "size.tooBig";
 export const ERROR_SIZE_TOOSMALL = "size.tooSmall";
 
 export const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+export const CONTACT_STATUS_NEW = "new";
+export const CONTACT_STATUS_READ = "read";
+
+export const HTTP_STATUS_FORBIDDEN = 403;
+
+export const AUTHENTICATION_TYPE = "x-auth-token";
+
+export const STORAGE_ACCESS_TOKEN = "accessToken";
+export const STORAGE_USER_INFORMATION = "userInformation";

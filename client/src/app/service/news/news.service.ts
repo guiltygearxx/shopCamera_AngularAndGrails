@@ -6,7 +6,7 @@ import {HttpService} from "../../common/http.service";
 @Injectable()
 export class NewsService extends RestService<News>{
 
-  resource: string = "tintuc"
+  resource: string = "news"
 
   constructor(protected http: HttpService) {
 

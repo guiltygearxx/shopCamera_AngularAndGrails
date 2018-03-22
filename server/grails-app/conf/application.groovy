@@ -18,6 +18,8 @@ grails.plugin.springsecurity.interceptUrlMap = [
         [pattern: '/solution/**', httpMethod: 'GET', access: ['permitAll']],
 
         [pattern: '/productView/paginate', access: ['permitAll']],
+        [pattern: '/productView/**', httpMethod: 'GET', access: ['permitAll']],
+
         [pattern: '/product/paginate', access: ['permitAll']],
         [pattern: '/product/**', httpMethod: 'GET', access: ['permitAll']],
 
@@ -37,6 +39,8 @@ grails.plugin.springsecurity.filterChain.chainMap = [
         [pattern: '/solution/**', httpMethod: 'GET', access: ['permitAll'], filters: 'JOINED_FILTERS'],
 
         [pattern: '/productView/paginate', access: ['permitAll'], filters: 'JOINED_FILTERS'],
+        [pattern: '/productView/**', httpMethod: 'GET', access: ['permitAll'], filters: 'JOINED_FILTERS'],
+
         [pattern: '/product/paginate', access: ['permitAll'], filters: 'JOINED_FILTERS'],
         [pattern: '/product/**', httpMethod: 'GET', access: ['permitAll'], filters: 'JOINED_FILTERS'],
 

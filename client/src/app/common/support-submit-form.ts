@@ -1,15 +1,14 @@
-import {ResultBean} from "./result-bean";
 import {Observable} from "rxjs/Observable";
 
-export interface SupportSubmitForm {
+export interface SupportSubmitForm<T> {
 
   errorMessages: string[];
 
-  resultBean: ResultBean;
+  resultBean: T;
 
   validate(): boolean;
 
-  submit(): Observable<ResultBean>;
+  submit(): Observable<T>;
 
-  afterSubmit(resultBean: ResultBean): void;
+  afterSubmit(resultBean: T): void;
 }

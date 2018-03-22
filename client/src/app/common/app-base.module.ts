@@ -47,7 +47,7 @@ import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component'
     BoxErrorsComponent,
     PaginationFooterComponent,
     InputTextWithIconComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
   ],
 
   providers: [

@@ -40,6 +40,8 @@ import {HttpService} from "./common/http.service";
 import {FormFlowManager} from "./common/form-flow-manager";
 import {ToasterModule} from "angular2-toaster/angular2-toaster";
 import {OrderService} from "./service/order/order.service";
+import {ApplicationService} from "./common/application.service";
+import {StorageService} from "./common/storage.service";
 
 @NgModule({
   declarations: [
@@ -86,6 +88,8 @@ import {OrderService} from "./service/order/order.service";
     ContactService,
     OrderService,
     HttpService,
+    ApplicationService,
+    StorageService,
     FormFlowManager
   ],
   bootstrap: [AppComponent]

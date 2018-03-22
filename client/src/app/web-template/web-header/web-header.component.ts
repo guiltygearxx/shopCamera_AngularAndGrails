@@ -24,16 +24,11 @@ export class WebHeaderComponent implements OnInit {
     new MenuItem("trangChu", "Trang chủ"),
   ]
 
-  constructor(private router: Router, protected orderService:OrderService) {
+  constructor(private router: Router) {
   }
 
   @Input()
   searchText: string;
-
-  getCount():number{
-    return this.orderService.getCount();
-  }
-
 
   ngOnInit() {
 

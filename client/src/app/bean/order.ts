@@ -5,5 +5,5 @@ export class Order {
   sdt: string;
   email: string;
   diaChi: string;
-  description: string;
+  moTa: string;
 }

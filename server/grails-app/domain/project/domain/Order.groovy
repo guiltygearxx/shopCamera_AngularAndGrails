@@ -7,7 +7,7 @@ class Order implements BaseDomain {
     String sdt;
     String email;
     String diaChi;
-    String description;
+    String moTa;
 
     static constraints = {
 

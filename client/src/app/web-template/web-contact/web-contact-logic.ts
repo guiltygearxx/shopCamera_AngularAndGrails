@@ -1,13 +1,8 @@
 import {WebContactForm} from "./web-contact-form";
-import {Validateable} from "../../common/validate/validateable";
-import {Errors} from "../../common/validate/errors";
-import {SupportSubmitForm} from "../../common/support-submit-form";
-import {ResultBean} from "../../common/result-bean";
 import {ValidateUtils} from "../../common/validate/validate-utils";
 import {ContactService} from "../../service/contact/contact.service";
 import {FormFlowManager} from "../../common/form-flow-manager";
 import {ApplicationUtils} from "../../common/application-utils";
-import {Observable} from "rxjs/Observable";
 import {Contact} from "./contact";
 
 export class WebContactLogic {

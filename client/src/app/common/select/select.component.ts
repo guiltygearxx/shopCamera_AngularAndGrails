@@ -1,7 +1,7 @@
 import {
   AfterContentChecked,
   AfterViewChecked,
-  AfterViewInit,
+  AfterViewInit, ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -31,7 +31,8 @@ declare var $: any;
 @Component({
   selector: 'app-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.css']
+  styleUrls: ['./select.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent
   implements OnInit, BaseInputModal, SupportValidateInputModal,

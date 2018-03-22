@@ -18,7 +18,7 @@ export class RestService<T> {
 
   getById(id: any): Observable<T> {
 
-    return this.httpService.get(this.resource + "/" + id.toString(), null);
+    return this.httpService.get(this.resource + "/" + id.toString() + ".json", null);
   }
 
   post(domain: T): Observable<T> {
@@ -26,14 +26,14 @@ export class RestService<T> {
     return this.httpService.post(this.resource, domain, null);
   }
 
-  put(domain: T): Observable<T> {
+  put(domain: T, id: any): Observable<T> {
 
-    return this.httpService.put(this.resource, domain, null);
+    return this.httpService.put(this.resource + "/" + id.toString() + ".json", domain, null);
   }
 
   delete(id: any): Observable<T> {
 
-    return this.httpService.delete(this.resource + "/" + id.toString(), null);
+    return this.httpService.delete(this.resource + "/" + id.toString() + ".json", null);
   }
 
   paginate(paginationParams: PaginationParams, params?: any): Observable<TableQueryResponse> {

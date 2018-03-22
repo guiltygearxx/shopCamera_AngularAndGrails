@@ -7,6 +7,7 @@ import {Product} from "../../bean/product";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {CategoryService} from "../../service/category/category.service";
 import {ProductView} from "../../bean/product-view";
+import {CategoryItem} from "../../bean/category-item";
 
 declare var $: any;
 
@@ -31,12 +32,15 @@ export class DetailProductComponent
   ngOnInit() {
 
     this.getListCategory();
+  }
+
+
+  afterGetListCategory(categoryItems: CategoryItem[]): void {
+    super.afterGetListCategory(categoryItems);
 
     this.productId = this.route.snapshot.paramMap.get("productId");
     this.getProductById(this.productId);
-
   }
-
 
   isAvailbaleProduct(): boolean {
 

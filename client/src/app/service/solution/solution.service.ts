@@ -6,7 +6,7 @@ import {HttpService} from "../../common/http.service";
 @Injectable()
 export class SolutionService extends RestService<Solution>{
 
-  resource: string = "giaiPhap"
+  resource: string = "solution"
 
   constructor(protected http: HttpService) {
 
