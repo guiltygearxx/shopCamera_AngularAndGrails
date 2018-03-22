@@ -4,15 +4,12 @@ import {ListProductLogic} from "./list-product-logic";
 import {ProductView} from "../../bean/product-view";
 import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
-import {isNullOrUndefined} from "util";
 import {ProductViewService} from "../../service/product/product-view.service";
-import {OrderService} from "../../service/order/order.service";
 import {ListProductService} from "../../service/list-product.service";
 import {ListProductFilterForm} from "../../bean/list-product-filter-form";
 import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {ApplicationUtils} from "../../common/application-utils";
 import {GioHangService} from "../../service/order/gio-hang.service";
-import {OrderForm} from "../../bean/order-form";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 
 @Component({
@@ -25,7 +22,10 @@ export class ListProductsComponent
 
   detailForms: OrderDetailForm;
 
-  inputParams: ListProductInputParams;
+  get inputParams(): ListProductInputParams {
+
+    return this.listProductService.inputParams;
+  }
 
   private isCategoryLoaded: boolean = false;
 
@@ -45,15 +45,12 @@ export class ListProductsComponent
     this.filterForm = new ListProductFilterForm();
 
 
-
     this.getListCategory();
   }
 
   ngAfterContentChecked(): void {
 
     if (this.listProductService.isInputParamsChanged && this.isCategoryLoaded) {
-
-      this.inputParams = this.listProductService.inputParams;
 
       this.getListProduct();
     }
@@ -95,11 +92,13 @@ export class ListProductsComponent
   afterGetListProduct(productViews: ProductView[]): void {
 
     super.afterGetListProduct(productViews);
-
-    this.listProductService.isInputParamsChanged = false;
   }
 
   getListProduct(): void {
+
+    this.listProductService.isInputParamsChanged = false;
+
+    this.filterForm = new ListProductFilterForm();
 
     let categoryItems = this.categoryList;
 
