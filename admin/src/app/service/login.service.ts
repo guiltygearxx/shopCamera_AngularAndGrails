@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpService} from "../common/http.service";
 import {LoginSubmitData} from "../bean/login-submit-data";
 import {Observable} from "rxjs/Observable";
-import {UserInformation} from "../bean/user-information";
+import {UserInformation} from "../common/user-information";
 
 @Injectable()
 export class LoginService {

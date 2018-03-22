@@ -3,10 +3,14 @@ import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {isNullOrUndefined} from "util";
+import {ListProductFilterForm} from "../../bean/list-product-filter-form";
 
 export class ListProductLogic {
 
-  constructor(protected productViewService: ProductViewService, protected categoryService: CategoryService) {
+  filterForm: ListProductFilterForm;
+
+  constructor(protected productViewService: ProductViewService,
+              protected categoryService: CategoryService) {
   }
 
   categoryName: string;
@@ -15,36 +19,15 @@ export class ListProductLogic {
 
   productList: ProductView[];
 
-  getListProduct(categoryId: string) {
+  getListProduct() {
 
-    let subCategoryIds = this.categoryList
-      .filter((category) => category.parentCategoryId == categoryId)
-      .map((category) => category.id);
+    let params = {
+      categoryIds: this.filterForm.categoryIds,
+      paramsQuery: this.filterForm.paramsQuery,
+      max: 100
+    };
 
-
-    let categoryIds = [categoryId];
-
-    if (!isNullOrUndefined(subCategoryIds))
-      categoryIds = categoryIds.concat(subCategoryIds)
-
-    let params = {categoryIds: categoryIds.join(";"), max: 100};
-
-
-    this.productViewService
-      .get(params)
-      .subscribe((productView) => this.afterGetListProduct(productView));
-
-  }
-
-  getListProductByParamsQuery(paramsQuery: string) {
-
-    let params = {paramsQuery: paramsQuery, max: 100};
-
-
-    this.productViewService
-      .get(params)
-      .subscribe((productView) => this.afterGetListProduct(productView));
-
+    this.productViewService.get(params).subscribe((productView) => this.afterGetListProduct(productView));
   }
 
   getListCategory() {
@@ -52,7 +35,6 @@ export class ListProductLogic {
     let getMaxItem: string = '30';
 
     let params = {max: getMaxItem};
-
 
     this.categoryService
       .get(params)
@@ -66,7 +48,7 @@ export class ListProductLogic {
   }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
+
     this.categoryList = categoryItems;
   }
-
 }

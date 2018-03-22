@@ -7,6 +7,8 @@ import {Router} from "@angular/router";
 import {ProductView} from "../../bean/product-view";
 import {News} from "../../bean/news";
 import {NewsService} from "../../service/news/news.service";
+import {ListProductInputParams} from "../../bean/list-product-input-params";
+import {ListProductService} from "../../service/list-product.service";
 
 @Component({
   selector: 'app-index-content',
@@ -15,8 +17,12 @@ import {NewsService} from "../../service/news/news.service";
 })
 export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
-  constructor(private router: Router, protected productViewService: ProductViewService,
-              protected categoryService: CategoryService, protected newsService: NewsService) {
+  constructor(private router: Router,
+              protected productViewService: ProductViewService,
+              protected categoryService: CategoryService,
+              protected newsService: NewsService,
+              protected listProductService: ListProductService) {
+
     super(productViewService, categoryService, newsService);
   }
 
@@ -29,6 +35,7 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
   }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
+
     super.afterGetListCategory(categoryItems);
 
     this.getListProductCameraGiamSat("9a40cd52-99fe-42cc-bda3-5e43fb1f5439");
@@ -41,7 +48,11 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
     event.preventDefault();
 
-    this.router.navigate(["/danhSachSanPham", code, ""]);
+    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
+
+    inputParams.categoryCode = code;
+
+    this.router.navigate(["/danhSachSanPham"]);
   }
 
   goToChiTietSanPham(event: any, productView: ProductView): void {

@@ -7,6 +7,10 @@ import {CategoryItem} from "../../bean/category-item";
 import {isNullOrUndefined} from "util";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {OrderService} from "../../service/order/order.service";
+import {ListProductService} from "../../service/list-product.service";
+import {ListProductFilterForm} from "../../bean/list-product-filter-form";
+import {ListProductInputParams} from "../../bean/list-product-input-params";
+import {ApplicationUtils} from "../../common/application-utils";
 
 @Component({
   selector: 'app-list-products',
@@ -15,25 +19,23 @@ import {OrderService} from "../../service/order/order.service";
 })
 export class ListProductsComponent extends ListProductLogic implements OnInit {
 
+  inputParams: ListProductInputParams;
+
   constructor(private router: Router,
               protected route: ActivatedRoute,
               protected productListService: ProductViewService,
-              protected categoryService: CategoryService) {
+              protected categoryService: CategoryService,
+              protected listProductService: ListProductService,
+              protected applicationUtils: ApplicationUtils) {
+
     super(productListService, categoryService);
   }
 
   ngOnInit() {
 
-    // let categoryCode: string = this.route.snapshot.paramMap.get("categoryCode");
-    //
-    // this.route.params
-    //   .map(params => params['categoryCode'])
-    //   .subscribe((id) => {
-    //     this.categoryList.find((category) => category.code == categoryCode)
-    //   });
+    this.filterForm = new ListProductFilterForm();
 
-
-    // console.log(categoryCode);
+    this.inputParams = this.listProductService.inputParams;
 
     this.getListCategory();
   }
@@ -45,37 +47,44 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
     this.router.navigate(["/chiTietSanPham", productView.id]);
   }
 
-
   afterGetListCategory(categoryItems: CategoryItem[]): void {
 
     super.afterGetListCategory(categoryItems);
 
-    let categoryCode: string = this.route.snapshot.paramMap.get("categoryCode");
+    let pageTitle: string;
 
-    let subCategoryCode: string = this.route.snapshot.paramMap.get("subCategory");
+    if (!this.applicationUtils.isStringEmpty(this.inputParams.subCategory)) {
 
-    let paramsQuery: string = this.route.snapshot.paramMap.get("paramsQuery");
+      let category = categoryItems.find((item) => item.code == this.inputParams.subCategory);
 
+      pageTitle = category.name;
 
-    if (!isNullOrUndefined(categoryCode)) {
+      this.filterForm.categoryIds = category.id;
 
-      let categoryItem = this.categoryList.find((category) => category.code == categoryCode);
+    } else if (!this.applicationUtils.isStringEmpty(this.inputParams.categoryCode)) {
 
-      this.categoryName = categoryItem.name;
+      let category = categoryItems.find((item) => item.code == this.inputParams.categoryCode);
 
-      this.getListProduct(categoryItem.id);
+      let categoryIds: string[] = [category.id];
 
+      categoryItems.forEach((item) => {
+
+        if (item.parentCategoryId == category.id) categoryIds.push(item.id);
+      })
+
+      pageTitle = category.name;
+
+      this.filterForm.categoryIds = categoryIds.join(";");
+
+    } else if (!this.applicationUtils.isStringEmpty(this.inputParams.paramsQuery)) {
+
+      pageTitle = 'Tìm kiếm sản phẩm';
+
+      this.filterForm.paramsQuery = this.inputParams.paramsQuery;
     }
 
-    if (!isNullOrUndefined(paramsQuery)) {
+    this.categoryName = pageTitle;
 
-      this.categoryName = 'Tìm kiếm sản phẩm';
-
-      this.getListProductByParamsQuery(paramsQuery);
-    }
-
-
+    this.getListProduct();
   }
-
-
 }

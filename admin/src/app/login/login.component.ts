@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {SupportSubmitForm} from "../common/support-submit-form";
-import {UserInformation} from "../bean/user-information";
+import {UserInformation} from "../common/user-information";
 import {Observable} from "rxjs/Observable";
 import {FormFlowManager} from "../common/form-flow-manager";
 import {ValidateUtils} from "../common/validate/validate-utils";
