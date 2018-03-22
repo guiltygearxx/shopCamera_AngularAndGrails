@@ -44,6 +44,8 @@ export class WebLeftSideComponent extends WebLeftSideLogic implements OnInit, Af
 
     event.preventDefault();
 
+    this.listProductService.isInputParamsChanged = true;
+
     let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
 
     inputParams.categoryCode = category.code;

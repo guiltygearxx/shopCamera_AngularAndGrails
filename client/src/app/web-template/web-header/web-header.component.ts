@@ -4,6 +4,8 @@ import {MenuItem} from "../../bean/menu-item";
 import {OrderService} from "../../service/order/order.service";
 import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {ListProductService} from "../../service/list-product.service";
+import {GioHangService} from "../../service/order/gio-hang.service";
+import {OrderForm} from "../../bean/order-form";
 
 declare var $: any;
 
@@ -27,7 +29,7 @@ export class WebHeaderComponent implements OnInit {
   ]
 
   constructor(private router: Router,
-              protected listProductService: ListProductService) {
+              protected listProductService: ListProductService, protected  gioHangService: GioHangService) {
   }
 
   @Input()
@@ -49,6 +51,11 @@ export class WebHeaderComponent implements OnInit {
     });
   }
 
+  getGioHang():number{
+
+    return this.gioHangService.getOrderDetail().length
+  }
+
   goToMenuIndex(event: any, menuItem: MenuItem): void {
 
     event.preventDefault();
@@ -66,6 +73,8 @@ export class WebHeaderComponent implements OnInit {
   queryProduct(event: any): void {
 
     event.preventDefault();
+
+    this.listProductService.isInputParamsChanged = true;
 
     let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ListProductLogic} from "./list-product-logic";
 import {ProductView} from "../../bean/product-view";
@@ -11,20 +11,29 @@ import {ListProductService} from "../../service/list-product.service";
 import {ListProductFilterForm} from "../../bean/list-product-filter-form";
 import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {ApplicationUtils} from "../../common/application-utils";
+import {GioHangService} from "../../service/order/gio-hang.service";
+import {OrderForm} from "../../bean/order-form";
+import {OrderDetailForm} from "../../bean/order-detail-form";
 
 @Component({
   selector: 'app-list-products',
   templateUrl: './list-products.component.html',
   styleUrls: ['./list-products.component.css']
 })
-export class ListProductsComponent extends ListProductLogic implements OnInit {
+export class ListProductsComponent
+  extends ListProductLogic implements OnInit, AfterContentChecked {
+
+  detailForms: OrderDetailForm;
 
   inputParams: ListProductInputParams;
+
+  private isCategoryLoaded: boolean = false;
 
   constructor(private router: Router,
               protected route: ActivatedRoute,
               protected productListService: ProductViewService,
               protected categoryService: CategoryService,
+              protected gioHangService: GioHangService,
               protected listProductService: ListProductService,
               protected applicationUtils: ApplicationUtils) {
 
@@ -35,9 +44,38 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
 
     this.filterForm = new ListProductFilterForm();
 
-    this.inputParams = this.listProductService.inputParams;
+
 
     this.getListCategory();
+  }
+
+  ngAfterContentChecked(): void {
+
+    if (this.listProductService.isInputParamsChanged && this.isCategoryLoaded) {
+
+      this.inputParams = this.listProductService.inputParams;
+
+      this.getListProduct();
+    }
+  }
+
+  addProductToOrder(productView: ProductView): void {
+
+    this.detailForms = this.converterProductView(productView);
+
+    return this.gioHangService.addOrderDetail(this.detailForms);
+  }
+
+  private converterProductView(productView: ProductView): OrderDetailForm {
+
+    let orderDetail = new OrderDetailForm();
+
+    orderDetail.productId = productView.id;
+    orderDetail.name = productView.name;
+    orderDetail.gia = productView.gia;
+
+    return orderDetail;
+
   }
 
   goToChiTietSanPham(event: any, productView: ProductView): void {
@@ -50,6 +88,20 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
   afterGetListCategory(categoryItems: CategoryItem[]): void {
 
     super.afterGetListCategory(categoryItems);
+
+    this.isCategoryLoaded = true;
+  }
+
+  afterGetListProduct(productViews: ProductView[]): void {
+
+    super.afterGetListProduct(productViews);
+
+    this.listProductService.isInputParamsChanged = false;
+  }
+
+  getListProduct(): void {
+
+    let categoryItems = this.categoryList;
 
     let pageTitle: string;
 
@@ -85,6 +137,6 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
 
     this.categoryName = pageTitle;
 
-    this.getListProduct();
+    super.getListProduct();
   }
 }

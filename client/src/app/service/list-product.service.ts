@@ -5,4 +5,6 @@ import {ListProductInputParams} from "../bean/list-product-input-params";
 export class ListProductService {
 
   inputParams: ListProductInputParams;
+
+  isInputParamsChanged: boolean;
 }

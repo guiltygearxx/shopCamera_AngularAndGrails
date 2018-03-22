@@ -48,6 +48,8 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
     event.preventDefault();
 
+    this.listProductService.isInputParamsChanged = true;
+
     let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
 
     inputParams.categoryCode = code;

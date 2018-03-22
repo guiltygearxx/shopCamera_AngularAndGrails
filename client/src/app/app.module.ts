@@ -43,6 +43,7 @@ import {OrderService} from "./service/order/order.service";
 import {ApplicationService} from "./common/application.service";
 import {StorageService} from "./common/storage.service";
 import {ListProductService} from "./service/list-product.service";
+import {GioHangService} from "./service/order/gio-hang.service";
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import {ListProductService} from "./service/list-product.service";
     HttpService,
     ApplicationService,
     StorageService,
+    GioHangService,
     FormFlowManager,
     ListProductService
   ],
