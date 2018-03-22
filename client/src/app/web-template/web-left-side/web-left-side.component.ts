@@ -4,6 +4,8 @@ import {CategoryItem} from "../../bean/category-item";
 import {isNullOrUndefined} from "util";
 import {WebLeftSideLogic} from "./web-left-side-logic";
 import {CategoryService} from "../../service/category/category.service";
+import {ListProductInputParams} from "../../bean/list-product-input-params";
+import {ListProductService} from "../../service/list-product.service";
 
 declare var $: any;
 
@@ -17,7 +19,8 @@ export class WebLeftSideComponent extends WebLeftSideLogic implements OnInit, Af
   private bindEffectForMenuFn: (() => void);
 
   constructor(private router: Router,
-              protected categoryService: CategoryService) {
+              protected categoryService: CategoryService,
+              protected listProductService: ListProductService) {
 
     super(categoryService);
   }
@@ -37,18 +40,16 @@ export class WebLeftSideComponent extends WebLeftSideLogic implements OnInit, Af
     }
   }
 
-  goToCategory(event: any, category: CategoryItem): void {
-
-    event.preventDefault();
-
-    this.router.navigate(["/danhSachSanPham", category.code, ""]);
-  }
-
   goToSubCategory(event: any, category: CategoryItem, subCategory: CategoryItem): void {
 
     event.preventDefault();
 
-    this.router.navigate(["/danhSachSanPham", category.code, subCategory.code]);
+    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
+
+    inputParams.categoryCode = category.code;
+    inputParams.subCategory = isNullOrUndefined(subCategory) ? null : subCategory.code;
+
+    this.router.navigate(["/danhSachSanPham"]);
   }
 
   getParentCategories(): CategoryItem[] {

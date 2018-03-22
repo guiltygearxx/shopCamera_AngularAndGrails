@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
-import {AppComponent} from "../app.component";
 import {ListProductsComponent} from "../web-template/list-products/list-products.component";
 import {DetailProductComponent} from "../web-template/detail-product/detail-product.component";
 import {CheckoutComponent} from "../web-template/checkout/checkout.component";
@@ -20,8 +19,7 @@ import {WebTintucsukienChitietComponent} from "../web-template/web-tintucsukien-
     RouterModule.forRoot([
       {path: '', redirectTo: 'trangChu', pathMatch: 'full'},
       {path: 'trangChu', component: IndexContentComponent},
-      {path: 'danhSachSanPham/:categoryCode/:subCategory', component: ListProductsComponent},
-      {path: 'danhSachSanPham/:paramsQuery', component: ListProductsComponent},
+      {path: 'danhSachSanPham', component: ListProductsComponent},
       {path: 'chiTietSanPham/:productId', component: DetailProductComponent},
       {path: 'gioHangSanPham', component: CheckoutComponent},
       {path: 'lienHe', component: WebContactComponent},
