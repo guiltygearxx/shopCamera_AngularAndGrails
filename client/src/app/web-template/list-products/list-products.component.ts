@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ListProductLogic} from "./list-product-logic";
 import {ProductView} from "../../bean/product-view";
@@ -17,9 +17,12 @@ import {ApplicationUtils} from "../../common/application-utils";
   templateUrl: './list-products.component.html',
   styleUrls: ['./list-products.component.css']
 })
-export class ListProductsComponent extends ListProductLogic implements OnInit {
+export class ListProductsComponent
+  extends ListProductLogic implements OnInit, AfterContentChecked {
 
   inputParams: ListProductInputParams;
+
+  private isCategoryLoaded: boolean = false;
 
   constructor(private router: Router,
               protected route: ActivatedRoute,
@@ -41,6 +44,14 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
     this.getListCategory();
   }
 
+  ngAfterContentChecked(): void {
+
+    if (this.listProductService.isInputParamsChanged && this.isCategoryLoaded) {
+
+      this.getListProduct();
+    }
+  }
+
   addCount(): number {
 
     return this.orderService.addCount();
@@ -56,6 +67,20 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
   afterGetListCategory(categoryItems: CategoryItem[]): void {
 
     super.afterGetListCategory(categoryItems);
+
+    this.isCategoryLoaded = true;
+  }
+
+  afterGetListProduct(productViews: ProductView[]): void {
+
+    super.afterGetListProduct(productViews);
+
+    this.listProductService.isInputParamsChanged = false;
+  }
+
+  getListProduct(): void {
+
+    let categoryItems = this.categoryList;
 
     let pageTitle: string;
 
@@ -91,6 +116,6 @@ export class ListProductsComponent extends ListProductLogic implements OnInit {
 
     this.categoryName = pageTitle;
 
-    this.getListProduct();
+    super.getListProduct();
   }
 }

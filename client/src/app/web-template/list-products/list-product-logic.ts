@@ -27,7 +27,9 @@ export class ListProductLogic {
       max: 100
     };
 
-    this.productViewService.get(params).subscribe((productView) => this.afterGetListProduct(productView));
+    this.productViewService.get(params).subscribe((productView) =>
+      this.afterGetListProduct(productView)
+    );
   }
 
   getListCategory() {
