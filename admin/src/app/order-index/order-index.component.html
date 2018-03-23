@@ -1,0 +1,130 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Danh mục Order
+    <small>Quản lí Order</small>
+  </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Your Page Content Here -->
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="col-md-3">
+        <app-input-text [title]="'Mã'" [(value)]="filterForm.sCode" [placeHolder]="'Mã'"></app-input-text>
+      </div>
+
+      <div class="col-md-3">
+        <app-input-text [title]="'Tên người mua'" [(value)]="filterForm.sTenNguoiMua"
+                        [placeHolder]="'Tên người mua'"></app-input-text>
+      </div>
+
+      <div class="col-md-3">
+        <app-input-text [title]="'Phone'" [(value)]="filterForm.sSdt" [placeHolder]="'Phone'"></app-input-text>
+      </div>
+
+      <div class="col-md-3">
+        <app-input-text [title]="'Email'" [(value)]="filterForm.sEmail" [placeHolder]="'Email'"></app-input-text>
+      </div>
+
+      <div class="col-md-3">
+        <app-input-text [title]="'Địa chỉ'" [(value)]="filterForm.sDiaChi" [placeHolder]="'Địa chỉ'"></app-input-text>
+      </div>
+
+      <div class="col-md-3">
+        <app-select [title]="'Trạng thái'" [(value)]="filterForm.status" [placeHolder]="'Trạng thái'"
+                    [data]="statusList" [optionKey]="'id'" [optionValue]="'name'">
+        </app-select>
+      </div>
+
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-info pull-right" (click)="search($event)">Tìm kiếm</button>
+    </div>
+
+  </div>
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                 aria-describedby="example2_info">
+            <thead>
+            <tr role="row">
+
+              <th class="{{getSortingClass('code')}}" (click)="doSort('code')" tabindex="0">Mã</th>
+              <th class="{{getSortingClass('tenNguoiMua')}}" (click)="doSort('tenNguoiMua')" tabindex="0">Tên người
+                mua
+              </th>
+              <th class="{{getSortingClass('sdt')}}" (click)="doSort('sdt')" tabindex="0">Phone</th>
+              <th class="{{getSortingClass('email')}}" (click)="doSort('email')" tabindex="0">Email</th>
+              <th class="{{getSortingClass('diaChi')}}" (click)="doSort('diaChi')" tabindex="0">Địa chỉ</th>
+              <th class="{{getSortingClass('status')}}" (click)="doSort('status')" tabindex="0">Trạng thái</th>
+
+              <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <ng-container *ngFor="let item of items; trackBy: item?.id">
+              <tr role="row">
+
+                <td>{{item.code}}</td>
+                <td>{{item.tenNguoiMua}}</td>
+                <td>{{item.sdt}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.diaChi}}</td>
+                <td>{{getStatusTitle(item.status)}}</td>
+
+                <td class="text-center">
+
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="viewDetail($event, item)"
+                     title="Xem chi tiết">
+                    <i class="fa fa-info-circle"></i>
+                  </a>
+
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="delete($event, item)"
+                     title="Xóa">
+                    <i class="fa fa-remove"></i>
+                  </a>
+
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="updateOrder($event, item)"
+                     title="Đánh dấu đã xem">
+                    <i class="fa fa-check"></i>
+                  </a>
+
+                </td>
+
+              </tr>
+            </ng-container>
+
+            </tbody>
+
+          </table>
+
+          <app-pagination-footer [dataSize]="count" [maxPageSize]="maxPageSize" [pageIndex]="curPageIndex"
+                                 (goToPage)="goToPage($event)">
+          </app-pagination-footer>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- /.content -->

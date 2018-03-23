@@ -27,6 +27,12 @@ class UrlMappings {
         "/news"(resources: "news")
         "/tintuc"(resources: "news")
 
+        "/order/paginate"(controller: "order", action: "paginate", method: "GET");
+        "/order/paginate"(controller: "order", action: "updateOrder");
+        "/order"(resources: "order")
+
+        "/orderDetail"(resources: "orderDetail")
+
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here

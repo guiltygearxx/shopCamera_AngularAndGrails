@@ -1,87 +1,81 @@
-create table product
+CREATE TABLE product
 (
-  id varchar(36) not null
-    primary key,
-  version bigint not null,
-  bao_hanh varchar(255) null,
-  thong_tin_chi_tiet text null,
-  is_deleted bit null,
-  gia_truoc_khi_ha decimal(19,2) null,
-  last_modified_user varchar(255) null,
-  image4 varchar(255) null,
-  khuyen_mai text null,
-  image2 varchar(255) null,
-  image3 varchar(255) null,
-  hang_san_xuat varchar(255) null,
-  kho_hang varchar(255) null,
-  image1 varchar(255) null,
-  name varchar(255) not null,
-  thong_so_ki_thuat text null,
-  gia decimal(19,2) null,
-  category_id varchar(36) not null,
-  last_modified_time datetime null
-)
-;
+  id                 VARCHAR(36)    NOT NULL
+    PRIMARY KEY,
+  version            BIGINT         NOT NULL,
+  bao_hanh           VARCHAR(255)   NULL,
+  thong_tin_chi_tiet TEXT           NULL,
+  is_deleted         BIT            NULL,
+  gia_truoc_khi_ha   DECIMAL(19, 2) NULL,
+  last_modified_user VARCHAR(255)   NULL,
+  image4             VARCHAR(255)   NULL,
+  khuyen_mai         TEXT           NULL,
+  image2             VARCHAR(255)   NULL,
+  image3             VARCHAR(255)   NULL,
+  hang_san_xuat      VARCHAR(255)   NULL,
+  kho_hang           VARCHAR(255)   NULL,
+  image1             VARCHAR(255)   NULL,
+  name               VARCHAR(255)   NOT NULL,
+  thong_so_ki_thuat  TEXT           NULL,
+  gia                DECIMAL(19, 2) NULL,
+  category_id        VARCHAR(36)    NOT NULL,
+  last_modified_time DATETIME       NULL
+);
 
-create table category
+CREATE TABLE category
 (
-  id varchar(36) not null
-    primary key,
-  version bigint not null,
-  is_deleted bit null,
-  code varchar(255) not null,
-  last_modified_user varchar(255) null,
-  parent_category_id varchar(255) null,
-  name varchar(255) not null,
-  last_modified_time datetime null
-)
-;
+  id                 VARCHAR(36)  NOT NULL
+    PRIMARY KEY,
+  version            BIGINT       NOT NULL,
+  is_deleted         BIT          NULL,
+  code               VARCHAR(255) NOT NULL,
+  last_modified_user VARCHAR(255) NULL,
+  parent_category_id VARCHAR(255) NULL,
+  name               VARCHAR(255) NOT NULL,
+  last_modified_time DATETIME     NULL
+);
 
-create table order_detail
+CREATE TABLE order_detail
 (
-  id bigint auto_increment
-  primary key,
-  version bigint not null,
-  order_id varchar(255) not null,
-  quantity int not null,
-  product_id varchar(255) not null,
-  gia decimal(19,2) not null
-)
-;
+  id         BIGINT AUTO_INCREMENT
+    PRIMARY KEY,
+  version    BIGINT         NOT NULL,
+  order_id   VARCHAR(255)   NOT NULL,
+  quantity   INT            NOT NULL,
+  product_id VARCHAR(255)   NOT NULL,
+  gia        DECIMAL(19, 2) NOT NULL
+);
 
 
-create table news
+CREATE TABLE news
 (
-  id varchar(36) not null
-    primary key,
-  version bigint not null,
-  tieu_de varchar(255) null,
-  is_deleted bit null,
-  ngay_tao date null,
-  last_modified_user varchar(255) null,
-  noi_dung_chi_tiet text null,
-  hinh_anh varchar(255) null,
-  noi_dung_ngan varchar(1000) null,
-  last_modified_time datetime null
-)
-;
+  id                 VARCHAR(36)   NOT NULL
+    PRIMARY KEY,
+  version            BIGINT        NOT NULL,
+  tieu_de            VARCHAR(255)  NULL,
+  is_deleted         BIT           NULL,
+  ngay_tao           DATE          NULL,
+  last_modified_user VARCHAR(255)  NULL,
+  noi_dung_chi_tiet  TEXT          NULL,
+  hinh_anh           VARCHAR(255)  NULL,
+  noi_dung_ngan      VARCHAR(1000) NULL,
+  last_modified_time DATETIME      NULL
+);
 
-create table solution
+CREATE TABLE solution
 (
-  id varchar(36) not null
-    primary key,
-  version bigint not null,
-  tieu_de varchar(1000) null,
-  is_deleted bit null,
-  ngay_tao datetime null,
-  last_modified_user varchar(255) null,
-  noi_dung_chi_tiet text null,
-  hinh_anh varchar(255) null,
-  noi_dung_ngan text null,
-  last_modified_time datetime null
-)
-;
-
+  id                 VARCHAR(36)   NOT NULL
+    PRIMARY KEY,
+  version            BIGINT        NOT NULL,
+  tieu_de            VARCHAR(1000) NULL,
+  is_deleted         BIT           NULL,
+  ngay_tao           DATETIME      NULL,
+  last_modified_user VARCHAR(255)  NULL,
+  noi_dung_chi_tiet  TEXT          NULL,
+  hinh_anh           VARCHAR(255)  NULL,
+  noi_dung_ngan      TEXT          NULL,
+  last_modified_time DATETIME      NULL
+);
 
 -- auto-generated definition
 CREATE TABLE contact
@@ -99,6 +93,30 @@ CREATE TABLE contact
   last_modified_time DATETIME     NULL,
   status             VARCHAR(255) NULL
 );
+
+
+CREATE OR REPLACE VIEW v_product AS
+
+  SELECT
+    p.id,
+    p.version,
+    p.bao_hanh,
+    p.is_deleted,
+    p.gia_truoc_khi_ha,
+    p.last_modified_user,
+    p.image4,
+    p.image2,
+    p.image3,
+    p.hang_san_xuat,
+    p.kho_hang,
+    p.image1,
+    p.name,
+    p.gia,
+    p.category_id,
+    p.last_modified_time,
+    c.name AS category_name
+  FROM product p
+    JOIN category c ON c.id = p.category_id;
 
 
 CREATE TABLE ORDER_
