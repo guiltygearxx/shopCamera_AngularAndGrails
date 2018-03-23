@@ -57,6 +57,7 @@ class OrderController extends DefaultRestfulController<Order> {
         Order order = super.createResource()
 
         order.status = ApplicationConstants.ORDER_STATUS_NEW;
+        order.code = "ORDER#${new Date().getTime()}";
 
         return order;
     }
