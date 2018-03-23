@@ -1,6 +1,6 @@
 package project.domain
 
-class OrderDetail {
+class OrderDetail implements BaseDomain {
 
     String orderId;
     String productId;
@@ -8,5 +8,15 @@ class OrderDetail {
     BigDecimal gia;
 
     static constraints = {
+
+        lastModifiedTime nullable: true
+        lastModifiedUser nullable: true
+        isDeleted nullable: true
+    }
+
+    static mapping = {
+
+        id generator: 'uuid'
+        isDeleted defaultValue: false
     }
 }

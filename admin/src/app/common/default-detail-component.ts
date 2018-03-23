@@ -1,12 +1,12 @@
-import {SupportSubmitForm} from "./support-submit-form";
-import {Observable} from "rxjs/Observable";
-import {ApplicationUtils} from "./application-utils";
-import {RestService} from "./rest-service";
-import {FormFlowManager} from "./form-flow-manager";
-import {ValidateUtils} from "./validate/validate-utils";
-import {OnInit} from "@angular/core";
-import {ActivatedRoute} from "@angular/router";
-import {Validateable} from "./validate/validateable";
+import {SupportSubmitForm} from './support-submit-form';
+import {Observable} from 'rxjs/Observable';
+import {ApplicationUtils} from './application-utils';
+import {RestService} from './rest-service';
+import {FormFlowManager} from './form-flow-manager';
+import {ValidateUtils} from './validate/validate-utils';
+import {OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {Validateable} from './validate/validateable';
 
 export abstract class DefaultDetailComponent<DetailForm extends Validateable, BaseDomain>
   implements SupportSubmitForm<BaseDomain>, OnInit {
@@ -81,10 +81,15 @@ export abstract class DefaultDetailComponent<DetailForm extends Validateable, Ba
 
   protected initForEdit(): void {
 
-    this.domainRestService.getById(this.id).subscribe((solution) => {
+    this.domainRestService.getById(this.id).subscribe((object) => {
 
-      this.form = this.bindDataToForm(solution);
+      this.afterGetById(object);
     });
+  }
+
+  protected afterGetById(object: BaseDomain): void {
+
+    this.form = this.bindDataToForm(object);
   }
 
   protected validateForm(): boolean {

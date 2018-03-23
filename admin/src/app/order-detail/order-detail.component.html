@@ -1,0 +1,101 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Chi tiết Order
+    <small>Quản lí Order</small>
+  </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Your Page Content Here -->
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="row">
+        <div class="col-md-4">
+          <app-input-text [title]="'Mã'" [placeHolder]="'Mã'" [(value)]="form.code" [disabled]="true">
+          </app-input-text>
+        </div>
+
+        <div class="col-md-4">
+          <app-input-text [title]="'Trạng thái'" [placeHolder]="'Trạng thái'" [value]="form.status" [disabled]="true">
+          </app-input-text>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+          <app-input-text [title]="'Tên người mua'" [placeHolder]="'Tên người mua'" [(value)]="form.tenNguoiMua"
+                          [disabled]="true">
+          </app-input-text>
+        </div>
+
+        <div class="col-md-4">
+          <app-input-text [title]="'Phone'" [placeHolder]="'Phone'" [(value)]="form.sdt" [disabled]="true">
+          </app-input-text>
+        </div>
+
+        <div class="col-md-4">
+          <app-input-text [title]="'Email'" [placeHolder]="'Email'" [(value)]="form.email" [disabled]="true">
+          </app-input-text>
+        </div>
+
+        <div class="col-md-12">
+          <app-text-area [title]="'Địa chỉ'" [placeHolder]="'Địa chỉ'" [(value)]="form.diaChi" [disabled]="true">
+          </app-text-area>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <app-text-area [title]="'Mô tả'" [placeHolder]="'Mô tả'" [(value)]="form.moTa" [disabled]="true">
+          </app-text-area>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                 aria-describedby="example2_info">
+            <thead>
+            <tr role="row">
+
+              <th tabindex="0">Sản phẩm</th>
+              <th tabindex="0">Số lượng</th>
+              <th tabindex="0">Giá</th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <ng-container *ngFor="let item of orderDetails; trackBy: item?.id">
+              <tr role="row">
+
+                <td>{{getProductName(item)}}</td>
+                <td class="text-right">{{formatNumber(item.quantity)}}</td>
+                <td class="text-right">{{formatNumber(item.gia)}}</td>
+
+              </tr>
+            </ng-container>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
