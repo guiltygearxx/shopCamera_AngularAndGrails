@@ -6,4 +6,6 @@ export class Order {
   email: string;
   diaChi: string;
   moTa: string;
+
+
 }

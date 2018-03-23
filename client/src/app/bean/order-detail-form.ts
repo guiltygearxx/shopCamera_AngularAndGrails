@@ -1,7 +1,8 @@
 export class OrderDetailForm {
+
   productId: string;
   name: string;
-  image1:string;
-  quantity: number;
-  gia: number;
+  hinhAnh:string
+  quantity: string;
+  gia: string;
 }

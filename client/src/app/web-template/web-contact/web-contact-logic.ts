@@ -31,7 +31,7 @@ export class WebContactLogic {
 
     let form = this;
 
-    let successMessage = this.applicationUtils.message("default.success");
+    let successMessage = this.applicationUtils.message("add.success.contact");
 
     this.formFlowManager.displaySuccessMessage(successMessage);
   }

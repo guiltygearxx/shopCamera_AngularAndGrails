@@ -23,7 +23,7 @@ export class RestService<T> {
 
   post(domain: T): Observable<T> {
 
-    return this.httpService.post(this.resource, domain, null);
+    return this.httpService.post(this.resource + ".json", domain, null);
   }
 
   put(domain: T, id: any): Observable<T> {

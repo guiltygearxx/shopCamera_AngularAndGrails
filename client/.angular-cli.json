@@ -26,7 +26,8 @@
         "../src/assets/css/easy-responsive-tabs.css",
         "../src/assets/css/flexslider.css",
         "../src/assets/css/font-awesome.css",
-        "../src/assets/css/style.css"
+        "../src/assets/css/style.css",
+        "../node_modules/angular2-toaster/toaster.css"
       ],
       "scripts": [
         "../node_modules/bignumber.js/bignumber.js",

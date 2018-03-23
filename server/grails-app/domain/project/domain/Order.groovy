@@ -20,6 +20,6 @@ class Order implements BaseDomain {
 
         id generator: 'uuid'
         isDeleted defaultValue: false
-//        table('order_')
+        table('order_')
     }
 }
