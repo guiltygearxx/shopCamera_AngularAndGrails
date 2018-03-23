@@ -50,4 +50,7 @@ export const i18n = {
 
   'order.status.new': 'Mới',
   'order.status.read': 'Đã xem',
+
+  'changePassword.newPasswordNotMatchWithConfirmPassword': 'Mật khẩu mới không khớp với mật khẩu confirm.',
+  'changePassword.invalidOldPassword': 'Mật khẩu cũ không đúng.'
 };

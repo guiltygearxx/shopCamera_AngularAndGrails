@@ -54,6 +54,8 @@ import {OrderIndexComponent} from './order-index/order-index.component';
 import {OrderService} from './service/order.service';
 import {OrderDetailComponent} from './order-detail/order-detail.component';
 import {OrderDetailService} from './service/order-detail.service';
+import {ChangePasswordComponent} from './change-password/change-password.component';
+import {UserService} from './service/user.service';
 
 @NgModule({
 
@@ -79,6 +81,7 @@ import {OrderDetailService} from './service/order-detail.service';
     LoginComponent,
     OrderIndexComponent,
     OrderDetailComponent,
+    ChangePasswordComponent,
   ],
 
   imports: [
@@ -119,6 +122,7 @@ import {OrderDetailService} from './service/order-detail.service';
     AuthActivateGuard,
     OrderService,
     OrderDetailService,
+    UserService,
   ],
 
   bootstrap: [AppComponent],

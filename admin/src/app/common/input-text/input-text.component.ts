@@ -45,6 +45,9 @@ export class InputTextComponent
   icon: string;
 
   @Input()
+  type: string = 'text';
+
+  @Input()
   title: string;
 
   @Input()

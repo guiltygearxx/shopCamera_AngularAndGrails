@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ApplicationService} from "../../common/application.service";
-import {LoginService} from "../../service/login.service";
-import {Router} from "@angular/router";
+import {ApplicationService} from '../../common/application.service';
+import {LoginService} from '../../service/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-starter-header',
@@ -30,6 +30,13 @@ export class StarterHeaderComponent implements OnInit {
 
     this.applicationService.signOut();
 
-    this.router.navigate(["login"]);
+    this.router.navigate(['login']);
+  }
+
+  changePassword(event: any): void {
+
+    event.preventDefault();
+
+    this.router.navigate(['starter/changePassword']);
   }
 }

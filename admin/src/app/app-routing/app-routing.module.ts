@@ -16,6 +16,7 @@ import {AuthActivateGuard} from '../common/auth-activate-guard';
 import {LoginActivateGuard} from '../common/login-activate-guard';
 import {OrderIndexComponent} from '../order-index/order-index.component';
 import {OrderDetailComponent} from '../order-detail/order-detail.component';
+import {ChangePasswordComponent} from '../change-password/change-password.component';
 
 @NgModule({
   imports: [
@@ -48,6 +49,8 @@ import {OrderDetailComponent} from '../order-detail/order-detail.component';
 
           {path: 'orderIndex', component: OrderIndexComponent},
           {path: 'orderDetail/:id', component: OrderDetailComponent},
+
+          {path: 'changePassword', component: ChangePasswordComponent},
 
           {path: 'example', component: FormComponent},
         ]
