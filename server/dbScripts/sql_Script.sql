@@ -133,3 +133,4 @@ CREATE TABLE ORDER_
   moTa               VARCHAR(1000),
   last_modified_time DATETIME
 );
+ 
