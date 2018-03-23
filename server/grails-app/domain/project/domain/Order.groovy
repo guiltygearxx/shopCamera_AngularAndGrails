@@ -8,6 +8,7 @@ class Order implements BaseDomain {
     String email;
     String diaChi;
     String moTa;
+    String status;
 
     static constraints = {
 
