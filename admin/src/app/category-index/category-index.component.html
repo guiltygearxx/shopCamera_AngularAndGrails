@@ -1,0 +1,106 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Danh mục Nhóm sản phẩm
+    <small>Quản lí Nhóm sản phẩm</small>
+  </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Your Page Content Here -->
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="col-md-4">
+
+        <app-input-text [title]="'Tên'" [(value)]="form.name" [placeHolder]="'Tên'"></app-input-text>
+
+      </div>
+
+      <div class="col-md-4">
+
+        <app-select [title]="'Nhóm'" [(value)]="form.categoryId" [placeHolder]="'Nhóm'"
+                    [data]="parentItems" [optionKey]="'id'" [optionValue]="'name'">
+        </app-select>
+
+      </div>
+
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-info pull-right" (click)="search($event)">Tìm kiếm</button>
+    </div>
+
+  </div>
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="row">
+        <div class="col-md-2">
+          <button type="button" class="btn btn-primary btn-md" (click)="addNew($event)">Thêm mới</button>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                 aria-describedby="example2_info">
+            <thead>
+            <tr role="row">
+
+              <th class="{{getSortingClass('name')}}" (click)="doSort('name')" tabindex="0">Tên</th>
+              <th class="{{getSortingClass('parentName')}}" (click)="doSort('parentName')" tabindex="0">Nhóm cha</th>
+
+              <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <ng-container *ngFor="let item of items; trackBy: item?.id">
+              <tr role="row">
+
+                <td>{{item.name}}</td>
+                <td>{{getParentCategoryName(item)}}</td>
+
+                <td class="text-center">
+
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="viewDetail($event, item)"
+                     title="Xem chi tiết">
+                    <i class="fa fa-info-circle"></i>
+                  </a>
+
+                  <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="delete($event, item)"
+                     title="Xóa">
+                    <i class="fa fa-remove"></i>
+                  </a>
+
+                </td>
+
+              </tr>
+            </ng-container>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- /.content -->

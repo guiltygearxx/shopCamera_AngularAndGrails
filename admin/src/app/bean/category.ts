@@ -1,4 +1,4 @@
-import {BaseDomain} from "./base-domain";
+import {BaseDomain} from './base-domain';
 
 export class Category implements BaseDomain {
 
@@ -8,4 +8,6 @@ export class Category implements BaseDomain {
   isDeleted: boolean;
 
   name: string;
+  parentCategoryId: string;
+  code: string;
 }

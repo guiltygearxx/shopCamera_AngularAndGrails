@@ -56,6 +56,8 @@ import {OrderDetailComponent} from './order-detail/order-detail.component';
 import {OrderDetailService} from './service/order-detail.service';
 import {ChangePasswordComponent} from './change-password/change-password.component';
 import {UserService} from './service/user.service';
+import { CategoryIndexComponent } from './category-index/category-index.component';
+import { CategoryDetailComponent } from './category-detail/category-detail.component';
 
 @NgModule({
 
@@ -82,6 +84,8 @@ import {UserService} from './service/user.service';
     OrderIndexComponent,
     OrderDetailComponent,
     ChangePasswordComponent,
+    CategoryIndexComponent,
+    CategoryDetailComponent,
   ],
 
   imports: [

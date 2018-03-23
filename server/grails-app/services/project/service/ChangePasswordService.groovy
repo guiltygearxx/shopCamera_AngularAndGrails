@@ -1,6 +1,5 @@
 package project.service
 
-import grails.converters.JSON
 import grails.gorm.transactions.Transactional
 import grails.plugin.springsecurity.userdetails.GrailsUser
 import org.springframework.security.core.context.SecurityContextHolder
@@ -63,8 +62,6 @@ class ChangePasswordService implements BaseService {
     }
 
     Boolean changePassword(ChangePasswordForm form) {
-
-        println form as JSON;
 
         this.form = form;
 

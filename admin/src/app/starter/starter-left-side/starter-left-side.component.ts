@@ -19,6 +19,7 @@ export class StarterLeftSideComponent implements OnInit {
     new Menu(3, null, 'Danh mục giải pháp', 'starter/solutionIndex'),
     new Menu(4, null, 'Danh mục uploaded-file', 'starter/uploadFileIndex'),
     new Menu(5, null, 'Danh mục order', 'starter/orderIndex'),
+    new Menu(6, null, 'Danh mục nhóm sản phẩm', 'starter/categoryIndex'),
   ];
 
   constructor(protected applicationService: ApplicationService,

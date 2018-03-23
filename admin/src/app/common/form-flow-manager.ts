@@ -1,13 +1,13 @@
-import {Injectable} from "@angular/core";
-import {SupportSubmitForm} from "./support-submit-form";
-import {ResultBean} from "./result-bean";
-import {ToasterService} from "angular2-toaster";
-import {ApplicationUtils} from "./application-utils";
-import {Validateable} from "./validate/validateable";
-import {ValidateUtils} from "./validate/validate-utils";
-import {RequestErrorHandler} from "./request-error-handler";
-import {isNullOrUndefined} from "util";
-import {HTTP_STATUS_FORBIDDEN} from "./application-constants";
+import {Injectable} from '@angular/core';
+import {SupportSubmitForm} from './support-submit-form';
+import {ResultBean} from './result-bean';
+import {ToasterService} from 'angular2-toaster';
+import {ApplicationUtils} from './application-utils';
+import {Validateable} from './validate/validateable';
+import {ValidateUtils} from './validate/validate-utils';
+import {RequestErrorHandler} from './request-error-handler';
+import {isNullOrUndefined} from 'util';
+import {HTTP_STATUS_FORBIDDEN} from './application-constants';
 
 @Injectable()
 export class FormFlowManager {
@@ -22,25 +22,21 @@ export class FormFlowManager {
     switch (error.status) {
 
       case HTTP_STATUS_FORBIDDEN:
-        var message = this.applicationUtils.message("default." + error.status);
+        var message = this.applicationUtils.message('default.' + error.status);
         this.displayErrorMessage(message);
         break;
 
       default:
-        var message = this.applicationUtils.message("default.unknownError");
+        var message = this.applicationUtils.message('default.unknownError');
         this.displayErrorMessage(message);
         console.log(error);
         break;
     }
   }
 
-  submitForm(form: SupportSubmitForm<ResultBean>): void {
+  submitForm(form: SupportSubmitForm<ResultBean>, errorHandler?: RequestErrorHandler): void {
 
-    form.errorMessages = [];
-
-    if (!form.validate()) return;
-
-    form.submit().subscribe((resultBean) => form.afterSubmit(resultBean));
+    this.submitFormForDefaultRestService(form, errorHandler);
   }
 
   submitFormForDefaultRestService<T>(form: SupportSubmitForm<T>, errorHandler?: RequestErrorHandler): void {
@@ -71,7 +67,7 @@ export class FormFlowManager {
 
     if (resultBean.isSuccess) {
 
-      let successMessage = this.applicationUtils.message("default.success");
+      let successMessage = this.applicationUtils.message('default.success');
 
       this.displaySuccessMessage(successMessage);
 
@@ -88,7 +84,7 @@ export class FormFlowManager {
 
     form.resultBean = resultBean;
 
-    let successMessage = this.applicationUtils.message("default.success");
+    let successMessage = this.applicationUtils.message('default.success');
 
     this.displaySuccessMessage(successMessage);
   }
@@ -117,7 +113,7 @@ export class FormFlowManager {
         if (this.applicationUtils.isStringEmpty(errorMessage)) return;
 
         errorMessages.push(errorMessage);
-      })
+      });
     });
   }
 
@@ -128,7 +124,7 @@ export class FormFlowManager {
 
     if (this.applicationUtils.isStringEmpty(errorMessage)) return null;
 
-    return this.applicationUtils.message("importProduct.message.field", [
+    return this.applicationUtils.message('importProduct.message.field', [
 
       itemIndex + 1, getFieldTitleFn(field), errorMessage
     ]);
@@ -140,7 +136,7 @@ export class FormFlowManager {
 
     if (!validateResult) {
 
-      form.errorMessages.push(this.applicationUtils.message("default.form.error"));
+      form.errorMessages.push(this.applicationUtils.message('default.form.error'));
     }
 
     return validateResult;

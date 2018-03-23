@@ -8,6 +8,7 @@ import {ApplicationUtils} from '../common/application-utils';
 import {UserService} from '../service/user.service';
 import {ValidateUtils} from '../common/validate/validate-utils';
 import {ChangePasswordForm2} from '../bean/change-password-form-2';
+import {RequestErrorHandler} from '../common/request-error-handler';
 
 @Component({
   selector: 'app-change-password',
@@ -15,7 +16,7 @@ import {ChangePasswordForm2} from '../bean/change-password-form-2';
   styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent
-  implements OnInit, SupportSubmitForm<ResultBean> {
+  implements OnInit, SupportSubmitForm<ResultBean>, RequestErrorHandler {
 
   errorMessages: string[];
 
@@ -64,6 +65,11 @@ export class ChangePasswordComponent
   getErrorMessage(field: string): string {
 
     return this.validateUtils.getFieldErrorMessage(field, this.form);
+  }
+
+  handle(error: any): void {
+
+    this.formFlowManager.defaultHandleError(error);
   }
 
   protected validateForm(): boolean {
