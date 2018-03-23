@@ -1,6 +1,7 @@
 package project.controller
 
 import grails.converters.JSON
+import project.ApplicationConstants
 import project.bean.UpdateOrderForm
 import project.domain.Order
 
@@ -48,5 +49,15 @@ class OrderController extends DefaultRestfulController<Order> {
 
             defaultClosure.call();
         }
+    }
+
+    @Override
+    protected Order createResource() {
+
+        Order order = super.createResource()
+
+        order.status = ApplicationConstants.ORDER_STATUS_NEW;
+
+        return order;
     }
 }
