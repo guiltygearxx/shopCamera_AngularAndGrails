@@ -8,20 +8,18 @@ class Order implements BaseDomain {
     String email;
     String diaChi;
     String moTa;
-    String status; //da xem;
 
     static constraints = {
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true
         isDeleted nullable: true
-        status nullable: true;
     }
 
     static mapping = {
 
         id generator: 'uuid'
         isDeleted defaultValue: false
-        table("order_")
+//        table('order_')
     }
 }

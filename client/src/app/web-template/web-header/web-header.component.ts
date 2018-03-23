@@ -51,9 +51,9 @@ export class WebHeaderComponent implements OnInit {
     });
   }
 
-  getGioHang():number{
+  getSoLuongTrongGioHang():number{
 
-    return this.gioHangService.getOrderDetail().length
+    return this.gioHangService.getOrderDetail();
   }
 
   goToMenuIndex(event: any, menuItem: MenuItem): void {

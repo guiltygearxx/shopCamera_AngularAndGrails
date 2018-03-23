@@ -10,6 +10,7 @@ export class GioHangService {
 
   detailForms: OrderDetailForm[];
 
+
   constructor() {
 
     this.detailForms = [];
@@ -33,9 +34,13 @@ export class GioHangService {
     }
   }
 
-  getOrderDetail(): OrderDetailForm[] {
+  getOrderDetail(): number {
 
-    return this.detailForms;
+    let quantityProduct: number = 0;
+
+    this.detailForms.forEach((item) => quantityProduct += item.quantity);
+
+    return quantityProduct;
   }
 
   removeOrderDetail(detailForm: OrderDetailForm): void {

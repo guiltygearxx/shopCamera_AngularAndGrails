@@ -69,6 +69,7 @@ export class ListProductsComponent
 
     orderDetail.productId = productView.id;
     orderDetail.name = productView.name;
+    orderDetail.image1 = productView.image1
     orderDetail.gia = productView.gia;
 
     return orderDetail;

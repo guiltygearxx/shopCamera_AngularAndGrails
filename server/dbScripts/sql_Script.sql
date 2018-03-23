@@ -117,3 +117,19 @@ CREATE OR REPLACE VIEW v_product AS
     c.name AS category_name
   FROM product p
     JOIN category c ON c.id = p.category_id;
+
+
+CREATE TABLE ORDER_
+(
+  id                 VARCHAR(36) PRIMARY KEY NOT NULL,
+  version            BIGINT(20)              NOT NULL,
+  code               VARCHAR(255),
+  is_deleted         BIT(1),
+  ten_nguoi_mua      DATE,
+  last_modified_user VARCHAR(255),
+  sdt                TEXT,
+  email              VARCHAR(255),
+  diaChi             VARCHAR(1000),
+  moTa               VARCHAR(1000),
+  last_modified_time DATETIME
+);
