@@ -12,15 +12,15 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {BaseInputModal} from "../base-input-modal";
-import {SupportValidateInputModal} from "../support-validate-input-modal";
-import {SupportOnChangesComponentModal} from "../support-on-changes-component-modal";
-import {AdminLteInputModal} from "../admin-lte-input-modal";
-import {OnChangeCallBack} from "../on-change-call-back";
-import {ComponentUtils} from "../component-utils";
-import {ApplicationUtils} from "../application-utils";
-import {SelectOption} from "../select-option";
-import {isNullOrUndefined, isString} from "util";
+import {BaseInputModal} from '../base-input-modal';
+import {SupportValidateInputModal} from '../support-validate-input-modal';
+import {SupportOnChangesComponentModal} from '../support-on-changes-component-modal';
+import {AdminLteInputModal} from '../admin-lte-input-modal';
+import {OnChangeCallBack} from '../on-change-call-back';
+import {ComponentUtils} from '../component-utils';
+import {ApplicationUtils} from '../application-utils';
+import {SelectOption} from '../select-option';
+import {isNullOrUndefined, isString} from 'util';
 
 type OptionKeyType = (string | ((item: any) => any));
 
@@ -85,7 +85,7 @@ export class SelectComponent
 
   selectOptions: SelectOption[];
 
-  @ViewChild("inputElement")
+  @ViewChild('inputElement')
   inputElement: ElementRef;
 
   @Input()
@@ -105,19 +105,19 @@ export class SelectComponent
 
     this.afterContentCheckCallbacks = [
 
-      new OnChangeCallBack(["errorMessage"], (() => this.isError = !this.applicationUtils.isStringEmpty(this.errorMessage))),
+      new OnChangeCallBack(['errorMessage'], (() => this.isError = !this.applicationUtils.isStringEmpty(this.errorMessage))),
 
-      new OnChangeCallBack(["optionKey", "optionValue", "data", "autoSort"], (() => this.buildSelectOptions())),
+      new OnChangeCallBack(['optionKey', 'optionValue', 'data', 'autoSort'], (() => this.buildSelectOptions())),
 
       new OnChangeCallBack(
-        ["placeHolder"], (() => this.select2SettingOptions.placeholder = {id: null, text: this.placeHolder})
+        ['placeHolder'], (() => this.select2SettingOptions.placeholder = {id: null, text: this.placeHolder})
       ),
     ];
 
     this.afterViewCheckCallbacks = [
 
-      new OnChangeCallBack(["optionKey", "optionValue", "data", "autoSort"], (() => this.refreshSelectPicker())),
-    ]
+      new OnChangeCallBack(['optionKey', 'optionValue', 'data', 'autoSort', 'value'], (() => this.refreshSelectPicker())),
+    ];
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -161,7 +161,7 @@ export class SelectComponent
       this.selectOptions.sort((item1, item2) =>
 
         this.applicationUtils.compareString(item1.name, item2.name)
-      )
+      );
     }
   }
 

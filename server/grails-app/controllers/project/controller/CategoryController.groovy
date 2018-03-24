@@ -5,6 +5,8 @@ import project.domain.Category
 
 class CategoryController extends DefaultRestfulController<Category> {
 
+    def springSecurityService;
+
     CategoryController() {
         super(Category)
     }
@@ -23,5 +25,23 @@ class CategoryController extends DefaultRestfulController<Category> {
         params.max = 99999;
 
         render(_search() as JSON);
+    }
+
+    @Override
+    protected void deleteResource(Category category) {
+
+        super.deleteResource(category);
+
+        Category.findAllByParentCategoryIdAndIsDeleted(category.id, false)?.each { Category subCategory ->
+
+            subCategory.with {
+
+                isDeleted = true;
+                lastModifiedTime = new Date();
+                lastModifiedUser = springSecurityService.authentication.name;
+
+                save(flush: true);
+            }
+        }
     }
 }

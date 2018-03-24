@@ -1,8 +1,5 @@
 package project.domain
 
-import grails.rest.Resource
-
-@Resource(uri = '/category')
 class Category implements BaseDomain {
 
     String name;
@@ -13,6 +10,7 @@ class Category implements BaseDomain {
 
         name blank: false, maxSize: 255
         parentCategoryId nullable: true;
+        code nullable: false;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

@@ -9,6 +9,10 @@ import {isNullOrUndefined} from 'util';
 import {ApplicationUtils} from '../common/application-utils';
 import {SortableTableFlow} from '../common/sortable-table-flow';
 import {GroupByWrapper} from '../common/group-by-wrapper';
+import {ConfirmDialogComponent} from '../common/confirm-dialog/confirm-dialog.component';
+import {DialogService} from 'ng2-bootstrap-modal';
+import {News} from '../bean/news';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-category-index',
@@ -35,14 +39,16 @@ export class CategoryIndexComponent
   constructor(protected categoryService: CategoryService,
               protected formFlowManager: FormFlowManager,
               protected applicationUtils: ApplicationUtils,
-              protected sortableTableFlow: SortableTableFlow) {
+              protected sortableTableFlow: SortableTableFlow,
+              protected dialogService: DialogService,
+              protected router: Router,) {
   }
 
   ngOnInit() {
 
     this.form = new CategoryIndexFilterForm();
 
-    this.loadCategories();
+    this.loadItems();
   }
 
   doSort(field: string): void {
@@ -63,7 +69,7 @@ export class CategoryIndexComponent
 
   doSort_(): void {
 
-    if (isNullOrUndefined(this.items)) return;
+    if (isNullOrUndefined(this.items) || this.applicationUtils.isStringEmpty(this.sort)) return;
 
     this.allItems.sort((item1, item2) => {
 
@@ -71,24 +77,6 @@ export class CategoryIndexComponent
 
       return this.order == 'asc' ? compareResult : -compareResult;
     });
-  }
-
-  protected compareItem(item1: Category, item2: Category, field: string): number {
-
-    let compareResult;
-
-    switch (this.sort) {
-
-      case'parentName':
-        compareResult = this.applicationUtils.compareString(this.getParentCategoryName(item1), this.getParentCategoryName(item2));
-        break;
-
-      default:
-        compareResult = this.applicationUtils.compareString(item1.name, item2.name);
-        break;
-    }
-
-    return compareResult;
   }
 
   handle(error: any): void {
@@ -115,12 +103,83 @@ export class CategoryIndexComponent
     return this.sortableTableFlow.getSortingClass(this, field);
   }
 
-  protected loadCategories(): void {
+  delete(event: any, item: Category): void {
+
+    event.preventDefault();
+
+    this.confirmDelete(item);
+  }
+
+  viewDetail(event: any, item: Category): void {
+
+    event.preventDefault();
+
+    this.viewDetail_(item);
+  }
+
+  addNew(event: any): void {
+
+    event.preventDefault();
+
+    this.addNew_();
+  }
+
+  protected addNew_(): void {
+
+    this.router.navigate(['/starter/categoryDetail/']);
+  }
+
+  protected viewDetail_(item: Category): void {
+
+    this.router.navigate(['/starter/categoryDetail/' + item.id]);
+  }
+
+  protected confirmDelete(item: Category): void {
+
+    this.dialogService
+      .addDialog(ConfirmDialogComponent, {message: this.applicationUtils.message('default.confirmDelete')})
+      .subscribe((confirm) => {
+
+        if (confirm) this.delete_(item);
+      });
+  }
+
+  protected delete_(item: Category): void {
+
+    this.categoryService.delete(item.id).subscribe((returnItem) => {
+
+      let successMessage = this.applicationUtils.message('default.success');
+
+      this.formFlowManager.displaySuccessMessage(successMessage);
+
+      this.loadItems();
+    });
+  }
+
+  protected loadItems(): void {
 
     this.categoryService.get().subscribe(
       (items) => this.afterLoadItems(items),
       (error) => this.handle(error)
     );
+  }
+
+  protected compareItem(item1: Category, item2: Category, field: string): number {
+
+    let compareResult;
+
+    switch (this.sort) {
+
+      case'parentName':
+        compareResult = this.applicationUtils.compareString(this.getParentCategoryName(item1), this.getParentCategoryName(item2));
+        break;
+
+      default:
+        compareResult = this.applicationUtils.compareString(item1.name, item2.name);
+        break;
+    }
+
+    return compareResult;
   }
 
   protected afterLoadItems(items: Category[]): void {
@@ -131,5 +190,7 @@ export class CategoryIndexComponent
 
     this.parentItems = isNullOrUndefined(items) ? null :
       items.filter((item) => this.applicationUtils.isStringEmpty((item.parentCategoryId))).sort((item1, item2) => this.compareItem(item1, item2, 'name'));
+
+    this.doSort_();
   }
 }
