@@ -11,6 +11,7 @@ export class DetailProductLogic {
   constructor(protected productService: ProductService, protected productViewService: ProductViewService, protected categoryService: CategoryService) {
   }
 
+  allowDisplayProductVetical: boolean;
   product: Product;
 
   productLienQuan: ProductView[];

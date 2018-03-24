@@ -13,6 +13,8 @@ export class ListProductLogic {
               protected categoryService: CategoryService) {
   }
 
+  allowDisplayProductVetical: boolean;
+
   categoryName: string;
 
   categoryList: CategoryItem[];

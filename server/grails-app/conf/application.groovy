@@ -23,26 +23,40 @@ grails.plugin.springsecurity.interceptUrlMap = [
         [pattern: '/product/paginate', access: ['permitAll']],
         [pattern: '/product/**', httpMethod: 'GET', access: ['permitAll']],
 
+        [pattern: '/contact.json', httpMethod: 'POST', access: ['permitAll']],
+
+        [pattern: '/order.json', httpMethod: 'POST', access: ['permitAll']],
+        [pattern: '/orderDetail.json', httpMethod: 'POST', access: ['permitAll']],
+
+        [pattern: '/uploadFile/downloadFile/*', access: ['permitAll']],
+
         [pattern: '/api/logout', access: ['isFullyAuthenticated()']],
         [pattern: '/**', access: ['isFullyAuthenticated()']]
 ]
 
 grails.plugin.springsecurity.filterChain.chainMap = [
 
-        [pattern: '/category', access: ['permitAll'], filters: 'JOINED_FILTERS'],
-        [pattern: '/category/**', access: ['permitAll'], filters: 'JOINED_FILTERS'],
+        [pattern: '/category', filters: 'JOINED_FILTERS'],
+        [pattern: '/category/**', filters: 'JOINED_FILTERS'],
 
-        [pattern: '/news/paginate', access: ['permitAll'], filters: 'JOINED_FILTERS'],
-        [pattern: '/news/**', httpMethod: 'GET', access: ['permitAll'], filters: 'JOINED_FILTERS'],
+        [pattern: '/news/paginate', filters: 'JOINED_FILTERS'],
+        [pattern: '/news/**', httpMethod: 'GET', filters: 'JOINED_FILTERS'],
 
-        [pattern: '/solution/paginate', access: ['permitAll'], filters: 'JOINED_FILTERS'],
-        [pattern: '/solution/**', httpMethod: 'GET', access: ['permitAll'], filters: 'JOINED_FILTERS'],
+        [pattern: '/solution/paginate', filters: 'JOINED_FILTERS'],
+        [pattern: '/solution/**', httpMethod: 'GET', filters: 'JOINED_FILTERS'],
 
-        [pattern: '/productView/paginate', access: ['permitAll'], filters: 'JOINED_FILTERS'],
-        [pattern: '/productView/**', httpMethod: 'GET', access: ['permitAll'], filters: 'JOINED_FILTERS'],
+        [pattern: '/productView/paginate', filters: 'JOINED_FILTERS'],
+        [pattern: '/productView/**', httpMethod: 'GET', filters: 'JOINED_FILTERS'],
 
-        [pattern: '/product/paginate', access: ['permitAll'], filters: 'JOINED_FILTERS'],
-        [pattern: '/product/**', httpMethod: 'GET', access: ['permitAll'], filters: 'JOINED_FILTERS'],
+        [pattern: '/product/paginate', filters: 'JOINED_FILTERS'],
+        [pattern: '/product/**', httpMethod: 'GET', filters: 'JOINED_FILTERS'],
+
+        [pattern: '/contact.json', httpMethod: 'POST', filters: 'JOINED_FILTERS'],
+
+        [pattern: '/order.json', httpMethod: 'POST', filters: 'JOINED_FILTERS'],
+        [pattern: '/orderDetail.json', httpMethod: 'POST', filters: 'JOINED_FILTERS'],
+
+        [pattern: '/uploadFile/downloadFile/*', filters: 'JOINED_FILTERS'],
 
         [pattern: '/**', filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter'],
 ]

@@ -31,6 +31,10 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
     this.getListNews();
 
+    this.activeImageIndex = 0;
+    this.allowDisplayProductVetical = true;
+    this.allowDisplayNews = true;
+
     // get list camera giam sat
   }
 

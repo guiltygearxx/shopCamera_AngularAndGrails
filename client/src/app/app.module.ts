@@ -44,6 +44,8 @@ import {ApplicationService} from "./common/application.service";
 import {StorageService} from "./common/storage.service";
 import {ListProductService} from "./service/list-product.service";
 import {GioHangService} from "./service/order/gio-hang.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {OrderDetailService} from "./service/order/order-detail.service";
 
 @NgModule({
   declarations: [
@@ -66,7 +68,7 @@ import {GioHangService} from "./service/order/gio-hang.service";
     WebGioithieuComponent,
     WebGiaiphapChitietComponent,
     WebTintucsukienChitietComponent,
-    WebRightSideComponent,
+    WebRightSideComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +76,8 @@ import {GioHangService} from "./service/order/gio-hang.service";
     AppRoutingModule,
     AppBaseModule,
     HttpClientModule,
-    ToasterModule
+    ToasterModule,
+    BrowserAnimationsModule
   ],
   providers: [
     DateFormatter,
@@ -89,6 +92,7 @@ import {GioHangService} from "./service/order/gio-hang.service";
     NewsService,
     ContactService,
     OrderService,
+    OrderDetailService,
     HttpService,
     ApplicationService,
     StorageService,

@@ -4,6 +4,8 @@ export const i18n = {
   "default.403": "User không có quyền thực hiện thao tác !",
 
   "default.success": "Cập nhật thành công.",
+  "add.success.contact": "Gửi yêu cầu thành công.",
+  "xacNhanDonHang.success": "Bạn đã đặt hàng thành công.",
   "default.form.error": "Có lỗi dữ liệu.",
   "default.confirmDelete": "Bạn có chắc chắn muốn xóa bản ghi ?",
 

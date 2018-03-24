@@ -39,7 +39,8 @@
       <h2 style="display:none;">{{this.categoryName}}</h2>
 
       <div class="clear"></div>
-      <select style="float:right;margin-top:3px;" onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);">
+      <select style="float:right;margin-top:3px;"
+              onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);">
         <option value="http://fptcamera.vn/camera-dahua">Sắp xếp theo</option>
         <option value="http://fptcamera.vn/camera-dahua/?o=p-asc">Giá tăng dần</option>
         <option value="http://fptcamera.vn/camera-dahua/?o=p-desc">Giá giảm dần</option>
@@ -47,46 +48,103 @@
     </div>
     <!-- brands -->
     <div class="col-md-12 col-xs-12" style="text-align: center">
-      <div class="paddingDiv centerListProduct">
+      <div class="paddingDiv centerListProduct" *ngIf="!allowDisplayProductVetical">
 
         <ng-container *ngFor="let product of this.productList">
 
-        <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-          <div class="hover14 column">
-            <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-              <div class="agile_top_brand_left_grid1">
-                <figure>
+          <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
+            <div class="hover14 column">
+              <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+                <div class="product-sale discount">
+                  <span>20%</span>
+                </div>
+                <div class="agile_top_brand_left_grid1">
                   <div class="snipcart-item block">
                     <div class="snipcart-thumb">
                       <a (click)="goToChiTietSanPham($event,product)">
                         <img src="{{product.image1}}" alt=" " class="img-responsive" width="140" height="140"/>
                       </a>
-                      <p>{{product.name}}</p>
+                      <p class="fixHeigth45px">{{product.name}}</p>
                       <h4>{{product.gia}} Đ
                         <span>{{product.giaTruocKhiHa}} Đ</span>
                       </h4>
                     </div>
                     <div class="snipcart-details">
-                        <fieldset>
-                          <input type="hidden" name="cmd" value="_cart"/>
-                          <input type="hidden" name="add" value="1"/>
-                          <input type="hidden" name="business" value=" "/>
-                          <input type="hidden" name="item_name" value="knorr instant soup"/>
-                          <input type="hidden" name="amount" value="3.00"/>
-                          <input type="hidden" name="discount_amount" value="1.00"/>
-                          <input type="hidden" name="currency_code" value="USD"/>
-                          <input type="hidden" name="return" value=" "/>
-                          <input type="hidden" name="cancel_return" value=" "/>
-                          <input type="submit" name="submit" value="Mua ngay" class="button" (click)="addProductToOrder(product)"/>
-                        </fieldset>
+                      <input type="submit" name="submit" value="Mua ngay" class="button"
+                             (click)="addProductToOrder(product)"/>
                     </div>
                   </div>
-                </figure>
+                  <div class="tooltip_sale" id="toolTip_Horizontal">
+                    <div class="prd-body" [innerHTML]="product.khuyenMai"></div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </ng-container>
+        <div class="clearfix"></div>
+
+        <div style="text-align: left">
+          <ul class="pagination">
+            <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">4</a></li>
+            <li class="page-item"><a class="page-link" href="#">5</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">99</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="paddingDiv centerListProduct" *ngIf="allowDisplayProductVetical">
+
+        <ul class="products product-list style-product-2">
+          <ng-container *ngFor="let product of this.productList">
+            <div class="col-xs-12 col-lg-4 col-md-6 paddingDivBottom">
+              <li
+                class="first item post-2695 product type-product status-publish has-post-thumbnail product_cat-lap-dat-camera-quan-sat entry  instock sale shipping-taxable purchasable product-type-simple">
+                <div class="product-inner">
+                  <a class="img hover-zoom" (click)="goToChiTietSanPham($event,product)"
+                     title="{{product.name}}">
+                    <img src="{{product.image1}}"
+                         class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{product.name}}"
+                         title="camera-ip-10"
+                         sizes="(max-width: 300px) 100vw, 300px" width="300" height="300">
+                  </a>
+                  <div class="content-product">
+                    <div class="product-sale discount">
+                      <span>20%</span>
+                    </div>
+                    <h5 class="changeFontColorBlack fixHeigth45px">
+                      <a class="title" href=""
+                         title="{{product.name}}">{{product.name}}</a>
+                    </h5>
+                    <div class="descrison">
+                      <p>{{product.categoryName}}</p>
+                    </div>
+                    <div class="box-product">
+              <span class="price">
+              <del> <span>{{product.giaTruocKhiHa}} đ </span></del>
+              <ins> <span>{{product.gia}} đ</span></ins>
+            </span>
+                      <div class="danhgia">
+                        <a class="item-list" (click)="goToChiTietSanPham($event,product)"
+                           title="CAMERA IP WIFI KHÔNG DÂY YOOSEE HD 720P">Chi tiết
+                          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tooltip_sale" id="toolTip_Vertical">
+                    <div class="prd-body" [innerHTML]="product.khuyenMai"></div>
+                  </div>
+                </div>
+              </li>
+            </div>
+          </ng-container>
+        </ul>
+
         <div class="clearfix"></div>
 
         <div style="text-align: left">

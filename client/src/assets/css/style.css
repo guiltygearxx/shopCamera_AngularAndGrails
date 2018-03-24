@@ -136,6 +136,26 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
     display: block;
 	text-decoration:none;
 }
+
+.gioHangSanPham{
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  text-transform: capitalize;
+  padding: .5em 2.5em .5em 1em;
+}
+
+.gioHangSanPham input.button {
+  margin: 0;
+  padding: .3em 2.5em .3em 1em;
+  background: url(../images/cart.png) no-repeat 116px 5px;
+}
+
+.gioHangSanPham input.button {
+  padding: .3em 2.5em .3em 0.8em;
+  background: url(../images/cart.png) no-repeat 105px 5px;
+  font-size: 13px;
+}
 ul.dropdown-menu.drp-mnu {
     right: 0;
     min-width: 130px;
@@ -1693,6 +1713,7 @@ section#tables  p {
 	margin-bottom: 1em;
 	background: aliceblue;
 	margin-top: 1em;
+  border-radius: 0px !important;
 }
 .alert {
 	font-size: 0.85em;

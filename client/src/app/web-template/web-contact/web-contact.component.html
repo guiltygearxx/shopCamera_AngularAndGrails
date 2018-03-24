@@ -55,23 +55,32 @@
           <app-box-errors [errorMessages]="errorMessages"></app-box-errors>
 
           <div class="col-md-6 wthree_contact_left_grid padding10px">
-            <input type="text" name="Tên" placeholder="Tên*" [(ngModel)]="this.form.name">
+            <app-input-text [title]="'Tên'" [(value)]="form.name" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('name')">
+            </app-input-text>
           </div>
           <div class="col-md-6 wthree_contact_left_grid padding10px">
 
-            <app-input-text [title]="'Email'" [placeHolder]="'Email'" [(value)]="form.email" [isRequired]="true"
+            <app-input-text [title]="'Email'" [(value)]="form.email" [isRequired]="true"
                             [errorMessage]="getErrorMessage('email')">
             </app-input-text>
 
           </div>
           <div class="col-md-6 wthree_contact_left_grid padding10px">
-            <input type="text" name="Số điện thoại" placeholder="Số điện thoại*" [(ngModel)]="this.form.phone">
+            <app-input-text [title]="'Số điện thoại'" [(value)]="form.phone" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('phone')">
+            </app-input-text>
           </div>
           <div class="col-md-6 wthree_contact_left_grid padding10px">
-            <input type="text" name="Địa chỉ" placeholder="Địa chỉ*" [(ngModel)]="this.form.address">
+            <app-input-text [title]="'Địa chỉ'" [(value)]="form.address" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('address')">
+            </app-input-text>
           </div>
-          <textarea name="Nội dung yêu cầu" placeholder="Nội dung yêu cầu..."
-                    [(ngModel)]="this.form.comment"></textarea>
+
+          <app-text-area [title]="'Nội dung yêu cầu'"
+                         [(value)]="form.comment" [errorMessage]="getErrorMessage('comment')">
+          </app-text-area>
+
           <input type="submit" value="Gửi yêu cầu" (click)="submit()">
           <input type="reset" value="Làm mới">
         </div>

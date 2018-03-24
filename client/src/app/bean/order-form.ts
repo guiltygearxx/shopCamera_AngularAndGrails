@@ -1,6 +1,25 @@
-import {OrderDetailForm} from "./order-detail-form";
 
-export class OrderForm {
+import {Validateable} from "../common/validate/validateable";
+import {Errors} from "../common/validate/errors";
 
-  detailForms: OrderDetailForm[];
+export class OrderForm implements Validateable {
+
+  errors: Errors;
+
+  tenNguoiMua: string;
+  sdt: string;
+  email: string;
+  diaChi: string;
+  moTa: string;
+
+  static constraints = {
+
+    tenNguoiMua: {blank: false, maxSize: 255},
+    sdt: {nullable: false, email: true},
+    email: {nullable: false},
+    diaChi: {nullable: false},
+    moTa: {nullable: false},
+  }
+
+
 }

@@ -6,7 +6,12 @@ import {CategoryItem} from "../../bean/category-item";
 import {News} from "../../bean/news";
 import {NewsService} from "../../service/news/news.service";
 
-export class IndexContentLogic{
+export class IndexContentLogic {
+
+  activeImageIndex: number;
+
+  allowDisplayNews: boolean
+  allowDisplayProductVetical: boolean;
 
   productListCameraGiamSat: ProductView[];
 
@@ -16,7 +21,7 @@ export class IndexContentLogic{
 
   categoryList: CategoryItem[];
 
-  constructor(protected productViewService: ProductViewService, protected categoryService: CategoryService, protected newsService:NewsService) {
+  constructor(protected productViewService: ProductViewService, protected categoryService: CategoryService, protected newsService: NewsService) {
   }
 
 
@@ -70,7 +75,7 @@ export class IndexContentLogic{
       .subscribe((category) => this.afterGetListCategory(category));
   }
 
-  getListNews(){
+  getListNews() {
     let getMaxItem: string = '8';
 
     let params = {max: getMaxItem};
@@ -80,6 +85,22 @@ export class IndexContentLogic{
       .get(params)
       .subscribe((news) => this.afterGetListNews(news));
   }
+
+  getListHinhAnhSanPham(): string[] {
+    let imageList: string[] = [
+      "https://uma.vn/media/wysiwyg/bannerslider/b/a/banner-home-slide-savico-desktop-vi.png",
+      "https://uma.vn/media/wysiwyg/bannerslider/b/a/banner-home-slide-bernie-desktop-vi.jpg",
+      "https://uma.vn/media/wysiwyg/bannerslider/b/a/banner-home-slide-monthly-desktop-vi.jpg",
+      "https://uma.vn/media/wysiwyg/bannerslider/b/a/banner-home-slide-monthly-lynn-desktop-vi.jpg"
+    ];
+    return imageList;
+  }
+
+  activeImage(imageIndex: number): boolean {
+
+    return imageIndex == this.activeImageIndex;
+  }
+
 
   protected afterGetListNews(newsItems: News[]): void {
     this.danhSachTinTuc = newsItems;
@@ -99,8 +120,6 @@ export class IndexContentLogic{
 
     this.categoryList = categoryItems;
   }
-
-
 
 
 }

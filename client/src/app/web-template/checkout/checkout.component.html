@@ -92,35 +92,40 @@
               <div class="information-wrapper">
                 <div class="first-row form-group">
                   <div class="controls">
-                    <label class="control-label">Tên người mua: </label>
-                    <input class="billing-address-name form-control" type="text" name="name">
+                    <app-input-text [title]="'Tên người mua:'" [(value)]="orderForm.tenNguoiMua" [isRequired]="true"
+                                    [errorMessage]="getErrorMessage('tenNguoiMua')">
+                    </app-input-text>
                   </div>
                   <div class="w3_agileits_card_number_grids">
                     <div class="w3_agileits_card_number_grid_left">
                       <div class="controls">
-                        <label class="control-label">Số điện thoại liên hệ:</label>
-                        <input class="form-control" type="text">
+                        <app-input-text [title]="'Số điện thoại liên hệ:'" [(value)]="orderForm.sdt" [isRequired]="true"
+                                        [errorMessage]="getErrorMessage('sdt')">
+                        </app-input-text>
                       </div>
                     </div>
                     <div class="controls">
-                      <label class="control-label">Email: </label>
-                      <input class="form-control" type="text">
+                      <app-input-text [title]="'Email:'" [(value)]="orderForm.email" [isRequired]="true"
+                                      [errorMessage]="getErrorMessage('email')">
+                      </app-input-text>
                     </div>
                     <div class="w3_agileits_card_number_grid_right">
                       <div class="controls">
-                        <label class="control-label">Địa chỉ liên hệ: </label>
-                        <input class="form-control" type="text">
+                        <app-input-text [title]="'Địa chỉ liên hệ: '" [(value)]="orderForm.diaChi" [isRequired]="true"
+                                        [errorMessage]="getErrorMessage('diaChi')">
+                        </app-input-text>
                       </div>
                     </div>
                     <div class="clear"></div>
                   </div>
 
                   <div class="controls">
-                    <label class="control-label">Ghi chú: </label>
-                    <input class="form-control" type="text">
+                    <app-input-text [title]="'Ghi chú:'" [(value)]="orderForm.moTa" [isRequired]="true"
+                                    [errorMessage]="getErrorMessage('moTa')">
+                    </app-input-text>
                   </div>
                 </div>
-                <button class="submit check_out">Xác nhận</button>
+                <button class="submit check_out" (click)="xacNhanDonHang()">Xác nhận</button>
               </div>
             </section>
         </div>

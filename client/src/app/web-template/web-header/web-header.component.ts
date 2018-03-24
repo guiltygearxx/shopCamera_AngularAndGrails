@@ -1,11 +1,12 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "../../bean/menu-item";
-import {OrderService} from "../../service/order/order.service";
-import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {ListProductService} from "../../service/list-product.service";
 import {GioHangService} from "../../service/order/gio-hang.service";
-import {OrderForm} from "../../bean/order-form";
+import {WebHeaderLogic} from "./web-header-logic";
+import {WebHeaderFilterForm} from "./web-header-filter-form";
+import {CategoryService} from "../../service/category/category.service";
+import {ExampleObject} from "../../bean/example-object";
 
 declare var $: any;
 
@@ -14,7 +15,7 @@ declare var $: any;
   templateUrl: './web-header.component.html',
   styleUrls: ['./web-header.component.css']
 })
-export class WebHeaderComponent implements OnInit {
+export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
 
   menuItems: MenuItem[] = [
 
@@ -28,14 +29,16 @@ export class WebHeaderComponent implements OnInit {
     new MenuItem("trangChu", "Trang chủ"),
   ]
 
-  constructor(private router: Router,
-              protected listProductService: ListProductService, protected  gioHangService: GioHangService) {
+  constructor(protected router: Router,
+              protected listProductService: ListProductService,
+              protected  gioHangService: GioHangService,
+              protected categoryService: CategoryService) {
+    super(router, listProductService, gioHangService, categoryService);
   }
 
-  @Input()
-  searchText: string;
-
   ngOnInit() {
+
+    this.filterForm = new WebHeaderFilterForm();
 
     $(document).ready(function () {
       var navoffeset = $(".agileits_header").offset().top;
@@ -49,37 +52,19 @@ export class WebHeaderComponent implements OnInit {
       });
 
     });
-  }
 
-  getSoLuongTrongGioHang():number{
+    this.loadCategories();
 
-    return this.gioHangService.getOrderDetail();
-  }
-
-  goToMenuIndex(event: any, menuItem: MenuItem): void {
-
-    event.preventDefault();
-
-    this.router.navigate(["/" + menuItem.id]);
-  }
-
-  goToOrder(event: any): void {
-
-    event.preventDefault();
-
-    this.router.navigate(["/gioHangSanPham"]);
-  }
-
-  queryProduct(event: any): void {
-
-    event.preventDefault();
-
-    this.listProductService.isInputParamsChanged = true;
-
-    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
-
-    inputParams.paramsQuery = this.searchText;
-
-    this.router.navigate(["/danhSachSanPham"]);
+    this.khoangGia = [
+      new ExampleObject("1000000", "> 1 triệu"),
+      new ExampleObject("2000000", "> 2 triệu"),
+      new ExampleObject("3000000", "> 3 triệu"),
+      new ExampleObject("4000000", "> 4 triệu"),
+      new ExampleObject("5000000", "> 5 triệu"),
+      new ExampleObject("6000000", "> 6 triệu"),
+      new ExampleObject("7000000", "> 7 triệu"),
+      new ExampleObject("8000000", "> 8 triệu"),
+      new ExampleObject("9000000", "> 9 triệu"),
+    ]
   }
 }

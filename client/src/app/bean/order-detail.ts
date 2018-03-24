@@ -1,7 +1,7 @@
-export class OrderDetail{
+export class OrderDetail {
 
   orderId: string;
   productId: string;
-  quantity: string;
-  gia: string;
+  quantity: number;
+  gia: number;
 }

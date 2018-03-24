@@ -7,20 +7,11 @@
     <img style="margin:-4px 0 0 2px;" src="assets/images/new.gif">
   </div>
 
-  <div class="w3l_search">
-      <input type="text" name="Product" placeholder="Tìm kiếm sản phẩm..." [(ngModel)]="this.searchText"
-             required="">
-      <input type="submit" value="" (click)="queryProduct($event)">
-  </div>
-
-  <div class="w3l_header_right1 product_list_header">
-    <form action="#" method="post" class="last">
-      <fieldset>
-        <input type="hidden" name="cmd" value="_cart"/>
-        <input type="hidden" name="display" value="1"/>
-        <input type="submit" name="submit" value="({{getSoLuongTrongGioHang()}} sản phẩm)" class="button" (click)="goToOrder($event)"/>
-      </fieldset>
-    </form>
+  <div class="w3l_header_right1 gioHangSanPham">
+    <input type="hidden" name="cmd" value="_cart"/>
+    <input type="hidden" name="display" value="1"/>
+    <input type="submit" name="submit" value="({{getSoLuongTrongGioHang()}} sản phẩm)" class="button"
+           (click)="goToOrder($event)"/>
   </div>
   <div class="clearfix"></div>
 </div>
@@ -45,6 +36,7 @@
         </li>
       </ul>
     </div>
+
     <div class="clearfix"></div>
   </div>
 </div>
@@ -60,6 +52,35 @@
     </ng-container>
 
     <div class="clearfix"></div>
+  </div>
+
+  <div class="container" style=" width: 100% !important; text-align: center">
+
+    <div class="w3ls_logo_search_left10">
+      <button type="submit" class="btn btn-info pull-right" (click)="queryProduct($event)">Tìm kiếm</button>
+    </div>
+
+    <div class="w3ls_logo_search_left10">
+      <app-select [title]="'Giá'" [(value)]="filterForm.categoryId" [placeHolder]="'Khoảng giá'"
+                  [data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">
+      </app-select>
+    </div>
+
+    <div class="w3ls_logo_search_left10">
+      <app-select [title]="'Hang san xuat'" [(value)]="filterForm.categoryId" [placeHolder]="'Hãng sản xuất'"
+                  [data]="categories" [optionKey]="'id'" [optionValue]="'name'">
+      </app-select>
+    </div>
+
+    <div class="w3ls_logo_search_left10">
+      <app-select [title]="'Danh mục'" [(value)]="filterForm.categoryId" [placeHolder]="'Danh mục sản phẩm'"
+                  [data]="categories" [optionKey]="'id'" [optionValue]="'name'">
+      </app-select>
+    </div>
+
+    <div class="w3ls_logo_search_left10" style="padding-right: 0px">
+      <app-input-text-no-title [(value)]="filterForm.paramsQuery" [placeHolder]="'Tìm kiếm sản phẩm...'" style="height: 28px"></app-input-text-no-title>
+    </div>
   </div>
 </div>
 <!-- //header -->
