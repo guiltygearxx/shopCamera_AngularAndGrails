@@ -42,6 +42,8 @@ export class ListProductsComponent
 
   ngOnInit() {
 
+    this.allowDisplayProductVetical = true;
+
     this.filterForm = new ListProductFilterForm();
 
 
@@ -69,8 +71,8 @@ export class ListProductsComponent
 
     orderDetail.productId = productView.id;
     orderDetail.name = productView.name;
-    orderDetail.image1 = productView.image1
-    orderDetail.gia = productView.gia;
+    orderDetail.hinhAnh = productView.image1
+    orderDetail.gia = productView.gia.toString();
 
     return orderDetail;
 

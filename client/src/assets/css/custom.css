@@ -82,6 +82,15 @@ a {
   text-align: center;
 }
 
+.w3ls_logo_search_left10 {
+  float: right;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 1em;
+  color: #473a3d;
+  text-align: center;
+}
+
 .w3ls_logo_products_left10:hover {
   color: rgb(129, 47, 47);
   font-weight: bolder;
@@ -262,6 +271,10 @@ h6 .text_align_left{
   border: solid 1px #CCCCCC;
 }
 
+.changeFontColorBlack a{
+  color: #2f2f2f !important;
+}
+
 .agile_top_brand_left_grid1 h4, .agileinfo_single_right_snipcart h4 {
    font-size: 20px !important;
    color: #ec252d !important;
@@ -285,6 +298,11 @@ h6 .text_align_left{
 
 .padding10px{
   padding-bottom: 8px !important;
+}
+
+.fixHeigth45px{
+  height: 45px;
+  overflow: hidden;
 }
 .quick-alo-phone.quick-alo-static {
   opacity:.6;

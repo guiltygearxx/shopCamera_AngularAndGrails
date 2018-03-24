@@ -1,3 +1,44 @@
 a {
   cursor: pointer;
 }
+
+#toolTip_Horizontal__SolutionCamera {
+  display: none;
+}
+
+.agile_top_brand_left_grid1:hover #toolTip_Horizontal__SolutionCamera{
+  display: block;
+}
+
+#toolTip_Vertical_SolutionCamera {
+  display: none;
+}
+
+.product-inner:hover #toolTip_Vertical_SolutionCamera{
+  display: block;
+}
+
+
+#toolTip_Horizontal {
+  display: none;
+}
+
+.agile_top_brand_left_grid1:hover #toolTip_Horizontal{
+  display: block;
+}
+
+.product-inner:hover #toolTip_Vertical{
+  display: block;
+}
+
+#toolTip_Vertical {
+  display: none;
+}
+.tooltip_sale{
+  position: absolute;
+  z-index: 999999999999;
+  top: 100px;
+  background: #fefefe;
+  width: 400px;
+}
+

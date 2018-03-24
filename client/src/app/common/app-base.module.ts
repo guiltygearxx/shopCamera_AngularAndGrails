@@ -16,6 +16,7 @@ import {BoxErrorsComponent} from './box-errors/box-errors.component';
 import {PaginationFooterComponent} from './pagination-footer/pagination-footer.component';
 import {InputTextWithIconComponent} from './input-text-with-icon/input-text-with-icon.component';
 import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component';
+import { InputTextNoTitleComponent } from './input-text-no-title/input-text-no-title.component';
 
 @NgModule({
 
@@ -29,7 +30,8 @@ import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component'
     BoxErrorsComponent,
     PaginationFooterComponent,
     InputTextWithIconComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    InputTextNoTitleComponent
   ],
 
   imports: [
@@ -39,6 +41,7 @@ import {ConfirmDialogComponent} from './confirm-dialog/confirm-dialog.component'
 
   exports: [
     InputTextComponent,
+    InputTextNoTitleComponent,
     TextAreaComponent,
     CheckBoxComponent,
     SelectComponent,

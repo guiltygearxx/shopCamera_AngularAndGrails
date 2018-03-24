@@ -32,6 +32,8 @@ export class DetailProductComponent
   ngOnInit() {
 
     this.getListCategory();
+
+    this.allowDisplayProductVetical = true;
   }
 
 

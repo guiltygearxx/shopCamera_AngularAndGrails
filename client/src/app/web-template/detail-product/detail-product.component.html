@@ -128,7 +128,7 @@
 <div class="w3ls_w3l_banner_nav_right_grid w3ls_w3l_banner_nav_right_grid_popular">
   <div class="container" style="text-align: center">
 
-    <div class="w3ls_w3l_banner_nav_right_grid1">
+    <div class="w3ls_w3l_banner_nav_right_grid1" *ngIf="!allowDisplayProductVetical">
 
       <div class="col-md-12 header4">
         <h1>Sản phẩm tương tự</h1>
@@ -178,7 +178,65 @@
       </ng-container>
       <div class="clearfix"></div>
     </div>
-    <div class="w3ls_w3l_banner_nav_right_grid1">
+
+    <div class="w3ls_w3l_banner_nav_right_grid1" *ngIf="allowDisplayProductVetical">
+
+      <div class="col-md-12 header4">
+        <h1>Sản phẩm tương tự</h1>
+        <h2 style="display:none;">Sản phẩm tương tự</h2>
+
+        <div class="clear"></div>
+      </div>
+      <ul class="products product-list style-product-2">
+        <ng-container *ngFor="let product of this.productLienQuan">
+          <div class="col-xs-12 col-lg-4 col-md-6 paddingDivBottom">
+            <li
+              class="first item post-2695 product type-product status-publish has-post-thumbnail product_cat-lap-dat-camera-quan-sat entry  instock sale shipping-taxable purchasable product-type-simple">
+              <div class="product-inner">
+                <a class="img hover-zoom" (click)="goToChiTietSanPham($event,product)"
+                   title="{{product.name}}">
+                  <img src="{{product.image1}}"
+                       class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{product.name}}"
+                       title="camera-ip-10"
+                       sizes="(max-width: 300px) 100vw, 300px" width="300" height="300">
+                </a>
+                <div class="content-product">
+                  <div class="product-sale discount">
+                    <span>20%</span>
+                  </div>
+                  <h5 class="changeFontColorBlack fixHeigth45px">
+                    <a class="title" href=""
+                       title="{{product.name}}">{{product.name}}</a>
+                  </h5>
+                  <div class="descrison">
+                    <p>{{product.categoryName}}</p>
+                  </div>
+                  <div class="box-product">
+              <span class="price">
+              <del> <span>{{product.giaTruocKhiHa}} đ </span></del>
+              <ins> <span>{{product.gia}} đ</span></ins>
+            </span>
+                    <div class="danhgia">
+                      <a class="item-list" (click)="goToChiTietSanPham($event,product)"
+                         title="CAMERA IP WIFI KHÔNG DÂY YOOSEE HD 720P">Chi tiết
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="tooltip_sale" id="toolTip_Vertical">
+                  <div class="prd-body" [innerHTML]="product.khuyenMai"></div>
+                </div>
+              </div>
+            </li>
+          </div>
+        </ng-container>
+      </ul>
+      <div class="clearfix"></div>
+    </div>
+
+
+    <div class="w3ls_w3l_banner_nav_right_grid1" *ngIf="!allowDisplayProductVetical">
 
       <div class="col-md-12 header4">
         <h1>Sản phẩm mới</h1>
@@ -335,6 +393,61 @@
           </div>
         </div>
       </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="w3ls_w3l_banner_nav_right_grid1" *ngIf="allowDisplayProductVetical">
+
+      <div class="col-md-12 header4">
+        <h1>Sản phẩm mới</h1>
+        <h2 style="display:none;">Camera Dahua</h2>
+
+        <div class="clear"></div>
+      </div>
+      <ul class="products product-list style-product-2">
+        <ng-container *ngFor="let product of this.productLienQuan">
+          <div class="col-xs-12 col-lg-4 col-md-6 paddingDivBottom">
+            <li
+              class="first item post-2695 product type-product status-publish has-post-thumbnail product_cat-lap-dat-camera-quan-sat entry  instock sale shipping-taxable purchasable product-type-simple">
+              <div class="product-inner">
+                <a class="img hover-zoom" (click)="goToChiTietSanPham($event,product)"
+                   title="{{product.name}}">
+                  <img src="{{product.image1}}"
+                       class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{product.name}}"
+                       title="camera-ip-10"
+                       sizes="(max-width: 300px) 100vw, 300px" width="300" height="300">
+                </a>
+                <div class="content-product">
+                  <div class="product-sale discount">
+                    <span>20%</span>
+                  </div>
+                  <h5 class="changeFontColorBlack fixHeigth45px">
+                    <a class="title" href=""
+                       title="{{product.name}}">{{product.name}}</a>
+                  </h5>
+                  <div class="descrison">
+                    <p>{{product.categoryName}}</p>
+                  </div>
+                  <div class="box-product">
+              <span class="price">
+              <del> <span>{{product.giaTruocKhiHa}} đ </span></del>
+              <ins> <span>{{product.gia}} đ</span></ins>
+            </span>
+                    <div class="danhgia">
+                      <a class="item-list" (click)="goToChiTietSanPham($event,product)"
+                         title="CAMERA IP WIFI KHÔNG DÂY YOOSEE HD 720P">Chi tiết
+                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="tooltip_sale" id="toolTip_Vertical">
+                  <div class="prd-body" [innerHTML]="product.khuyenMai"></div>
+                </div>
+              </div>
+            </li>
+          </div>
+        </ng-container>
+      </ul>
       <div class="clearfix"></div>
     </div>
   </div>

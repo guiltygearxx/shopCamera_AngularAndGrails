@@ -2,6 +2,8 @@ import {OrderForm} from "../../bean/order-form";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {Injectable} from "@angular/core";
 import {isNullOrUndefined} from "util";
+import {ApplicationUtils} from "../../common/application-utils";
+import BigNumber from "bignumber.js";
 
 @Injectable()
 export class GioHangService {
@@ -11,7 +13,7 @@ export class GioHangService {
   detailForms: OrderDetailForm[];
 
 
-  constructor() {
+  constructor(protected applicationUtils: ApplicationUtils) {
 
     this.detailForms = [];
   }
@@ -24,9 +26,9 @@ export class GioHangService {
 
     if (isNullOrUndefined(detailForm_)) {
 
-      detailForm.quantity = 1;
+      detailForm_.quantity = '1';
 
-      this.detailForms.push(detailForm);
+      this.detailForms.push(detailForm_);
 
     } else {
 
@@ -36,11 +38,16 @@ export class GioHangService {
 
   getOrderDetail(): number {
 
-    let quantityProduct: number = 0;
+    let quantityProduct: BigNumber = new BigNumber(0);
 
-    this.detailForms.forEach((item) => quantityProduct += item.quantity);
+    this.detailForms.forEach((item) => {
+      let itemsQuantity = this.applicationUtils.convertStringToBigNumber(item.quantity).toNumber();
 
-    return quantityProduct;
+      quantityProduct = quantityProduct.plus(itemsQuantity);
+    });
+
+
+    return quantityProduct.toNumber();
   }
 
   removeOrderDetail(detailForm: OrderDetailForm): void {

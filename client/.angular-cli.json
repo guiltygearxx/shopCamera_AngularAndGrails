@@ -21,12 +21,14 @@
       "styles": [
         "styles.css",
         "../src/assets/css/bootstrap.css",
+        "../src/assets/css/config-product-vertical.css",
         "../src/assets/css/creditly.css",
         "../src/assets/css/custom.css",
         "../src/assets/css/easy-responsive-tabs.css",
         "../src/assets/css/flexslider.css",
         "../src/assets/css/font-awesome.css",
         "../src/assets/css/style.css",
+        "../node_modules/admin-lte/plugins/select2/select2.css",
         "../node_modules/angular2-toaster/toaster.css"
       ],
       "scripts": [
@@ -43,7 +45,8 @@
         "../src/assets/js/minicart.js",
         "../src/assets/js/move-top.js",
         "../src/assets/js/okzoom.js",
-        "../src/assets/js/waypoints.min.js"
+        "../src/assets/js/waypoints.min.js",
+        "../node_modules/admin-lte/plugins/select2/select2.js"
 
       ],
       "environmentSource": "environments/environment.ts",

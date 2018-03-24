@@ -68,7 +68,7 @@ import {OrderDetailService} from "./service/order/order-detail.service";
     WebGioithieuComponent,
     WebGiaiphapChitietComponent,
     WebTintucsukienChitietComponent,
-    WebRightSideComponent,
+    WebRightSideComponent
   ],
   imports: [
     BrowserModule,

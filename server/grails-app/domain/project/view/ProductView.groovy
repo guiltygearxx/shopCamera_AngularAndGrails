@@ -16,6 +16,7 @@ class ProductView implements BaseDomain {
     BigDecimal gia;
     BigDecimal giaTruocKhiHa;
     String categoryName;
+    String khuyenMai;
 
     static constraints = {
     }

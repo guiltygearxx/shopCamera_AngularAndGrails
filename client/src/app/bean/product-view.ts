@@ -10,4 +10,5 @@ export class ProductView {
   giaTruocKhiHa: string;
   code: string;
   categoryName: string;
+  khuyenMai: string;
 }
