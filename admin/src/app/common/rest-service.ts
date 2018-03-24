@@ -1,8 +1,8 @@
-import {Observable} from "rxjs/Observable";
-import {HttpService} from "./http.service";
-import {PaginationParams} from "./pagination-params";
-import {TableQueryResponse} from "./table-query-response";
-import {isNullOrUndefined} from "util";
+import {Observable} from 'rxjs/Observable';
+import {HttpService} from './http.service';
+import {PaginationParams} from './pagination-params';
+import {TableQueryResponse} from './table-query-response';
+import {isNullOrUndefined} from 'util';
 
 export class RestService<T> {
 
@@ -18,7 +18,7 @@ export class RestService<T> {
 
   getById(id: any): Observable<T> {
 
-    return this.httpService.get(this.resource + "/" + id.toString() + ".json", null);
+    return this.httpService.get(this.resource + '/' + id.toString() + '.json', null);
   }
 
   post(domain: T): Observable<T> {
@@ -28,17 +28,25 @@ export class RestService<T> {
 
   put(domain: T, id: any): Observable<T> {
 
-    return this.httpService.put(this.resource + "/" + id.toString() + ".json", domain, null);
+    return this.httpService.put(this.resource + '/' + id.toString() + '.json', domain, null);
   }
 
   delete(id: any): Observable<T> {
 
-    return this.httpService.delete(this.resource + "/" + id.toString() + ".json", null);
+    return this.httpService.delete(this.resource + '/' + id.toString() + '.json', null);
   }
 
   paginate(paginationParams: PaginationParams, params?: any): Observable<TableQueryResponse> {
 
-    if (isNullOrUndefined(params)) params = {};
+    let params_ = {};
+
+    if (!isNullOrUndefined(params)) {
+
+      Object.keys(params).forEach((key) => {
+
+        params_[key] = params[key];
+      });
+    }
 
     Object.keys(paginationParams).forEach((key) => {
 
@@ -46,9 +54,9 @@ export class RestService<T> {
 
       if (isNullOrUndefined(value)) return;
 
-      params[key] = value;
+      params_[key] = value;
     });
 
-    return this.httpService.get(this.resource + "/paginate", params);
+    return this.httpService.get(this.resource + '/paginate', params_);
   }
 }

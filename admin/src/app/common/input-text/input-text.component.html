@@ -13,7 +13,7 @@
 
   <input class="form-control" id="{{inputId}}" placeholder="{{placeHolder}}"
          [(ngModel)]="displayValue" (change)="inputValueChanged($event)" [disabled]="disabled" (blur)="onBlur($event)"
-         (focus)="onFocus($event)"/>
+         (focus)="onFocus($event)" [type]="type"/>
 
   <span class="help-block" *ngIf="isError">{{errorMessage}}</span>
 
