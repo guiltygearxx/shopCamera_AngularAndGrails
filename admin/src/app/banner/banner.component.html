@@ -1,0 +1,156 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Quảng cáo
+    <small>Quản lí quảng cáo</small>
+  </h1>
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+  <!-- Your Page Content Here -->
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <app-input-text-with-icon [title]="'Link ảnh 1'" [placeHolder]="'Link ảnh 1'" [(value)]="image1"
+                                [errorMessage]="getErrorMessage('image1')" [inputIcon]="'fa-plus'"
+                                (inputIconClick)="inputIconClick($event, 'image1')">
+      </app-input-text-with-icon>
+
+
+    </div>
+
+    <div class="box-footer">
+      <button type="submit" class="btn btn-info pull-right">Thêm mới</button>
+    </div>
+
+  </div>
+
+  <div class="box">
+
+    <div class="box-body">
+
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+                 aria-describedby="example2_info">
+            <thead>
+            <tr role="row">
+
+              <th>STT</th>
+              <th>Link</th>
+              <th></th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr role="row">
+              <td class="text-center">1</td>
+              <td class="text-center">Lắp đặt 2 camera hikvision 2MP Full HD 1080P</td>
+              <td class="text-center">
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xem chi tiết">
+                  <i class="fa fa-info-circle"></i>
+                </a>
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xóa sản phẩm">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </td>
+
+            </tr>
+            <tr role="row">
+              <td class="text-center">1</td>
+              <td class="text-center">Lắp đặt 2 camera hikvision 2MP Full HD 1080P</td>
+              <td class="text-center">
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xem chi tiết">
+                  <i class="fa fa-info-circle"></i>
+                </a>
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xóa sản phẩm">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </td>
+
+            </tr>
+            <tr role="row">
+              <td class="text-center">1</td>
+              <td class="text-center">Lắp đặt 2 camera hikvision 2MP Full HD 1080P</td>
+              <td class="text-center">
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xem chi tiết">
+                  <i class="fa fa-info-circle"></i>
+                </a>
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xóa sản phẩm">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </td>
+
+            </tr>
+            <tr role="row">
+              <td class="text-center">1</td>
+              <td class="text-center">Lắp đặt 2 camera hikvision 2MP Full HD 1080P</td>
+              <td class="text-center">
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xem chi tiết">
+                  <i class="fa fa-info-circle"></i>
+                </a>
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xóa sản phẩm">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </td>
+
+            </tr>
+            <tr role="row">
+              <td class="text-center">1</td>
+              <td class="text-center">Lắp đặt 2 camera hikvision 2MP Full HD 1080P</td>
+              <td class="text-center">
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xem chi tiết">
+                  <i class="fa fa-info-circle"></i>
+                </a>
+
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xóa sản phẩm">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </td>
+
+            </tr>
+            </tbody>
+
+          </table>
+
+          <app-pagination-footer [dataSize]="count" [maxPageSize]="maxPageSize" [pageIndex]="curPageIndex"
+                                 (goToPage)="goToPage($event)">
+          </app-pagination-footer>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<!-- /.content -->

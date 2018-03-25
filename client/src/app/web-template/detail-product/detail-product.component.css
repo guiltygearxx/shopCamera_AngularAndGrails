@@ -2,19 +2,35 @@ a {
   cursor: pointer;
 }
 
-#toolTip_Horizontal {
+#toolTip_Horizontal_New {
   display: none;
 }
 
-.agile_top_brand_left_grid1:hover #toolTip_Horizontal{
+.agile_top_brand_left_grid1:hover #toolTip_Horizontal_New{
   display: block;
 }
 
-.product-inner:hover #toolTip_Vertical{
+#toolTip_Horizontal_LienQuan {
+  display: none;
+}
+
+.agile_top_brand_left_grid1:hover #toolTip_Horizontal_LienQuan{
   display: block;
 }
 
-#toolTip_Vertical {
+.product-inner:hover #toolTip_Vertical_New{
+  display: block;
+}
+
+#toolTip_Vertical_New {
+  display: none;
+}
+
+.product-inner:hover #toolTip_Vertical_LienQuan{
+  display: block;
+}
+
+#toolTip_Vertical_LienQuan {
   display: none;
 }
 .tooltip_sale{

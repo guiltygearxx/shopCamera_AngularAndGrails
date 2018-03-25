@@ -19,6 +19,8 @@ import {OrderDetailComponent} from '../order-detail/order-detail.component';
 import {ChangePasswordComponent} from '../change-password/change-password.component';
 import {CategoryIndexComponent} from '../category-index/category-index.component';
 import {CategoryDetailComponent} from '../category-detail/category-detail.component';
+import {ConfigurationUiWebComponent} from "../configuration-ui-web/configuration-ui-web.component";
+import {BannerComponent} from "../banner/banner.component";
 
 @NgModule({
   imports: [
@@ -57,6 +59,10 @@ import {CategoryDetailComponent} from '../category-detail/category-detail.compon
           {path: 'categoryIndex', component: CategoryIndexComponent},
           {path: 'categoryDetail', component: CategoryDetailComponent},
           {path: 'categoryDetail/:id', component: CategoryDetailComponent},
+
+
+          {path: 'configurationUi', component: ConfigurationUiWebComponent},
+          {path: 'banner', component: BannerComponent},
 
           {path: 'example', component: FormComponent},
         ]

@@ -11,4 +11,5 @@ export class ProductView {
   code: string;
   categoryName: string;
   khuyenMai: string;
+  phanTramGiamGia: number;
 }

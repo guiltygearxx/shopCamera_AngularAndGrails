@@ -55,8 +55,8 @@
           <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
             <div class="hover14 column">
               <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-                <div class="product-sale discount">
-                  <span>20%</span>
+                <div class="product-sale discount" *ngIf="kiemTraGiamGia(product)">
+                  <span>{{product.phanTramGiamGia}}%</span>
                 </div>
                 <div class="agile_top_brand_left_grid1">
                   <div class="snipcart-item block">
@@ -113,8 +113,8 @@
                          sizes="(max-width: 300px) 100vw, 300px" width="300" height="300">
                   </a>
                   <div class="content-product">
-                    <div class="product-sale discount">
-                      <span>20%</span>
+                    <div class="product-sale discount" *ngIf="kiemTraGiamGia(product)">
+                      <span>{{product.phanTramGiamGia}}%</span>
                     </div>
                     <h5 class="changeFontColorBlack fixHeigth45px">
                       <a class="title" href=""
