@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {SolutionDetailLogic} from "./solution-detail-logic";
-import {ValidateUtils} from "../common/validate/validate-utils";
-import {SolutionService} from "../service/solution.service";
-import {FormFlowManager} from "../common/form-flow-manager";
-import {ApplicationUtils} from "../common/application-utils";
-import {ActivatedRoute} from "@angular/router";
-import {SolutionDetailForm} from "../bean/solution-detail-form";
-import {UploadFilePopupComponent} from "../upload-file-popup/upload-file-popup.component";
-import {DialogService} from "ng2-bootstrap-modal";
-import {Solution} from "../bean/solution";
+import {SolutionDetailLogic} from './solution-detail-logic';
+import {ValidateUtils} from '../common/validate/validate-utils';
+import {SolutionService} from '../service/solution.service';
+import {FormFlowManager} from '../common/form-flow-manager';
+import {ApplicationUtils} from '../common/application-utils';
+import {ActivatedRoute} from '@angular/router';
+import {SolutionDetailForm} from '../bean/solution-detail-form';
+import {UploadFilePopupComponent} from '../upload-file-popup/upload-file-popup.component';
+import {DialogService} from 'ng2-bootstrap-modal';
+import {Solution} from '../bean/solution';
 
 @Component({
   selector: 'app-solution-detail',
@@ -51,8 +51,6 @@ export class SolutionDetailComponent
   }
 
   inputIconClick(event: any): void {
-
-    event.preventDefault();
 
     this.openUploadImagePopup();
   }
