@@ -5,12 +5,14 @@ class Category implements BaseDomain {
     String name;
     String parentCategoryId;
     String code;
+    String imageUrl;
 
     static constraints = {
 
         name blank: false, maxSize: 255
         parentCategoryId nullable: true;
         code nullable: false;
+        imageUrl nullable: true;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true
