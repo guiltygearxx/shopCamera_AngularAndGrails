@@ -58,6 +58,8 @@ import {ChangePasswordComponent} from './change-password/change-password.compone
 import {UserService} from './service/user.service';
 import { CategoryIndexComponent } from './category-index/category-index.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
+import { ConfigurationUiWebComponent } from './configuration-ui-web/configuration-ui-web.component';
+import { BannerComponent } from './banner/banner.component';
 
 @NgModule({
 
@@ -86,6 +88,8 @@ import { CategoryDetailComponent } from './category-detail/category-detail.compo
     ChangePasswordComponent,
     CategoryIndexComponent,
     CategoryDetailComponent,
+    ConfigurationUiWebComponent,
+    BannerComponent,
   ],
 
   imports: [

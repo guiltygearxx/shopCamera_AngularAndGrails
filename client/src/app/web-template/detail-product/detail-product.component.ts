@@ -87,4 +87,12 @@ export class DetailProductComponent
     this.router.navigate(link);
   }
 
+
+  kiemTraGiamGia(product:ProductView):boolean{
+
+    if(isNullOrUndefined(product.phanTramGiamGia)) return false;
+
+    return true;
+  }
+
 }

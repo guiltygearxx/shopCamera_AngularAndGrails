@@ -9,6 +9,7 @@ import {News} from "../../bean/news";
 import {NewsService} from "../../service/news/news.service";
 import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {ListProductService} from "../../service/list-product.service";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-index-content',
@@ -80,6 +81,13 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
     event.preventDefault();
 
     this.router.navigate(["/chiTietTinTuc", newsId]);
+  }
+
+  kiemTraGiamGia(product:ProductView):boolean{
+
+    if(isNullOrUndefined(product.phanTramGiamGia)) return false;
+
+    return true;
   }
 
 }

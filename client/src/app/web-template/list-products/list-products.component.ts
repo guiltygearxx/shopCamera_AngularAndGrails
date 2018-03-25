@@ -11,6 +11,7 @@ import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {ApplicationUtils} from "../../common/application-utils";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {OrderDetailForm} from "../../bean/order-detail-form";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-list-products',
@@ -42,7 +43,7 @@ export class ListProductsComponent
 
   ngOnInit() {
 
-    this.allowDisplayProductVetical = true;
+    this.allowDisplayProductVetical = false;
 
     this.filterForm = new ListProductFilterForm();
 
@@ -92,10 +93,7 @@ export class ListProductsComponent
     this.isCategoryLoaded = true;
   }
 
-  afterGetListProduct(productViews: ProductView[]): void {
 
-    super.afterGetListProduct(productViews);
-  }
 
   getListProduct(): void {
 
@@ -140,5 +138,17 @@ export class ListProductsComponent
     this.categoryName = pageTitle;
 
     super.getListProduct();
+  }
+
+  afterGetListProduct(productViews: ProductView[]): void {
+
+    super.afterGetListProduct(productViews);
+  }
+
+  kiemTraGiamGia(product:ProductView):boolean{
+
+    if(isNullOrUndefined(product.phanTramGiamGia)) return false;
+
+    return true;
   }
 }

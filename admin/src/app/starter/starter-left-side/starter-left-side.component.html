@@ -19,7 +19,7 @@
       <!-- Optionally, you can add icons to the links -->
       <li class="treeview">
 
-        <a href="#"><i class="fa fa-link"></i> <span>Quản trị</span>
+        <a href="#"><i class="fa fa-product-hunt"></i> <span>Quản trị dữ liệu</span>
 
           <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
@@ -29,6 +29,40 @@
 
         <ul class="treeview-menu">
           <li *ngFor="let menu of menuItems; trackBy: menu?.id">
+            <a href="#" (click)="menuClicked($event, menu)">{{menu.name}}</a>
+          </li>
+        </ul>
+
+      </li>
+      <li class="treeview">
+
+        <a href="#"><i class="fa fa-cart-arrow-down"></i> <span>Quản trị bán hàng</span>
+
+          <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+          </span>
+
+        </a>
+
+        <ul class="treeview-menu">
+          <li *ngFor="let menu of menuItemsOrder; trackBy: menu?.id">
+            <a href="#" (click)="menuClicked($event, menu)">{{menu.name}}</a>
+          </li>
+        </ul>
+
+      </li>
+      <li class="treeview">
+
+        <a href="#"><i class="fa fa-desktop"></i> <span>Cấu hình giao diện</span>
+
+          <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+          </span>
+
+        </a>
+
+        <ul class="treeview-menu">
+          <li *ngFor="let menu of menuItemsUI; trackBy: menu?.id">
             <a href="#" (click)="menuClicked($event, menu)">{{menu.name}}</a>
           </li>
         </ul>
