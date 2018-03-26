@@ -19,6 +19,10 @@
                       [(value)]="form.importFile" [isRequired]="true" (valueChange)="importFileChanged($event)">
       </app-input-file>
 
+      <div>
+        <a href="assets/importProductTemplate.xlsx">Download template</a>
+      </div>
+
     </div>
 
   </div>
@@ -31,13 +35,9 @@
 
       <div style="width: 100%" #hotTableContainer>
 
-        <ng-container *ngIf="isAbleToRenderHotTable">
-
-          <hotTable [data]="items" [colHeaders]="colHeaders" [columns]="columns" [options]="options"
-                    [colWidths]="colWidths" (afterChange)="cellValuesChanged($event)">
-          </hotTable>
-
-        </ng-container>
+        <hotTable [data]="items" [colHeaders]="colHeaders" [columns]="columns" [options]="options"
+                  [colWidths]="colWidths" (afterChange)="cellValuesChanged($event)" #hotTable>
+        </hotTable>
 
       </div>
 

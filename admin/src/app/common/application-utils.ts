@@ -58,7 +58,7 @@ export class ApplicationUtils {
 
     if (this.isStringEmpty(value_)) return false;
 
-    return /^\d+(,\d+)?$/.test(value_);
+    return /^[-]?\d+(,\d+)?$/.test(value_);
   }
 
   formatNumber(value: string, decimalLength: number): string {

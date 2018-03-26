@@ -1,5 +1,5 @@
-import {Validateable} from "../common/validate/validateable";
-import {Errors} from "../common/validate/errors";
+import {Validateable} from '../common/validate/validateable';
+import {Errors} from '../common/validate/errors';
 
 export class ImportProductRow implements Validateable {
 
@@ -19,6 +19,7 @@ export class ImportProductRow implements Validateable {
   thongTinChiTiet: string;
   thongSoKiThuat: string;
   khuyenMai: string;
+  phanTramGiamGia: string;
 
   static constraints = {
 
@@ -33,8 +34,9 @@ export class ImportProductRow implements Validateable {
     khoHang: {nullable: true},
     gia: {nullable: true},
     giaTruocKhiHa: {nullable: true},
+    phanTramGiamGia: {nullable: true, min: 0, max: 100},
     thongTinChiTiet: {nullable: true},
     thongSoKiThuat: {nullable: true},
     khuyenMai: {nullable: true},
-  }
+  };
 }

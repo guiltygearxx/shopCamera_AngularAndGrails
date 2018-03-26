@@ -117,6 +117,7 @@ class AddProductsService implements BaseService {
                     khoHang: item.khoHang,
                     gia: applicationUtilsService.convertToBigDecimal(item.gia),
                     giaTruocKhiHa: applicationUtilsService.convertToBigDecimal(item.giaTruocKhiHa),
+                    phanTramGiamGia: applicationUtilsService.convertToBigDecimal(item.phanTramGiamGia),
                     thongTinChiTiet: item.thongTinChiTiet,
                     thongSoKiThuat: item.thongSoKiThuat,
                     khuyenMai: item.khuyenMai,
