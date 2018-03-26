@@ -18,7 +18,8 @@ CREATE TABLE myapp.product
     thong_so_ki_thuat text,
     gia decimal(19,2),
     category_id varchar(36) NOT NULL,
-    last_modified_time datetime
+    last_modified_time datetime,
+    phan_tram_giam_gia decimal(19,2)
 );
 INSERT INTO myapp.product (id, version, bao_hanh, thong_tin_chi_tiet, is_deleted, gia_truoc_khi_ha, last_modified_user, image4, khuyen_mai, image2, image3, hang_san_xuat, kho_hang, image1, name, thong_so_ki_thuat, gia, category_id, last_modified_time) VALUES ('07dfe7d1-ba9e-4e8b-89ac-52cfc329c1aa', 0, '12', '<table border="\\&quot;1\\&quot;" width="\\&quot;1183px\\&quot;" cellspacing="\\&quot;1\\&quot;" cellpadding="\\&quot;10\\&quot;">
 <tbody>

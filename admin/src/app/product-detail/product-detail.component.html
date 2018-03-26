@@ -80,15 +80,24 @@
       <div class="row">
 
         <div class="col-md-3">
-          <app-input-text [title]="'Giá'" [placeHolder]="'Giá'" [(value)]="form.gia"
-                          [errorMessage]="getErrorMessage('gia')" [formatType]="'number'">
+          <app-input-text [title]="'Giá (trước khi hạ)'" [placeHolder]="'Giá (trước khi hạ)'"
+                          [(value)]="form.giaTruocKhiHa"
+                          [errorMessage]="getErrorMessage('giaTruocKhiHa')" [formatType]="'number'"
+                          (valueChange)="giaTruocKhiHaChanged($event)">
           </app-input-text>
         </div>
 
         <div class="col-md-3">
-          <app-input-text [title]="'Giá (trước khi hạ)'" [placeHolder]="'Giá (trước khi hạ)'"
-                          [(value)]="form.giaTruocKhiHa"
-                          [errorMessage]="getErrorMessage('giaTruocKhiHa')" [formatType]="'number'">
+          <app-input-text [title]="'Khuyến mại (%)'" [placeHolder]="'Khuyến mại (%)'"
+                          [(value)]="form.phanTramGiamGia"
+                          [errorMessage]="getErrorMessage('phanTramGiamGia')" [formatType]="'number'"
+                          (valueChange)="phanTramGiamGiaChanged($event)">
+          </app-input-text>
+        </div>
+
+        <div class="col-md-3">
+          <app-input-text [title]="'Giá'" [placeHolder]="'Giá'" [(value)]="form.gia"
+                          [errorMessage]="getErrorMessage('gia')" [formatType]="'number'">
           </app-input-text>
         </div>
 

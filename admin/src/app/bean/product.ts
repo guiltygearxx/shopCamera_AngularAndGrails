@@ -1,4 +1,4 @@
-import {BaseDomain} from "./base-domain";
+import {BaseDomain} from './base-domain';
 
 export class Product implements BaseDomain {
 
@@ -21,4 +21,5 @@ export class Product implements BaseDomain {
   thongTinChiTiet: string;
   thongSoKiThuat: string;
   khuyenMai: string;
+  phanTramGiamGia: number;
 }

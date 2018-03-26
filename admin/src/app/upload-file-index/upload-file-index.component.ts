@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {UploadFileIndexFilterForm} from "../bean/upload-file-index-filter-form";
-import {SupportPaginationTable} from "../common/support-pagination-table";
+import {UploadFileIndexFilterForm} from '../bean/upload-file-index-filter-form';
+import {SupportPaginationTable} from '../common/support-pagination-table';
 import {SupportSortingTable} from '../common/support-sorting-table';
-import {UploadFile} from "../bean/upload-file";
-import {UploadFileService} from "../service/upload-file.service";
-import {SortableTableFlow} from "../common/sortable-table-flow";
-import {ComponentUtils} from "../common/component-utils";
-import {DialogService} from "ng2-bootstrap-modal";
+import {UploadFile} from '../bean/upload-file';
+import {UploadFileService} from '../service/upload-file.service';
+import {SortableTableFlow} from '../common/sortable-table-flow';
+import {ComponentUtils} from '../common/component-utils';
+import {DialogService} from 'ng2-bootstrap-modal';
 import {ApplicationUtils} from '../common/application-utils';
-import {FormFlowManager} from "../common/form-flow-manager";
-import {PaginationParams} from "../common/pagination-params";
-import {ConfirmDialogComponent} from "../common/confirm-dialog/confirm-dialog.component";
-import {UploadFilePopupComponent} from "../upload-file-popup/upload-file-popup.component";
-import {isNullOrUndefined} from "util";
+import {FormFlowManager} from '../common/form-flow-manager';
+import {PaginationParams} from '../common/pagination-params';
+import {ConfirmDialogComponent} from '../common/confirm-dialog/confirm-dialog.component';
+import {UploadFilePopupComponent} from '../upload-file-popup/upload-file-popup.component';
+import {isNullOrUndefined} from 'util';
 
 @Component({
   selector: 'app-upload-file-index',
@@ -112,7 +112,7 @@ export class UploadFileIndexComponent
 
   getFormattedNumber(value: string): string {
 
-    return this.componentUtils.formatValue(value, "number");
+    return this.componentUtils.formatValue(value, 'number');
   }
 
   getFormattedTime(value: number): string {
@@ -131,7 +131,7 @@ export class UploadFileIndexComponent
         this.uploadFiles = result.pageData;
 
         this.sortableTableFlow.afterPaginate(this, result);
-      })
+      });
   }
 
   private buildPaginationParams(): PaginationParams {
@@ -142,20 +142,23 @@ export class UploadFileIndexComponent
   protected confirmDelete(uploadFile: UploadFile): void {
 
     this.dialogService
-      .addDialog(ConfirmDialogComponent, {message: this.applicationUtils.message("default.confirmDelete")})
-      .subscribe((confirm) => this.deleteUploadFile_(uploadFile));
+      .addDialog(ConfirmDialogComponent, {message: this.applicationUtils.message('default.confirmDelete')})
+      .subscribe((confirm) => {
+
+        if (confirm) this.deleteUploadFile_(uploadFile);
+      });
   }
 
   protected deleteUploadFile_(uploadFile: UploadFile): void {
 
     this.uploadFileService.delete(uploadFile.id).subscribe((uploadFile) => {
 
-      let successMessage = this.applicationUtils.message("default.success");
+      let successMessage = this.applicationUtils.message('default.success');
 
       this.formFlowManager.displaySuccessMessage(successMessage);
 
       this.loadUploadFiles();
-    })
+    });
   }
 
   protected openUploadImagePopup(): void {
