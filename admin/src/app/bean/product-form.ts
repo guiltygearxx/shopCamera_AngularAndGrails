@@ -38,6 +38,6 @@ export class ProductForm implements Validateable {
     thongTinChiTiet: {nullable: true},
     thongSoKiThuat: {nullable: true},
     khuyenMai: {nullable: true},
-    phanTramGiamGia: {nullable: true},
+    phanTramGiamGia: {nullable: true, min: 0, max: 100},
   };
 }

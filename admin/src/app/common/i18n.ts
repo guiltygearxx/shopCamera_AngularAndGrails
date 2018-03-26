@@ -17,6 +17,8 @@ export const i18n = {
   'size.tooBig': 'Độ dài trường [{1}] vượt quá độ dài tối đa [{2}].',
   'size.tooSmall': 'Độ dài trường [{1}] không đủ độ dài tối thiểu [{2}].',
   'notEqual': 'Giá trị trường bắt buộc khác [{1}]',
+  'max': 'Giá trị trường không được lớn hơn [{2}]',
+  'min': 'Giá trị trường không được nhỏ hơn [{2}]',
 
   'importProduct.message.field': 'Dòng {0} - Trường [{1}]: {2}',
   'importProduct.message.row': 'Dòng {0}: {1}',
