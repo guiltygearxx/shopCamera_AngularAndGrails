@@ -21,15 +21,18 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
-    "bignumber.js": "^4.1.0",
-    "core-js": "^2.4.1",
     "admin-lte": "2.3.11",
-    "moment": "^2.20.1",
-    "rxjs": "^5.4.2",
-    "zone.js": "^0.8.14",
-    "ng2-bootstrap-modal": "latest",
+    "angular2-toaster": "^4.0.1",
+    "bignumber.js": "^4.1.0",
+    "bootstrap": "^3.3.7",
+    "core-js": "^2.4.1",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
-    "angular2-toaster": "^4.0.1"
+    "moment": "^2.20.1",
+    "ng2-bootstrap-modal": "latest",
+    "rxjs": "^5.4.2",
+    "select2": "^4.0.6-rc.1",
+    "zone.js": "^0.8.14"
   },
   "devDependencies": {
     "@angular/cli": "^1.6.7",
@@ -50,6 +53,7 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.3.2",
+    "select2": "^4.0.6-rc.1",
     "typescript": "~2.3.3"
   }
 }

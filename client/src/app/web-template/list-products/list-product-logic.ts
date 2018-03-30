@@ -4,18 +4,24 @@ import {CategoryItem} from "../../bean/category-item";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {isNullOrUndefined} from "util";
 import {ListProductFilterForm} from "../../bean/list-product-filter-form";
+import {ExampleObject} from "../../bean/example-object";
 
 export class ListProductLogic {
 
   filterForm: ListProductFilterForm;
 
+  khoangGia: ExampleObject[];
+
   constructor(protected productViewService: ProductViewService,
               protected categoryService: CategoryService) {
   }
 
+
   allowDisplayProductVetical: boolean;
 
   categoryName: string;
+
+  subCategoryList: CategoryItem[];
 
   categoryList: CategoryItem[];
 
@@ -32,6 +38,13 @@ export class ListProductLogic {
     this.productViewService.get(params).subscribe((productView) =>
       this.afterGetListProduct(productView)
     );
+  }
+
+  getListImageHighlight(productView: ProductView): string[] {
+
+    if (isNullOrUndefined(productView)) return null;
+    let dateElements: string[] = productView.hinhAnhTrucQuan.split(",");
+    return dateElements;
   }
 
   getListCategory() {

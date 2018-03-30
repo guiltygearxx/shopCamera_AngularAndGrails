@@ -18,6 +18,9 @@ class Product implements BaseDomain {
     String thongSoKiThuat;
     String khuyenMai;
     BigDecimal phanTramGiamGia;
+    String thongTinMoRong;
+    String hinhAnhTrucQuan;
+    String thongTinBoSung;
 
     static constraints = {
 
@@ -40,6 +43,9 @@ class Product implements BaseDomain {
         thongSoKiThuat nullable: true;
         khuyenMai nullable: true;
         phanTramGiamGia nullable: true, maxSize: 3;
+        thongTinMoRong nullable: true;
+        hinhAnhTrucQuan nullable: true;
+        thongTinBoSung nullable: true;
     }
 
     static mapping = {

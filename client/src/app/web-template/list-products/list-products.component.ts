@@ -12,6 +12,7 @@ import {ApplicationUtils} from "../../common/application-utils";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {isNullOrUndefined} from "util";
+import {ExampleObject} from "../../bean/example-object";
 
 @Component({
   selector: 'app-list-products',
@@ -23,12 +24,14 @@ export class ListProductsComponent
 
   detailForms: OrderDetailForm;
 
+  contentCategory: string;
+
   get inputParams(): ListProductInputParams {
 
     return this.listProductService.inputParams;
   }
 
-  private isCategoryLoaded: boolean = false;
+  private isCategoryLoaded: boolean = true;
 
   constructor(private router: Router,
               protected route: ActivatedRoute,
@@ -43,12 +46,17 @@ export class ListProductsComponent
 
   ngOnInit() {
 
-    this.allowDisplayProductVetical = false;
+    this.allowDisplayProductVetical = true;
 
     this.filterForm = new ListProductFilterForm();
 
 
     this.getListCategory();
+
+    this.khoangGia = [
+      new ExampleObject("asc", "Giá tăng dần"),
+      new ExampleObject("desc", "Giá giảm dần")
+    ]
   }
 
   ngAfterContentChecked(): void {
@@ -57,6 +65,14 @@ export class ListProductsComponent
 
       this.getListProduct();
     }
+  }
+
+  changeDisplayProductGridView():boolean{
+    return this.allowDisplayProductVetical = true;
+  }
+
+  changeDisplayProductListView():boolean{
+    return this.allowDisplayProductVetical = false;
   }
 
   addProductToOrder(productView: ProductView): void {
@@ -93,6 +109,11 @@ export class ListProductsComponent
     this.isCategoryLoaded = true;
   }
 
+  getContentCategory(contentCategory: string): void {
+    if (!isNullOrUndefined(contentCategory)) {
+      this.contentCategory = contentCategory;
+    }
+  }
 
 
   getListProduct(): void {
@@ -103,11 +124,15 @@ export class ListProductsComponent
 
     let categoryItems = this.categoryList;
 
+    this.subCategoryList = [];
+
     let pageTitle: string;
 
     if (!this.applicationUtils.isStringEmpty(this.inputParams.subCategory)) {
 
       let category = categoryItems.find((item) => item.code == this.inputParams.subCategory);
+
+      this.getContentCategory(category.content);
 
       pageTitle = category.name;
 
@@ -117,11 +142,16 @@ export class ListProductsComponent
 
       let category = categoryItems.find((item) => item.code == this.inputParams.categoryCode);
 
+      this.getContentCategory(category.content);
+
       let categoryIds: string[] = [category.id];
 
       categoryItems.forEach((item) => {
 
-        if (item.parentCategoryId == category.id) categoryIds.push(item.id);
+        if (item.parentCategoryId == category.id) {
+          categoryIds.push(item.id);
+          this.subCategoryList.push(item);
+        }
       })
 
       pageTitle = category.name;
@@ -145,10 +175,11 @@ export class ListProductsComponent
     super.afterGetListProduct(productViews);
   }
 
-  kiemTraGiamGia(product:ProductView):boolean{
+  kiemTraGiamGia(product: ProductView): boolean {
 
-    if(isNullOrUndefined(product.phanTramGiamGia)) return false;
+    if (isNullOrUndefined(product.phanTramGiamGia)) return false;
 
     return true;
   }
+
 }

@@ -88,10 +88,10 @@ export class IndexContentLogic {
 
   getListHinhAnhSanPham(): string[] {
     let imageList: string[] = [
-      "https://uma.vn/media/wysiwyg/bannerslider/b/a/banner-home-slide-savico-desktop-vi.png",
-      "https://uma.vn/media/wysiwyg/bannerslider/b/a/banner-home-slide-bernie-desktop-vi.jpg",
-      "https://uma.vn/media/wysiwyg/bannerslider/b/a/banner-home-slide-monthly-desktop-vi.jpg",
-      "https://uma.vn/media/wysiwyg/bannerslider/b/a/banner-home-slide-monthly-lynn-desktop-vi.jpg"
+      "https://www.a1securitycameras.com/images/promo/30/A1-Slider-free-shipping.jpg",
+      "https://www.a1securitycameras.com/images/promo/29/A1-Slider-Outdoor.jpg",
+      "https://www.a1securitycameras.com/images/promo/30/A1-Slider-Retailer.jpg",
+      "https://www.a1securitycameras.com/images/promo/29/A1-Slider-Ip.jpg"
     ];
     return imageList;
   }

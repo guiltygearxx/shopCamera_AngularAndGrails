@@ -181,8 +181,16 @@ a {
   padding-right: 20px
 }
 
+.paddingDivAll20Px {
+  padding: 20px;
+}
+
 .paddingDivBottom {
   padding-bottom: 20px;
+}
+
+.confixBorderTop{
+  border-top: 1px solid #CCCCCC;
 }
 
 .paddingListProduct {
@@ -228,6 +236,9 @@ h6 .text_align_left{
   margin-top: 20px;
 }
 
+.confixHoverSubCategory:hover .cssHeaderCategory{
+  color: #fe293f;
+}
 
 .border-style-table-giaiphap{
   border: 1px solid #b9f2f5;
@@ -265,14 +276,49 @@ h6 .text_align_left{
   color: #df741c;
   }
 
+.confixImageProductHome img {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  height: 250px;
+}
 
-.newpic img {
-  padding: 2px;
+.confixPadding20px img {
+  width: auto;
+  max-height: 250px;
+  height: 250px;
   border: solid 1px #CCCCCC;
 }
 
+.confixPadding20px img:hover {
+
+  border: solid 1px #606060;
+}
+
+.confixImage img{
+  width: 60px;
+  height: 30px;
+}
+
+.confixPadding20px{
+  padding: 20px 0px 0px 0px;
+}
+
+.confixPaddingTopBottom20px{
+  padding: 20px 0px 10px 0px;
+}
+
+.confixMargin20px{
+  margin: 20px 0px 0px 10px;
+}
+
 .changeFontColorBlack a{
-  color: #2f2f2f !important;
+  font-size: 18px !important;
+  color: #414042 !important;
+}
+
+.changeFontColorBlack a:hover{
+  text-decoration: underline;
 }
 
 .agile_top_brand_left_grid1 h4, .agileinfo_single_right_snipcart h4 {
@@ -303,6 +349,114 @@ h6 .text_align_left{
 .fixHeigth45px{
   height: 45px;
   overflow: hidden;
+}
+
+.fixHeigth90px{
+  height: 90px;
+  overflow: hidden;
+}
+
+.cssHeaderCategoryImages{
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-size: 0;
+}
+
+
+.cssHeaderSubCategoryImages{
+  max-width: 100px;
+  height: auto;
+  vertical-align: middle;
+  font-size: 0;
+}
+
+.cssHeaderCategory{
+  font-family: Raleway,sans-serif important;
+  text-align: center !important;
+  font-weight: 900 !important;
+  border-bottom: 1px #3a3a3a solid !important;
+  color: #212322;
+  font-size: 18px !important;
+  margin-top: 15px !important;
+  max-width: 300px;
+  margin: auto;
+}
+
+.titleDivCategory{
+  background: url('../images/line.png') repeat-x center center !important;
+  text-align: center !important;
+  margin-top: 25px !important;
+  margin-bottom: 20px !important;
+}
+
+
+.titleDivCategory .contentDivCategory {
+  color: #343434 !important;
+  font-family: Arial,sans-serif important;
+  font-weight: bold !important;
+  font-size: 25px !important;
+  text-align: center !important;
+  background-color: #fff !important;
+  width: auto !important;
+  margin: 0 auto !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+}
+
+.titleCommon h4{
+  color: #1c1c1c;
+  font-weight: bolder;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  font-family: MuseoSansCyrl-900,sans-serif;
+  padding: 0 0 10px;
+  margin: 0;
+}
+
+.confixElementLi li{
+  list-style: inside;
+  padding-left: 10px;
+  color: #606060;
+}
+
+.confixElementLi{
+  padding-top: 10px;
+
+}
+
+.thayDoiCSSGiaTruocKhiHa{
+  color: #939598;
+  font-size: 13px;
+}
+
+.thayDoiCSSGiaBan{
+  font-size: 20px;
+  color: #F26522;
+  font-weight: bold;
+}
+
+.thayDoiCSSGiaKhuyenMai{
+  font-size: 13px;
+  font-weight: bold;
+  color: #636363;
+}
+
+.confixTextRight{
+  text-align: right;
+}
+
+.confixPaddingProduct{
+  /*padding: 10px;*/
+  border: solid 1px #CCCCCC;
+
+}
+
+.confixPaddingProduct:hover{
+  -webkit-box-shadow: 1px 1px 5px 1px rgba(122,120,148,0.47);
+  -moz-box-shadow: 1px 1px 5px 1px rgba(122,120,148,0.47);
+  box-shadow: 1px 1px 5px 1px rgba(122,120,148,0.47);
 }
 .quick-alo-phone.quick-alo-static {
   opacity:.6;
@@ -718,3 +872,6 @@ h6 .text_align_left{
   top: 30px;
 }
 
+.backGroundColorOrange{
+  background: #ff8600 !important;
+}

@@ -1,26 +1,26 @@
 <!-- header -->
-<div class="agileits_header">
-  <div class="product_list_header" style="margin-top:10px;">
-    <a href="products.html" style="text-decoration: underline; color:white">Sản phẩm bán chạy |</a>
-    <a href="products.html" style="text-decoration: underline; color:white">Sản phẩm khuyến mại |</a>
-    <a href="products.html" style="text-decoration: underline; color:white">Sản phẩm mới</a>
-    <img style="margin:-4px 0 0 2px;" src="assets/images/new.gif">
-  </div>
+<!--<div class="agileits_header">-->
+  <!--<div class="product_list_header" style="margin-top:10px;">-->
+    <!--<a href="products.html" style="text-decoration: underline; color:white">Sản phẩm bán chạy |</a>-->
+    <!--<a href="products.html" style="text-decoration: underline; color:white">Sản phẩm khuyến mại |</a>-->
+    <!--<a href="products.html" style="text-decoration: underline; color:white">Sản phẩm mới</a>-->
+    <!--<img style="margin:-4px 0 0 2px;" src="assets/images/new.gif">-->
+  <!--</div>-->
 
-  <div class="w3l_header_right1 gioHangSanPham">
-    <input type="hidden" name="cmd" value="_cart"/>
-    <input type="hidden" name="display" value="1"/>
-    <input type="submit" name="submit" value="({{getSoLuongTrongGioHang()}} sản phẩm)" class="button"
-           (click)="goToOrder($event)"/>
-  </div>
-  <div class="clearfix"></div>
-</div>
+  <!--<div class="w3l_header_right1 gioHangSanPham">-->
+    <!--<input type="hidden" name="cmd" value="_cart"/>-->
+    <!--<input type="hidden" name="display" value="1"/>-->
+    <!--<input type="submit" name="submit" value="({{getSoLuongTrongGioHang()}} sản phẩm)" class="button"-->
+           <!--(click)="goToOrder($event)"/>-->
+  <!--</div>-->
+  <!--<div class="clearfix"></div>-->
+<!--</div>-->
 
 <div class="logo_products">
   <div class="container">
     <div class="w3ls_logo_products_left">
       <h1 style="font-weight: bolder">
-        <a href="index.html" style="color: #EE2424">
+        <a (click)="goToTrangChu($event)" style="color: #EE2424">
           <span>Shop</span> CAMERA</a>
       </h1>
     </div>
@@ -40,47 +40,126 @@
     <div class="clearfix"></div>
   </div>
 </div>
-<div class="logo_product">
-  <div class="container" style=" width: 100% !important; text-align: center">
+<!--<div class="logo_product">-->
+  <!--<div class="container" style=" width: 100% !important; text-align: center">-->
 
-    <ng-container *ngFor="let menuItem of menuItems">
+    <!--<ng-container *ngFor="let menuItem of menuItems">-->
 
-      <div class="w3ls_logo_products_left10">
-        <a (click)="goToMenuIndex($event, menuItem)">{{menuItem.name}}</a>
-      </div>
+      <!--<div class="w3ls_logo_products_left10">-->
+        <!--<a (click)="goToMenuIndex($event, menuItem)">{{menuItem.name}}</a>-->
+      <!--</div>-->
 
-    </ng-container>
+    <!--</ng-container>-->
 
-    <div class="clearfix"></div>
-  </div>
+    <!--<div class="clearfix"></div>-->
+  <!--</div>-->
 
-  <div class="container" style=" width: 100% !important; text-align: center">
+  <!--<div class="container" style=" width: 100% !important; text-align: center">-->
 
-    <div class="w3ls_logo_search_left10">
-      <button type="submit" class="btn btn-info pull-right" (click)="queryProduct($event)">Tìm kiếm</button>
-    </div>
+    <!--<div class="w3ls_logo_search_left10">-->
+      <!--<button type="submit" class="btn btn-info pull-right" (click)="queryProduct($event)">Tìm kiếm</button>-->
+    <!--</div>-->
 
-    <div class="w3ls_logo_search_left10">
-      <app-select [title]="'Giá'" [(value)]="filterForm.categoryId" [placeHolder]="'Khoảng giá'"
-                  [data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">
-      </app-select>
-    </div>
+    <!--<div class="w3ls_logo_search_left10">-->
+      <!--<app-select [title]="'Giá'" [(value)]="filterForm.categoryId" [placeHolder]="'Khoảng giá'"-->
+                  <!--[data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">-->
+      <!--</app-select>-->
+    <!--</div>-->
 
-    <div class="w3ls_logo_search_left10">
-      <app-select [title]="'Hang san xuat'" [(value)]="filterForm.categoryId" [placeHolder]="'Hãng sản xuất'"
-                  [data]="categories" [optionKey]="'id'" [optionValue]="'name'">
-      </app-select>
-    </div>
+    <!--<div class="w3ls_logo_search_left10">-->
+      <!--<app-select [title]="'Hang san xuat'" [(value)]="filterForm.categoryId" [placeHolder]="'Hãng sản xuất'"-->
+                  <!--[data]="categories" [optionKey]="'id'" [optionValue]="'name'">-->
+      <!--</app-select>-->
+    <!--</div>-->
 
-    <div class="w3ls_logo_search_left10">
-      <app-select [title]="'Danh mục'" [(value)]="filterForm.categoryId" [placeHolder]="'Danh mục sản phẩm'"
-                  [data]="categories" [optionKey]="'id'" [optionValue]="'name'">
-      </app-select>
-    </div>
+    <!--<div class="w3ls_logo_search_left10">-->
+      <!--<app-select [title]="'Danh mục'" [(value)]="filterForm.categoryId" [placeHolder]="'Danh mục sản phẩm'"-->
+                  <!--[data]="categories" [optionKey]="'id'" [optionValue]="'name'">-->
+      <!--</app-select>-->
+    <!--</div>-->
 
-    <div class="w3ls_logo_search_left10" style="padding-right: 0px">
-      <app-input-text-no-title [(value)]="filterForm.paramsQuery" [placeHolder]="'Tìm kiếm sản phẩm...'" style="height: 28px"></app-input-text-no-title>
-    </div>
-  </div>
-</div>
+    <!--<div class="w3ls_logo_search_left10" style="padding-right: 0px">-->
+      <!--<app-input-text-no-title [(value)]="filterForm.paramsQuery" [placeHolder]="'Tìm kiếm sản phẩm...'" style="height: 28px"></app-input-text-no-title>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<!-- Back to top -->
+<div class="back-to-top"><span class="icon-keyboard_arrow_up"></span></div>
+<!-- /Back to top -->
 <!-- //header -->
+<!-- HEADER section -->
+<div class="header-wrapper">
+<header id="header">
+  <div class="stuck-nav backGroundColorOrange">
+    <div class="container offset-top-5">
+      <div class="row">
+        <div class="pull-left col-sm-9 col-md-9 col-lg-10">
+          <!-- navigation start -->
+          <nav class="navbar">
+            <div class="responsive-menu mainMenu">
+               <!--Mobile menu Button-->
+              <div class="col-xs-2 visible-mobile-menu-on">
+                <div class="expand-nav compact-hidden">
+                  <a class="off-canvas-menu-toggle">
+                    <div class="navbar-toggle">
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="menu-text">MENU</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+               <!--//end Mobile menu Button -->
+              <ul class="nav navbar-nav">
+                <li class="dl-close"><a><span class="icon icon-close"></span>close</a></li>
+                <li class="dropdown dropdown-mega-menu">
+                  <span class="dropdown-toggle extra-arrow"></span>
+                  <a class="dropdown-toggle" data-toggle="dropdown" (click)="goToTrangChu($event)"><span class="act-underline">Trang Chủ</span></a>
+                </li>
+                <ng-container *ngFor="let parentCategory of getParentCategories()">
+                  <li class="dropdown dropdown-mega-menu dropdown-two-col">
+                    <span class="dropdown-toggle extra-arrow"></span>
+                    <a (click)="goToSubCategory($event, parentCategory, null)" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">{{parentCategory.name}}</span></a>
+                    <ul class="dropdown-menu multicolumn two-col" role="menu">
+                      <li class="dl-back"><a><span class="icon icon-chevron_left"></span>back</a></li>
+                      <ng-container *ngFor="let subCategory of getSubCategories(parentCategory);">
+                        <li>
+                          <a (click)="goToSubCategory($event, parentCategory, subCategory)">{{subCategory.name}}</a>
+                        </li>
+                      </ng-container>
+                    </ul>
+                  </li>
+                </ng-container>
+
+                <ng-container *ngFor="let menuItem of menuItems">
+                <li class="dropdown dropdown-mega-menu">
+                  <span class="dropdown-toggle extra-arrow"></span>
+                  <a class="dropdown-toggle" data-toggle="dropdown" (click)="goToMenuIndex($event, menuItem)"><span class="act-underline">{{menuItem.name}}</span></a>
+                </li>
+                </ng-container>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <!-- navigation end -->
+        <div class="pull-right col-sm-3 col-md-3 col-lg-2">
+          <div class="text-right" style="padding-top: 4px">
+            <!-- shopping cart start -->
+            <div class="cart link-inline">
+              <div class="dropdown text-right">
+                <a class="dropdown-toggle">
+                  <span class="badge badge--cart">2 sản phẩm</span>
+                </a>
+              </div>
+            </div>
+            <!-- shopping cart end -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+</div>
+<!-- End HEADER section -->
