@@ -32,8 +32,8 @@ class ImportProductService extends AbstractExcelImporter {
                     "G": "hangSanXuat",
                     "H": "baoHanh",
                     "I": "khoHang",
-                    "J": "gia",
-                    "K": "giaTruocKhiHa",
+                    "J": "giaTruocKhiHa",
+                    "K": "phanTramGiamGia",
                     "L": "thongTinChiTiet",
                     "M": "thongSoKiThuat",
                     "N": "khuyenMai",
@@ -119,8 +119,8 @@ class ImportProductService extends AbstractExcelImporter {
 
                 switch (columnName) {
 
-                    case "gia":
                     case "giaTruocKhiHa":
+                    case "phanTramGiamGia":
                         cellValue = convertCellNumberToString(convertCellValueToString(cellValue));
                         break;
 

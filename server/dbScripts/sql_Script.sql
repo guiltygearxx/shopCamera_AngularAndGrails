@@ -114,7 +114,8 @@ CREATE OR REPLACE VIEW v_product AS
     p.gia,
     p.category_id,
     p.last_modified_time,
-    c.name AS category_name
+    c.name AS category_name,
+    p.phan_tram_giam_gia
   FROM product p
     JOIN category c ON c.id = p.category_id;
 

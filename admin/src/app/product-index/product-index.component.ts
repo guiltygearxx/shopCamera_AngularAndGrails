@@ -1,20 +1,20 @@
 import {Component, OnInit} from '@angular/core';
-import {CategoryService} from "../service/category.service";
-import {Category} from "../bean/category";
-import {ProductIndexFilterForm} from "../bean/product-index-filter-form";
-import {SupportPaginationTable} from "../common/support-pagination-table";
+import {CategoryService} from '../service/category.service';
+import {Category} from '../bean/category';
+import {ProductIndexFilterForm} from '../bean/product-index-filter-form';
+import {SupportPaginationTable} from '../common/support-pagination-table';
 import {SupportSortingTable} from '../common/support-sorting-table';
 import {ProductViewService} from '../service/product-view-service';
-import {PaginationParams} from "../common/pagination-params";
+import {PaginationParams} from '../common/pagination-params';
 import {SortableTableFlow} from '../common/sortable-table-flow';
-import {ProductView} from "../bean/product-view";
-import {Router} from "@angular/router";
+import {ProductView} from '../bean/product-view';
+import {Router} from '@angular/router';
 import {ComponentUtils} from '../common/component-utils';
-import {DialogService} from "ng2-bootstrap-modal";
-import {ConfirmDialogComponent} from "../common/confirm-dialog/confirm-dialog.component";
-import {ApplicationUtils} from "../common/application-utils";
-import {ProductService} from "../service/product.service";
-import {FormFlowManager} from "../common/form-flow-manager";
+import {DialogService} from 'ng2-bootstrap-modal';
+import {ConfirmDialogComponent} from '../common/confirm-dialog/confirm-dialog.component';
+import {ApplicationUtils} from '../common/application-utils';
+import {ProductService} from '../service/product.service';
+import {FormFlowManager} from '../common/form-flow-manager';
 
 @Component({
   selector: 'app-product-index',
@@ -104,14 +104,14 @@ export class ProductIndexComponent
 
     event.preventDefault();
 
-    this.router.navigate(["/starter/productDetail"]);
+    this.router.navigate(['/starter/productDetail']);
   }
 
   viewProduct(event: any, product: ProductView): void {
 
     event.preventDefault();
 
-    this.router.navigate(["/starter/productDetail/" + product.id]);
+    this.router.navigate(['/starter/productDetail/' + product.id]);
   }
 
   deleteProduct(event: any, product: ProductView): void {
@@ -123,7 +123,7 @@ export class ProductIndexComponent
 
   getFormattedNumber(value: string): string {
 
-    return this.componentUtils.formatValue(value, "number");
+    return this.componentUtils.formatValue(value, 'number');
   }
 
   protected loadCategories(): void {
@@ -142,7 +142,7 @@ export class ProductIndexComponent
         this.products = result.pageData;
 
         this.sortableTableFlow.afterPaginate(this, result);
-      })
+      });
   }
 
   private buildPaginationParams(): PaginationParams {
@@ -153,19 +153,21 @@ export class ProductIndexComponent
   protected confirmDelete(product: ProductView): void {
 
     this.dialogService
-      .addDialog(ConfirmDialogComponent, {message: this.applicationUtils.message("default.confirmDelete")})
-      .subscribe((confirm) => this.deleteProduct_(product));
+      .addDialog(ConfirmDialogComponent, {message: this.applicationUtils.message('default.confirmDelete')})
+      .subscribe((confirm) => {
+        if (confirm) this.deleteProduct_(product);
+      });
   }
 
   protected deleteProduct_(product: ProductView): void {
 
     this.productService.delete(product.id).subscribe((product) => {
 
-      let successMessage = this.applicationUtils.message("default.success");
+      let successMessage = this.applicationUtils.message('default.success');
 
       this.formFlowManager.displaySuccessMessage(successMessage);
 
       this.loadProducts();
-    })
+    });
   }
 }

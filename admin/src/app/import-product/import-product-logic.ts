@@ -1,18 +1,18 @@
-import {ImportProductForm} from "../bean/import-product-form";
-import {ImportProductRow} from "../bean/import-product-row";
-import {ImportProductService} from "../service/import-product.service";
-import {CategoryService} from "../service/category.service";
-import {Category} from "../bean/category";
-import {GroupByWrapper} from "../common/group-by-wrapper";
-import {ApplicationUtils} from "../common/application-utils";
-import {ImportProductsForm} from "../bean/import-products-form";
-import {ResultBean} from "../common/result-bean";
-import {SupportSubmitForm} from "../common/support-submit-form";
-import {Observable} from "rxjs/Observable";
-import {isNullOrUndefined} from "util";
-import {ValidateUtils} from "../common/validate/validate-utils";
-import {FormFlowManager} from "../common/form-flow-manager";
-import {Validateable} from "../common/validate/validateable";
+import {ImportProductForm} from '../bean/import-product-form';
+import {ImportProductRow} from '../bean/import-product-row';
+import {ImportProductService} from '../service/import-product.service';
+import {CategoryService} from '../service/category.service';
+import {Category} from '../bean/category';
+import {GroupByWrapper} from '../common/group-by-wrapper';
+import {ApplicationUtils} from '../common/application-utils';
+import {ImportProductsForm} from '../bean/import-products-form';
+import {ResultBean} from '../common/result-bean';
+import {SupportSubmitForm} from '../common/support-submit-form';
+import {Observable} from 'rxjs/Observable';
+import {isNullOrUndefined} from 'util';
+import {ValidateUtils} from '../common/validate/validate-utils';
+import {FormFlowManager} from '../common/form-flow-manager';
+import {Validateable} from '../common/validate/validateable';
 
 export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
 
@@ -107,7 +107,7 @@ export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
 
         isOK = true;
 
-        let errorMessage = this.applicationUtils.message("importProduct.duplicateProductName", [item.name]);
+        let errorMessage = this.applicationUtils.message('importProduct.duplicateProductName', [item.name]);
 
         this.errorMessages.push(this.buildErrorMessageRow(itemIndex, errorMessage));
 
@@ -115,7 +115,7 @@ export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
 
         names_.push(item.name);
       }
-    })
+    });
 
     return isOK;
   }
@@ -148,7 +148,7 @@ export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
 
         isOK = false;
 
-        let errorMessage = this.applicationUtils.message("importProduct.categoryName.notFound", [item.categoryName]);
+        let errorMessage = this.applicationUtils.message('importProduct.categoryName.notFound', [item.categoryName]);
 
         this.errorMessages.push(this.buildErrorMessageRow(itemIndex, errorMessage));
       }
@@ -159,7 +159,7 @@ export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
 
   private buildErrorMessageRow(itemIndex: number, errorMessage: string): string {
 
-    return this.applicationUtils.message("importProduct.message.row", [itemIndex + 1, errorMessage]);
+    return this.applicationUtils.message('importProduct.message.row', [itemIndex + 1, errorMessage]);
   }
 
   private convertToErrorMessages(): void {
@@ -176,7 +176,7 @@ export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
   private buildErrorMessageField(item: Validateable, itemIndex: number, field: string): string {
 
     let getFieldTitleFn = ((field: string) =>
-        this.applicationUtils.message("importProduct.field." + field)
+        this.applicationUtils.message('product.field.' + field)
     );
 
     return this.formFlowManager.buildErrorMessageField(item, itemIndex, field, getFieldTitleFn);

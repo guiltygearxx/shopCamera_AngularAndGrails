@@ -6,7 +6,7 @@ class Category implements BaseDomain {
     String parentCategoryId;
     String code;
     String content;
-    String image;
+    String imageUrl;
 
     static constraints = {
 
@@ -14,7 +14,7 @@ class Category implements BaseDomain {
         parentCategoryId nullable: true;
         code nullable: false;
         content nullable: true;
-        image nullable: true;
+        imageUrl nullable: true;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

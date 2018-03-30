@@ -36,6 +36,13 @@
         </app-select>
       </div>
 
+      <div class="col-md-12">
+        <app-input-text-with-icon [title]="'Link ảnh'" [placeHolder]="'Link ảnh'" [(value)]="form.imageUrl"
+                                  [errorMessage]="getErrorMessage('imageUrl')" [inputIcon]="'fa-plus'"
+                                  (inputIconClick)="inputIconClick($event)">
+        </app-input-text-with-icon>
+      </div>
+
     </div>
 
     <div class="box-footer">

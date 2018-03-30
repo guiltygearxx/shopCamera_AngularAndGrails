@@ -74,6 +74,7 @@ class UpdateProductService implements BaseService {
             thongTinChiTiet = form.thongTinChiTiet;
             thongSoKiThuat = form.thongSoKiThuat;
             khuyenMai = form.khuyenMai;
+            phanTramGiamGia = applicationUtilsService.convertToBigDecimal(form.phanTramGiamGia);
 
             isDeleted = false;
             lastModifiedTime = new Date();
@@ -92,6 +93,8 @@ class UpdateProductService implements BaseService {
         if (!this.validate()) return false;
 
         this.updateProduct_();
+
+        this.result << [product: this.product];
 
         return true;
     }

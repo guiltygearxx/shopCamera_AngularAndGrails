@@ -13,6 +13,7 @@ class ImportProductRow {
     String khoHang;
     String gia;
     String giaTruocKhiHa;
+    String phanTramGiamGia;
     String thongTinChiTiet;
     String thongSoKiThuat;
     String khuyenMai;

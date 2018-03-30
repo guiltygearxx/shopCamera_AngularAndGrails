@@ -15,6 +15,7 @@ export class StarterLeftSideComponent implements OnInit {
   menuItems: Menu[] = [
 
     new Menu(1, null, 'Danh mục sản phẩm', 'starter/productIndex'),
+    new Menu(1, null, 'Import sản phẩm', 'starter/importProduct'),
     new Menu(2, null, 'Danh mục tin tức', 'starter/newsIndex'),
     new Menu(3, null, 'Danh mục giải pháp', 'starter/solutionIndex'),
     new Menu(4, null, 'Danh mục uploaded-file', 'starter/uploadFileIndex'),

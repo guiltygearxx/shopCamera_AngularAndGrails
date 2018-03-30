@@ -10,6 +10,7 @@ import {FormFlowManager} from '../common/form-flow-manager';
 import {CategoryService} from '../service/category.service';
 import {isNullOrUndefined} from 'util';
 import {RequestErrorHandler} from '../common/request-error-handler';
+import {UploadFilePopupComponent} from '../upload-file-popup/upload-file-popup.component';
 
 @Component({
   selector: 'app-category-detail',
@@ -46,6 +47,20 @@ export class CategoryDetailComponent
     this.formFlowManager.defaultHandleError(error);
   }
 
+  inputIconClick(event: any): void {
+
+    this.openUploadImagePopup();
+  }
+
+  protected openUploadImagePopup(): void {
+
+    this.dialogService
+      .addDialog(UploadFilePopupComponent)
+      .subscribe((url) => {
+
+        if (!this.applicationUtils.isStringEmpty(url)) this.form.imageUrl = url;
+      });
+  }
 
   protected getDetailFormConstraints(): any {
     return CategoryDetailForm.constraints;
@@ -58,6 +73,7 @@ export class CategoryDetailComponent
     category.parentCategoryId = this.form.parentCategoryId;
     category.name = this.form.name;
     category.code = this.form.code;
+    category.imageUrl = this.form.imageUrl;
 
     return category;
   }
@@ -69,6 +85,7 @@ export class CategoryDetailComponent
     form.parentCategoryId = object.parentCategoryId;
     form.name = object.name;
     form.code = object.code;
+    form.imageUrl = object.imageUrl;
 
     return form;
   }

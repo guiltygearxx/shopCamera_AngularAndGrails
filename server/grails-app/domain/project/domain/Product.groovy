@@ -42,7 +42,7 @@ class Product implements BaseDomain {
         thongTinChiTiet nullable: true;
         thongSoKiThuat nullable: true;
         khuyenMai nullable: true;
-        phanTramGiamGia nullable: true, maxSize: 3;
+        phanTramGiamGia nullable: true;
         thongTinMoRong nullable: true;
         hinhAnhTrucQuan nullable: true;
         thongTinBoSung nullable: true;

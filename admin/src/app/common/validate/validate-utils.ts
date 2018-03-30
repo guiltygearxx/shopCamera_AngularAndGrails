@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {Validateable} from "./validateable";
-import {isNullOrUndefined, isString} from "util";
-import {DefaultErrors} from "./default-errors";
+import {Injectable} from '@angular/core';
+import {Validateable} from './validateable';
+import {isNullOrUndefined, isString} from 'util';
+import {DefaultErrors} from './default-errors';
 import {
   CONSTRAIN_BLANK,
   CONSTRAIN_EMAIL,
@@ -26,10 +26,11 @@ import {
   ERROR_NULLABLE,
   ERROR_SIZE_TOOBIG,
   ERROR_SIZE_TOOSMALL
-} from "../application-constants";
-import {ApplicationUtils} from "../application-utils";
-import {Errors} from "./errors";
-import {FieldError} from "./field-error";
+} from '../application-constants';
+import {ApplicationUtils} from '../application-utils';
+import {Errors} from './errors';
+import {FieldError} from './field-error';
+import BigNumber from 'bignumber.js';
 
 type ErrorHandleFnType = ((value: any, errorCode: string, args: any[]) => void);
 
@@ -41,7 +42,7 @@ export class ValidateUtils {
 
   buildFieldErrorMessage(error: FieldError, prefix ?: string): string {
 
-    let code = (this.applicationUtils.isStringEmpty(prefix) ? "" : (prefix + "." + error.field + ".")) + error.errorCode;
+    let code = (this.applicationUtils.isStringEmpty(prefix) ? '' : (prefix + '.' + error.field + '.')) + error.errorCode;
 
     return this.applicationUtils.message(code, error.params);
   }
@@ -194,13 +195,18 @@ export class ValidateUtils {
     return true;
   }
 
-  max(value: number, max: number, errorHandleFn: ErrorHandleFnType): boolean {
+  max(value: any, max: number, errorHandleFn: ErrorHandleFnType): boolean {
 
-    if (!isNullOrUndefined(value) && (value > max)) {
+    if (!isNullOrUndefined(value)) {
 
-      errorHandleFn(value, ERROR_MAX, [value, max]);
+      let value_ = this.applicationUtils.convertStringToBigNumber(value.toString());
 
-      return false;
+      if (value_.gt(max)) {
+
+        errorHandleFn(value, ERROR_MAX, [value, max]);
+
+        return false;
+      }
     }
 
     return true;
@@ -208,11 +214,16 @@ export class ValidateUtils {
 
   min(value: number, min: number, errorHandleFn: ErrorHandleFnType): boolean {
 
-    if (!isNullOrUndefined(value) && (value > min)) {
+    if (!isNullOrUndefined(value)) {
 
-      errorHandleFn(value, ERROR_MIN, [value, min]);
+      let value_ = this.applicationUtils.convertStringToBigNumber(value.toString());
 
-      return false;
+      if (value_.lt(min)) {
+
+        errorHandleFn(value, ERROR_MIN, [value, min]);
+
+        return false;
+      }
     }
 
     return true;
@@ -293,7 +304,7 @@ export class ValidateUtils {
         default:
           return;
       }
-    })
+    });
 
     return isOK;
   }

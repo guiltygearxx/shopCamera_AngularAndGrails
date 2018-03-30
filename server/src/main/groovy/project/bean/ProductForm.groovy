@@ -19,6 +19,7 @@ class ProductForm implements Validateable {
     String thongTinChiTiet;
     String thongSoKiThuat;
     String khuyenMai;
+    String phanTramGiamGia
 
     static constraints = {
 
@@ -37,5 +38,6 @@ class ProductForm implements Validateable {
         thongTinChiTiet nullable: true;
         thongSoKiThuat nullable: true;
         khuyenMai nullable: true;
+        phanTramGiamGia nullable: true;
     }
 }
