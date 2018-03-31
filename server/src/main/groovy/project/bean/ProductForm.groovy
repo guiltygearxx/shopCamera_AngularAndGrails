@@ -21,6 +21,8 @@ class ProductForm implements Validateable {
     String khuyenMai;
     String phanTramGiamGia
 
+    Map attributes;
+
     static constraints = {
 
         productId nullable: true
@@ -39,5 +41,6 @@ class ProductForm implements Validateable {
         thongSoKiThuat nullable: true;
         khuyenMai nullable: true;
         phanTramGiamGia nullable: true;
+        attributes nullable: true;
     }
 }

@@ -44,6 +44,7 @@ export abstract class DefaultDetailComponent2<DetailForm extends Validateable, B
     if (!this.applicationUtils.isStringEmpty(this.id)) {
 
       this.initForEdit();
+
     } else {
 
       this.form = this.initForCreate();

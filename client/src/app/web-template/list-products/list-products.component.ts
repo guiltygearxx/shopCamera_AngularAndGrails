@@ -138,17 +138,20 @@ export class ListProductsComponent
   }
 
   getContentCategory(contentCategory: string): void {
+
     if (!isNullOrUndefined(contentCategory)) {
+
       this.contentCategory = contentCategory;
     }
   }
 
   getTypeOfCategory(type: string): void {
+
     if (!isNullOrUndefined(type)) {
+
       this.typeOfCategory = type;
     }
   }
-
 
   getListProduct(): void {
 

@@ -178,6 +178,6 @@ export class SelectComponent
 
   private refreshSelectPicker(): void {
 
-    $(this.inputElement.nativeElement).select2(this.select2SettingOptions);
+    $(this.inputElement.nativeElement).select2(this.select2SettingOptions).trigger('change.select2');
   }
 }

@@ -40,6 +40,8 @@ class UrlMappings {
 
         "/attribute"(resources: "attribute")
 
+        "/attributeValue"(resources: "attributeValue")
+
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here

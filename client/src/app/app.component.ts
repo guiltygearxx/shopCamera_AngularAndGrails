@@ -9,15 +9,12 @@ declare var $: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+
   title = 'app';
 
   toasterConfig: ToasterConfig = new ToasterConfig({
     positionClass: 'toast-top-right'
   });
-
-  projectYears: number[] = [
-    1, 2, 3, 4
-  ];
 
   ngOnInit(): void {
 
@@ -29,8 +26,6 @@ export class AppComponent implements OnInit {
     });
 
     this.initBoxWidgetOptions();
-
-
   }
 
   private initBoxWidgetOptions() {
@@ -43,5 +38,4 @@ export class AppComponent implements OnInit {
 
     boxWidgetIcons.remove = "fa-angle-down";
   }
-
 }
