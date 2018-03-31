@@ -38,6 +38,8 @@ class UrlMappings {
 
         "/category"(resources: "category")
 
+        "/attribute"(resources: "attribute")
+
         "/$controller/$action?/$id?(.$format)?" {
             constraints {
                 // apply constraints here

@@ -57,4 +57,7 @@ export const i18n = {
   'product.field.thongTinChiTiet': 'Thông tin chi tiết',
   'product.field.thongSoKiThuat': 'Thông số kĩ thuật',
   'product.field.khuyenMai': 'Khuyến mại',
+
+  'importProduct.template.camera': 'Camera',
+  'importProduct.template.dauGhi': 'Đầu ghi',
 };

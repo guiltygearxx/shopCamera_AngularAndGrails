@@ -20,6 +20,7 @@ export class ImportProductRow implements Validateable {
   thongSoKiThuat: string;
   khuyenMai: string;
   phanTramGiamGia: string;
+  attribute: { [field: string]: string };
 
   static constraints = {
 
@@ -38,5 +39,6 @@ export class ImportProductRow implements Validateable {
     thongTinChiTiet: {nullable: true},
     thongSoKiThuat: {nullable: true},
     khuyenMai: {nullable: true},
+    attribute: {nullable: true},
   };
 }

@@ -4,9 +4,13 @@ import grails.converters.JSON
 
 class BootStrap {
 
+    def cacheService;
+
     def init = { servletContext ->
 
         this.registerDateMarshaller();
+
+        cacheService.cachingAttribute();
     }
 
     def destroy = {

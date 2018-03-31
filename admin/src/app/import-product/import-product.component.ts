@@ -8,10 +8,35 @@ import {ApplicationUtils} from '../common/application-utils';
 import {CategoryService} from '../service/category.service';
 import {FormFlowManager} from '../common/form-flow-manager';
 import {ImportProductRow} from '../bean/import-product-row';
-
+import {AttributeService} from '../service/attribute.service';
+import {SimpleObject} from '../common/simple-object';
+import {IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI} from '../common/application-constants';
+import {Attribute} from '../bean/attribute';
+import {GroupByWrapper} from '../common/group-by-wrapper';
 
 const COL_HEADERS_CODE = ['categoryName', 'name', 'image1', 'image2', 'image3', 'image4', 'hangSanXuat', 'baoHanh',
   'khoHang', 'giaTruocKhiHa', 'phanTramGiamGia', 'gia', 'thongTinChiTiet', 'thongSoKiThuat', 'khuyenMai'];
+
+const COL_CONFIG = [
+  {data: 'categoryName'},
+  {data: 'name'},
+  {data: 'image1'},
+  {data: 'image2'},
+  {data: 'image3'},
+  {data: 'image4'},
+  {data: 'hangSanXuat'},
+  {data: 'baoHanh'},
+  {data: 'khoHang'},
+  {data: 'giaTruocKhiHa'},
+  {data: 'phanTramGiamGia'},
+  {data: 'gia'},
+  {data: 'thongTinChiTiet'},
+  {data: 'thongSoKiThuat'},
+  {data: 'khuyenMai'},
+];
+
+const TEMPLATE_URL_CAMERA = 'assets/importProductTemplateCamera.xlsx';
+const TEMPLATE_URL_DAU_GHI = 'assets/importProductTemplateDauGhi.xlsx';
 
 @Component({
   selector: 'app-import-product',
@@ -29,23 +54,7 @@ export class ImportProductComponent
 
   colHeaders: string[];
 
-  columns: any[] = [
-    {data: 'categoryName'},
-    {data: 'name'},
-    {data: 'image1'},
-    {data: 'image2'},
-    {data: 'image3'},
-    {data: 'image4'},
-    {data: 'hangSanXuat'},
-    {data: 'baoHanh'},
-    {data: 'khoHang'},
-    {data: 'giaTruocKhiHa'},
-    {data: 'phanTramGiamGia'},
-    {data: 'gia'},
-    {data: 'thongTinChiTiet'},
-    {data: 'thongSoKiThuat'},
-    {data: 'khuyenMai'},
-  ];
+  columns: any[];
 
   options: any = {
     stretchH: 'all',
@@ -61,13 +70,22 @@ export class ImportProductComponent
 
   errorMessages: string[] = [];
 
+  templateTypeOptions: SimpleObject[];
+
+  isImportFileDisable: boolean = true;
+
+  templateURL: string;
+
+  protected attributeMapByCode: GroupByWrapper<Attribute>;
+
   constructor(protected importProductService: ImportProductService,
               protected validateUtils: ValidateUtils,
               protected applicationUtils: ApplicationUtils,
               protected categoryService: CategoryService,
-              protected formFlowManager: FormFlowManager) {
+              protected formFlowManager: FormFlowManager,
+              protected attributeService: AttributeService) {
 
-    super(importProductService, categoryService, applicationUtils, validateUtils, formFlowManager);
+    super(importProductService, categoryService, applicationUtils, validateUtils, formFlowManager, attributeService);
   }
 
   ngOnInit() {
@@ -76,14 +94,23 @@ export class ImportProductComponent
 
     this.colHeaders = COL_HEADERS_CODE.map((code) => this.applicationUtils.message('product.field.' + code));
 
+    this.columns = COL_CONFIG.slice();
+
+    this.templateTypeOptions = [IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI].map((item) =>
+
+      new SimpleObject(item, this.applicationUtils.message('importProduct.template.' + item))
+    );
+
     this.loadCategories();
+
+    this.loadAttributes();
   }
 
   ngAfterViewInit(): void {
 
     setTimeout(() => {
 
-      this.options.width = $(this.hotTableContainer.nativeElement).width() - 15;
+      this.buildHotTableOptions();
 
       this.hotTable.getHandsontableInstance().render();
 
@@ -98,6 +125,46 @@ export class ImportProductComponent
   importFileChanged(importFile: File): void {
 
     this.uploadFile();
+  }
+
+  templateTypeChanged(templateType: string): void {
+
+    this.isImportFileDisable = this.applicationUtils.isStringEmpty(templateType);
+
+    this.form.importFile = null;
+
+    this.items = [];
+
+    this.buildHotTableColumns();
+
+    this.hotTable.getHandsontableInstance().render();
+
+    switch (templateType) {
+
+      case IMPORT_PRODUCT_TEMPLATE_CAMERA:
+        this.templateURL = TEMPLATE_URL_CAMERA;
+        break;
+
+      case IMPORT_PRODUCT_TEMPLATE_DAU_GHI:
+        this.templateURL = TEMPLATE_URL_DAU_GHI;
+        break;
+
+      default:
+        this.templateURL = null;
+        break;
+    }
+  }
+
+  protected getAttribute(code: string): Attribute {
+
+    return isNullOrUndefined(this.attributeMapByCode) ? null : this.attributeMapByCode.getItem([code]);
+  }
+
+  protected isDynamicField(code: string): boolean {
+
+    let attribute = this.getAttribute(code);
+
+    return isNullOrUndefined(attribute) ? false : true;
   }
 
   cellValuesChanged(event: any[]): void {
@@ -119,26 +186,57 @@ export class ImportProductComponent
       let newValue: string = change[3];
       let item = this.items[rowIndex];
 
-      if ((['giaTruocKhiHa', 'phanTramGiamGia', 'gia'].indexOf(prop) != -1) && this.applicationUtils.isNumberFormat(newValue)) {
+      if (this.isDynamicField(prop)) {
 
-        let formattedValue = this.applicationUtils.formatNumber(newValue, 2);
+        item.attribute[prop] = newValue;
 
-        if (formattedValue != newValue) {
+      } else {
 
-          shouldRerender = true;
 
-          newValue = formattedValue;
+        if ((['giaTruocKhiHa', 'phanTramGiamGia', 'gia'].indexOf(prop) != -1) && this.applicationUtils.isNumberFormat(newValue)) {
+
+          let formattedValue = this.applicationUtils.formatNumber(newValue, 2);
+
+          if (formattedValue != newValue) {
+
+            shouldRerender = true;
+
+            newValue = formattedValue;
+          }
         }
+
+        item[prop] = newValue;
+
+        if (prop == 'giaTruocKhiHa' || prop == 'phanTramGiamGia') calGiaItems.push(item);
       }
-
-      item[prop] = newValue;
-
-      if (prop == 'giaTruocKhiHa' || prop == 'phanTramGiamGia') calGiaItems.push(item);
     });
 
     calGiaItems.forEach((item) => this.calculateGia(item));
 
     this.items = [].concat(this.items); //trick for refresh hottable;
+  }
+
+  protected buildHotTableColumns(): void {
+
+    this.colHeaders.splice(COL_HEADERS_CODE.length - 1);
+
+    this.columns.splice(COL_CONFIG.length - 1);
+
+    if (!isNullOrUndefined(this.attributes)) {
+
+      let attribute_ = this.attributes.filter((item) => item.group == this.form.templateType);
+
+      attribute_.forEach((item) => {
+
+        this.colHeaders.push(item.title);
+        this.columns.push({data: 'attribute.' + item.code});
+      });
+    }
+  }
+
+  protected buildHotTableOptions(): void {
+
+    this.options.width = $(this.hotTableContainer.nativeElement).width() - 15;
   }
 
   protected calculateGia(item: ImportProductRow) {
@@ -192,5 +290,16 @@ export class ImportProductComponent
           item.gia = this.applicationUtils.formatBigNumber(giaTruocKhiHa.minus(giaTruocKhiHa.mul(phanTramGiamGia).div(100)), 2);
         }
       });
+  }
+
+  protected afterLoadAttributes(attributes: Attribute[]): void {
+
+    super.afterLoadAttributes(attributes);
+
+    (this.attributeMapByCode = new GroupByWrapper<Attribute>()).groupBy(attributes, [(item) => item.code]);
+
+    this.buildHotTableColumns();
+
+    this.hotTable.getHandsontableInstance().render();
   }
 }

@@ -1,8 +1,12 @@
 package project.controller
 
+import project.domain.Attribute
+import project.domain.AttributeValue
 import project.view.ProductView
 
 class ProductViewController extends DefaultRestfulController<ProductView> {
+
+    def cacheService;
 
     ProductViewController() {
         super(ProductView);
@@ -34,6 +38,20 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
 
             (params.productIds) && (inList("id", params.productIds.split(";")));
             (params.categoryIds) && (inList("categoryId", params.categoryIds.split(";")));
+
+            def p1 = ProductView;
+
+            cacheService.attributes.each { Attribute attribute ->
+
+                List values = params.getList(attribute.code);
+
+                if (values) {
+
+                    exists(AttributeValue.where {
+                        p1.id == referenceId && attribute.id == attributeId && isDeleted == false && value in values
+                    }.id());
+                }
+            }
 
             defaultClosure.delegate = delegate;
 

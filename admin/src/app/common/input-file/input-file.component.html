@@ -12,7 +12,7 @@
   </label>
 
   <input id="{{inputId}}" placeholder="{{placeHolder}}" type="file" (change)="inputValueChanged($event)"
-         [disabled]="disabled"/>
+         [disabled]="disabled" #inputElement/>
 
   <span class="help-block" *ngIf="isError">{{errorMessage}}</span>
 

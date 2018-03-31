@@ -59,7 +59,7 @@ class DefaultRestfulController<T> extends RestfulController<T> {
 
     protected List<T> _search() {
 
-        return resource.createCriteria().list(params, this.buildFilterClosure());
+        return resource.where(this.buildFilterClosure()).list(params);
     }
 
     protected Closure buildFilterClosure() {
