@@ -4,7 +4,7 @@ import {Injectable} from "@angular/core";
 import {HttpService} from "../../common/http.service";
 
 @Injectable()
-export class ProductViewService extends  RestService<ProductView>{
+export class ProductViewService extends RestService<ProductView> {
 
   resource: string = "productView"
 

@@ -30,14 +30,22 @@ export class ListProductLogic {
   getListProduct() {
 
     let params = {
+
       categoryIds: this.filterForm.categoryIds,
       paramsQuery: this.filterForm.paramsQuery,
-      max: 100
+      max: 100,
     };
+
+    this.buildParamsForFilter(params);
 
     this.productViewService.get(params).subscribe((productView) =>
       this.afterGetListProduct(productView)
     );
+  }
+
+  protected buildParamsForFilter(params: any): void {
+
+    // params.attributeCode = ["value1", "value2"];
   }
 
   getListImageHighlight(productView: ProductView): string[] {

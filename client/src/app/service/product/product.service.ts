@@ -4,7 +4,7 @@ import {Product} from "../../bean/product";
 import {HttpService} from "../../common/http.service";
 
 @Injectable()
-export class ProductService extends RestService<Product>{
+export class ProductService extends RestService<Product> {
 
   resource: string = "product"
 
@@ -12,5 +12,4 @@ export class ProductService extends RestService<Product>{
 
     super(http);
   }
-
 }
