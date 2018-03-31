@@ -1,39 +1,7 @@
-<div class="products-breadcrumb">
-  <div class="container">
-    <ul>
-      <li>
-        <i class="fa fa-home" aria-hidden="true"></i>
-        <a href="index.html">Trang chủ</a>
-        <span>|</span>
-      </li>
-      <li>Chi tiết sản phẩm</li>
-    </ul>
-  </div>
-</div>
 
 <!-- banner -->
 <div class="banner">
-  <div class="w3l_banner_nav_left">
-    <nav class="navbar nav_bottom">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header nav_2">
-        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                data-target="#bs-megadropdown-tabs">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
 
-
-      <app-web-left-side></app-web-left-side>
-
-      <!-- /.navbar-collapse -->
-    </nav>
-  </div>
-  <div class="w3l_banner_nav_right">
     <div class="col-md-12 col-xs-12 col-md-12">
       <div class="col-md-9 col-xs-9 col-md-9">
         <ng-container *ngIf="isAvailbaleProduct()">
@@ -44,7 +12,7 @@
                 <div class="carousel-inner">
                   <ng-container *ngFor="let imageView of listHinhAnhSanPham(this.product); let indexImage = index">
                     <div class="item " [class.active]="activeImage(indexImage)">
-                      <img id="example" src="{{imageView}}" alt=" " class="img-responsive" width="300" height="300"/>
+                      <img id="example" src="{{imageView}}" alt=" " class="img-responsive" style="margin: auto;" width="300" height="300"/>
                     </div>
                   </ng-container>
                 </div>
@@ -120,7 +88,6 @@
       </div>
       <app-web-right-side [siteOfNews]="4"></app-web-right-side>
     </div>
-  </div>
   <div class="clearfix"></div>
 </div>
 <!-- //banner -->

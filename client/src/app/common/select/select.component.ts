@@ -116,7 +116,7 @@ export class SelectComponent
 
     this.afterViewCheckCallbacks = [
 
-      new OnChangeCallBack(["optionKey", "optionValue", "data", "autoSort"], (() => this.refreshSelectPicker())),
+      // new OnChangeCallBack(["optionKey", "optionValue", "data", "autoSort"], (() => this.refreshSelectPicker())),
     ]
   }
 

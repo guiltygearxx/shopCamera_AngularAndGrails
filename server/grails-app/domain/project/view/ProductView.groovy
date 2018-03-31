@@ -7,9 +7,6 @@ class ProductView implements BaseDomain {
     String categoryId;
     String name;
     String image1;
-    String image2;
-    String image3;
-    String image4;
     String hangSanXuat;
     String baoHanh;
     String khoHang;
@@ -17,6 +14,9 @@ class ProductView implements BaseDomain {
     BigDecimal giaTruocKhiHa;
     String categoryName;
     BigDecimal phanTramGiamGia;
+    String thongTinMoRong;
+    String hinhAnhTrucQuan;
+    String thongTinBoSung;
 
     static constraints = {
     }

@@ -7,6 +7,9 @@ import {WebHeaderLogic} from "./web-header-logic";
 import {WebHeaderFilterForm} from "./web-header-filter-form";
 import {CategoryService} from "../../service/category/category.service";
 import {ExampleObject} from "../../bean/example-object";
+import {CategoryItem} from "../../bean/category-item";
+import {isNullOrUndefined} from "util";
+import {ListProductInputParams} from "../../bean/list-product-input-params";
 
 declare var $: any;
 
@@ -17,22 +20,25 @@ declare var $: any;
 })
 export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
 
+  private bindEffectForMenuFn: (() => void);
+
   menuItems: MenuItem[] = [
 
     new MenuItem("lienHe", "Liên hệ"),
-    new MenuItem("ttdt", "Trung tâm đào tạo"),
-    new MenuItem("daiLy", "Đại lý"),
-    new MenuItem("tuyenDung", "Tuyển dụng"),
-    new MenuItem("ttsk", "Tin tức - Sự kiện"),
-    new MenuItem("giaiPhap", "Giải pháp Camera"),
-    new MenuItem("gioiThieu", "Giới thiệu"),
-    new MenuItem("trangChu", "Trang chủ"),
+    // new MenuItem("ttdt", "Trung tâm đào tạo"),
+    // new MenuItem("daiLy", "Đại lý"),
+    // new MenuItem("tuyenDung", "Tuyển dụng"),
+    new MenuItem("ttsk", "Tin tức"),
+    new MenuItem("giaiPhap", "Giải pháp"),
+    // new MenuItem("gioiThieu", "Giới thiệu"),
+    // new MenuItem("trangChu", "Trang chủ"),
   ]
 
   constructor(protected router: Router,
               protected listProductService: ListProductService,
               protected  gioHangService: GioHangService,
-              protected categoryService: CategoryService) {
+              protected categoryService: CategoryService,
+              ) {
     super(router, listProductService, gioHangService, categoryService);
   }
 
@@ -40,20 +46,20 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
 
     this.filterForm = new WebHeaderFilterForm();
 
-    $(document).ready(function () {
-      var navoffeset = $(".agileits_header").offset().top;
-      $(window).scroll(function () {
-        var scrollpos = $(window).scrollTop();
-        if (scrollpos >= navoffeset) {
-          $(".agileits_header").addClass("fixed");
-        } else {
-          $(".agileits_header").removeClass("fixed");
-        }
-      });
+    // $(document).ready(function () {
+    //   var navoffeset = $(".agileits_header").offset().top;
+    //   $(window).scroll(function () {
+    //     var scrollpos = $(window).scrollTop();
+    //     if (scrollpos >= navoffeset) {
+    //       $(".agileits_header").addClass("fixed");
+    //     } else {
+    //       $(".agileits_header").removeClass("fixed");
+    //     }
+    //   });
+    //
+    // });
 
-    });
-
-    this.loadCategories();
+    this.getCategorys();
 
     this.khoangGia = [
       new ExampleObject("1000000", "> 1 triệu"),
@@ -67,4 +73,53 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
       new ExampleObject("9000000", "> 9 triệu"),
     ]
   }
+
+
+  ngAfterViewChecked(): void {
+
+    if (!isNullOrUndefined(this.bindEffectForMenuFn)) {
+
+      this.bindEffectForMenuFn();
+
+      this.bindEffectForMenuFn = null;
+    }
+  }
+
+  goToSubCategory(event: any, category: CategoryItem, subCategory: CategoryItem): void {
+
+    event.preventDefault();
+
+    this.listProductService.isInputParamsChanged = true;
+
+    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
+
+    inputParams.categoryCode = category.code;
+    inputParams.subCategory = isNullOrUndefined(subCategory) ? null : subCategory.code;
+
+    this.router.navigate(["/danhSachSanPham"]);
+  }
+
+  getParentCategories(): CategoryItem[] {
+
+    if (isNullOrUndefined(this.categoryListItem)) return null;
+
+    let categories = this.categoryListItem.filter((category) => isNullOrUndefined(category.parentCategoryId));
+
+    return categories;
+  }
+
+  getSubCategories(parentCategory: CategoryItem): CategoryItem[] {
+
+    let subCategory = this.categoryListItem.filter((category) => parentCategory.id == category.parentCategoryId);
+
+    return subCategory;
+  }
+
+  goToTrangChu(event: any) {
+
+    event.preventDefault();
+
+    this.router.navigate(["/trangChu"]);
+  }
+
 }

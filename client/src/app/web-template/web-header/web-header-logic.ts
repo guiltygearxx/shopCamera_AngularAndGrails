@@ -21,7 +21,7 @@ export class WebHeaderLogic{
 
   filterForm: WebHeaderFilterForm;
 
-  categories: CategoryItem[];
+  categoryListItem: CategoryItem[];
 
   khoangGia: ExampleObject[];
 
@@ -44,9 +44,16 @@ export class WebHeaderLogic{
     this.router.navigate(["/gioHangSanPham"]);
   }
 
-  protected loadCategories(): void {
+  protected getCategorys(): void {
 
-    this.categoryService.get().subscribe((categories) => this.categories = categories);
+    let getMaxItem: string = '30';
+
+    let params = {max: getMaxItem};
+
+
+    this.categoryService
+      .get(params)
+      .subscribe((category) => this.afterGetListCategory(category));
   }
 
   queryProduct(event: any): void {
@@ -60,5 +67,9 @@ export class WebHeaderLogic{
     inputParams.paramsQuery = this.filterForm.paramsQuery;
 
     this.router.navigate(["/danhSachSanPham"]);
+  }
+
+  afterGetListCategory(categoryItems: CategoryItem[]): void {
+    this.categoryListItem = categoryItems;
   }
 }

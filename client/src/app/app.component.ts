@@ -28,6 +28,20 @@ export class AppComponent implements OnInit {
       });
     });
 
+    this.initBoxWidgetOptions();
+
+
+  }
+
+  private initBoxWidgetOptions() {
+
+    let boxWidgetIcons = $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons;
+
+    boxWidgetIcons.collapse = "fa-angle-up";
+
+    boxWidgetIcons.open = "fa-angle-down";
+
+    boxWidgetIcons.remove = "fa-angle-down";
   }
 
 }

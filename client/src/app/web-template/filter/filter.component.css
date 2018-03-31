@@ -1,0 +1,11 @@
+.box{
+  border: 1px solid #d2d6de !important;
+  margin-bottom: -1px !important;
+  border-radius: 0px !important;
+}
+
+.box-header {
+  padding: 6px !important;
+}
+
+

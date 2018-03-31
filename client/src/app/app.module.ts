@@ -46,6 +46,7 @@ import {ListProductService} from "./service/list-product.service";
 import {GioHangService} from "./service/order/gio-hang.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {OrderDetailService} from "./service/order/order-detail.service";
+import { FilterComponent } from './web-template/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {OrderDetailService} from "./service/order/order-detail.service";
     WebGioithieuComponent,
     WebGiaiphapChitietComponent,
     WebTintucsukienChitietComponent,
-    WebRightSideComponent
+    WebRightSideComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

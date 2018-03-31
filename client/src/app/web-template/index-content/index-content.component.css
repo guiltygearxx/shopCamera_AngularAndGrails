@@ -6,7 +6,7 @@ a {
   display: none;
 }
 
-.agile_top_brand_left_grid1:hover #toolTip_Horizontal__SolutionCamera{
+.agile_top_brand_left_grid1 .snipcart-item .snipcart-thumb img:hover #toolTip_Horizontal__SolutionCamera{
   display: block;
 }
 
@@ -42,3 +42,6 @@ a {
   width: 400px;
 }
 
+@font-face {
+  src: url(../../../assets/fonts/MuseoSansCyrl_3.otf) format("truetype");
+}

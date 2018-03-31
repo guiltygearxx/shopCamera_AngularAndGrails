@@ -1,170 +1,240 @@
-<div class="products-breadcrumb">
-  <div class="container">
-    <ul>
-      <li>
-        <i class="fa fa-home fa-2x" aria-hidden="true"></i>
-        <a href="index.html">Trang chủ</a>
-        <span>|</span>
-      </li>
-      <li>Danh sách sản phẩm</li>
-    </ul>
-  </div>
-</div>
-
 <div class="banner">
+
+  <!--Filter Form-->
   <div class="w3l_banner_nav_left">
     <nav class="navbar nav_bottom">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header nav_2">
-        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                data-target="#bs-megadropdown-tabs">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-
-
-      <app-web-left-side></app-web-left-side>
-
-      <!-- /.navbar-collapse -->
+      <app-filter></app-filter>
     </nav>
   </div>
   <div class="w3l_banner_nav_right">
 
-    <div class="col-md-12 header4">
-      <h1>{{this.categoryName}}</h1>
-      <h2 style="display:none;">{{this.categoryName}}</h2>
-
-      <div class="clear"></div>
-      <select style="float:right;margin-top:3px;"
-              onchange="this.options[this.selectedIndex].value &amp;&amp; (window.location = this.options[this.selectedIndex].value);">
-        <option value="http://fptcamera.vn/camera-dahua">Sắp xếp theo</option>
-        <option value="http://fptcamera.vn/camera-dahua/?o=p-asc">Giá tăng dần</option>
-        <option value="http://fptcamera.vn/camera-dahua/?o=p-desc">Giá giảm dần</option>
-      </select>
+    <!--Category parent-->
+    <div class="col-md-12">
+      <div class="prd-body confixElementLi" [innerHTML]="this.contentCategory"></div>
     </div>
-    <!-- brands -->
-    <div class="col-md-12 col-xs-12" style="text-align: center">
-      <div class="paddingDiv centerListProduct" *ngIf="!allowDisplayProductVetical">
 
-        <ng-container *ngFor="let product of this.productList">
+    <!--Sub Category-->
+    <div class="col-md-12" style="text-align: center;">
+      <ng-container *ngFor="let subCategory of subCategoryList">
+        <div class="col-md-2 confixHoverSubCategory">
+          <a href="#">
+            <img src="{{subCategory.imageUrl}}"
+                 class="cssHeaderSubCategoryImages">
+          </a>
+          <h3 class="cssHeaderCategory">{{subCategory.name}}</h3>
+        </div>
 
-          <div class="col-md-3 w3ls_w3l_banner_left paddingListProduct">
-            <div class="hover14 column">
-              <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
-                <div class="product-sale discount" *ngIf="kiemTraGiamGia(product)">
-                  <span>{{product.phanTramGiamGia}}%</span>
+      </ng-container>
+
+    </div>
+
+    <!--Filter-->
+    <div class="col-md-12">
+      <div class="list-tools-bar">
+        <div class="list-tool-sortby" style="clear:both;">
+          <span class="list-tool-label">Sắp xếp:</span>
+          <label class="form-select">
+            <!--<app-select [title]="'Giá'" [(value)]="filterForm.sortBy" [placeHolder]="'Sắp xếp'"-->
+            <!--[data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">-->
+            <!--</app-select>-->
+          </label>
+        </div>
+
+        <div class="list-tool-view">
+
+          <span class="list-tool-label">Hiển thị:</span>
+          <label class="form-select">
+            <!--<select id="select_top">-->
+
+            <!--<option value="12">12</option>-->
+
+            <!--<option value="36" selected="selected">36</option>-->
+
+            <!--<option value="60">60</option>-->
+
+            <!--<option value="96">96</option>-->
+
+            <!--</select>-->
+          </label>
+
+          <div id="view-type" class="btn-group">
+
+            <div class="btn-group-cell">
+              <button type="button" id="GridView" title="grid view" class="btn btnGLView" [class.is-current] ="!allowDisplayProductVetical"
+                      (click)="changeDisplayProductListView()"><i class="fa fa-th"></i></button>
+            </div>
+
+            <div class="btn-group-cell">
+              <button type="button" id="ListView" title="list view" class="btn btnGLView" [class.is-current] ="allowDisplayProductVetical"
+                      (click)="changeDisplayProductGridView()"><i class="fa fa-th-list"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-choices-bar">
+          <label class="filter-choices-label">Lọc:</label>
+          <ul class="filter-choices">
+
+            <li><label class="filter-choice-title">CPU Type : </label><span
+              class="filter-choice">Intel Core i7</span><span
+              class="filter-choice">AMD Ryzen</span>
+            </li>
+
+            <li><label class="filter-choice-title">Useful Links : </label><span
+              class="filter-choice">Free Shipping</span><span
+              class="filter-choice">Top Sellers</span>
+            </li>
+
+            <li><label class="filter-choice-title">Memory Capacity : </label>
+              <span class="filter-choice">2 GB DDR3</span>
+            </li>
+
+            <li><label class="filter-choice-title">Screen Size : </label>
+              <span class="filter-choice">"10"</span>
+              <span class="filter-choice">"12.1"</span>
+            </li>
+
+            <li class="filter-choices-button-area">
+              <button type="button" class="btn reset_filter" id="btn_reset_filter">Reset</button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-md-12 col-xs-12">
+      <!-- brands -->
+      <div class="span16">
+        <div class="titleDivCategory">
+          <span class="contentDivCategory">ĐÂY LÀ THIẾT KẾ DÀNH RIÊNG CHO BẠN</span>
+        </div>
+      </div>
+
+
+      <!--product-->
+      <div class="agile_top_brands_grids" *ngIf="!allowDisplayProductVetical">
+
+        <!--<ul class="products product-list style-product-2">-->
+        <ng-container *ngFor="let productCamera of this.productList">
+          <div class="col-xs-12 col-md-6 col-lg-3 paddingDivAll20Px confixBorderTop">
+            <div class="row confixPaddingProduct">
+              <div class="col-md-12">
+                <div class="confixImageProductHome">
+                  <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                     title="{{productCamera.name}}">
+                    <img
+                      src="{{productCamera.image1}}"
+                      class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}">
+                  </a>
                 </div>
-                <div class="agile_top_brand_left_grid1">
-                  <div class="snipcart-item block">
-                    <div class="snipcart-thumb">
-                      <a (click)="goToChiTietSanPham($event,product)">
-                        <img src="{{product.image1}}" alt=" " class="img-responsive" width="140" height="140"/>
-                      </a>
-                      <p class="fixHeigth45px">{{product.name}}</p>
-                      <h4>{{product.gia}} Đ
-                        <span>{{product.giaTruocKhiHa}} Đ</span>
-                      </h4>
-                    </div>
-                    <div class="snipcart-details">
-                      <input type="submit" name="submit" value="Mua ngay" class="button"
-                             (click)="addProductToOrder(product)"/>
-                    </div>
+                <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)">
+                  <span>{{productCamera.phanTramGiamGia}}%</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="content-product confixPadding20px">
+
+                  <h5 class="changeFontColorBlack ">
+                    <a class="title" href=""
+                       title="{{productCamera.name}}">{{productCamera.name}}</a>
+                  </h5>
+                  <div class="descrison">
+                    <p>Danh mục: {{productCamera.categoryName}}</p>
                   </div>
-                  <div class="tooltip_sale" id="toolTip_Horizontal">
-                    <div class="prd-body" [innerHTML]="product.khuyenMai"></div>
+                  <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>
+                  <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinBoSung"></div>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="box-product confixPaddingTopBottom20px">
+                  <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{productCamera.giaTruocKhiHa}} đ</span>
+                  </div>
+                  <div class=""><span class="thayDoiCSSGiaBan">Giá bán: {{productCamera.gia}} đ</span>
+                  </div>
+                  <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: 150.00 đ</span></div>
+                  <div class="">
+                    <button class="btn btn-warning">Mua ngay</button>
                   </div>
                 </div>
               </div>
             </div>
+            <!--</div>-->
           </div>
+          <!--</li>-->
+          <!--</div>-->
         </ng-container>
+        <!--</ul>-->
         <div class="clearfix"></div>
-
-        <div style="text-align: left">
-          <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">99</a></li>
-          </ul>
-        </div>
       </div>
 
-      <div class="paddingDiv centerListProduct" *ngIf="allowDisplayProductVetical">
+      <div class="agile_top_brands_grids" *ngIf="allowDisplayProductVetical">
 
-        <ul class="products product-list style-product-2">
-          <ng-container *ngFor="let product of this.productList">
-            <div class="col-xs-12 col-lg-4 col-md-6 paddingDivBottom">
-              <li
-                class="first item post-2695 product type-product status-publish has-post-thumbnail product_cat-lap-dat-camera-quan-sat entry  instock sale shipping-taxable purchasable product-type-simple">
-                <div class="product-inner">
-                  <a class="img hover-zoom" (click)="goToChiTietSanPham($event,product)"
-                     title="{{product.name}}">
-                    <img src="{{product.image1}}"
-                         class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{product.name}}"
-                         title="camera-ip-10"
-                         sizes="(max-width: 300px) 100vw, 300px" width="300" height="300">
-                  </a>
-                  <div class="content-product">
-                    <div class="product-sale discount" *ngIf="kiemTraGiamGia(product)">
-                      <span>{{product.phanTramGiamGia}}%</span>
-                    </div>
-                    <h5 class="changeFontColorBlack fixHeigth45px">
-                      <a class="title" href=""
-                         title="{{product.name}}">{{product.name}}</a>
-                    </h5>
-                    <div class="descrison">
-                      <p>{{product.categoryName}}</p>
-                    </div>
-                    <div class="box-product">
-              <span class="price">
-              <del> <span>{{product.giaTruocKhiHa}} đ </span></del>
-              <ins> <span>{{product.gia}} đ</span></ins>
-            </span>
-                      <div class="danhgia">
-                        <a class="item-list" (click)="goToChiTietSanPham($event,product)"
-                           title="CAMERA IP WIFI KHÔNG DÂY YOOSEE HD 720P">Chi tiết
-                          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="tooltip_sale" id="toolTip_Vertical">
-                    <div class="prd-body" [innerHTML]="product.khuyenMai"></div>
-                  </div>
-                </div>
-              </li>
+        <ng-container *ngFor="let productCamera of this.productList">
+          <div class="col-xs-12 paddingDivBottom confixBorderTop">
+
+            <div class="col-md-3 col-hover-khuyenMai">
+              <div class="confixPadding20px">
+                <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                   title="{{productCamera.name}}">
+                  <img
+                    src="{{productCamera.image1}}"
+                    class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}">
+                </a>
+              </div>
+              <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)">
+                <span>{{productCamera.phanTramGiamGia}}%</span>
+              </div>
+
+              <div class="tooltip_sale" id="toolTip_Vertical">
+                <div class="prd-body" [innerHTML]="productCamera.khuyenMai"></div>
+              </div>
             </div>
-          </ng-container>
-        </ul>
+            <div class="col-md-6">
+              <div class="content-product confixPadding20px">
+
+                <h5 class="changeFontColorBlack ">
+                  <a class="title" href=""
+                     title="{{productCamera.name}}">{{productCamera.name}}</a>
+                </h5>
+                <div class="descrison">
+                  <p>Danh mục: {{productCamera.categoryName}}</p>
+                </div>
+                <div class="confixImage">
+                  <ng-container *ngFor="let listImageHighlight of getListImageHighlight(productCamera)">
+                    <img
+                      src="{{listImageHighlight}}"
+                      class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
+                      title="camera-ip-10" width="60" height="30">
+                  </ng-container>
+                </div>
+                <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="box-product confixPadding20px">
+                <div class="confixTextRight"><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{productCamera.giaTruocKhiHa}} đ</span>
+                </div>
+                <div class="confixTextRight"><span class="thayDoiCSSGiaBan">Giá bán: {{productCamera.gia}} đ</span>
+                </div>
+                <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: 150.00 đ</span></div>
+                <div class="confixTextRight">
+                  <button class="btn btn-warning">Mua ngay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </ng-container>
 
         <div class="clearfix"></div>
-
-        <div style="text-align: left">
-          <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">99</a></li>
-          </ul>
-        </div>
       </div>
 
     </div>
-
-    <!-- //brands -->
-
   </div>
+
+
   <div class="clearfix"></div>
 </div>
 

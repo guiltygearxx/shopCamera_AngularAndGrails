@@ -1,67 +1,42 @@
-<div class="products_padding_content"></div>
 <!-- banner -->
 <div class="banner">
-  <div class="w3l_banner_nav_left">
-    <nav class="navbar nav_bottom">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header nav_2">
-        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                data-target="#bs-megadropdown-tabs">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
 
+  <div class="col-xs-12" *ngIf="!allowDisplayNews">
 
-      <app-web-left-side></app-web-left-side>
+    <ng-container *ngFor="let news of danhSachTinTuc">
 
-      <!-- /.navbar-collapse -->
-    </nav>
-  </div>
-  <div class="w3l_banner_nav_right">
-
-    <div class="col-xs-12" *ngIf="!allowDisplayNews">
-
-      <ng-container *ngFor="let news of danhSachTinTuc">
-
-        <div class="col-xs-12 col-md-3 col-lg-3  configBorder">
-          <div class="newpic">
-            <a (click)="goToChiTietTinTuc($event,news)">
-              <img src="{{news.hinhAnh}}" border="0" hspace="5" vspace="5" width="220" height="150"/>
-            </a>
-          </div>
-          <h5><a (click)="goToChiTietTinTuc($event,news)">{{news.tieuDe}}</a></h5>
+      <div class="col-xs-12 col-md-3 col-lg-3  configBorder">
+        <div class="newpic">
+          <a (click)="goToChiTietTinTuc($event,news)">
+            <img src="{{news.hinhAnh}}" border="0" hspace="5" vspace="5" width="220" height="150"/>
+          </a>
         </div>
+        <h5><a (click)="goToChiTietTinTuc($event,news)">{{news.tieuDe}}</a></h5>
+      </div>
 
+    </ng-container>
+  </div>
+
+  <div *ngIf="allowDisplayNews" id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <ng-container *ngFor="let imageView of getListHinhAnhSanPham(); let indexImage = index">
+        <div class="item " [class.active]="activeImage(indexImage)">
+          <img id="example" src="{{imageView}}" alt=" " class="img-responsive"/>
+        </div>
       </ng-container>
     </div>
 
-    <div class="col-xs-12" *ngIf="allowDisplayNews">
-
-      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner">
-          <ng-container *ngFor="let imageView of getListHinhAnhSanPham(); let indexImage = index">
-            <div class="item " [class.active]="activeImage(indexImage)">
-              <img id="example" src="{{imageView}}" alt=" " class="img-responsive"/>
-            </div>
-          </ng-container>
-        </div>
-
-        <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-      </div>
-    </div>
-
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
   </div>
+
+  <!--</div>-->
   <div class="clearfix"></div>
 </div>
 <!-- banner -->
@@ -70,63 +45,66 @@
 <div class="top-brands">
 
   <div class="container">
-    <ul class="nav nav-tabs custom-tabs " role="tablist">
-      <li role="presentation" class="active">
-        <a style="background-color:red; color: white; font-weight: bolder">CAMERA
-          GIÁM SÁT</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a (click)="goToCategory($event, 'cameraTronBo')">Camera Trọn bộ</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a (click)="goToCategory($event, 'cameraGiamSat')">Camera Giám sát</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a (click)="goToCategory($event, 'thietBiAnNinh')">Thiết bị an ninh</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a (click)="goToCategory($event, 'dauGhiHinhCamera')">Đầu ghi hình Camera</a>
-      </li>
-    </ul>
-
-    <div class="agile_top_brands_grids" *ngIf="!allowDisplayProductVetical">
-
-      <ng-container *ngFor="let productCamera of this.productListCameraGiamSat">
-        <div class="col-md-3 top_brand_left text-center-align margin-top-20">
-          <div class="hover14 column">
-            <div class="agile_top_brand_left_grid">
-              <div class="product-sale discount" *ngIf="kiemTraGiamGia(productCamera)">
-                <span>{{productCamera.phanTramGiamGia}}%</span>
-              </div>
-              <div class="agile_top_brand_left_grid1">
-                <div class="snipcart-item block">
-                  <div class="snipcart-thumb">
-                    <a (click)="goToChiTietSanPham($event, productCamera)">
-                      <img title=" " alt=" " src="{{productCamera.image1}}" width="140" height="140"/>
-                    </a>
-                    <p class="fixHeigth45px"> {{productCamera.name}} </p>
-                    <h4>{{productCamera.gia}} đ
-                      <span>{{productCamera.giaTruocKhiHa}} đ</span>
-                    </h4>
-                  </div>
-                  <div class="snipcart-details top_brand_home_details">
-                    <input type="submit" name="submit" value="Mua ngay" class="button"/>
-                  </div>
-                </div>
-                <div class="tooltip_sale" id="toolTip_Horizontal">
-                  <div class="prd-body" [innerHTML]="productCamera.khuyenMai"></div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </ng-container>
-
-      <div class="clearfix"></div>
+    <div class="col-md-12 titleCommon">
+      <h4>GIẢM GIÁ</h4>
     </div>
 
     <div class="agile_top_brands_grids" *ngIf="allowDisplayProductVetical">
+
+      <!--<ul class="products product-list style-product-2">-->
+      <ng-container *ngFor="let productCamera of this.productListGiaiPhapCamera">
+        <div class="col-xs-12 col-md-6 col-lg-3 paddingDivAll20Px confixBorderTop">
+          <div class="row confixPaddingProduct">
+            <div class="col-md-12">
+              <div class="confixImageProductHome">
+                <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                   title="{{productCamera.name}}">
+                  <img
+                    src="{{productCamera.image1}}"
+                    class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}"
+                    title="camera-ip-10">
+                </a>
+              </div>
+              <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)">
+                <span>{{productCamera.phanTramGiamGia}}%</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="content-product confixPadding20px">
+
+                <h5 class="changeFontColorBlack ">
+                  <a class="title" href=""
+                     title="{{productCamera.name}}">{{productCamera.name}}</a>
+                </h5>
+                <div class="descrison">
+                  <p>Danh mục: {{productCamera.categoryName}}</p>
+                </div>
+                <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="box-product confixPaddingTopBottom20px">
+                <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{productCamera.giaTruocKhiHa}} đ</span>
+                </div>
+                <div class=""><span class="thayDoiCSSGiaBan">Giá bán: {{productCamera.gia}} đ</span>
+                </div>
+                <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: 150.00 đ</span></div>
+                <div class="">
+                  <button class="btn btn-warning">Mua ngay</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--</div>-->
+        </div>
+        <!--</li>-->
+        <!--</div>-->
+      </ng-container>
+      <!--</ul>-->
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="agile_top_brands_grids" *ngIf="!allowDisplayProductVetical">
 
       <ul class="products product-list style-product-2">
         <ng-container *ngFor="let productCamera of this.productListCameraGiamSat">
@@ -181,20 +159,14 @@
   </div>
 
   <div class="container">
-    <ul class="nav nav-tabs custom-tabs " role="tablist">
-      <li role="presentation" class="active">
-        <a style="background-color:red; color: white; font-weight: bolder">Giải pháp Camera</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a (click)="goToCategory($event, 'phuKienCamera')">Phụ kiện Camera</a>
-      </li>
-      <li class="hidden-xs hidden-sm" role="presentation">
-        <a (click)="goToCategory($event, 'mayChamCong')">Máy chấm công</a>
-      </li>
-    </ul>
+    <div class="col-md-12 titleCommon">
+      <h4>SẢN PHẨM MỚI</h4>
+    </div>
+
 
     <div class="agile_top_brands_grids" *ngIf="!allowDisplayProductVetical">
       <ng-container *ngFor="let productCamera of this.productListGiaiPhapCamera">
+
         <div class="col-md-3 top_brand_left text-center-align margin-top-20">
           <div class="hover14 column">
             <div class="agile_top_brand_left_grid">
@@ -211,6 +183,7 @@
                     <h4>{{productCamera.gia}} đ
                       <span>{{productCamera.giaTruocKhiHa}} đ</span>
                     </h4>
+                    <div class="fixHeigth45px" [innerHTML]="productCamera.thongTinMoRong"></div>
                   </div>
                   <div class="snipcart-details top_brand_home_details">
                     <input type="submit" name="submit" value="Mua ngay" class="button"/>
@@ -223,200 +196,206 @@
             </div>
           </div>
         </div>
+
       </ng-container>
       <div class="clearfix"></div>
     </div>
 
     <div class="agile_top_brands_grids" *ngIf="allowDisplayProductVetical">
 
-      <ul class="products product-list style-product-2">
-        <ng-container *ngFor="let productCamera of this.productListGiaiPhapCamera">
-          <div class="col-xs-12 col-lg-4 col-md-6 paddingDivBottom">
-            <li
-              class="first item post-2695 product type-product status-publish has-post-thumbnail product_cat-lap-dat-camera-quan-sat entry  instock sale shipping-taxable purchasable product-type-simple">
-              <div class="product-inner">
+      <!--<ul class="products product-list style-product-2">-->
+      <ng-container *ngFor="let productCamera of this.productListGiaiPhapCamera">
+        <div class="col-xs-12 col-md-6 col-lg-3 paddingDivAll20Px confixBorderTop">
+          <div class="row confixPaddingProduct">
+            <div class="col-md-12">
+              <div class="confixImageProductHome">
                 <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
                    title="{{productCamera.name}}">
-                  <img src="{{productCamera.image1}}"
-                       class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}"
-                       title="camera-ip-10"
-                       sizes="(max-width: 300px) 100vw, 300px" width="300" height="300">
+                  <img
+                    src="{{productCamera.image1}}"
+                    class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}">
                 </a>
-                <div class="content-product">
-                  <div class="product-sale discount" *ngIf="kiemTraGiamGia(productCamera)">
-                    <span>{{productCamera.phanTramGiamGia}}%</span>
-                  </div>
-                  <h5 class="changeFontColorBlack fixHeigth45px">
-                    <a class="title" href=""
-                       title="{{productCamera.name}}">{{productCamera.name}}</a>
-                  </h5>
-                  <div class="descrison">
-                    <p>{{productCamera.categoryName}}</p>
-                  </div>
-                  <div class="box-product">
-              <span class="price">
-              <del> <span>{{productCamera.giaTruocKhiHa}} đ </span></del>
-              <ins> <span>{{productCamera.gia}} đ</span></ins>
-            </span>
-                    <div class="danhgia">
-                      <a class="item-list" (click)="goToChiTietSanPham($event, productCamera)"
-                         title="{{productCamera.name}}">Chi tiết
-                        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+              </div>
+              <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)">
+                <span>{{productCamera.phanTramGiamGia}}%</span>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="content-product confixPadding20px">
 
-                <div class="tooltip_sale" id="toolTip_Vertical_SolutionCamera">
-                  <div class="prd-body" [innerHTML]="productCamera.khuyenMai"></div>
+                <h5 class="changeFontColorBlack ">
+                  <a class="title" href=""
+                     title="{{productCamera.name}}">{{productCamera.name}}</a>
+                </h5>
+                <div class="descrison">
+                  <p>Danh mục: {{productCamera.categoryName}}</p>
+                </div>
+                <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>
+                <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinBoSung"></div>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="box-product confixPaddingTopBottom20px">
+                <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{productCamera.giaTruocKhiHa}} đ</span>
+                </div>
+                <div class=""><span class="thayDoiCSSGiaBan">Giá bán: {{productCamera.gia}} đ</span>
+                </div>
+                <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: 150.00 đ</span></div>
+                <div class="">
+                  <button class="btn btn-warning">Mua ngay</button>
                 </div>
               </div>
-            </li>
+            </div>
           </div>
-        </ng-container>
-      </ul>
+          <!--</div>-->
+        </div>
+        <!--</li>-->
+        <!--</div>-->
+      </ng-container>
+      <!--</ul>-->
       <div class="clearfix"></div>
     </div>
 
   </div>
 
-  <div class="container">
+</div>
 
-    <div class="agile_top_brands_grids">
-      <div class="col-md-12 top_brand_left">
-        <br/>
-        <div class="text-header">Chấp nhận thanh toán</div>
-        <img style="width:100%;margin:10px 0;" alt="Chấp nhận thanh toán"
-             src="assets/images/payments.png">
-      </div>
+<div class="container">
 
-      <div class="col-md-12 col-xs-12 top_brand_left">
-        <div class="row">
-          <div class="col-xs-12 col-md-4 col-lg-3">
-            <div class="social-claim">
-              <div class="claim_header">Cam kết</div>
-              <div class="claim">Sản phẩm hàng hóa chính hãng, đa dạng, phong phú</div>
-              <div class="claim">Luôn luôn giá rẻ và khuyến mại không ngừng</div>
-              <div class="claim">Dịch vụ chăm sóc khách hàng uy tín, tận tâm</div>
-            </div>
+  <div class="agile_top_brands_grids">
+    <div class="col-md-12 top_brand_left">
+      <br/>
+      <div class="text-header">Chấp nhận thanh toán</div>
+      <img style="width:100%;margin:10px 0;" alt="Chấp nhận thanh toán"
+           src="assets/images/payments.png">
+    </div>
+
+    <div class="col-md-12 col-xs-12 top_brand_left">
+      <div class="row">
+        <div class="col-xs-12 col-md-4 col-lg-3">
+          <div class="social-claim">
+            <div class="claim_header">Cam kết</div>
+            <div class="claim">Sản phẩm hàng hóa chính hãng, đa dạng, phong phú</div>
+            <div class="claim">Luôn luôn giá rẻ và khuyến mại không ngừng</div>
+            <div class="claim">Dịch vụ chăm sóc khách hàng uy tín, tận tâm</div>
           </div>
-          <div class="col-xs-12 col-md-4 col-lg-3">
-            <div class="social-claim2">
-              <div class="claim_header">Hỗ trợ khách hàng</div>
-              <ul>
-                <li>
-                  <a (click)="goToChiTietTinTucById($event,'6af5da51-3e6b-43fe-ab9d-36bb473cb710')">Xem camera giám sát
-                    qua điện
-                    thoại</a>
-                </li>
-                <li>
-                  <a (click)="goToChiTietTinTucById($event,'c82b9ffb-db34-4061-9589-64cafd269adb')">Xem camera quan sát
-                    qua máy
-                    tính</a>
-                </li>
-                <li>
-                  <a (click)="goToChiTietTinTucById($event,'d0268c1e-2281-49c9-9cb9-7e1153460943')">Download tài
-                    liệu</a>
-                </li>
-                <li>
-                  <a (click)="goToChiTietTinTucById($event,'e8945b63-efb0-47ba-85e1-3d49b9a484ee')">HD cài đặt phần mềm
-                    Teamviewer</a>
-                </li>
-              </ul>
-            </div>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-3">
+          <div class="social-claim2">
+            <div class="claim_header">Hỗ trợ khách hàng</div>
+            <ul>
+              <li>
+                <a (click)="goToChiTietTinTucById($event,'6af5da51-3e6b-43fe-ab9d-36bb473cb710')">Xem camera giám sát
+                  qua điện
+                  thoại</a>
+              </li>
+              <li>
+                <a (click)="goToChiTietTinTucById($event,'c82b9ffb-db34-4061-9589-64cafd269adb')">Xem camera quan sát
+                  qua máy
+                  tính</a>
+              </li>
+              <li>
+                <a (click)="goToChiTietTinTucById($event,'d0268c1e-2281-49c9-9cb9-7e1153460943')">Download tài
+                  liệu</a>
+              </li>
+              <li>
+                <a (click)="goToChiTietTinTucById($event,'e8945b63-efb0-47ba-85e1-3d49b9a484ee')">HD cài đặt phần mềm
+                  Teamviewer</a>
+              </li>
+            </ul>
           </div>
-          <div class="col-xs-12 col-md-4 col-lg-3">
-            <div class="social-claim2">
-              <div class="claim_header">Thông tin công ty</div>
-              <ul>
-                <li>
-                  <a href="http://fptcamera.vn/tin-tuc/gioi-thieu">Giới thiệu</a>
-                </li>
-                <li>
-                  <a href="http://fptcamera.vn/tin-tuc/tuyen-dung">Tuyển dụng</a>
-                </li>
-                <li>
-                  <a href="http://fptcamera.vn/tin-tuc/chinh-sach">Chính sách</a>
-                </li>
-              </ul>
-              <div id="social_us">
-                <div class="social_us_header">Kết nối với chúng tôi</div>
-                <div id="f_social">
-                  <a target="_blank" rel="nofollow" href="https://www.facebook.com/namtv.vn">
-                    <img src="assets/images/f_fb.png">
-                  </a>
-                  <a target="_blank" rel="nofollow" href="https://plus.google.com//+namtv">
-                    <img src="assets/images/f_gplus.png">
-                  </a>
-                  <a target="_blank" rel="nofollow" href="https://www.youtube.com/c/namtv">
-                    <img src="assets/images/f_yt.png">
-                  </a>
-                </div>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-3">
+          <div class="social-claim2">
+            <div class="claim_header">Thông tin công ty</div>
+            <ul>
+              <li>
+                <a href="http://fptcamera.vn/tin-tuc/gioi-thieu">Giới thiệu</a>
+              </li>
+              <li>
+                <a href="http://fptcamera.vn/tin-tuc/tuyen-dung">Tuyển dụng</a>
+              </li>
+              <li>
+                <a href="http://fptcamera.vn/tin-tuc/chinh-sach">Chính sách</a>
+              </li>
+            </ul>
+            <div id="social_us">
+              <div class="social_us_header">Kết nối với chúng tôi</div>
+              <div id="f_social">
+                <a target="_blank" rel="nofollow" href="https://www.facebook.com/namtv.vn">
+                  <img src="assets/images/f_fb.png">
+                </a>
+                <a target="_blank" rel="nofollow" href="https://plus.google.com//+namtv">
+                  <img src="assets/images/f_gplus.png">
+                </a>
+                <a target="_blank" rel="nofollow" href="https://www.youtube.com/c/namtv">
+                  <img src="assets/images/f_yt.png">
+                </a>
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-md-4 col-lg-3 hidden-md">
-            <div class="social-claim2">
-              <div class="claim_header">Tổng đài trợ giúp</div>
-              <div style="margin:10px;">
-                <table style="width: 100%;" cellspacing="1" cellpadding="1" border="0">
-                  <tbody>
-                  <tr>
-                    <td>
-                      <img alt="" src="assets/images/tro-giup.png" style="width: 68px; height: 81px;">
-                    </td>
-                    <td style="vertical-align: middle;">
-                      <p>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-3 hidden-md">
+          <div class="social-claim2">
+            <div class="claim_header">Tổng đài trợ giúp</div>
+            <div style="margin:10px;">
+              <table style="width: 100%;" cellspacing="1" cellpadding="1" border="0">
+                <tbody>
+                <tr>
+                  <td>
+                    <img alt="" src="assets/images/tro-giup.png" style="width: 68px; height: 81px;">
+                  </td>
+                  <td style="vertical-align: middle;">
+                    <p>
 														<span style="color:#333333;">
 															<span style="font-size:14px;">Tư vấn bán hàng</span>
 														</span>
-                      </p>
+                    </p>
 
-                      <p>
+                    <p>
 														<span style="color:#ba0000;">
 															<span style="font-size:20px;">
 																<strong>0984 489 688</strong>
 															</span>
 														</span>
-                      </p>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
-                      <hr>
-                      <span style="color:#555555;">
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <hr>
+                    <span style="color:#555555;">
 														<span style="font-size:13px;">
 															<img alt=""
                                    src="assets/images/life_saver.png">&nbsp; Chăm sóc và hỗ trợ sau bán hàng</span>
 													</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" style="text-align: center;">
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: center;">
 													<span style="color:#B22222;">
 														<strong>
 															<span style="font-size:16px;">(04)6328 2964</span>
 														</strong>
 													</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
 													<span style="font-size:13px;">
 														<span style="color:#555555;">
 															<img alt="" src="assets/images/mailer.png">&nbsp; fptcamera.vn@gmail.com</span>
 													</span>
-                    </td>
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
+
 </div>
 <!-- //top-brands -->
