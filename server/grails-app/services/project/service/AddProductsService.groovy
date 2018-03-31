@@ -4,6 +4,8 @@ import grails.gorm.transactions.Transactional
 import project.bean.ImportProductRow
 import project.bean.ImportProductRow2
 import project.bean.ImportProductsForm
+import project.domain.Attribute
+import project.domain.AttributeValue
 import project.domain.Category
 import project.domain.Product
 
@@ -13,10 +15,13 @@ class AddProductsService implements BaseService {
     static scope = "request"
 
     def applicationUtilsService;
+    def cacheService;
 
     private ImportProductsForm form;
 
     private List<Category> categories;
+
+    private Map attributeMapByCode;
 
     private Category getCategoryByName(String categoryName) {
 
@@ -101,6 +106,22 @@ class AddProductsService implements BaseService {
         return isOk;
     }
 
+    private Attribute getAttribute(String code) {
+
+        return this.attributeMapByCode.get(code)?.get(0);
+    }
+
+    private void updateAttributeValue(Product product, ImportProductRow item) {
+
+        item.attribute?.each { String key, String value ->
+
+            AttributeValue attributeValue = new AttributeValue(referenceId: product.id, attributeId: getAttribute(key)?.id, value: value,
+                    isDeleted: false, lastModifiedTime: new Date(), lastModifiedUser: "admin");
+
+            attributeValue.save(flush: true);
+        }
+    }
+
     private void updateProducts() {
 
         this.result = form.items.collect { ImportProductRow item ->
@@ -128,10 +149,14 @@ class AddProductsService implements BaseService {
             )
 
             product.save(flush: true);
+
+            this.updateAttributeValue(product, item);
         }
     }
 
     Boolean addProducts(ImportProductsForm form) {
+
+        this.attributeMapByCode = cacheService.attributes.groupBy { it.code };
 
         this.form = form;
 

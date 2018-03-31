@@ -1,7 +1,6 @@
 package project.view
 
 import project.domain.BaseDomain
-import project.domain.AttributeValue
 
 class ProductView implements BaseDomain {
 

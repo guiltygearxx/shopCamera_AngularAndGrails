@@ -11,11 +11,13 @@ class ImportProductController {
     def applicationUtilsService;
     def addProductsService;
 
-    def parseFile() {
+    def parseFile(String templateType) {
+
+        println "templateType ${templateType}";
 
         MultipartFile file = request.getFile("file");
 
-        List<ImportProductRow> items = this.importProductService.readFile(file.inputStream);
+        List<ImportProductRow> items = this.importProductService.readFile(file.inputStream, templateType);
 
         render(items as JSON);
     }
@@ -23,6 +25,8 @@ class ImportProductController {
     def importProducts() {
 
         ImportProductsForm form = applicationUtilsService.bindData(new ImportProductsForm(), request.JSON);
+
+        println form as JSON;
 
         this.addProductsService.addProducts(form);
 

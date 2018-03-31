@@ -2,10 +2,12 @@ package project.service
 
 import grails.converters.JSON
 import grails.gorm.transactions.Transactional
+import org.apache.poi.hssf.util.CellReference
 import org.grails.plugins.excelimport.AbstractExcelImporter
 import org.joda.time.LocalDate
 import project.ApplicationConstants
 import project.bean.ImportProductRow
+import project.domain.Attribute
 
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -15,10 +17,14 @@ class ImportProductService extends AbstractExcelImporter {
 
     static scope = "request";
 
-//    def customExcelImportService;
     def excelImportService;
+    def cacheService;
+
+    private String templateType;
 
     private DecimalFormatSymbols decimalFormatSymbols_;
+
+    private Map attributeMapByCode;
 
     private Map importConfig = [
             startRow : 1, lastRow: 1000,
@@ -42,6 +48,8 @@ class ImportProductService extends AbstractExcelImporter {
 
     private void buildConfig() {
 
+        this.attributeMapByCode = cacheService.attributes?.groupBy { it.code };
+
         Integer sheetIndex = 0;
 
         while (this.workbook.isSheetHidden(sheetIndex)) {
@@ -49,6 +57,17 @@ class ImportProductService extends AbstractExcelImporter {
         }
 
         this.importConfig.sheet = this.workbook.getSheetName(sheetIndex);
+
+        cacheService.attributes?.findAll {
+
+            it.group == this.templateType
+
+        }?.eachWithIndex { Attribute attribute, int index ->
+
+            importConfig.columnMap << [(CellReference.convertNumToColString(index + 14)): attribute.code];
+        }
+
+        println importConfig as JSON;
     }
 
     private convertCellValueToString(Object cellValue) {
@@ -105,7 +124,14 @@ class ImportProductService extends AbstractExcelImporter {
         }
     }
 
-    List<ImportProductRow> readFile(InputStream is) {
+    private Boolean isDynamicField(String code) {
+
+        return attributeMapByCode?.get(code) ? true : false;
+    }
+
+    List<ImportProductRow> readFile(InputStream is, String templateType) {
+
+        this.templateType = templateType;
 
         this.read(is);
 
@@ -113,7 +139,7 @@ class ImportProductService extends AbstractExcelImporter {
 
         return this.excelImportService.columns(this.workbook, importConfig)?.collect { Map cellValueMap ->
 
-            ImportProductRow item = new ImportProductRow();
+            ImportProductRow item = new ImportProductRow(attribute: [:]);
 
             cellValueMap.each { String columnName, def cellValue ->
 
@@ -129,8 +155,13 @@ class ImportProductService extends AbstractExcelImporter {
                         break;
                 }
 
-                item."${columnName}" = cellValue;
+                if (isDynamicField(columnName)) {
 
+                    item.attribute."${columnName}" = cellValue;
+                } else {
+
+                    item."${columnName}" = cellValue;
+                }
             }
 
             return item;

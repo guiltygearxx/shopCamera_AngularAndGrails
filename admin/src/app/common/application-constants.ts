@@ -46,3 +46,6 @@ export const AUTHENTICATION_TYPE = 'x-auth-token';
 
 export const STORAGE_ACCESS_TOKEN = 'accessToken';
 export const STORAGE_USER_INFORMATION = 'userInformation';
+
+export const IMPORT_PRODUCT_TEMPLATE_CAMERA = 'camera';
+export const IMPORT_PRODUCT_TEMPLATE_DAU_GHI = 'dauGhi';

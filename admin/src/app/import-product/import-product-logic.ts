@@ -13,6 +13,8 @@ import {isNullOrUndefined} from 'util';
 import {ValidateUtils} from '../common/validate/validate-utils';
 import {FormFlowManager} from '../common/form-flow-manager';
 import {Validateable} from '../common/validate/validateable';
+import {AttributeService} from '../service/attribute.service';
+import {Attribute} from '../bean/attribute';
 
 export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
 
@@ -23,6 +25,8 @@ export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
   items: ImportProductRow[];
 
   categories: Category[];
+
+  attributes: Attribute[];
 
   resultBean: ResultBean;
 
@@ -37,19 +41,25 @@ export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
               protected categoryService: CategoryService,
               protected applicationUtils: ApplicationUtils,
               protected validateUtils: ValidateUtils,
-              protected formFlowManager: FormFlowManager) {
+              protected formFlowManager: FormFlowManager,
+              protected attributeService: AttributeService) {
   }
 
   uploadFile(): void {
 
     this.importProductService
-      .parseFile(this.form.importFile)
+      .parseFile(this.form)
       .subscribe((items) => this.afterUploadFile(items));
   }
 
   loadCategories(): void {
 
     this.categoryService.get().subscribe((categories) => this.afterLoadCategories(categories));
+  }
+
+  loadAttributes(): void {
+
+    this.attributeService.get().subscribe((attributes) => this.afterLoadAttributes(attributes));
   }
 
   afterSubmit(resultBean: ResultBean): void {
@@ -88,6 +98,11 @@ export class ImportProductLogic implements SupportSubmitForm<ResultBean> {
     this.categories = categories;
 
     this.categoriesMapping.groupBy(this.categories, [(category) => category.name]);
+  }
+
+  protected afterLoadAttributes(attributes: Attribute[]): void {
+
+    this.attributes = attributes;
   }
 
   protected getCategoryByName(categoryName: string): Category {

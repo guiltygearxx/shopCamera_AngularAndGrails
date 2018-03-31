@@ -10,6 +10,6 @@ class CacheService {
 
     void cachingAttribute() {
 
-        attributes = Attribute.findAllByIsDeleted(false);
+        attributes = Attribute.findAllByIsDeleted(false).sort { it.order };
     }
 }
