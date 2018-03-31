@@ -37,8 +37,7 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
   constructor(protected router: Router,
               protected listProductService: ListProductService,
               protected  gioHangService: GioHangService,
-              protected categoryService: CategoryService,
-              ) {
+              protected categoryService: CategoryService,) {
     super(router, listProductService, gioHangService, categoryService);
   }
 
@@ -115,11 +114,10 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
     return subCategory;
   }
 
-  goToTrangChu(event: any) {
+  goToTrangChu(event: any): void {
 
     event.preventDefault();
 
     this.router.navigate(["/trangChu"]);
   }
-
 }

@@ -29,76 +29,92 @@
 <!-- //header -->
 <!-- HEADER section -->
 <div class="header-wrapper">
-<header id="header">
-  <div class="stuck-nav backGroundColorOrange">
-    <div class="container offset-top-5">
-      <div class="row">
-        <div class="pull-left col-sm-9 col-md-9 col-lg-10">
-          <!-- navigation start -->
-          <nav class="navbar">
-            <div class="responsive-menu mainMenu">
-               <!--Mobile menu Button-->
-              <div class="col-xs-2 visible-mobile-menu-on">
-                <div class="expand-nav compact-hidden">
-                  <a class="off-canvas-menu-toggle">
-                    <div class="navbar-toggle">
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="icon-bar"></span>
-                      <span class="menu-text">MENU</span>
-                    </div>
+  <header id="header">
+    <div class="stuck-nav backGroundColorOrange">
+      <div class="container offset-top-5">
+        <div class="row">
+          <div class="pull-left col-sm-9 col-md-9 col-lg-10">
+            <!-- navigation start -->
+            <nav class="navbar">
+              <div class="responsive-menu mainMenu">
+                <!--Mobile menu Button-->
+                <div class="col-xs-2 visible-mobile-menu-on">
+                  <div class="expand-nav compact-hidden">
+                    <a class="off-canvas-menu-toggle">
+                      <div class="navbar-toggle">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="menu-text">MENU</span>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                <!--//end Mobile menu Button -->
+                <ul class="nav navbar-nav">
+                  <li class="dl-close"><a><span class="icon icon-close"></span>close</a></li>
+
+                  <li class="dropdown-mega-menu">
+                    <span class="dropdown-toggle extra-arrow"></span>
+
+                    <a id="linkTrangChu" href="#" class="dropdown-toggle" (click)="goToTrangChu($event)">
+                      <span class="act-underline">Trang Chủ</span>
+                    </a>
+
+                  </li>
+
+                  <ng-container *ngFor="let parentCategory of getParentCategories()">
+
+                    <li class="dropdown dropdown-mega-menu dropdown-two-col">
+
+                      <span class="dropdown-toggle extra-arrow"></span>
+
+                      <a (click)="goToSubCategory($event, parentCategory, null)" class="dropdown-toggle"
+                         data-toggle="dropdown"><span class="act-underline">{{parentCategory.name}}</span></a>
+
+                      <ul class="dropdown-menu multicolumn two-col" role="menu">
+
+                        <li class="dl-back"><a><span class="icon icon-chevron_left"></span>back</a></li>
+
+                        <ng-container *ngFor="let subCategory of getSubCategories(parentCategory);">
+                          <li>
+                            <a (click)="goToSubCategory($event, parentCategory, subCategory)">{{subCategory.name}}</a>
+                          </li>
+                        </ng-container>
+
+                      </ul>
+
+                    </li>
+                  </ng-container>
+
+                  <ng-container *ngFor="let menuItem of menuItems">
+                    <li class="dropdown dropdown-mega-menu">
+                      <span class="dropdown-toggle extra-arrow"></span>
+                      <a class="dropdown-toggle" data-toggle="dropdown" (click)="goToMenuIndex($event, menuItem)"><span
+                        class="act-underline">{{menuItem.name}}</span></a>
+                    </li>
+                  </ng-container>
+                </ul>
+              </div>
+            </nav>
+          </div>
+          <!-- navigation end -->
+          <div class="pull-right col-sm-3 col-md-3 col-lg-2">
+            <div class="text-right" style="padding-top: 4px">
+              <!-- shopping cart start -->
+              <div class="cart link-inline">
+                <div class="dropdown text-right">
+                  <a class="dropdown-toggle">
+                    <span class="badge badge--cart">{{getSoLuongTrongGioHang()}} sản phẩm</span>
                   </a>
                 </div>
               </div>
-               <!--//end Mobile menu Button -->
-              <ul class="nav navbar-nav">
-                <li class="dl-close"><a><span class="icon icon-close"></span>close</a></li>
-                <li class="dropdown dropdown-mega-menu">
-                  <span class="dropdown-toggle extra-arrow"></span>
-                  <a class="dropdown-toggle" data-toggle="dropdown" (click)="goToTrangChu($event)"><span class="act-underline">Trang Chủ</span></a>
-                </li>
-                <ng-container *ngFor="let parentCategory of getParentCategories()">
-                  <li class="dropdown dropdown-mega-menu dropdown-two-col">
-                    <span class="dropdown-toggle extra-arrow"></span>
-                    <a (click)="goToSubCategory($event, parentCategory, null)" class="dropdown-toggle" data-toggle="dropdown"><span class="act-underline">{{parentCategory.name}}</span></a>
-                    <ul class="dropdown-menu multicolumn two-col" role="menu">
-                      <li class="dl-back"><a><span class="icon icon-chevron_left"></span>back</a></li>
-                      <ng-container *ngFor="let subCategory of getSubCategories(parentCategory);">
-                        <li>
-                          <a (click)="goToSubCategory($event, parentCategory, subCategory)">{{subCategory.name}}</a>
-                        </li>
-                      </ng-container>
-                    </ul>
-                  </li>
-                </ng-container>
-
-                <ng-container *ngFor="let menuItem of menuItems">
-                <li class="dropdown dropdown-mega-menu">
-                  <span class="dropdown-toggle extra-arrow"></span>
-                  <a class="dropdown-toggle" data-toggle="dropdown" (click)="goToMenuIndex($event, menuItem)"><span class="act-underline">{{menuItem.name}}</span></a>
-                </li>
-                </ng-container>
-              </ul>
+              <!-- shopping cart end -->
             </div>
-          </nav>
-        </div>
-        <!-- navigation end -->
-        <div class="pull-right col-sm-3 col-md-3 col-lg-2">
-          <div class="text-right" style="padding-top: 4px">
-            <!-- shopping cart start -->
-            <div class="cart link-inline">
-              <div class="dropdown text-right">
-                <a class="dropdown-toggle">
-                  <span class="badge badge--cart">{{getSoLuongTrongGioHang()}} sản phẩm</span>
-                </a>
-              </div>
-            </div>
-            <!-- shopping cart end -->
           </div>
         </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
 </div>
 <!-- End HEADER section -->
