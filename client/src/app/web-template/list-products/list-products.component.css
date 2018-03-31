@@ -205,7 +205,7 @@ li {
 .filter-choices > li {
   display: inline-block;
   margin: 0 0 5px 5px;
-  padding: 0 0 6px 10px;
+  /*padding: 0 0 6px 10px;*/
   box-sizing: border-box;
   border: 1px solid #ded9e1;
   background: #eaf1fa;

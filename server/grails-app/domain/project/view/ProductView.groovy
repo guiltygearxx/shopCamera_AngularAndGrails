@@ -17,6 +17,7 @@ class ProductView implements BaseDomain {
     String thongTinMoRong;
     String hinhAnhTrucQuan;
     String thongTinBoSung;
+    Date lastModifiedTime;
 
     static constraints = {
     }

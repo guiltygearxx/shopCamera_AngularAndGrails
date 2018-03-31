@@ -13,6 +13,8 @@ import {GioHangService} from "../../service/order/gio-hang.service";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {isNullOrUndefined} from "util";
 import {ExampleObject} from "../../bean/example-object";
+import {Attribute} from "../../bean/attribute";
+import {AttributeService} from "../../service/attribute.service";
 
 @Component({
   selector: 'app-list-products',
@@ -25,7 +27,18 @@ export class ListProductsComponent
   detailForms: OrderDetailForm;
 
   contentCategory: string;
+
   typeOfCategory: string;
+
+  attributes: Attribute[];
+
+  selectedCategory: CategoryItem;
+
+  filterAttributes: Attribute[];
+
+  hasFilterValues: boolean;
+
+  filterValuesTemp: { [code: string]: string[] };
 
   get inputParams(): ListProductInputParams {
 
@@ -40,7 +53,8 @@ export class ListProductsComponent
               protected categoryService: CategoryService,
               protected gioHangService: GioHangService,
               protected listProductService: ListProductService,
-              protected applicationUtils: ApplicationUtils) {
+              protected applicationUtils: ApplicationUtils,
+              protected attributeService: AttributeService) {
 
     super(productListService, categoryService);
   }
@@ -51,6 +65,13 @@ export class ListProductsComponent
 
     this.filterForm = new ListProductFilterForm();
 
+    this.filterValuesTemp = {};
+
+    this.filterValues = {};
+
+    this.initFilterAttributes();
+
+    this.initHasFilterValues();
 
     this.getListCategory();
 
@@ -58,21 +79,27 @@ export class ListProductsComponent
       new ExampleObject("asc", "Giá tăng dần"),
       new ExampleObject("desc", "Giá giảm dần")
     ]
+
+    this.loadAttributes();
   }
 
   ngAfterContentChecked(): void {
 
     if (this.listProductService.isInputParamsChanged && this.isCategoryLoaded) {
 
+      this.filterValuesTemp = {};
+
+      this.filterValues = {};
+
       this.getListProduct();
     }
   }
 
-  changeDisplayProductGridView():boolean{
+  changeDisplayProductGridView(): boolean {
     return this.allowDisplayProductVetical = true;
   }
 
-  changeDisplayProductListView():boolean{
+  changeDisplayProductListView(): boolean {
     return this.allowDisplayProductVetical = false;
   }
 
@@ -115,12 +142,12 @@ export class ListProductsComponent
       this.contentCategory = contentCategory;
     }
   }
+
   getTypeOfCategory(type: string): void {
     if (!isNullOrUndefined(type)) {
       this.typeOfCategory = type;
     }
   }
-
 
 
   getListProduct(): void {
@@ -137,7 +164,7 @@ export class ListProductsComponent
 
     if (!this.applicationUtils.isStringEmpty(this.inputParams.subCategory)) {
 
-      let category = categoryItems.find((item) => item.code == this.inputParams.subCategory);
+      let category = this.selectedCategory = categoryItems.find((item) => item.code == this.inputParams.subCategory);
 
       this.getContentCategory(category.content);
 
@@ -147,7 +174,7 @@ export class ListProductsComponent
 
     } else if (!this.applicationUtils.isStringEmpty(this.inputParams.categoryCode)) {
 
-      let category = categoryItems.find((item) => item.code == this.inputParams.categoryCode);
+      let category = this.selectedCategory = categoryItems.find((item) => item.code == this.inputParams.categoryCode);
 
       this.getContentCategory(category.content);
 
@@ -204,4 +231,109 @@ export class ListProductsComponent
     this.router.navigate(["/danhSachSanPham"]);
   }
 
+  filterValuesChanged(filterValues: any): void {
+
+    this.filterValues = {};
+
+    Object.keys(filterValues).forEach((key) => this.filterValues[key] = filterValues[key]);
+
+    this.getListProduct();
+
+    this.initFilterAttributes();
+
+    this.initHasFilterValues();
+  }
+
+  removeFilterValue(event: any, attribute: Attribute, filterValue: string): void {
+
+    event.preventDefault();
+
+    this.removeFilterValue_(this.filterValues, attribute, filterValue);
+
+    this.removeFilterValue_(this.filterValuesTemp, attribute, filterValue);
+
+    this.getListProduct();
+
+    this.initFilterAttributes();
+
+    this.initHasFilterValues();
+  }
+
+  resetFilterValue(event: any): void {
+
+    event.preventDefault();
+
+    this.filterValues = {};
+
+    this.filterValuesTemp = {};
+
+    this.getListProduct();
+
+    this.initFilterAttributes();
+
+    this.initHasFilterValues();
+  }
+
+  protected removeFilterValue_(filterValues: { [code: string]: string[] },
+                               attribute: Attribute, filterValue: string): void {
+
+    if (isNullOrUndefined(filterValues) || isNullOrUndefined(filterValues[attribute.code])) return;
+
+    let index = filterValues[attribute.code].indexOf(filterValue);
+
+    if (index != -1) filterValues[attribute.code].splice(index, 1);
+  }
+
+  protected loadAttributes(): void {
+
+    this.attributeService.get().subscribe((attributes) => {
+
+      this.attributes = attributes;
+
+      this.initFilterAttributes();
+    });
+  }
+
+  protected initFilterAttributes(): void {
+
+    if (isNullOrUndefined(this.attributes) || isNullOrUndefined(this.filterValues)) {
+
+      this.filterAttributes = [];
+
+      return;
+    }
+
+    console.log("initFilterAttributes")
+
+    this.filterAttributes = this.attributes.filter((item) => {
+
+      let values = this.filterValues[item.code];
+
+      return !isNullOrUndefined(values) && values.length > 0;
+    });
+  }
+
+  protected getFilterValues(attribute: Attribute): string[] {
+
+    return isNullOrUndefined(this.filterValues) ? null : this.filterValues[attribute.code];
+  }
+
+  protected initHasFilterValues(): void {
+
+    if (isNullOrUndefined(this.filterValues)) {
+
+      this.hasFilterValues = false;
+
+      return;
+    }
+
+    let hasFilterValuesKey = Object.keys(this.filterValues).find((key) => {
+
+      let values = this.filterValues[key];
+
+      return !isNullOrUndefined(values) && values.length > 0;
+    });
+
+    this.hasFilterValues = !isNullOrUndefined(hasFilterValuesKey);
+  }
 }

@@ -43,9 +43,9 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
     super.afterGetListCategory(categoryItems);
 
-    this.getListProductCameraGiamSat("9a40cd52-99fe-42cc-bda3-5e43fb1f5439");
+    this.getListProductSanPhamMoi("9a40cd52-99fe-42cc-bda3-5e43fb1f5439");
 
-    this.getListProductGiaiPhapCamera("f2ea6507-8169-455a-92cd-0dfbeeee796c");
+    this.getListProductKhuyenMai("f2ea6507-8169-455a-92cd-0dfbeeee796c");
 
   }
 

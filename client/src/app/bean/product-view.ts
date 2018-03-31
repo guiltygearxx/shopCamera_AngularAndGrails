@@ -12,4 +12,5 @@ export class ProductView {
   thongTinMoRong: string;
   hinhAnhTrucQuan: string;
   thongTinBoSung: string;
+  lastModifiedTime: string;
 }

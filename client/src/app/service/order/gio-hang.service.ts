@@ -26,13 +26,19 @@ export class GioHangService {
 
     if (isNullOrUndefined(orderDetailForm)) {
 
+      orderDetailForm = new OrderDetailForm();
+
+      orderDetailForm.productId = detailForm.productId;
       orderDetailForm.quantity = '1';
+      orderDetailForm.name = detailForm.name;
+      orderDetailForm.hinhAnh = detailForm.hinhAnh;
+      orderDetailForm.gia = detailForm.gia;
 
       this.detailForms.push(orderDetailForm);
 
     } else {
 
-      orderDetailForm.quantity += 1;
+      orderDetailForm.quantity = (parseInt(orderDetailForm.quantity) + 1).toString();
     }
   }
 

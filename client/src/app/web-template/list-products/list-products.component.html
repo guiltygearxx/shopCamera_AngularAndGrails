@@ -3,7 +3,9 @@
   <!--Filter Form-->
   <div class="w3l_banner_nav_left">
     <nav class="navbar nav_bottom">
-      <app-filter [type]="this.typeOfCategory"></app-filter>
+      <app-filter [type]="this.typeOfCategory" [(filterValues)]="filterValuesTemp"
+                  (filterValuesChange)="filterValuesChanged($event)">
+      </app-filter>
     </nav>
   </div>
   <div class="w3l_banner_nav_right">
@@ -29,13 +31,13 @@
     </div>
 
     <!--Filter-->
-    <div class="col-md-12">
+    <div class="col-md-12" style="  background: #f4f5f7;">
       <div class="list-tools-bar">
         <div class="list-tool-sortby" style="clear:both;">
           <span class="list-tool-label">Sắp xếp:</span>
           <label class="form-select">
             <app-select [title]="'Giá'" [(value)]="filterForm.sortBy" [placeHolder]="'Sắp xếp'"
-            [data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">
+                        [data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">
             </app-select>
           </label>
         </div>
@@ -44,62 +46,65 @@
 
           <span class="list-tool-label">Hiển thị:</span>
           <label class="form-select">
-            <!--<select id="select_top">-->
+            <select id="select_top">
 
-            <!--<option value="12">12</option>-->
+              <option value="12">12</option>
 
-            <!--<option value="36" selected="selected">36</option>-->
+              <option value="36" selected="selected">36</option>
 
-            <!--<option value="60">60</option>-->
+              <option value="60">60</option>
 
-            <!--<option value="96">96</option>-->
+              <option value="96">96</option>
 
-            <!--</select>-->
+            </select>
           </label>
 
           <div id="view-type" class="btn-group">
 
             <div class="btn-group-cell">
-              <button type="button" id="GridView" title="grid view" class="btn btnGLView" [class.is-current] ="!allowDisplayProductVetical"
+              <button type="button" id="GridView" title="grid view" class="btn btnGLView"
+                      [class.is-current]="!allowDisplayProductVetical"
                       (click)="changeDisplayProductListView()"><i class="fa fa-th"></i></button>
             </div>
 
             <div class="btn-group-cell">
-              <button type="button" id="ListView" title="list view" class="btn btnGLView" [class.is-current] ="allowDisplayProductVetical"
+              <button type="button" id="ListView" title="list view" class="btn btnGLView"
+                      [class.is-current]="allowDisplayProductVetical"
                       (click)="changeDisplayProductGridView()"><i class="fa fa-th-list"></i>
               </button>
             </div>
           </div>
         </div>
 
-        <div class="filter-choices-bar">
-          <label class="filter-choices-label">Lọc:</label>
-          <ul class="filter-choices">
+        <ng-container *ngIf="hasFilterValues">
+          <div class="filter-choices-bar">
+            <label class="filter-choices-label">Lọc:</label>
 
-            <li><label class="filter-choice-title">CPU Type : </label><span
-              class="filter-choice">Intel Core i7</span><span
-              class="filter-choice">AMD Ryzen</span>
-            </li>
+            <ul class="filter-choices">
 
-            <li><label class="filter-choice-title">Useful Links : </label><span
-              class="filter-choice">Free Shipping</span><span
-              class="filter-choice">Top Sellers</span>
-            </li>
+              <ng-container *ngFor="let attribute of filterAttributes">
 
-            <li><label class="filter-choice-title">Memory Capacity : </label>
-              <span class="filter-choice">2 GB DDR3</span>
-            </li>
+                <li>
+                  <label class="filter-choice-title">{{attribute.title}} : </label>
 
-            <li><label class="filter-choice-title">Screen Size : </label>
-              <span class="filter-choice">"10"</span>
-              <span class="filter-choice">"12.1"</span>
-            </li>
+                  <ng-container *ngFor="let filterValue of getFilterValues(attribute)">
+                    <span class="filter-choice" (click)="removeFilterValue($event, attribute, filterValue)">
+                      {{filterValue}}
+                    </span>
+                  </ng-container>
+                </li>
 
-            <li class="filter-choices-button-area">
-              <button type="button" class="btn reset_filter" id="btn_reset_filter">Reset</button>
-            </li>
-          </ul>
-        </div>
+              </ng-container>
+
+              <li class="filter-choices-button-area">
+                <button type="button" class="btn reset_filter" id="btn_reset_filter" (click)="resetFilterValue($event)">
+                  Reset
+                </button>
+              </li>
+            </ul>
+          </div>
+        </ng-container>
+
       </div>
     </div>
 

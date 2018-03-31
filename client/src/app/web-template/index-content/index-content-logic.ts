@@ -13,9 +13,9 @@ export class IndexContentLogic {
   allowDisplayNews: boolean
   allowDisplayProductVetical: boolean;
 
-  productListCameraGiamSat: ProductView[];
+  productListSanPhamMoi: ProductView[];
 
-  productListGiaiPhapCamera: ProductView[];
+  productListKhuyenMai: ProductView[];
 
   danhSachTinTuc: News[];
 
@@ -25,7 +25,7 @@ export class IndexContentLogic {
   }
 
 
-  getListProductCameraGiamSat(categoryId: string) {
+  getListProductSanPhamMoi(categoryId: string) {
 
     let subCategoryIds = this.categoryList
       .filter((category) => category.parentCategoryId == categoryId)
@@ -36,15 +36,15 @@ export class IndexContentLogic {
     if (!isNullOrUndefined(subCategoryIds))
       categoryIds = categoryIds.concat(subCategoryIds)
 
-    let params = {categoryIds: categoryIds.join(";"), max: 20};
+    let params = {categoryIds: categoryIds.join(";"), max: 12,sort: 'lastModifiedTime', order: 'desc'};
 
     this.productViewService
       .get(params)
-      .subscribe((productView) => this.afterGetListProductCameraGiamSat(productView));
+      .subscribe((productView) => this.afterGetListProductSanPhamMoi(productView));
 
   }
 
-  getListProductGiaiPhapCamera(categoryId: string) {
+  getListProductKhuyenMai(categoryId: string) {
 
     let subCategoryIds = this.categoryList
       .filter((category) => category.parentCategoryId == categoryId)
@@ -55,11 +55,11 @@ export class IndexContentLogic {
     if (!isNullOrUndefined(subCategoryIds))
       categoryIds = categoryIds.concat(subCategoryIds)
 
-    let params = {categoryIds: categoryIds.join(";"), max: 20};
+    let params = {categoryIds: categoryIds.join(";"), max: 12, sort: 'phanTramGiamGia', order: 'desc'};
 
     this.productViewService
       .get(params)
-      .subscribe((productView) => this.afterGetListProductGiaiPhapCamera(productView));
+      .subscribe((productView) => this.afterGetListProductKhuyenMai(productView));
 
   }
 
@@ -106,14 +106,14 @@ export class IndexContentLogic {
     this.danhSachTinTuc = newsItems;
   }
 
-  protected afterGetListProductCameraGiamSat(productViews: ProductView[]): void {
+  protected afterGetListProductSanPhamMoi(productViews: ProductView[]): void {
 
-    this.productListCameraGiamSat = productViews;
+    this.productListSanPhamMoi = productViews;
   }
 
-  protected afterGetListProductGiaiPhapCamera(productViews: ProductView[]): void {
+  protected afterGetListProductKhuyenMai(productViews: ProductView[]): void {
 
-    this.productListGiaiPhapCamera = productViews;
+    this.productListKhuyenMai = productViews;
   }
 
   protected afterGetListCategory(categoryItems: CategoryItem[]): void {

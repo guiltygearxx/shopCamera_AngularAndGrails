@@ -88,7 +88,7 @@
             <!-- shopping cart start -->
             <div class="cart link-inline">
               <div class="dropdown text-right">
-                <a class="dropdown-toggle">
+                <a class="dropdown-toggle" (click)="goToOrder($event)">
                   <span class="badge badge--cart">{{getSoLuongTrongGioHang()}} sản phẩm</span>
                 </a>
               </div>

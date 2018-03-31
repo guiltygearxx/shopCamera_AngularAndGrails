@@ -12,6 +12,8 @@ export class ListProductLogic {
 
   khoangGia: ExampleObject[];
 
+  filterValues: { [code: string]: string[] };
+
   constructor(protected productViewService: ProductViewService,
               protected categoryService: CategoryService) {
   }
@@ -45,7 +47,7 @@ export class ListProductLogic {
 
   protected buildParamsForFilter(params: any): void {
 
-    // params.attributeCode = ["value1", "value2"];
+    Object.keys(this.filterValues).forEach((item) => params[item] = this.filterValues[item]);
   }
 
   getListImageHighlight(productView: ProductView): string[] {

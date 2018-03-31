@@ -47,6 +47,7 @@ import {GioHangService} from "./service/order/gio-hang.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {OrderDetailService} from "./service/order/order-detail.service";
 import { FilterComponent } from './web-template/filter/filter.component';
+import {AttributeService} from "./service/attribute.service";
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { FilterComponent } from './web-template/filter/filter.component';
     StorageService,
     GioHangService,
     FormFlowManager,
-    ListProductService
+    ListProductService,
+    AttributeService
   ],
   bootstrap: [AppComponent]
 })
