@@ -61,6 +61,7 @@ import {CategoryDetailComponent} from './category-detail/category-detail.compone
 import {ConfigurationUiWebComponent} from './configuration-ui-web/configuration-ui-web.component';
 import {BannerComponent} from './banner/banner.component';
 import {AttributeService} from './service/attribute.service';
+import {AttributeValueService} from './service/attribute-value.service';
 
 @NgModule({
 
@@ -132,7 +133,8 @@ import {AttributeService} from './service/attribute.service';
     OrderService,
     OrderDetailService,
     UserService,
-    AttributeService
+    AttributeService,
+    AttributeValueService,
   ],
 
   bootstrap: [AppComponent],

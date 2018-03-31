@@ -13,7 +13,12 @@ import {ActivatedRoute} from '@angular/router';
 import {ProductService} from '../service/product.service';
 import {DialogService} from 'ng2-bootstrap-modal';
 import {CategoryService} from '../service/category.service';
-import {SolutionDetailForm} from '../bean/solution-detail-form';
+import {AttributeService} from '../service/attribute.service';
+import {AttributeValueService} from '../service/attribute-value.service';
+import {Attribute} from '../bean/attribute';
+import {AttributeValue} from '../bean/attribute-value';
+import {isNullOrUndefined} from 'util';
+import {GroupByWrapper} from '../common/group-by-wrapper';
 
 @Component({
   selector: 'app-product-detail',
@@ -26,13 +31,25 @@ export class ProductDetailComponent
 
   categories: Category[];
 
+  attributes: Attribute[];
+
+  displayAttributes: Attribute[];
+
+  attributeMapById: GroupByWrapper<Attribute>;
+
+  selectedCategory: Category;
+
+  protected attributeValues: AttributeValue[];
+
   constructor(protected applicationUtils: ApplicationUtils,
               protected domainRestService: ProductService,
               protected formFlowManager: FormFlowManager,
               protected validateUtils: ValidateUtils,
               protected route: ActivatedRoute,
               protected dialogService: DialogService,
-              protected categoryService: CategoryService) {
+              protected categoryService: CategoryService,
+              protected attributeService: AttributeService,
+              protected attributeValueService: AttributeValueService,) {
 
     super(applicationUtils, domainRestService, formFlowManager, validateUtils, route);
   }
@@ -41,7 +58,11 @@ export class ProductDetailComponent
 
     this.form = new ProductForm();
 
+    this.form.attributes = {};
+
     this.loadCategories();
+
+    this.loadAttributes();
 
     super.ngOnInit();
   }
@@ -79,8 +100,75 @@ export class ProductDetailComponent
 
     if (resultBean.isSuccess) {
 
+      this.id = resultBean.result.product.id;
+
+      this.attributeValues = resultBean.result.attributeValues;
+
       this.form = this.bindDataToForm(resultBean.result.product);
     }
+  }
+
+  categoryIdChanged(categoryId: string): void {
+
+    this.form.attributes = {};
+
+    this.initSelectedCategory();
+
+    this.buildDisplayAttributes();
+  }
+
+  protected loadAttributes(): void {
+
+    this.attributeService.get().subscribe((attributes) => {
+
+      this.attributes = attributes;
+
+      (this.attributeMapById = new GroupByWrapper<Attribute>()).groupBy(attributes, [(item) => item.id]);
+
+      if (!this.applicationUtils.isStringEmpty(this.id)) {
+
+        this.loadAttributeValues();
+      }
+
+      this.buildDisplayAttributes();
+    });
+  }
+
+  protected buildDisplayAttributes(): void {
+
+    let group = isNullOrUndefined(this.selectedCategory) ? null : this.selectedCategory.type;
+
+    this.displayAttributes = isNullOrUndefined(this.attributes) ? null : this.attributes.filter((item) => item.group == group);
+  }
+
+  protected getAttributeById(id: string): Attribute {
+
+    return isNullOrUndefined(this.attributeMapById) ? null : this.attributeMapById.getItem([id]);
+  }
+
+  protected loadAttributeValues(): void {
+
+    this.attributeValueService.get({referenceId: this.id}).subscribe((attributeValues) => {
+
+      this.attributeValues = attributeValues;
+
+      this.bindAttributeValuesToForm();
+    });
+  }
+
+  protected bindAttributeValuesToForm(): void {
+
+    if (isNullOrUndefined(this.attributeValues)) return;
+
+    this.attributeValues.forEach((item) => {
+
+      let attribute = this.getAttributeById(item.attributeId);
+
+      if (!isNullOrUndefined(attribute)) {
+
+        this.form.attributes[attribute.code] = item.value;
+      }
+    });
   }
 
   protected calculateGia(): void {
@@ -111,7 +199,14 @@ export class ProductDetailComponent
 
   protected loadCategories(): void {
 
-    this.categoryService.get().subscribe((categories) => this.categories = categories);
+    this.categoryService.get().subscribe((categories) => {
+
+      this.categories = categories;
+
+      this.initSelectedCategory();
+
+      this.buildDisplayAttributes();
+    });
   }
 
   protected getDetailFormConstraints(): any {
@@ -140,13 +235,35 @@ export class ProductDetailComponent
     form.giaTruocKhiHa = this.applicationUtils.formatNumber2(product.giaTruocKhiHa, 2);
     form.phanTramGiamGia = this.applicationUtils.formatNumber2(product.phanTramGiamGia, 2);
 
+    form.attributes = {};
+
+    this.bindAttributeValuesToForm();
+
     return form;
   }
 
   protected initForCreate(): ProductForm {
 
-    return new ProductForm();
+    let form = new ProductForm();
+
+    form.attributes = {};
+
+    return form;
   }
 
+  protected initForEdit(): void {
 
+    super.initForEdit();
+
+    this.loadAttributeValues();
+
+    this.initSelectedCategory();
+
+    this.buildDisplayAttributes();
+  }
+
+  protected initSelectedCategory(): void {
+
+    this.selectedCategory = isNullOrUndefined(this.categories) ? null : this.categories.find((item) => item.id == this.form.categoryId);
+  }
 }

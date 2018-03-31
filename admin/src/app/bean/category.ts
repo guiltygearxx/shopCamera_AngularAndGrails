@@ -7,6 +7,7 @@ export class Category implements BaseDomain {
   lastModifiedUser: string;
   isDeleted: boolean;
   imageUrl: string;
+  type: string;
 
   name: string;
   parentCategoryId: string;

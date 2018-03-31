@@ -22,7 +22,7 @@
         <div class="col-md-3">
           <app-select [title]="'Category'" [(value)]="form.categoryId" [placeHolder]="'Select a category'"
                       [data]="categories" [optionKey]="'id'" [optionValue]="'name'" [isRequired]="true"
-                      [errorMessage]="getErrorMessage('categoryId')">
+                      [errorMessage]="getErrorMessage('categoryId')" (valueChange)="categoryIdChanged($event)">
           </app-select>
         </div>
 
@@ -101,6 +101,18 @@
           </app-input-text>
         </div>
 
+      </div>
+
+      <div class="row">
+        <ng-container *ngFor="let attribute of displayAttributes; trackBy: attribute?.id">
+
+          <div class="col-md-3">
+            <app-input-text [title]="attribute.title" [placeHolder]="attribute.title"
+                            [(value)]="form.attributes[attribute.code]">
+            </app-input-text>
+          </div>
+
+        </ng-container>
       </div>
 
       <app-text-area [title]="'Thông tin chi tiết (HTML)'" [placeHolder]="'Thông tin chi tiết (HTML)'"

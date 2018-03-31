@@ -59,5 +59,5 @@ export const i18n = {
   'product.field.khuyenMai': 'Khuyến mại',
 
   'importProduct.template.camera': 'Camera',
-  'importProduct.template.dauGhi': 'Đầu ghi',
+  'importProduct.template.daughi': 'Đầu ghi',
 };

@@ -1,12 +1,12 @@
-import {ApplicationUtils} from "./application-utils";
-import {Injectable, SimpleChanges} from "@angular/core";
-import {AdminLteInputModal} from "./admin-lte-input-modal";
-import {SupportOnChangesComponentModal} from "./support-on-changes-component-modal";
-import {isNullOrUndefined} from "util";
-import {OnChangeCallBack} from "./on-change-call-back";
-import {INPUT_FORMAT_DATE, INPUT_FORMAT_NUMBER} from "./application-constants";
-import {DateFormatter} from "./formater/date-formatter";
-import {NumberFormatter} from "./formater/number-formatter";
+import {ApplicationUtils} from './application-utils';
+import {Injectable, SimpleChanges} from '@angular/core';
+import {AdminLteInputModal} from './admin-lte-input-modal';
+import {SupportOnChangesComponentModal} from './support-on-changes-component-modal';
+import {isNullOrUndefined} from 'util';
+import {OnChangeCallBack} from './on-change-call-back';
+import {INPUT_FORMAT_DATE, INPUT_FORMAT_NUMBER} from './application-constants';
+import {DateFormatter} from './formater/date-formatter';
+import {NumberFormatter} from './formater/number-formatter';
 
 @Injectable()
 export class ComponentUtils {

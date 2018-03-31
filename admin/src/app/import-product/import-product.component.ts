@@ -188,7 +188,7 @@ export class ImportProductComponent
 
       if (this.isDynamicField(prop)) {
 
-        item.attribute[prop] = newValue;
+        item.attributes[prop] = newValue;
 
       } else {
 
@@ -229,7 +229,7 @@ export class ImportProductComponent
       attribute_.forEach((item) => {
 
         this.colHeaders.push(item.title);
-        this.columns.push({data: 'attribute.' + item.code});
+        this.columns.push({data: 'attributes.' + item.code});
       });
     }
   }
