@@ -33,6 +33,8 @@ grails.plugin.springsecurity.interceptUrlMap = [
 
         [pattern: '/uploadFile/downloadFile/*', access: ['permitAll']],
 
+        [pattern: '/attribute.json', httpMethod: 'GET', access: ['permitAll']],
+
         [pattern: '/api/logout', access: ['isFullyAuthenticated()']],
         [pattern: '/**', access: ['isFullyAuthenticated()']]
 ]
@@ -63,6 +65,8 @@ grails.plugin.springsecurity.filterChain.chainMap = [
         [pattern: '/propertiesCamera/**', httpMethod: 'GET', filters: 'JOINED_FILTERS'],
 
         [pattern: '/uploadFile/downloadFile/*', filters: 'JOINED_FILTERS'],
+
+        [pattern: '/attribute.json', httpMethod: 'GET', filters: 'JOINED_FILTERS'],
 
         [pattern: '/**', filters: 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter'],
 ]
