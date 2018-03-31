@@ -25,6 +25,7 @@ export class ListProductsComponent
   detailForms: OrderDetailForm;
 
   contentCategory: string;
+  typeOfCategory: string;
 
   get inputParams(): ListProductInputParams {
 
@@ -114,6 +115,12 @@ export class ListProductsComponent
       this.contentCategory = contentCategory;
     }
   }
+  getTypeOfCategory(type: string): void {
+    if (!isNullOrUndefined(type)) {
+      this.typeOfCategory = type;
+    }
+  }
+
 
 
   getListProduct(): void {
@@ -143,6 +150,8 @@ export class ListProductsComponent
       let category = categoryItems.find((item) => item.code == this.inputParams.categoryCode);
 
       this.getContentCategory(category.content);
+
+      this.getTypeOfCategory(category.type);
 
       let categoryIds: string[] = [category.id];
 
@@ -180,6 +189,19 @@ export class ListProductsComponent
     if (isNullOrUndefined(product.phanTramGiamGia)) return false;
 
     return true;
+  }
+
+  goToSubCategory(event: any, subCategory: CategoryItem): void {
+
+    event.preventDefault();
+
+    this.listProductService.isInputParamsChanged = true;
+
+    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
+
+    inputParams.subCategory = isNullOrUndefined(subCategory) ? null : subCategory.code;
+
+    this.router.navigate(["/danhSachSanPham"]);
   }
 
 }

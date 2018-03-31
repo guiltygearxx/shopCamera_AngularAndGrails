@@ -22,17 +22,17 @@ export class GioHangService {
 
     this.count++;
 
-    let detailForm_ = this.detailForms.find((item) => item.productId == detailForm.productId);
+    let orderDetailForm = this.detailForms.find((item) => item.productId == detailForm.productId);
 
-    if (isNullOrUndefined(detailForm_)) {
+    if (isNullOrUndefined(orderDetailForm)) {
 
-      detailForm_.quantity = '1';
+      orderDetailForm.quantity = '1';
 
-      this.detailForms.push(detailForm_);
+      this.detailForms.push(orderDetailForm);
 
     } else {
 
-      detailForm_.quantity += 1;
+      orderDetailForm.quantity += 1;
     }
   }
 

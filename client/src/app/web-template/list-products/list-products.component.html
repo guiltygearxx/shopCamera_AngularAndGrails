@@ -3,7 +3,7 @@
   <!--Filter Form-->
   <div class="w3l_banner_nav_left">
     <nav class="navbar nav_bottom">
-      <app-filter></app-filter>
+      <app-filter [type]="this.typeOfCategory"></app-filter>
     </nav>
   </div>
   <div class="w3l_banner_nav_right">
@@ -16,8 +16,8 @@
     <!--Sub Category-->
     <div class="col-md-12" style="text-align: center;">
       <ng-container *ngFor="let subCategory of subCategoryList">
-        <div class="col-md-2 confixHoverSubCategory">
-          <a href="#">
+        <div class="col-md-2 col-xs-4 confixHoverSubCategory">
+          <a (click)="goToSubCategory($event, subCategory)">
             <img src="{{subCategory.imageUrl}}"
                  class="cssHeaderSubCategoryImages">
           </a>
@@ -34,9 +34,9 @@
         <div class="list-tool-sortby" style="clear:both;">
           <span class="list-tool-label">Sắp xếp:</span>
           <label class="form-select">
-            <!--<app-select [title]="'Giá'" [(value)]="filterForm.sortBy" [placeHolder]="'Sắp xếp'"-->
-            <!--[data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">-->
-            <!--</app-select>-->
+            <app-select [title]="'Giá'" [(value)]="filterForm.sortBy" [placeHolder]="'Sắp xếp'"
+            [data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">
+            </app-select>
           </label>
         </div>
 
@@ -155,7 +155,7 @@
                   </div>
                   <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: 150.00 đ</span></div>
                   <div class="">
-                    <button class="btn btn-warning">Mua ngay</button>
+                    <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
                   </div>
                 </div>
               </div>
@@ -220,7 +220,7 @@
                 </div>
                 <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: 150.00 đ</span></div>
                 <div class="confixTextRight">
-                  <button class="btn btn-warning">Mua ngay</button>
+                  <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
                 </div>
               </div>
             </div>

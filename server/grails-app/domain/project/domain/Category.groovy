@@ -7,6 +7,7 @@ class Category implements BaseDomain {
     String code;
     String content;
     String imageUrl;
+    String type;
 
     static constraints = {
 
@@ -15,6 +16,7 @@ class Category implements BaseDomain {
         code nullable: false;
         content nullable: true;
         imageUrl nullable: true;
+        type nullable: true;
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

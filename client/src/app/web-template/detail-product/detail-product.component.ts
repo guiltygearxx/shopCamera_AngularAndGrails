@@ -8,6 +8,8 @@ import {ProductViewService} from "../../service/product/product-view.service";
 import {CategoryService} from "../../service/category/category.service";
 import {ProductView} from "../../bean/product-view";
 import {CategoryItem} from "../../bean/category-item";
+import {OrderDetailForm} from "../../bean/order-detail-form";
+import {GioHangService} from "../../service/order/gio-hang.service";
 
 declare var $: any;
 
@@ -21,10 +23,13 @@ export class DetailProductComponent
 
   productId: any;
 
+  detailForms: OrderDetailForm;
+
   private activeImageIndex: number;
 
   constructor(private router: Router, protected productService: ProductService, protected productViewService: ProductViewService,
-              protected route: ActivatedRoute, protected categoryService: CategoryService) {
+              protected route: ActivatedRoute, protected categoryService: CategoryService,
+              protected gioHangService: GioHangService) {
 
     super(productService, productViewService, categoryService);
   }
@@ -73,6 +78,26 @@ export class DetailProductComponent
     this.activeImageIndex = 0;
 
     this.getListProduct(product.categoryId);
+  }
+
+  addProductToOrder(productView: ProductView): void {
+
+    this.detailForms = this.converterProductView(productView);
+
+    return this.gioHangService.addOrderDetail(this.detailForms);
+  }
+
+  private converterProductView(productView: ProductView): OrderDetailForm {
+
+    let orderDetail = new OrderDetailForm();
+
+    orderDetail.productId = productView.id;
+    orderDetail.name = productView.name;
+    orderDetail.hinhAnh = productView.image1
+    orderDetail.gia = productView.gia.toString();
+
+    return orderDetail;
+
   }
 
 

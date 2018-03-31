@@ -4,8 +4,9 @@ export class CategoryItem {
   code: string;
   parentCategoryId: string;
   name: string;
-  content:string;
-  imageUrl:string;
+  content: string;
+  imageUrl: string;
+  type: string;
 
 
   constructor(id: string, code: string, parentCategoryId: string, name: string) {
