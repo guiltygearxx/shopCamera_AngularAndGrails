@@ -8,6 +8,7 @@ import {ApplicationUtils} from "../../common/application-utils";
 import {OrderForm} from "../../bean/order-form";
 import {OrderService} from "../../service/order/order.service";
 import {OrderDetailService} from "../../service/order/order-detail.service";
+import {Order} from "../../bean/order";
 
 @Component({
   selector: 'app-checkout',
@@ -29,6 +30,8 @@ export class CheckoutComponent extends CheckOutLogic implements OnInit {
   ngOnInit() {
 
     this.errorMessages = [];
+
+    this.orderSuccess = new Order;
 
     this.orderForm = new OrderForm();
   }

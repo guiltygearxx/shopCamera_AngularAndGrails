@@ -15,7 +15,7 @@ export class OrderForm implements Validateable {
   static constraints = {
 
     tenNguoiMua: {blank: false, maxSize: 255},
-    sdt: {nullable: false, email: true},
+    sdt: {nullable: false},
     email: {nullable: false},
     diaChi: {nullable: false},
     moTa: {nullable: false},

@@ -24,12 +24,12 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
 
   menuItems: MenuItem[] = [
 
-    new MenuItem("lienHe", "Liên hệ"),
     // new MenuItem("ttdt", "Trung tâm đào tạo"),
     // new MenuItem("daiLy", "Đại lý"),
     // new MenuItem("tuyenDung", "Tuyển dụng"),
-    new MenuItem("ttsk", "Tin tức"),
     new MenuItem("giaiPhap", "Giải pháp"),
+    new MenuItem("ttsk", "Tin tức"),
+    new MenuItem("lienHe", "Liên hệ")
     // new MenuItem("gioiThieu", "Giới thiệu"),
     // new MenuItem("trangChu", "Trang chủ"),
   ]
