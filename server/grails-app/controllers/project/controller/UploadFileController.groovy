@@ -50,9 +50,7 @@ class UploadFileController extends DefaultRestfulController<UploadFile> {
             (params.sName) && (ilike("name", "%${params.sName.toLowerCase()}%"));
             (params.sExtension) && (ilike("extension", "%${params.sExtension.toLowerCase()}%"));
 
-            defaultClosure.delegate = delegate;
-
-            defaultClosure.call();
+            delegate.with defaultClosure;
         }
     }
 
