@@ -11,6 +11,8 @@ import {CategoryService} from '../service/category.service';
 import {isNullOrUndefined} from 'util';
 import {RequestErrorHandler} from '../common/request-error-handler';
 import {UploadFilePopupComponent} from '../upload-file-popup/upload-file-popup.component';
+import {SimpleObject} from '../common/simple-object';
+import {IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI} from '../common/application-constants';
 
 @Component({
   selector: 'app-category-detail',
@@ -23,6 +25,8 @@ export class CategoryDetailComponent
 
   parentCategories: Category[];
 
+  templateTypeOptions: SimpleObject[];
+
   constructor(protected applicationUtils: ApplicationUtils,
               protected domainRestService: CategoryService,
               protected formFlowManager: FormFlowManager,
@@ -34,6 +38,11 @@ export class CategoryDetailComponent
   }
 
   ngOnInit(): void {
+
+    this.templateTypeOptions = [IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI].map((item) =>
+
+      new SimpleObject(item, this.applicationUtils.message('importProduct.template.' + item))
+    );
 
     this.form = new CategoryDetailForm();
 
@@ -74,6 +83,8 @@ export class CategoryDetailComponent
     category.name = this.form.name;
     category.code = this.form.code;
     category.imageUrl = this.form.imageUrl;
+    category.type = this.form.type;
+    category.content = this.form.content;
 
     return category;
   }
@@ -86,6 +97,7 @@ export class CategoryDetailComponent
     form.name = object.name;
     form.code = object.code;
     form.imageUrl = object.imageUrl;
+    form.content = object.content;
 
     return form;
   }

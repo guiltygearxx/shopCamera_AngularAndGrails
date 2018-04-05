@@ -25,18 +25,18 @@ class Product implements BaseDomain {
     static constraints = {
 
         name blank: false, maxSize: 255
-        image1 nullable: true
-        image2 nullable: true
-        image3 nullable: true
-        image4 nullable: true
+        image1 nullable: true, maxSize: 1000
+        image2 nullable: true, maxSize: 1000
+        image3 nullable: true, maxSize: 1000
+        image4 nullable: true, maxSize: 1000
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true
         isDeleted nullable: true
 
-        hangSanXuat nullable: true;
-        baoHanh nullable: true;
-        khoHang nullable: true;
+        hangSanXuat nullable: true, maxSize: 255
+        baoHanh nullable: true, maxSize: 255
+        khoHang nullable: true, maxSize: 255
         gia nullable: true;
         giaTruocKhiHa nullable: true;
         thongTinChiTiet nullable: true;

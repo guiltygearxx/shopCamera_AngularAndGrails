@@ -10,7 +10,7 @@ class AttributeValue implements BaseDomain {
 
         referenceId nullable: false
         attributeId nullable: false
-        value nullable: true
+        value nullable: true, maxSize: 255
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

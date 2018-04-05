@@ -36,11 +36,25 @@
         </app-select>
       </div>
 
+      <div class="col-md-6">
+        <app-select [title]="'Loại nhóm'" [(value)]="form.type" [placeHolder]="'Loại nhóm'"
+                    [data]="templateTypeOptions" [optionKey]="'id'" [optionValue]="'name'">
+        </app-select>
+      </div>
+
       <div class="col-md-12">
         <app-input-text-with-icon [title]="'Link ảnh'" [placeHolder]="'Link ảnh'" [(value)]="form.imageUrl"
                                   [errorMessage]="getErrorMessage('imageUrl')" [inputIcon]="'fa-plus'"
                                   (inputIconClick)="inputIconClick($event)">
         </app-input-text-with-icon>
+      </div>
+
+      <div class="col-md-12">
+
+        <app-input-text [title]="'Nội dung (HTML)'" [placeHolder]="'Nội dung (HTML)'" [(value)]="form.content"
+                        [errorMessage]="getErrorMessage('content')">
+        </app-input-text>
+
       </div>
 
     </div>

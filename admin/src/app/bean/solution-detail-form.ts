@@ -1,5 +1,5 @@
-import {Validateable} from "../common/validate/validateable";
-import {Errors} from "../common/validate/errors";
+import {Validateable} from '../common/validate/validateable';
+import {Errors} from '../common/validate/errors';
 
 export class SolutionDetailForm implements Validateable {
 
@@ -13,9 +13,9 @@ export class SolutionDetailForm implements Validateable {
 
   static constraints = {
 
-    tieuDe: {nullable: false},
-    hinhAnh: {nullable: true},
+    tieuDe: {nullable: false, maxSize: 1000},
+    hinhAnh: {nullable: true, maxSize: 1000},
     noiDungNgan: {nullable: false},
     noiDungChiTiet: {nullable: false}
-  }
+  };
 }

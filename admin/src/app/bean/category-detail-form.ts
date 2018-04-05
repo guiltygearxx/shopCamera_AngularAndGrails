@@ -9,12 +9,16 @@ export class CategoryDetailForm implements Validateable {
   parentCategoryId: string;
   code: string;
   imageUrl: string;
+  content: string;
+  type: string;
 
   static constraints = {
 
-    name: {blank: false, maxSize: 255},
-    code: {blank: false},
+    name: {blank: false, maxSize: 1000},
     parentCategoryId: {nullable: true},
-    imageUrl: {nullable: true}
+    code: {nullable: false, maxSize: 255},
+    content: {nullable: true},
+    imageUrl: {nullable: true, maxSize: 1000},
+    type: {nullable: true, maxSize: 255},
   };
 }
