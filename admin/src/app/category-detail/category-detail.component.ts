@@ -12,7 +12,11 @@ import {isNullOrUndefined} from 'util';
 import {RequestErrorHandler} from '../common/request-error-handler';
 import {UploadFilePopupComponent} from '../upload-file-popup/upload-file-popup.component';
 import {SimpleObject} from '../common/simple-object';
-import {IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI} from '../common/application-constants';
+import {
+  IMPORT_PRODUCT_TEMPLATE_CAMERA,
+  IMPORT_PRODUCT_TEMPLATE_DAU_GHI,
+  IMPORT_PRODUCT_TEMPLATE_SECURITY
+} from '../common/application-constants';
 
 @Component({
   selector: 'app-category-detail',
@@ -39,7 +43,7 @@ export class CategoryDetailComponent
 
   ngOnInit(): void {
 
-    this.templateTypeOptions = [IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI].map((item) =>
+    this.templateTypeOptions = [IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI, IMPORT_PRODUCT_TEMPLATE_SECURITY].map((item) =>
 
       new SimpleObject(item, this.applicationUtils.message('importProduct.template.' + item))
     );

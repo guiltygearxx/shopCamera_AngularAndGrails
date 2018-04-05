@@ -49,3 +49,4 @@ export const STORAGE_USER_INFORMATION = 'userInformation';
 
 export const IMPORT_PRODUCT_TEMPLATE_CAMERA = 'camera';
 export const IMPORT_PRODUCT_TEMPLATE_DAU_GHI = 'daughi';
+export const IMPORT_PRODUCT_TEMPLATE_SECURITY = 'security';

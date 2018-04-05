@@ -10,7 +10,11 @@ import {FormFlowManager} from '../common/form-flow-manager';
 import {ImportProductRow} from '../bean/import-product-row';
 import {AttributeService} from '../service/attribute.service';
 import {SimpleObject} from '../common/simple-object';
-import {IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI} from '../common/application-constants';
+import {
+  IMPORT_PRODUCT_TEMPLATE_CAMERA,
+  IMPORT_PRODUCT_TEMPLATE_DAU_GHI,
+  IMPORT_PRODUCT_TEMPLATE_SECURITY
+} from '../common/application-constants';
 import {Attribute} from '../bean/attribute';
 import {GroupByWrapper} from '../common/group-by-wrapper';
 
@@ -37,6 +41,7 @@ const COL_CONFIG = [
 
 const TEMPLATE_URL_CAMERA = 'assets/importProductTemplateCamera.xlsx';
 const TEMPLATE_URL_DAU_GHI = 'assets/importProductTemplateDauGhi.xlsx';
+const TEMPLATE_URL_SECURITY = 'assets/importProductTemplateSecurity.xlsx';
 
 @Component({
   selector: 'app-import-product',
@@ -96,7 +101,7 @@ export class ImportProductComponent
 
     this.columns = COL_CONFIG.slice();
 
-    this.templateTypeOptions = [IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI].map((item) =>
+    this.templateTypeOptions = [IMPORT_PRODUCT_TEMPLATE_CAMERA, IMPORT_PRODUCT_TEMPLATE_DAU_GHI, IMPORT_PRODUCT_TEMPLATE_SECURITY].map((item) =>
 
       new SimpleObject(item, this.applicationUtils.message('importProduct.template.' + item))
     );
@@ -147,6 +152,10 @@ export class ImportProductComponent
 
       case IMPORT_PRODUCT_TEMPLATE_DAU_GHI:
         this.templateURL = TEMPLATE_URL_DAU_GHI;
+        break;
+
+      case IMPORT_PRODUCT_TEMPLATE_SECURITY:
+        this.templateURL = TEMPLATE_URL_SECURITY;
         break;
 
       default:
@@ -229,7 +238,7 @@ export class ImportProductComponent
       attribute_.forEach((item) => {
 
         this.colHeaders.push(item.title);
-        this.columns.push({data: 'attributes.' + item.code});
+        this.columns.push({data: 'attribute.' + item.code});
       });
     }
   }
