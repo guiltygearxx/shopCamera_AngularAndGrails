@@ -6,7 +6,7 @@ CREATE TABLE myapp.category
     code varchar(255) NOT NULL,
     last_modified_user varchar(255),
     parent_category_id varchar(255),
-    name varchar(255) NOT NULL,
+    name varchar(1000) NOT NULL,
     last_modified_time datetime,
     content text,
     image_url varchar(1000),

@@ -5,7 +5,7 @@ CREATE TABLE myapp.attribute
     is_deleted bit(1),
     code varchar(255) NOT NULL,
     last_modified_user varchar(255),
-    json_config varchar(2000) NOT NULL,
+    json_config text NOT NULL,
     group_ varchar(255) NOT NULL,
     order_ int(11) NOT NULL,
     title varchar(255) NOT NULL,

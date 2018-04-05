@@ -7,22 +7,22 @@ CREATE TABLE myapp.product
     is_deleted bit(1),
     gia_truoc_khi_ha decimal(19,2),
     last_modified_user varchar(255),
-    image4 varchar(255),
+    image4 varchar(1000),
     khuyen_mai text,
-    image2 varchar(255),
-    image3 varchar(255),
+    image2 varchar(1000),
+    image3 varchar(1000),
     hang_san_xuat varchar(255),
     kho_hang varchar(255),
-    image1 varchar(255),
-    name varchar(255) NOT NULL,
+    image1 varchar(1000),
+    name varchar(1000) NOT NULL,
     thong_so_ki_thuat text,
     gia decimal(19,2),
     category_id varchar(36) NOT NULL,
     last_modified_time datetime,
     phan_tram_giam_gia decimal(19,2),
     thong_tin_mo_rong text,
-    hinh_anh_truc_quan varchar(1000),
-    thong_tin_bo_sung varchar(1000)
+    hinh_anh_truc_quan text,
+    thong_tin_bo_sung text
 );
 INSERT INTO myapp.product (id, version, bao_hanh, thong_tin_chi_tiet, is_deleted, gia_truoc_khi_ha, last_modified_user, image4, khuyen_mai, image2, image3, hang_san_xuat, kho_hang, image1, name, thong_so_ki_thuat, gia, category_id, last_modified_time, phan_tram_giam_gia, thong_tin_mo_rong, hinh_anh_truc_quan, thong_tin_bo_sung) VALUES ('07dfe7d1-ba9e-4e8b-89ac-52cfc329c1aa', 0, '12', '<h2><strong>LTS Security CMHD3523DW-Z 2.1MP IR Indoor/Outdoor Dome HD-TVI Security Camera</strong></h2>
 <p>LTS CMHD3523DW-Z Platinum HD-TVI Vandal Proof Dome Camera 2.1MP features the HD-TVI and produces sharper images with more accurate colors. Transport Video Interface (TVI) can convert the digital signals to analog ones and extend the transmission distance and take less storage capacity. UTC (Up The Coax) feature in the camera enables the user to remotely set the OSD (On screen display) menu for analogue security cameras. The 2.8mm to 12mm motorized lens provides the user with an adjustable viewing angle.</p>

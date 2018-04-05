@@ -5,9 +5,9 @@ CREATE TABLE myapp.contact
     phone varchar(255),
     is_deleted bit(1),
     last_modified_user varchar(255),
-    address varchar(255),
-    comment varchar(255),
-    name varchar(255),
+    address varchar(1000),
+    comment varchar(1000),
+    name varchar(1000),
     status varchar(255) NOT NULL,
     email varchar(255),
     last_modified_time datetime
