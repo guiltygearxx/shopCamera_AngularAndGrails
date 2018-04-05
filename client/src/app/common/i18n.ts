@@ -6,6 +6,7 @@ export const i18n = {
   "default.success": "Cập nhật thành công.",
   "add.success.contact": "Gửi yêu cầu thành công.",
   "xacNhanDonHang.success": "Bạn đã đặt hàng thành công.",
+  "xacNhanDonHang.false": "Giỏ hàng của bạn chưa có sản phẩm.",
   "default.form.error": "Có lỗi dữ liệu.",
   "default.confirmDelete": "Bạn có chắc chắn muốn xóa bản ghi ?",
 

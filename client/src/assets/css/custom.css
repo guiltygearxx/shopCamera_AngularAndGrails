@@ -158,7 +158,7 @@ a {
 
 .confixByThread {
   font-weight: bolder;
-  color: rgb(77, 76, 76) !important;
+  color: rgb(77, 76, 76);
 }
 
 .confixByTbody {

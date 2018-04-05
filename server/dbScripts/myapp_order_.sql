@@ -1,0 +1,39 @@
+CREATE TABLE myapp.order_
+(
+    id varchar(36) PRIMARY KEY NOT NULL,
+    version bigint(20) NOT NULL,
+    code varchar(255),
+    is_deleted bit(1),
+    ten_nguoi_mua varchar(500),
+    last_modified_user varchar(255),
+    sdt text,
+    email varchar(255),
+    diaChi varchar(1000),
+    moTa varchar(1000),
+    last_modified_time datetime,
+    mo_ta varchar(255) NOT NULL,
+    dia_chi varchar(255) NOT NULL,
+    status varchar(255) NOT NULL
+);
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('40280981625119310162511bf2e50002', 2, 'abcd', false, '34r', 'admin', '34r@gmail.com', '34r', null, null, '2018-03-23 11:26:49', '34r', '34r', 'read');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df627f68d201627fe42df20000', 0, 'ORDER#1522564081526', false, 'ewfwef', 'admin', 'ưefewf@gmail.com', 'ưef', null, null, '2018-04-01 13:28:01', 'ưef', 'ưef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df627f68d201627fe4552a0001', 0, 'ORDER#1522564093226', false, 'ewfwef', 'admin', 'ưefewf@gmail.com', 'ưef', null, null, '2018-04-01 13:28:13', 'ưef', 'ưef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df627f68d201627fe4594e0002', 0, 'ORDER#1522564094286', false, 'ewfwef', 'admin', 'ưefewf@gmail.com', 'ưef', null, null, '2018-04-01 13:28:14', 'ưef', 'ưef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df627f68d201627fe459f60003', 0, 'ORDER#1522564094453', false, 'ewfwef', 'admin', 'ưefewf@gmail.com', 'ưef', null, null, '2018-04-01 13:28:14', 'ưef', 'ưef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628be274b60000', 0, 'ORDER#1522765296618', false, 'ewfwef', 'admin', 'ưefwef', 'ưefwef', null, null, '2018-04-03 21:21:37', 'ưef', 'ưefwef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628be274b60001', 0, 'ORDER#1522765294104', false, 'ewfwef', 'admin', 'ưefwef', 'ưefwef', null, null, '2018-04-03 21:21:34', 'ưef', 'ưefwef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628be2a70c0002', 0, 'ORDER#1522765309707', false, 'ewfwef', 'admin', 'ưefwef', 'ưefwef', null, null, '2018-04-03 21:21:50', 'ưef', 'ưefwef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628be493010003', 0, 'ORDER#1522765435649', false, 'ewfwef', 'admin', 'ưefwef', 'ưefwef', null, null, '2018-04-03 21:23:56', 'ưef', 'ưefwef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628be55fb80004', 0, 'ORDER#1522765488055', false, 'ewfwef', 'admin', 'ưefwef', 'ưefwef', null, null, '2018-04-03 21:24:48', 'ưef', 'ưefwef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628be80be80005', 0, 'ORDER#1522765663206', false, 'fwefwef', 'admin', 'ưefwef', 'ưefwef', null, null, '2018-04-03 21:27:43', 'ưef', 'ưef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628be811ae0006', 0, 'ORDER#1522765664684', false, 'fwefwef', 'admin', 'ưefwef', 'ưefwef', null, null, '2018-04-03 21:27:45', 'ưef', 'ưef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628bec9cb30007', 0, 'ORDER#1522765962384', false, 'ưecwec', 'admin', 'ưecwec', 'ưecwec', null, null, '2018-04-03 21:32:42', 'ewc', 'ưecwec', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628bf54b170008', 0, 'ORDER#1522766531351', false, 'ưewerg', 'admin', 'ẻgerg', 'ẻg', null, null, '2018-04-03 21:42:11', 'ẻgerg', 'ẻgerg', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628bf60f400009', 0, 'ORDER#1522766581567', false, 'ưewef', 'admin', 'èwefwef', 'ưef', null, null, '2018-04-03 21:43:02', 'ưef', 'ưefwef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628bf7a223000a', 0, 'ORDER#1522766684706', false, 'f', 'admin', 'wefwef', 'weff', null, null, '2018-04-03 21:44:45', 'ff', 'ff', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628bf93bb2000b', 0, 'ORDER#1522766789553', false, 'ewfwef', 'admin', 'fff', 'ff', null, null, '2018-04-03 21:46:30', 'e', 'ee', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628bfa5aea000c', 0, 'ORDER#1522766863081', false, 'ee', 'admin', 'ee', 'eqq', null, null, '2018-04-03 21:47:43', 'qq', 'qq', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628bff4b9b000d', 0, 'ORDER#1522767186842', false, 'wef', 'admin', 'efef', 'ee', null, null, '2018-04-03 21:53:07', 'q', 'e', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('402881df6286741b01628c44c6fa000e', 0, 'ORDER#1522771740408', false, 'ww', 'admin', 'www', 'ww', null, null, '2018-04-03 23:09:00', 'ww', 'ww', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('4028828a627b783401627cf44d170000', 0, 'ORDER#1522514805097', false, 'ưqdqwf', 'admin', 'nam@gmail.com', 'ưefwef', null, null, '2018-03-31 23:46:45', 'ưefwef', 'ưefwefwef', 'new');
+INSERT INTO myapp.order_ (id, version, code, is_deleted, ten_nguoi_mua, last_modified_user, sdt, email, diaChi, moTa, last_modified_time, mo_ta, dia_chi, status) VALUES ('4028828a627b783401627ec3d25d0001', 0, 'ORDER#1522545185254', false, 'HoangNam', 'admin', 'nam@gmail.com', 'ưefwef', null, null, '2018-04-01 08:13:05', 'ưefwef', 'ưefwefwef', 'new');

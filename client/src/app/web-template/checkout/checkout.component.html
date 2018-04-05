@@ -1,141 +1,115 @@
-<!-- products-breadcrumb -->
-<div class="products-breadcrumb">
-  <div class="container">
-    <ul>
-      <li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Trang chủ</a><span>|</span></li>
-      <li>Giỏ hàng</li>
-    </ul>
-  </div>
-</div>
-<!-- //products-breadcrumb -->
 <!-- banner -->
 <div class="banner">
-  <div class="w3l_banner_nav_left">
-    <nav class="navbar nav_bottom">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header nav_2">
-        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
-                data-target="#bs-megadropdown-tabs">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <app-web-left-side></app-web-left-side>
-    </nav>
-  </div>
-  <div class="w3l_banner_nav_right">
-    <!-- about -->
-    <div class="privacy about">
-      <h3>Giỏ<span> hàng</span></h3>
 
-      <div class="checkout-right">
-        <h4>Giỏ hàng của bạn có: <span>{{getSoLuongTrongGioHang()}} sản phẩm</span></h4>
-        <table class="timetable_sub">
-          <thead>
-          <tr>
-            <th>STT.</th>
-            <th>Sản phẩm</th>
-            <th>Số lượng</th>
-            <th>Tên sản phẩm</th>
+  <div class="privacy about">
+    <h3>Giỏ<span> hàng</span></h3>
 
-            <th>Giá</th>
-            <th>Xóa</th>
-          </tr>
-          </thead>
-          <tbody>
-          <ng-container *ngFor="let listProduct of getListGioHang(); let productIndex=index">
-            <tr class="rem1">
-              <td class="invert">{{productIndex + 1 | number}}</td>
-              <td class="invert-image"><a><img src="{{listProduct.image1}}" alt=" "
-                                                                  class="img-responsive"></a></td>
-              <td class="invert">
-                <div class="quantity">
-                  <div class="quantity-select">
-                    <div class="entry value-minus">&nbsp;</div>
-                    <div class="entry value"><span>{{listProduct.quantity}}</span></div>
-                    <div class="entry value-plus active">&nbsp;</div>
-                  </div>
+    <div class="checkout-right">
+      <h4>Giỏ hàng của bạn có: <span>{{getSoLuongTrongGioHang()}} sản phẩm</span></h4>
+      <table class="timetable_sub">
+        <thead>
+        <tr>
+          <th>STT.</th>
+          <th>Sản phẩm</th>
+          <th>Số lượng</th>
+          <th>Tên sản phẩm</th>
+
+          <th>Giá</th>
+          <th>Xóa</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let listProduct of getListGioHang(); let productIndex=index">
+          <tr class="rem1">
+            <td class="invert">{{productIndex + 1 | number}}</td>
+            <td class="invert-image"><a><img src="{{listProduct.hinhAnh}}" alt=" "
+                                             class="img-responsive"></a></td>
+            <td class="invert">
+              <div class="quantity">
+                <div class="quantity-select">
+                  <!--<div class="entry value-minus">&nbsp;</div>-->
+                  <div class="entry value"><span>{{listProduct.quantity}}</span></div>
+                  <!--<div class="entry value-plus active">&nbsp;</div>-->
                 </div>
-              </td>
-              <td class="invert">{{listProduct.name}}</td>
-
-              <td class="invert">{{listProduct.gia}} đ</td>
-              <td class="invert">
-                <div class="rem">
-                  <div class="close1"></div>
-                </div>
-
-              </td>
-            </tr>
-          </ng-container>
-          </tbody>
-        </table>
-      </div>
-      <div class="checkout-left">
-        <div class="col-md-4 checkout-left-basket">
-          <h4 (click)="goToTrangChu($event)"><a (click)="goToTrangChu($event)" style="color: #fff !important;">Tiếp tục
-            mua sắm</a></h4>
-          <ul>
-            <ng-container *ngFor="let listProduct of getListGioHang()">
-              <li>{{listProduct.name}} <i>-</i> <span>{{thanhTienProduct(listProduct)}} đ </span></li>
-            </ng-container>
-            <li>Phí vận chuyển <i>-</i> <span> 200.000 đ</span></li>
-            <li class="confixByThread">Tổng tiền <i>-</i> <span>{{tongTienThanhToan()}} đ</span></li>
-          </ul>
-        </div>
-        <div class="col-md-8 address_form_agile">
-          <h4>Đặt hàng</h4>
-            <section class="creditly-wrapper wthree, w3_agileits_wrapper">
-              <div class="information-wrapper">
-                <div class="first-row form-group">
-                  <div class="controls">
-                    <app-input-text [title]="'Tên người mua:'" [(value)]="orderForm.tenNguoiMua" [isRequired]="true"
-                                    [errorMessage]="getErrorMessage('tenNguoiMua')">
-                    </app-input-text>
-                  </div>
-                  <div class="w3_agileits_card_number_grids">
-                    <div class="w3_agileits_card_number_grid_left">
-                      <div class="controls">
-                        <app-input-text [title]="'Số điện thoại liên hệ:'" [(value)]="orderForm.sdt" [isRequired]="true"
-                                        [errorMessage]="getErrorMessage('sdt')">
-                        </app-input-text>
-                      </div>
-                    </div>
-                    <div class="controls">
-                      <app-input-text [title]="'Email:'" [(value)]="orderForm.email" [isRequired]="true"
-                                      [errorMessage]="getErrorMessage('email')">
-                      </app-input-text>
-                    </div>
-                    <div class="w3_agileits_card_number_grid_right">
-                      <div class="controls">
-                        <app-input-text [title]="'Địa chỉ liên hệ: '" [(value)]="orderForm.diaChi" [isRequired]="true"
-                                        [errorMessage]="getErrorMessage('diaChi')">
-                        </app-input-text>
-                      </div>
-                    </div>
-                    <div class="clear"></div>
-                  </div>
-
-                  <div class="controls">
-                    <app-input-text [title]="'Ghi chú:'" [(value)]="orderForm.moTa" [isRequired]="true"
-                                    [errorMessage]="getErrorMessage('moTa')">
-                    </app-input-text>
-                  </div>
-                </div>
-                <button class="submit check_out" (click)="xacNhanDonHang()">Xác nhận</button>
               </div>
-            </section>
-        </div>
+            </td>
+            <td class="invert">{{listProduct.name}}</td>
 
-        <div class="clearfix"></div>
+            <td class="invert">{{listProduct.gia}} đ</td>
+            <td class="invert">
+              <div class="rem">
+                <div class="close1" (click)="removeProduct($event, listProduct)"></div>
+              </div>
 
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+    <div class="checkout-left">
+      <div class="col-md-4 checkout-left-basket">
+        <h4 (click)="goToTrangChu($event)"><a (click)="goToTrangChu($event)" style="color: #fff !important;">Tiếp tục
+          mua sắm</a></h4>
+        <ul>
+          <ng-container *ngFor="let listProduct of getListGioHang()">
+            <li>{{listProduct.name}} <i>-</i> <span>{{thanhTienProduct(listProduct)}} đ </span></li>
+          </ng-container>
+          <!--<li>Phí vận chuyển <i>-</i> <span> 200.000 đ</span></li>-->
+          <li class="confixByThread thayDoiCSSGiaBan">Tổng tiền <i>-</i> <span>{{tongTienThanhToan()}} đ</span></li>
+        </ul>
+        <ng-container *ngIf="checkSuccessOrder()">
+          <div><span class="thayDoiCSSGiaBan">Mã đơn hàng của bạn: {{this.orderSuccess.code}} </span></div>
+        </ng-container>
       </div>
+      <div class="col-md-8 address_form_agile">
+        <h4>Đặt hàng</h4>
+        <section class="creditly-wrapper wthree, w3_agileits_wrapper">
+          <div class="information-wrapper">
+            <div class="first-row form-group">
+              <div class="controls">
+                <app-input-text [title]="'Tên người mua:'" [(value)]="orderForm.tenNguoiMua" [isRequired]="true"
+                                [errorMessage]="getErrorMessage('tenNguoiMua')">
+                </app-input-text>
+              </div>
+              <div class="w3_agileits_card_number_grids">
+                <div class="w3_agileits_card_number_grid_left">
+                  <div class="controls">
+                    <app-input-text [title]="'Số điện thoại liên hệ:'" [(value)]="orderForm.sdt" [isRequired]="true"
+                                    [errorMessage]="getErrorMessage('sdt')">
+                    </app-input-text>
+                  </div>
+                </div>
+                <div class="controls">
+                  <app-input-text [title]="'Email:'" [(value)]="orderForm.email" [isRequired]="true"
+                                  [errorMessage]="getErrorMessage('email')">
+                  </app-input-text>
+                </div>
+                <div class="w3_agileits_card_number_grid_right">
+                  <div class="controls">
+                    <app-input-text [title]="'Địa chỉ liên hệ: '" [(value)]="orderForm.diaChi" [isRequired]="true"
+                                    [errorMessage]="getErrorMessage('diaChi')">
+                    </app-input-text>
+                  </div>
+                </div>
+                <div class="clear"></div>
+              </div>
+
+              <div class="controls">
+                <app-input-text [title]="'Ghi chú:'" [(value)]="orderForm.moTa" [isRequired]="true"
+                                [errorMessage]="getErrorMessage('moTa')">
+                </app-input-text>
+              </div>
+            </div>
+            <button class="submit check_out" (click)="xacNhanDonHang()">Xác nhận</button>
+          </div>
+        </section>
+      </div>
+
+      <div class="clearfix"></div>
 
     </div>
-    <!-- //about -->
+
   </div>
   <div class="clearfix"></div>
 </div>

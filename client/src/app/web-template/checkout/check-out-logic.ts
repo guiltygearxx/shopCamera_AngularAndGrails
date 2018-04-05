@@ -9,6 +9,7 @@ import {OrderService} from "../../service/order/order.service";
 import {Order} from "../../bean/order";
 import {OrderDetail} from "../../bean/order-detail";
 import BigNumber from "bignumber.js";
+import {isNullOrUndefined} from "util";
 
 export class CheckOutLogic {
   constructor(protected gioHangService: GioHangService,
@@ -23,9 +24,23 @@ export class CheckOutLogic {
 
   orderForm: OrderForm;
 
+  orderSuccess: Order;
+
   getSoLuongTrongGioHang(): number {
 
     return this.gioHangService.getOrderDetail();
+  }
+
+  checkSuccessOrder(): boolean {
+    if (isNullOrUndefined(this.orderSuccess.code)) return false;
+    return true;
+  }
+
+  removeProduct(event: any, detailForms: OrderDetailForm): void {
+
+    event.preventDefault();
+
+    return this.gioHangService.removeOrderDetail(detailForms);
   }
 
   thanhTienProduct(item: OrderDetailForm): number {
@@ -70,20 +85,31 @@ export class CheckOutLogic {
 
     let size = this.gioHangService.detailForms.length;
 
-    this.gioHangService.detailForms.forEach((item) => {
+    if (size < 1) {
+      let successMessage = this.applicationUtils.message("xacNhanDonHang.false");
 
-      this.orderDetailService.post(this.convertToOrderDetail(order, item)).subscribe((order) => {
+      this.formFlowManager.displaySuccessMessage(successMessage);
+    } else {
 
-        size--;
+      this.orderSuccess = order;
 
-        if (size == 0) {
+      this.orderForm = new OrderForm();
 
-          let successMessage = this.applicationUtils.message("xacNhanDonHang.success");
+      this.gioHangService.detailForms.forEach((item) => {
 
-          this.formFlowManager.displaySuccessMessage(successMessage);
-        }
+        this.orderDetailService.post(this.convertToOrderDetail(order, item)).subscribe((order) => {
+
+          size--;
+
+          if (size == 0) {
+
+            let successMessage = this.applicationUtils.message("xacNhanDonHang.success");
+
+            this.formFlowManager.displaySuccessMessage(successMessage);
+          }
+        });
       });
-    });
+    }
   }
 
   private convertToDomain(): Order {

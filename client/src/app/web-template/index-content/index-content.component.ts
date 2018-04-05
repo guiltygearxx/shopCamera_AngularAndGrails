@@ -10,6 +10,10 @@ import {NewsService} from "../../service/news/news.service";
 import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {ListProductService} from "../../service/list-product.service";
 import {isNullOrUndefined} from "util";
+import {OrderDetailForm} from "../../bean/order-detail-form";
+import {GioHangService} from "../../service/order/gio-hang.service";
+import {NumberFormatter} from "../../service/formator/number-formatter";
+import {ApplicationUtils} from "../../common/application-utils";
 
 @Component({
   selector: 'app-index-content',
@@ -18,11 +22,18 @@ import {isNullOrUndefined} from "util";
 })
 export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
+
+  private numberFormater: NumberFormatter;
+
+  detailForms: OrderDetailForm;
+
   constructor(private router: Router,
               protected productViewService: ProductViewService,
               protected categoryService: CategoryService,
               protected newsService: NewsService,
-              protected listProductService: ListProductService) {
+              protected listProductService: ListProductService,
+              protected gioHangService:GioHangService,
+              protected applicationUtils: ApplicationUtils) {
 
     super(productViewService, categoryService, newsService);
   }
@@ -32,11 +43,27 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
     this.getListNews();
 
+    this.numberFormater = this.applicationUtils.defaultNumberFormatter;
+
     this.activeImageIndex = 0;
     this.allowDisplayProductVetical = true;
     this.allowDisplayNews = true;
 
     // get list camera giam sat
+  }
+
+  getNumberFormatted(val: number): string {
+
+    return this.numberFormater.format(val);
+  }
+
+  getGiaKhuyenMai(product:ProductView):number{
+    if(isNullOrUndefined(product.gia)){
+      return 0;
+    }else {
+
+      return (product.phanTramGiamGia *  product.gia ) / 100
+    }
   }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
@@ -81,6 +108,26 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
     event.preventDefault();
 
     this.router.navigate(["/chiTietTinTuc", newsId]);
+  }
+
+  addProductToOrder(productView: ProductView): void {
+
+    this.detailForms = this.converterProductView(productView);
+
+    return this.gioHangService.addOrderDetail(this.detailForms);
+  }
+
+  private converterProductView(productView: ProductView): OrderDetailForm {
+
+    let orderDetail = new OrderDetailForm();
+
+    orderDetail.productId = productView.id;
+    orderDetail.name = productView.name;
+    orderDetail.hinhAnh = productView.image1
+    orderDetail.gia = productView.gia.toString();
+
+    return orderDetail;
+
   }
 
   kiemTraGiamGia(product:ProductView):boolean{

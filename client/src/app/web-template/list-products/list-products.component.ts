@@ -15,6 +15,8 @@ import {isNullOrUndefined} from "util";
 import {ExampleObject} from "../../bean/example-object";
 import {Attribute} from "../../bean/attribute";
 import {AttributeService} from "../../service/attribute.service";
+import {TrieuDongFormater} from "../../common/trieu-dong-formater";
+import {NumberFormatter} from "../../service/formator/number-formatter";
 
 @Component({
   selector: 'app-list-products',
@@ -29,6 +31,10 @@ export class ListProductsComponent
   contentCategory: string;
 
   typeOfCategory: string;
+
+  private trieuDongFormatter: TrieuDongFormater;
+
+  private numberFormater: NumberFormatter;
 
   attributes: Attribute[];
 
@@ -54,16 +60,21 @@ export class ListProductsComponent
               protected gioHangService: GioHangService,
               protected listProductService: ListProductService,
               protected applicationUtils: ApplicationUtils,
-              protected attributeService: AttributeService) {
+              protected attributeService: AttributeService,
+              protected applicationContext: ApplicationUtils) {
 
     super(productListService, categoryService);
   }
 
   ngOnInit() {
 
+    this.categoryList = [];
+
     this.allowDisplayProductVetical = true;
 
     this.filterForm = new ListProductFilterForm();
+
+    this.numberFormater = this.applicationContext.defaultNumberFormatter;
 
     this.filterValuesTemp = {};
 
@@ -110,6 +121,25 @@ export class ListProductsComponent
     return this.gioHangService.addOrderDetail(this.detailForms);
   }
 
+  getTrieuDongFormatted(val: number): string {
+
+    return this.trieuDongFormatter.format(val);
+  }
+
+  getNumberFormatted(val: number): string {
+
+    return this.numberFormater.format(val);
+  }
+
+  getGiaKhuyenMai(product:ProductView):number{
+    if(isNullOrUndefined(product.gia)){
+      return 0;
+    }else {
+
+      return (product.phanTramGiamGia *  product.gia ) / 100
+    }
+  }
+
   private converterProductView(productView: ProductView): OrderDetailForm {
 
     let orderDetail = new OrderDetailForm();
@@ -135,6 +165,8 @@ export class ListProductsComponent
     super.afterGetListCategory(categoryItems);
 
     this.isCategoryLoaded = true;
+
+    this.getListProduct();
   }
 
   getContentCategory(contentCategory: string): void {

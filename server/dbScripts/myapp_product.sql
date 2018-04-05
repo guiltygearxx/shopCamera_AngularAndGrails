@@ -5064,7 +5064,7 @@ INSERT INTO myapp.product (id, version, bao_hanh, thong_tin_chi_tiet, is_deleted
 </tr>
 </tbody>
 </table>
-<p>&nbsp;</p>', 8200000.00, 'f2ea6507-8169-455a-92cd-0dfbeeee796c', '2018-03-03 14:22:50', 10.00, '<div class="clearfix bullets-container" style="height: 128px;">
+<p>&nbsp;</p>', 8200000.00, 'f2ea6507-8169-455a-92cd-0dfbeeee796c', '2018-03-03 14:22:50', 30.00, '<div class="clearfix bullets-container" style="height: 128px;">
 <ul>
 <li>1080p Full HD</li>
 <li>Pan: Continuous 360&deg;</li>
