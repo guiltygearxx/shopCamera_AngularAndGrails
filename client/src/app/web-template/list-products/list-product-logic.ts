@@ -5,6 +5,7 @@ import {ProductViewService} from "../../service/product/product-view.service";
 import {isNullOrUndefined} from "util";
 import {ListProductFilterForm} from "../../bean/list-product-filter-form";
 import {ExampleObject} from "../../bean/example-object";
+import {ApplicationUtils} from "../../common/application-utils";
 
 export class ListProductLogic {
 
@@ -15,7 +16,8 @@ export class ListProductLogic {
   filterValues: { [code: string]: string[] };
 
   constructor(protected productViewService: ProductViewService,
-              protected categoryService: CategoryService) {
+              protected categoryService: CategoryService,
+              protected applicationUtils: ApplicationUtils) {
   }
 
 
@@ -52,8 +54,10 @@ export class ListProductLogic {
 
   getListImageHighlight(productView: ProductView): string[] {
 
-    if (isNullOrUndefined(productView)) return null;
+    if (isNullOrUndefined(productView) || this.applicationUtils.isStringEmpty(productView.hinhAnhTrucQuan)) return null;
+
     let dateElements: string[] = productView.hinhAnhTrucQuan.split(",");
+
     return dateElements;
   }
 

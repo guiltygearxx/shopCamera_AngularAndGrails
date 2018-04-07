@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ToasterConfig} from "angular2-toaster/angular2-toaster";
 
 declare var $: any;
@@ -8,7 +8,7 @@ declare var $: any;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
 
   title = 'app';
 
@@ -18,14 +18,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    $(document).ready(function ($) {
-      $(".scroll").click(function (event) {
-        event.preventDefault();
-        $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
-      });
-    });
-
-    this.initBoxWidgetOptions();
   }
 
   private initBoxWidgetOptions() {
@@ -38,4 +30,17 @@ export class AppComponent implements OnInit {
 
     boxWidgetIcons.remove = "fa-angle-down";
   }
+
+  ngAfterViewInit(): void {
+
+	this.initBoxWidgetOptions();
+
+    $(".scroll").click(function (event) {
+
+      event.preventDefault();
+
+      $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
+    });
+  }
+
 }

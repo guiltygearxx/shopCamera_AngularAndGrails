@@ -54,16 +54,16 @@ export class ListProductsComponent
   private isCategoryLoaded: boolean = true;
 
   constructor(private router: Router,
-              protected route: ActivatedRoute,
               protected productListService: ProductViewService,
               protected categoryService: CategoryService,
               protected gioHangService: GioHangService,
               protected listProductService: ListProductService,
               protected applicationUtils: ApplicationUtils,
               protected attributeService: AttributeService,
-              protected applicationContext: ApplicationUtils) {
+              protected applicationContext: ApplicationUtils,
+  ) {
 
-    super(productListService, categoryService);
+    super(productListService, categoryService, applicationUtils);
   }
 
   ngOnInit() {
@@ -131,12 +131,15 @@ export class ListProductsComponent
     return this.numberFormater.format(val);
   }
 
-  getGiaKhuyenMai(product:ProductView):number{
-    if(isNullOrUndefined(product.gia)){
-      return 0;
-    }else {
+  getGiaKhuyenMai(product: ProductView): number {
 
-      return (product.phanTramGiamGia *  product.gia ) / 100
+    if (isNullOrUndefined(product.gia)) {
+
+      return 0;
+
+    } else {
+
+      return (product.phanTramGiamGia * product.gia) / 100
     }
   }
 
