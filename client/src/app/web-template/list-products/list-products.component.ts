@@ -279,7 +279,7 @@ export class ListProductsComponent
     this.router.navigate(["/danhSachSanPham"]);
   }
 
-  filterChange(event): void {
+  filterChange(): void {
 
     let filterValues: any = this.filterValuesTemp;
 

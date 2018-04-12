@@ -22,6 +22,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private initBoxWidgetOptions() {
 
+    console.log("initBoxWidgetOptions")
+
     let boxWidgetIcons = $.AdminLTE.options.boxWidgetOptions.boxWidgetIcons;
 
     boxWidgetIcons.collapse = "fa-angle-up";

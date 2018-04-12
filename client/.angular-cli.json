@@ -27,18 +27,22 @@
         "../src/assets/css/creditly.css",
         "../src/assets/css/custom.css",
         "../src/assets/css/easy-responsive-tabs.css",
+        "../src/assets/css/flexslider.css",
         "../src/assets/css/font-awesome.css",
         "../src/assets/css/style.css",
         "../node_modules/admin-lte/plugins/select2/select2.css",
         "../node_modules/angular2-toaster/toaster.css",
-        "../node_modules/bootstrap-slider/dist/css/bootstrap-slider.css"
+        "../node_modules/admin-lte/plugins/bootstrap-slider/slider.css"
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/jqueryui/jquery-ui.js",
-        "../node_modules/bignumber.js/bignumber.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
         "../node_modules/moment/moment.js",
-        "../src/assets/js/bootstrap.min.js",
+        "../node_modules/admin-lte/dist/js/app.js",
+        "../node_modules/admin-lte/plugins/select2/select2.js",
+        "../node_modules/bootstrap-slider/dist/bootstrap-slider.js",
+
         "../src/assets/js/counterup.min.js",
         "../src/assets/js/creditly.js",
         "../src/assets/js/easing.js",
@@ -51,10 +55,7 @@
         "../src/assets/js/waypoints.min.js",
         "../src/assets/libs/slick/slick.min.js",
         "../src/assets/libs/colorbox/jquery.colorbox-min.js",
-        "../src/assets/libs/custom.js",
-        "../node_modules/admin-lte/dist/js/app.js",
-        "../node_modules/select2/dist/js/select2.js",
-        "../node_modules/bootstrap-slider/dist/bootstrap-slider.js"
+        "../src/assets/libs/custom.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
