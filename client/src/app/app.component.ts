@@ -33,7 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
 
-	this.initBoxWidgetOptions();
+    this.initBoxWidgetOptions();
 
     $(".scroll").click(function (event) {
 

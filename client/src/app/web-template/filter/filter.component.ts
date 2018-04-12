@@ -38,13 +38,24 @@ export class FilterComponent
   filterOptions: { [code: string]: SimpleObject[] };
 
   @Input()
+  priceRange: number[];
+
+  isPriceRangeChanged: boolean = false;
+
+  @Input()
   filterValues: { [code: string]: string[] };
 
   @Input()
   type: string;
 
   @Output()
+  filterChange: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
   filterValuesChange: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output()
+  priceRangeChange: EventEmitter<number[]> = new EventEmitter<number[]>();
 
   filterValuesChangeMap: { [code: string]: boolean };
 
@@ -143,12 +154,23 @@ export class FilterComponent
 
     this.filterValuesChange.emit(this.filterValues);
 
+    this.priceRangeChange.emit(this.priceRange);
+
+    this.filterChange.emit();
+
     this.filterValuesChangeMap = {};
+
+    this.isPriceRangeChanged = false;
   }
 
   isFilterValueChanged(attribute: Attribute): boolean {
 
     return this.filterValuesChangeMap[attribute.code];
+  }
+
+  priceRangeChanged(value: number[]): void {
+
+    this.isPriceRangeChanged = true;
   }
 
   protected buildAttributeFiler(): void {

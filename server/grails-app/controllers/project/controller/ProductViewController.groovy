@@ -62,6 +62,9 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
             if (params.productIds) id in params.productIds.split(";");
             if (params.categoryIds) categoryId in params.categoryIds.split(";");
 
+            if (params.fromPrice) gia >= (params.fromPrice as BigDecimal);
+            if (params.toPrice) gia <= (params.toPrice as BigDecimal);
+
             delegate.with defaultClosure;
         }
     }

@@ -3,8 +3,8 @@
   <!--Filter Form-->
   <div class="w3l_banner_nav_left">
     <nav class="navbar nav_bottom">
-      <app-filter [type]="this.typeOfCategory" [(filterValues)]="filterValuesTemp"
-                  (filterValuesChange)="filterValuesChanged($event)">
+      <app-filter [type]="this.typeOfCategory" [(filterValues)]="filterValuesTemp" [(priceRange)]="priceRangeTemp"
+                  (filterChange)="filterChange()">
       </app-filter>
     </nav>
   </div>
@@ -156,9 +156,11 @@
                 <div class="box-product confixPaddingTopBottom20px">
                   <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
                   </div>
-                  <div class=""><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                  <div class=""><span
+                    class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
                   </div>
-                  <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span></div>
+                  <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                  </div>
                   <div class="">
                     <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
                   </div>
@@ -224,7 +226,8 @@
                 </div>
                 <div class="confixTextRight"><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
                 </div>
-                <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span></div>
+                <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                </div>
                 <div class="confixTextRight">
                   <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
                 </div>

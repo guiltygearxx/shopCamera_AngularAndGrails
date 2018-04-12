@@ -15,6 +15,8 @@ export class ListProductLogic {
 
   filterValues: { [code: string]: string[] };
 
+  priceRange: number[];
+
   constructor(protected productViewService: ProductViewService,
               protected categoryService: CategoryService,
               protected applicationUtils: ApplicationUtils) {
@@ -50,6 +52,10 @@ export class ListProductLogic {
   protected buildParamsForFilter(params: any): void {
 
     Object.keys(this.filterValues).forEach((item) => params[item] = this.filterValues[item]);
+
+    params["fromPrice"] = isNullOrUndefined(this.priceRange) ? null : this.priceRange[0];
+
+    params["toPrice"] = isNullOrUndefined(this.priceRange) ? null : this.priceRange[1];
   }
 
   getListImageHighlight(productView: ProductView): string[] {
