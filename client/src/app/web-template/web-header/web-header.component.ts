@@ -120,4 +120,22 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
 
     this.router.navigate(["/trangChu"]);
   }
+
+  openNavForMobile(event: any): void {
+
+    event.preventDefault();
+
+    console.log("openNavForMobile");
+
+    $("#mySidenav").width("250px");
+  }
+
+  closeNavForMobile(event: any): void {
+
+    event.preventDefault();
+
+    console.log("closeNavForMobile");
+
+    $("#mySidenav").width("0px");
+  }
 }
