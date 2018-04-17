@@ -2,9 +2,11 @@
 
   <select #inputElement id="{{inputId}}" class="select2" data-toggle="tooltip" style="width: 100%;" [(ngModel)]="value">
 
-    <option *ngFor="let selectOption of selectOptions; trackBy: selectOption?.id" value="{{selectOption.id}}">
-      {{selectOption.name}}
-    </option>
+    <ng-container *ngFor="let selectOption of selectOptions;">
+      <option value="{{selectOption.id}}">
+        {{selectOption.name}}
+      </option>
+    </ng-container>
 
   </select>
 

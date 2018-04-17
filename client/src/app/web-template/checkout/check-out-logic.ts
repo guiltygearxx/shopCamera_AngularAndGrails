@@ -79,6 +79,7 @@ export class CheckOutLogic {
 
       this.sauKhiXacNhanDonHang(order);
     });
+
   }
 
   sauKhiXacNhanDonHang(order: Order): void {
