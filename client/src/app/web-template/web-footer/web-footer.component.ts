@@ -9,7 +9,6 @@ declare var $: any;
 })
 export class WebFooterComponent implements OnInit, AfterViewInit {
 
-
   constructor() {
   }
 
@@ -18,7 +17,6 @@ export class WebFooterComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    $().UItoTop({easingType: 'easeOutQuart'});
+    // $().UItoTop({easingType: 'easeOutQuart'});
   }
-
 }

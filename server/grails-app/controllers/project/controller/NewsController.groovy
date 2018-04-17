@@ -26,9 +26,7 @@ class NewsController extends DefaultRestfulController<News> {
             (params.sTieuDe) && (ilike("tieuDe", "%${params.sTieuDe.toLowerCase()}%"));
             (params.sNoiDungNgan) && (ilike("noiDungNgan", "%${params.sNoiDungNgan.toLowerCase()}%"));
 
-            defaultClosure.delegate = delegate;
-
-            defaultClosure.call();
+            delegate.with defaultClosure;
         }
     }
 }

@@ -1,5 +1,5 @@
 import {AfterContentChecked, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {ListProductLogic} from "./list-product-logic";
 import {ProductView} from "../../bean/product-view";
 import {CategoryService} from "../../service/category/category.service";
@@ -46,6 +46,8 @@ export class ListProductsComponent
 
   filterValuesTemp: { [code: string]: string[] };
 
+  priceRangeTemp: number[];
+
   get inputParams(): ListProductInputParams {
 
     return this.listProductService.inputParams;
@@ -54,16 +56,16 @@ export class ListProductsComponent
   private isCategoryLoaded: boolean = true;
 
   constructor(private router: Router,
-              protected route: ActivatedRoute,
               protected productListService: ProductViewService,
               protected categoryService: CategoryService,
               protected gioHangService: GioHangService,
               protected listProductService: ListProductService,
               protected applicationUtils: ApplicationUtils,
               protected attributeService: AttributeService,
-              protected applicationContext: ApplicationUtils) {
+              protected applicationContext: ApplicationUtils,
+  ) {
 
-    super(productListService, categoryService);
+    super(productListService, categoryService, applicationUtils);
   }
 
   ngOnInit() {
@@ -78,7 +80,11 @@ export class ListProductsComponent
 
     this.filterValuesTemp = {};
 
+    this.priceRangeTemp = null;
+
     this.filterValues = {};
+
+    this.priceRange = null;
 
     this.initFilterAttributes();
 
@@ -101,6 +107,10 @@ export class ListProductsComponent
       this.filterValuesTemp = {};
 
       this.filterValues = {};
+
+      this.priceRange = null;
+
+      this.priceRangeTemp = null;
 
       this.getListProduct();
     }
@@ -131,12 +141,15 @@ export class ListProductsComponent
     return this.numberFormater.format(val);
   }
 
-  getGiaKhuyenMai(product:ProductView):number{
-    if(isNullOrUndefined(product.gia)){
-      return 0;
-    }else {
+  getGiaKhuyenMai(product: ProductView): number {
 
-      return (product.phanTramGiamGia *  product.gia ) / 100
+    if (isNullOrUndefined(product.gia)) {
+
+      return 0;
+
+    } else {
+
+      return (product.phanTramGiamGia * product.gia) / 100
     }
   }
 
@@ -266,11 +279,15 @@ export class ListProductsComponent
     this.router.navigate(["/danhSachSanPham"]);
   }
 
-  filterValuesChanged(filterValues: any): void {
+  filterChange(): void {
+
+    let filterValues: any = this.filterValuesTemp;
 
     this.filterValues = {};
 
     Object.keys(filterValues).forEach((key) => this.filterValues[key] = filterValues[key]);
+
+    this.priceRange = this.priceRangeTemp;
 
     this.getListProduct();
 
@@ -301,6 +318,10 @@ export class ListProductsComponent
     this.filterValues = {};
 
     this.filterValuesTemp = {};
+
+    this.priceRange = null;
+
+    this.priceRangeTemp = null;
 
     this.getListProduct();
 
@@ -337,8 +358,6 @@ export class ListProductsComponent
 
       return;
     }
-
-    console.log("initFilterAttributes")
 
     this.filterAttributes = this.attributes.filter((item) => {
 

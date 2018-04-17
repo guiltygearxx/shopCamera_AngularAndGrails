@@ -2,6 +2,7 @@ package project.controller
 
 import project.domain.Attribute
 import project.domain.AttributeValue
+import project.domain.BaseDomain
 import project.view.ProductView
 
 class ProductViewController extends DefaultRestfulController<ProductView> {
@@ -23,39 +24,47 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
     }
 
     @Override
+    protected List<ProductView> _search() {
+
+        Closure filterClosure = this.buildFilterClosure();
+
+        ProductView.where({
+
+            def tableAlias = ProductView;
+
+            cacheService.attributes.each { Attribute attribute ->
+
+                List values = params.getList(attribute.code);
+
+                if (!values) return;
+
+                exists(AttributeValue.where {
+
+                    def ave = AttributeValue;
+
+                    return referenceId == tableAlias.id && attributeId == attribute.id && isDeleted == false && value in values
+
+                }.id());
+            }
+
+            delegate.with filterClosure
+
+        }).list(params);
+    }
+
+    @Override
     protected Closure buildFilterClosure() {
 
         Closure defaultClosure = super.buildFilterClosure();
 
         return {
 
-//            or {
-//                (params.paramsQuery) && (ilike("name", "%${params.paramsQuery.toLowerCase()}%"));
-//                (params.paramsQuery) && (ilike("hangSanXuat", "%${params.paramsQuery.toLowerCase()}%"));
-//                (params.paramsQuery) && (ilike("code", "%${params.paramsQuery.toLowerCase()}%"));
-//                (params.paramsQuery) && (ilike("categoryName", "%${params.paramsQuery.toLowerCase()}%"));
-//            }
-
             (params.productIds) && (inList("id", params.productIds.split(";")));
             (params.categoryIds) && (inList("categoryId", params.categoryIds.split(";")));
+            (params.fromPrice) && (ge("gia", (new BigDecimal(params.fromPrice) * 1000 * 1000)))
+            (params.toPrice) && (le("gia", (new BigDecimal(params.toPrice) * 1000 * 1000)))
 
-            cacheService.attributes.each { Attribute attribute ->
-
-                List values = params.getList(attribute.code);
-
-                if (values) {
-
-                    def p1 = ProductView;
-
-                    exists(AttributeValue.where {
-                        p1.id == referenceId && attribute.id == attributeId && isDeleted == false && value in values
-                    }.id());
-                }
-            }
-
-            defaultClosure.delegate = delegate;
-
-            defaultClosure.call();
+            delegate.with defaultClosure;
         }
     }
 }

@@ -34,9 +34,7 @@ class ContactController extends DefaultRestfulController<Contact> {
             (params.sPhone) && (ilike("phone", "%${params.sPhone.toLowerCase()}%"));
             (params.sAddress) && (ilike("address", "%${params.sAddress.toLowerCase()}%"));
 
-            defaultClosure.delegate = delegate;
-
-            defaultClosure.call();
+            delegate.with defaultClosure;
         }
     }
 

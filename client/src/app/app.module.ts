@@ -48,6 +48,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {OrderDetailService} from "./service/order/order-detail.service";
 import { FilterComponent } from './web-template/filter/filter.component';
 import {AttributeService} from "./service/attribute.service";
+import { FilterSliderComponent } from './web-template/filter-slider/filter-slider.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import {AttributeService} from "./service/attribute.service";
     WebGiaiphapChitietComponent,
     WebTintucsukienChitietComponent,
     WebRightSideComponent,
-    FilterComponent
+    FilterComponent,
+    FilterSliderComponent
   ],
   imports: [
     BrowserModule,

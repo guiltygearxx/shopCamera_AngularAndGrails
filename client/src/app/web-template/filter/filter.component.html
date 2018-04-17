@@ -6,25 +6,20 @@
         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
       </div>
     </div>
-    <!--<div class="box-body">-->
 
-    <!--<div class="col-sm-12">-->
-    <!--<span class="irs js-irs-0"><span class="irs"><span class="irs-line" tabindex="-1"><span-->
-    <!--class="irs-line-left"></span><span class="irs-line-mid"></span><span-->
-    <!--class="irs-line-right"></span></span><span class="irs-min" style="visibility: visible;">0</span><span-->
-    <!--class="irs-max" style="visibility: visible;">99.000.000</span><span class="irs-from"-->
-    <!--style="visibility: visible; left: 15.4406%;">1.000.000</span><span-->
-    <!--class="irs-to" style="visibility: visible; left: 70.3831%;">4.000.000</span><span class="irs-single"-->
-    <!--style="visibility: hidden; left: 35.4406%;">1.000.000 — 4.000.000</span></span><span-->
-    <!--class="irs-grid"></span><span class="irs-bar" style="left: 22.5287%; width: 54.9425%;"></span><span-->
-    <!--class="irs-shadow shadow-from" style="display: none;"></span><span class="irs-shadow shadow-to"-->
-    <!--style="display: none;"></span><span-->
-    <!--class="irs-slider from" style="left: 18.3142%;"></span><span class="irs-slider to type_last"-->
-    <!--style="left: 73.2567%;"></span></span><input-->
-    <!--id="range_1" name="range_1" value="" class="irs-hidden-input" readonly="" type="text">-->
-    <!--</div>-->
+    <div class="box-body">
 
-    <!--</div>-->
+      <app-filter-slider [min]="0" [max]="1000" [step]="1" (valueChange)="priceRangeChanged($event)"
+                         [(value)]="priceRange">
+      </app-filter-slider>
+
+      <ng-container *ngIf="isPriceRangeChanged">
+        <button class="btn btn-tool btn-mini filter-box-apply" style="display: block;"
+                name="fabGroup" (click)="applyFilterValues($event)">Apply
+        </button>
+      </ng-container>
+
+    </div>
 
   </div>
   <ng-container *ngFor="let filter of attributesFilter">
@@ -51,7 +46,7 @@
         </ng-container>
 
         <ng-container *ngIf="isFilterValueChanged(filter)">
-          <button class="btn btn-tool btn-mini filter-box-apply" style="display: block;" id="fab_600015499"
+          <button class="btn btn-tool btn-mini filter-box-apply" style="display: block;"
                   name="fabGroup" (click)="applyFilterValues($event)">Apply
           </button>
         </ng-container>

@@ -11,12 +11,12 @@ class Category implements BaseDomain {
 
     static constraints = {
 
-        name blank: false, maxSize: 255
+        name blank: false, maxSize: 1000
         parentCategoryId nullable: true;
-        code nullable: false;
+        code nullable: false, maxSize: 255
         content nullable: true;
-        imageUrl nullable: true;
-        type nullable: true;
+        imageUrl nullable: true, maxSize: 1000
+        type nullable: true, maxSize: 255
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

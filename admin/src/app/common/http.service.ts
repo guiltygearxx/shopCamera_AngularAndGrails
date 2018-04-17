@@ -23,13 +23,30 @@ export class HttpService {
     return httpHeaders;
   }
 
+  private initParams(params: any): any {
+
+    let params_ = {};
+
+    if (!isNullOrUndefined(params)) {
+
+      Object.keys(params).forEach((key) => {
+
+        let value = params[key];
+
+        if (!isNullOrUndefined(value)) params_[key] = value;
+      });
+    }
+
+    return params_;
+  }
+
   get(url: string, params: any): Observable<any> {
 
     var url = environment.serviceBaseURL + url;
 
     let httpHeaders = this.buildHttpHeader(new HttpHeaders());
 
-    return this.http.get<any>(url, {params: params, responseType: 'json', headers: httpHeaders});
+    return this.http.get<any>(url, {params: this.initParams(params), responseType: 'json', headers: httpHeaders});
   }
 
   post(url: string, body: any, params: any): Observable<any> {
@@ -38,7 +55,7 @@ export class HttpService {
 
     let httpHeaders = this.buildHttpHeader(new HttpHeaders());
 
-    return this.http.post<any>(url, body, {params: params, responseType: 'json', headers: httpHeaders});
+    return this.http.post<any>(url, body, {params: this.initParams(params), responseType: 'json', headers: httpHeaders});
   }
 
   put(url: string, body: any, params: any): Observable<any> {
@@ -47,7 +64,7 @@ export class HttpService {
 
     let httpHeaders = this.buildHttpHeader(new HttpHeaders());
 
-    return this.http.put<any>(url, body, {params: params, responseType: 'json', headers: httpHeaders});
+    return this.http.put<any>(url, body, {params: this.initParams(params), responseType: 'json', headers: httpHeaders});
   }
 
   delete(url: string, params: any): Observable<any> {
@@ -56,6 +73,6 @@ export class HttpService {
 
     let httpHeaders = this.buildHttpHeader(new HttpHeaders());
 
-    return this.http.delete<any>(url, {params: params, responseType: 'json', headers: httpHeaders});
+    return this.http.delete<any>(url, {params: this.initParams(params), responseType: 'json', headers: httpHeaders});
   }
 }

@@ -11,12 +11,12 @@ class Contact implements BaseDomain {
 
     static constraints = {
 
-        name nullable: true;
-        email nullable: true;
-        phone nullable: true;
-        address nullable: true;
-        comment nullable: true;
-        status nullable: false;
+        name nullable: true, maxSize: 1000
+        email nullable: true, maxSize: 255
+        phone nullable: true, maxSize: 255
+        address nullable: true, maxSize: 1000
+        comment nullable: true, maxSize: 1000
+        status nullable: false, maxSize: 255
 
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true

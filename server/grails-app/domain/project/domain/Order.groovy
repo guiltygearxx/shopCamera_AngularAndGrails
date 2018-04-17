@@ -12,6 +12,13 @@ class Order implements BaseDomain {
 
     static constraints = {
 
+        code maxSize: 255
+        tenNguoiMua nullable: true, maxSize: 500
+        sdt maxSize: 255
+        email maxSize: 255
+        diaChi nullable: false, maxSize: 1000
+        moTa nullable: true, maxSize: 1000
+
         lastModifiedTime nullable: true
         lastModifiedUser nullable: true
         isDeleted nullable: true

@@ -4,7 +4,7 @@ import {ListProductInputParams} from "../bean/list-product-input-params";
 @Injectable()
 export class ListProductService {
 
-  inputParams: ListProductInputParams;
+  inputParams: ListProductInputParams = new ListProductInputParams();
 
   isInputParamsChanged: boolean;
 }

@@ -7,13 +7,13 @@ CREATE TABLE myapp.solution
     ngay_tao datetime,
     last_modified_user varchar(255),
     noi_dung_chi_tiet text,
-    hinh_anh varchar(255),
+    hinh_anh varchar(1000),
     noi_dung_ngan text,
     last_modified_time datetime,
     phone varchar(255),
-    address varchar(255),
-    comment varchar(255),
-    name varchar(255),
+    address varchar(1000),
+    comment varchar(1000),
+    name varchar(1000),
     email varchar(255)
 );
 INSERT INTO myapp.solution (id, version, tieu_de, is_deleted, ngay_tao, last_modified_user, noi_dung_chi_tiet, hinh_anh, noi_dung_ngan, last_modified_time, phone, address, comment, name, email) VALUES ('09b1999d-5d5d-49c9-9909-a9536002e035', 0, 'Giải pháp an ninh sử dụng Smart Line Series của Optex', false, '2018-03-14 20:28:11', 'Admin', '<h1 id="detailnews" class="titledetail">Giải ph&aacute;p an ninh sử dụng Smart Line Series của Optex</h1>

@@ -45,9 +45,7 @@ class OrderController extends DefaultRestfulController<Order> {
             (params.sDiaChi) && (ilike("diaChi", "%${params.sDiaChi.toLowerCase()}%"));
             (params.status) && (eq("status", params.status));
 
-            defaultClosure.delegate = delegate;
-
-            defaultClosure.call();
+            delegate.with defaultClosure;
         }
     }
 

@@ -31,9 +31,6 @@ class UrlMappings {
         "/order/paginate"(controller: "order", action: "updateOrder");
         "/order"(resources: "order")
 
-        "/propertiesCamera/paginate"(controller: "propertiesCamera", action: "paginate", method: "GET");
-        "/propertiesCamera"(resources: "propertiesCamera")
-
         "/product"(resources: "product");
 
         "/category"(resources: "category")

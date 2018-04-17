@@ -60,4 +60,5 @@ export const i18n = {
 
   'importProduct.template.camera': 'Camera',
   'importProduct.template.daughi': 'Đầu ghi',
+  'importProduct.template.security': 'An ninh',
 };

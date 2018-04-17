@@ -8,7 +8,6 @@ import {ValidateUtils} from '../common/validate/validate-utils';
 import {FormFlowManager} from '../common/form-flow-manager';
 import {OrderService} from '../service/order.service';
 import {OrderDetailForm} from '../bean/order-detail-form';
-import {NewsDetailForm} from '../bean/news-detail-form';
 import {OrderDetailService} from '../service/order-detail.service';
 import {OrderDetail} from '../bean/order-detail';
 import {ComponentUtils} from '../common/component-utils';
