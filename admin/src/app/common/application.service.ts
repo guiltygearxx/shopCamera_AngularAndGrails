@@ -47,6 +47,8 @@ export class ApplicationService {
 
   signOut(): void {
 
+    this.accessToken_ = null;
+
     this.storageService.setToSessionStorage(STORAGE_USER_INFORMATION, null);
 
     this.storageService.setToSessionStorage(STORAGE_ACCESS_TOKEN, null);
