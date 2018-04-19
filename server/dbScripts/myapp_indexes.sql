@@ -5,9 +5,6 @@ alter table attribute_value
   add index idx_attribute_value_attribute_id (attribute_id),
   add index idx_attribute_value_reference_id (reference_id);
 
-alter table attribute_value
-  add index idx_attribute_value_attribute_id (attribute_id);
-
 alter table authentication_token
   add index idx_authentication_token_token_value (token_value);
 
