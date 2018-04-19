@@ -88,7 +88,7 @@ export class TextAreaComponent
     this.componentUtils.runAfterContentCheckedCallback(this);
   }
 
-  inputValueChanged(event: any): void {
+  inputValueChanged(event?: any): void {
 
     if (this.autoTrim) {
 
