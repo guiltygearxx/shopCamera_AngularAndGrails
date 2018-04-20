@@ -26,13 +26,7 @@ export class StarterLeftSideComponent implements OnInit {
 
     new Menu(1, null, 'Danh mục khuyến mại', 'starter/orderIndex'),
     new Menu(2, null, 'Danh mục order', 'starter/orderIndex'),
-  ];
-
-  menuItemsUI: Menu[] = [
-
     new Menu(1, null, 'Danh mục nhóm sản phẩm', 'starter/categoryIndex'),
-    new Menu(1, null, 'Banner Quảng cáo', 'starter/banner'),
-    new Menu(2, null, 'Cấu hình giao diện Web bán hàng', 'starter/configurationUi'),
   ];
 
   constructor(protected applicationService: ApplicationService,
