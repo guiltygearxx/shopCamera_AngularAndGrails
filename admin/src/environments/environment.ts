@@ -6,6 +6,5 @@
 export const environment = {
 
   production: false,
-
   serviceBaseURL: "http://localhost:8080/",
 };

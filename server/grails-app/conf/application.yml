@@ -1,4 +1,3 @@
----
 grails:
     profile: web
     codegen:
@@ -12,26 +11,6 @@ grails:
             # Whether to translate GORM events into Reactor events
             # Disabled by default for performance reasons
             events: false
-info:
-    app:
-        name: '@info.app.name@'
-        version: '@info.app.version@'
-        grailsVersion: '@info.app.grailsVersion@'
-spring:
-    main:
-        banner-mode: "off"
-    groovy:
-        template:
-            check-template-location: false
-
-# Spring Actuator Endpoints are Disabled by Default
-endpoints:
-    enabled: false
-    jmx:
-        enabled: true
-
----
-grails:
     mime:
         disable:
             accept:
@@ -82,11 +61,28 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+    cors:
+        enabled: true
+
+info:
+    app:
+        name: '@info.app.name@'
+        version: '@info.app.version@'
+        grailsVersion: '@info.app.grailsVersion@'
+spring:
+    main:
+        banner-mode: "off"
+    groovy:
+        template:
+            check-template-location: false
+
+# Spring Actuator Endpoints are Disabled by Default
 endpoints:
+    enabled: false
     jmx:
+        enabled: true
         unique-names: true
 
----
 hibernate:
     cache:
         queries: false
@@ -105,9 +101,10 @@ environments:
             url: jdbc:mysql://localhost:3306/myapp
             username: admin
             password: admin
-#            url: jdbc:mysql://112.78.2.253:3306/mb037854_myapp;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-#            username: mb037854_admin
-#            password: gsPr*]fW(fm@
+
+        uploadFile:
+            baseDir: d:/uploadFile/
+
     test:
         dataSource:
             dbCreate: update
@@ -115,9 +112,9 @@ environments:
     production:
         dataSource:
             dbCreate: none
-            url: jdbc:mysql://112.78.2.253:3306/mb037854_myapp;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
-            username: mb037854_admin
-            password: gsPr*]fW(fm@
+            url: jdbc:mysql://localhost:3306/myapp
+            username: root
+            password: root
             properties:
                 jmxEnabled: true
                 initialSize: 5
@@ -137,10 +134,5 @@ environments:
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
-
-grails:
-    cors:
-        enabled: true
-
-uploadFile:
-    baseDir: d:/uploadFile/
+        uploadFile:
+            baseDir: /root/uploadFiles/
