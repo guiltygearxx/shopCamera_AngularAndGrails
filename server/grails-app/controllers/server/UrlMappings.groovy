@@ -28,7 +28,7 @@ class UrlMappings {
         "/tintuc"(resources: "news")
 
         "/order/paginate"(controller: "order", action: "paginate", method: "GET");
-        "/order/paginate"(controller: "order", action: "updateOrder");
+        "/order/updateOrder"(controller: "order", action: "updateOrder");
         "/order"(resources: "order")
 
         "/product"(resources: "product");
