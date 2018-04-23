@@ -876,53 +876,106 @@ h6 .text_align_left{
 
 
 
-
-/* The side navigation menu */
-.sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #111; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-}
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-  position: absolute;
+/****************************************
+* loader
+*****************************************/
+#loader-wrapper {
+  position: fixed;
   top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000111;
+  background-color: #ffffff;
+  opacity: 1;
+  -webkit-transition:  all 500ms linear 0s;
+  -moz-transition:  all 500ms linear 0s;
+  -ms-transition:  all 500ms linear 0s;
+  -o-transition:  all 500ms linear 0s;
+  transition:  all 500ms linear 0s;
 }
-
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left .5s;
-  padding: 20px;
+#loader-wrapper.loader-off,
+body.loaded #loader-wrapper {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition:  all 500ms linear 0s;
+  -moz-transition:  all 500ms linear 0s;
+  -ms-transition:  all 500ms linear 0s;
+  -o-transition:  all 500ms linear 0s;
+  transition:  all 500ms linear 0s;
 }
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+/* The loader container */
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin-top: -100px;
+  margin-left: -100px;
+  perspective: 400px;
+  transform-type: preserve-3d;
 }
+/* The dot */
+#loader .dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  margin-left: -80px;
+  transform-type: preserve-3d;
+  transform-origin: 80px 50%;
+  transform: rotateY(0);
+  background-color: #1fc0a0;
+  animation: dot1 2000ms cubic-bezier(0.56, 0.09, 0.89, 0.69) infinite;
+}
+#loader .dot:nth-child(2) {
+  z-index: 9;
+  animation-delay: 150ms;
+}
+#loader .dot:nth-child(3) {
+  z-index: 8;
+  animation-delay: 300ms;
+}
+#loader .dot:nth-child(4) {
+  z-index: 7;
+  animation-delay: 450ms;
+}
+#loader .dot:nth-child(5) {
+  z-index: 6;
+  animation-delay: 600ms;
+}
+#loader .dot:nth-child(6) {
+  z-index: 5;
+  animation-delay: 750ms;
+}
+#loader .dot:nth-child(7) {
+  z-index: 4;
+  animation-delay: 900ms;
+}
+#loader .dot:nth-child(8) {
+  z-index: 3;
+  animation-delay: 1050ms;
+}
+@keyframes dot1 {
+  0% {
+    transform: rotate(0deg) skew(0deg);
+    background-color: #1fc0a0;
+  }
+  45% {
+    transform: rotate(180deg) skew(-30deg);
+    background-color: #0a3c32;
+    animation-timing-function: cubic-bezier(0.15, 0.62, 0.72, 0.98);
+  }
+  90%,
+  100% {
+    transform: rotate(0deg) skew(0deg);
+    background-color: #1fc0a0;
+  }
+}
+/****************************************
+* end loader
+*****************************************/
