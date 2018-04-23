@@ -15,7 +15,7 @@
         <a (click)="goToChiTietSanPham($event,product)">
           <h4 class="media-heading">{{product.name}}</h4>
         </a>
-        <span class="media-price">{{product.gia}} đ</span>
+        <span class="media-price">{{getNumberFormatted(product.gia)}} đ</span>
       </div>
     </div>
 

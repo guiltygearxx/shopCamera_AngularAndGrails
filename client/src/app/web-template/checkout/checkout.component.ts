@@ -9,6 +9,7 @@ import {OrderForm} from "../../bean/order-form";
 import {OrderService} from "../../service/order/order.service";
 import {OrderDetailService} from "../../service/order/order-detail.service";
 import {Order} from "../../bean/order";
+import {NumberFormatter} from "../../common/formater/number-formatter";
 
 @Component({
   selector: 'app-checkout',
@@ -17,6 +18,8 @@ import {Order} from "../../bean/order";
 })
 export class CheckoutComponent extends CheckOutLogic implements OnInit {
 
+  private numberFormater: NumberFormatter;
+
   constructor(private router: Router,
               protected gioHangService: GioHangService,
               protected orderService: OrderService,
@@ -24,16 +27,24 @@ export class CheckoutComponent extends CheckOutLogic implements OnInit {
               protected validateUtils: ValidateUtils,
               protected formFlowManager: FormFlowManager,
               protected applicationUtils: ApplicationUtils) {
+
     super(gioHangService, orderService, orderDetailService, validateUtils, formFlowManager, applicationUtils);
   }
 
   ngOnInit() {
+
+    this.numberFormater = this.applicationUtils.defaultNumberFormatter;
 
     this.errorMessages = [];
 
     this.orderSuccess = new Order;
 
     this.orderForm = new OrderForm();
+  }
+
+  getNumberFormatted(val: number): string {
+
+    return this.numberFormater.format(val);
   }
 
   getErrorMessage(field: string): string {

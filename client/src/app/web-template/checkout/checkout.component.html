@@ -35,7 +35,7 @@
             </td>
             <td class="invert">{{listProduct.name}}</td>
 
-            <td class="invert">{{listProduct.gia}} đ</td>
+            <td class="invert">{{getNumberFormatted(listProduct.gia)}} đ</td>
             <td class="invert">
               <div class="rem">
                 <div class="close1" (click)="removeProduct($event, listProduct)"></div>
@@ -53,10 +53,10 @@
           mua sắm</a></h4>
         <ul>
           <ng-container *ngFor="let listProduct of getListGioHang()">
-            <li>{{listProduct.name}} <i>-</i> <span>{{thanhTienProduct(listProduct)}} đ </span></li>
+            <li>{{listProduct.name}} <i>-</i> <span>{{getNumberFormatted(thanhTienProduct(listProduct))}} đ </span></li>
           </ng-container>
           <!--<li>Phí vận chuyển <i>-</i> <span> 200.000 đ</span></li>-->
-          <li class="confixByThread thayDoiCSSGiaBan">Tổng tiền <i>-</i> <span>{{tongTienThanhToan()}} đ</span></li>
+          <li class="confixByThread thayDoiCSSGiaBan">Tổng tiền <i>-</i> <span>{{getNumberFormatted(tongTienThanhToan())}} đ</span></li>
         </ul>
         <ng-container *ngIf="checkSuccessOrder()">
           <div><span class="thayDoiCSSGiaBan">Mã đơn hàng của bạn: {{this.orderSuccess.code}} </span></div>

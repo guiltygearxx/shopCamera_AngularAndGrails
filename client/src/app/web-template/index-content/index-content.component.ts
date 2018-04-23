@@ -14,6 +14,7 @@ import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {NumberFormatter} from "../../service/formator/number-formatter";
 import {ApplicationUtils} from "../../common/application-utils";
+import {convertStringToBigNumber} from "../../service/utils/application-utils";
 
 @Component({
   selector: 'app-index-content',
@@ -22,7 +23,7 @@ import {ApplicationUtils} from "../../common/application-utils";
 })
 export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
-
+  giaTruocKhiHa: number;
   private numberFormater: NumberFormatter;
 
   detailForms: OrderDetailForm;
@@ -62,7 +63,10 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
       return 0;
     }else {
 
-      return (product.phanTramGiamGia *  product.gia ) / 100
+      this.giaTruocKhiHa = isNullOrUndefined(product.giaTruocKhiHa)? 0: Number.parseInt(product.giaTruocKhiHa);
+
+
+      return (this.giaTruocKhiHa - product.gia );
     }
   }
 
