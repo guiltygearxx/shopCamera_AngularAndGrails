@@ -5,8 +5,8 @@ import {NewsService} from "../../service/news/news.service";
 import {ProductView} from "../../bean/product-view";
 import {News} from "../../bean/news";
 import {Router} from "@angular/router";
-import {NumberFormatter} from "../../common/formater/number-formatter";
 import {ApplicationUtils} from "../../common/application-utils";
+import {NumberFormatter} from "../../common/formater/number-formatter";
 
 @Component({
   selector: 'app-web-right-side',
@@ -15,9 +15,12 @@ import {ApplicationUtils} from "../../common/application-utils";
 })
 export class WebRightSideComponent extends WebRightSideLogic implements OnInit {
 
-  private numberFormater: NumberFormatter;
+  constructor(private router: Router,
+              protected productViewService: ProductViewService,
+              protected newsService: NewsService,
+              protected applicationUtils: ApplicationUtils,
+              protected numberFormater: NumberFormatter) {
 
-  constructor(private router: Router, protected productViewService: ProductViewService, protected newsService: NewsService, protected applicationUtils: ApplicationUtils) {
     super(productViewService, newsService);
   }
 
@@ -26,9 +29,8 @@ export class WebRightSideComponent extends WebRightSideLogic implements OnInit {
 
   ngOnInit() {
 
-    this.numberFormater = this.applicationUtils.defaultNumberFormatter;
-
     this.maxSizeNews = this.siteOfNews;
+
     this.getListProduct();
 
     this.getListNews();

@@ -12,9 +12,9 @@ import {ListProductService} from "../../service/list-product.service";
 import {isNullOrUndefined} from "util";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
-import {NumberFormatter} from "../../service/formator/number-formatter";
 import {ApplicationUtils} from "../../common/application-utils";
-import {convertStringToBigNumber} from "../../service/utils/application-utils";
+import {NumberFormatter} from "../../common/formater/number-formatter";
+import {HttpService} from "../../common/http.service";
 
 @Component({
   selector: 'app-index-content',
@@ -24,33 +24,38 @@ import {convertStringToBigNumber} from "../../service/utils/application-utils";
 export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
   giaTruocKhiHa: number;
-  private numberFormater: NumberFormatter;
 
   detailForms: OrderDetailForm;
+
+  get isLoading(): boolean {
+
+    return this.httpService.loadingFlag > 0;
+  }
 
   constructor(private router: Router,
               protected productViewService: ProductViewService,
               protected categoryService: CategoryService,
               protected newsService: NewsService,
               protected listProductService: ListProductService,
-              protected gioHangService:GioHangService,
-              protected applicationUtils: ApplicationUtils) {
+              protected gioHangService: GioHangService,
+              protected applicationUtils: ApplicationUtils,
+              protected numberFormater: NumberFormatter,
+              protected httpService: HttpService) {
 
     super(productViewService, categoryService, newsService);
   }
 
   ngOnInit() {
+
     this.getListCategory();
 
     this.getListNews();
 
-    this.numberFormater = this.applicationUtils.defaultNumberFormatter;
-
     this.activeImageIndex = 0;
-    this.allowDisplayProductVetical = true;
-    this.allowDisplayNews = true;
 
-    // get list camera giam sat
+    this.allowDisplayProductVetical = true;
+
+    this.allowDisplayNews = true;
   }
 
   getNumberFormatted(val: number): string {
@@ -58,15 +63,15 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
     return this.numberFormater.format(val);
   }
 
-  getGiaKhuyenMai(product:ProductView):number{
-    if(isNullOrUndefined(product.gia)){
+  getGiaKhuyenMai(product: ProductView): number {
+    if (isNullOrUndefined(product.gia)) {
       return 0;
-    }else {
+    } else {
 
-      this.giaTruocKhiHa = isNullOrUndefined(product.giaTruocKhiHa)? 0: Number.parseInt(product.giaTruocKhiHa);
+      this.giaTruocKhiHa = isNullOrUndefined(product.giaTruocKhiHa) ? 0 : Number.parseInt(product.giaTruocKhiHa);
 
 
-      return (this.giaTruocKhiHa - product.gia );
+      return (this.giaTruocKhiHa - product.gia);
     }
   }
 
@@ -134,9 +139,9 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
   }
 
-  kiemTraGiamGia(product:ProductView):boolean{
+  kiemTraGiamGia(product: ProductView): boolean {
 
-    if(isNullOrUndefined(product.phanTramGiamGia)) return false;
+    if (isNullOrUndefined(product.phanTramGiamGia)) return false;
 
     return true;
   }

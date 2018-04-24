@@ -18,22 +18,19 @@ import {NumberFormatter} from "../../common/formater/number-formatter";
 })
 export class CheckoutComponent extends CheckOutLogic implements OnInit {
 
-  private numberFormater: NumberFormatter;
-
   constructor(private router: Router,
               protected gioHangService: GioHangService,
               protected orderService: OrderService,
               protected orderDetailService: OrderDetailService,
               protected validateUtils: ValidateUtils,
               protected formFlowManager: FormFlowManager,
-              protected applicationUtils: ApplicationUtils) {
+              protected applicationUtils: ApplicationUtils,
+              protected numberFormater: NumberFormatter) {
 
     super(gioHangService, orderService, orderDetailService, validateUtils, formFlowManager, applicationUtils);
   }
 
   ngOnInit() {
-
-    this.numberFormater = this.applicationUtils.defaultNumberFormatter;
 
     this.errorMessages = [];
 

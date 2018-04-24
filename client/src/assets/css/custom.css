@@ -976,6 +976,10 @@ body.loaded #loader-wrapper {
     background-color: #1fc0a0;
   }
 }
+
+#loader-wrapper.inActive {
+  display: none;
+}
 /****************************************
 * end loader
 *****************************************/

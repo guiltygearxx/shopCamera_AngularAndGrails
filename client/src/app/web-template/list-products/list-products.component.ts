@@ -16,7 +16,7 @@ import {ExampleObject} from "../../bean/example-object";
 import {Attribute} from "../../bean/attribute";
 import {AttributeService} from "../../service/attribute.service";
 import {TrieuDongFormater} from "../../common/trieu-dong-formater";
-import {NumberFormatter} from "../../service/formator/number-formatter";
+import {NumberFormatter} from "../../common/formater/number-formatter";
 
 @Component({
   selector: 'app-list-products',
@@ -36,8 +36,6 @@ export class ListProductsComponent
 
   private trieuDongFormatter: TrieuDongFormater;
 
-  private numberFormater: NumberFormatter;
-
   attributes: Attribute[];
 
   selectedCategory: CategoryItem;
@@ -56,14 +54,13 @@ export class ListProductsComponent
   private isCategoryLoaded: boolean = true;
 
   constructor(private router: Router,
-              protected route: ActivatedRoute,
               protected productListService: ProductViewService,
               protected categoryService: CategoryService,
               protected gioHangService: GioHangService,
               protected listProductService: ListProductService,
               protected applicationUtils: ApplicationUtils,
               protected attributeService: AttributeService,
-              protected applicationContext: ApplicationUtils) {
+              protected numberFormater: NumberFormatter) {
 
     super(productListService, categoryService, applicationUtils);
   }
@@ -75,8 +72,6 @@ export class ListProductsComponent
     this.allowDisplayProductVetical = true;
 
     this.filterForm = new ListProductFilterForm();
-
-    this.numberFormater = this.applicationContext.defaultNumberFormatter;
 
     this.filterValuesTemp = {};
 
@@ -133,15 +128,15 @@ export class ListProductsComponent
     return this.numberFormater.format(val);
   }
 
-  getGiaKhuyenMai(product:ProductView):number{
-    if(isNullOrUndefined(product.gia)){
+  getGiaKhuyenMai(product: ProductView): number {
+    if (isNullOrUndefined(product.gia)) {
       return 0;
-    }else {
+    } else {
 
-      this.giaTruocKhiHa = isNullOrUndefined(product.giaTruocKhiHa)? 0: Number.parseInt(product.giaTruocKhiHa);
+      this.giaTruocKhiHa = isNullOrUndefined(product.giaTruocKhiHa) ? 0 : Number.parseInt(product.giaTruocKhiHa);
 
 
-      return (this.giaTruocKhiHa - product.gia );
+      return (this.giaTruocKhiHa - product.gia);
     }
   }
 
