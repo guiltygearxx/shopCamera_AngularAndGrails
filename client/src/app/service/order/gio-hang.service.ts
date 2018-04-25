@@ -58,8 +58,6 @@ export class GioHangService {
 
   removeOrderDetail(detailForm: OrderDetailForm): void {
 
-    console.log(detailForm);
-
     var index = this.detailForms.indexOf(detailForm);
 
     this.detailForms.splice(index,1);

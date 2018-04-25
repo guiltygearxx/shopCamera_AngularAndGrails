@@ -27,4 +27,9 @@ class ApplicationUtilsService {
 
         return new BigDecimal(value);
     }
+
+    Long getSequence(String seqName) {
+
+
+    }
 }

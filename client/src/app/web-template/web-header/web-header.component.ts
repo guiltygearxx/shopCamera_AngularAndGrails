@@ -6,7 +6,6 @@ import {GioHangService} from "../../service/order/gio-hang.service";
 import {WebHeaderLogic} from "./web-header-logic";
 import {WebHeaderFilterForm} from "./web-header-filter-form";
 import {CategoryService} from "../../service/category/category.service";
-import {ExampleObject} from "../../bean/example-object";
 import {CategoryItem} from "../../bean/category-item";
 import {isNullOrUndefined} from "util";
 
@@ -39,23 +38,9 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit, AfterV
     this.filterForm = new WebHeaderFilterForm();
 
     this.getCategorys();
-
-    this.khoangGia = [
-      new ExampleObject("1000000", "> 1 triệu"),
-      new ExampleObject("2000000", "> 2 triệu"),
-      new ExampleObject("3000000", "> 3 triệu"),
-      new ExampleObject("4000000", "> 4 triệu"),
-      new ExampleObject("5000000", "> 5 triệu"),
-      new ExampleObject("6000000", "> 6 triệu"),
-      new ExampleObject("7000000", "> 7 triệu"),
-      new ExampleObject("8000000", "> 8 triệu"),
-      new ExampleObject("9000000", "> 9 triệu"),
-    ]
   }
 
   ngAfterViewInit(): void {
-
-    console.log("123123");
 
     var navoffeset = $(".header-wrapper #header").offset().top;
 

@@ -21,8 +21,6 @@ class QueryPagingService {
 
         Long pageIndex;
 
-        println itemsLength;
-
         if (itemsLength) {
 
             pageIndex = [paginationParams.pageIndex, itemsLength / paginationParams.maxPageSize].min();

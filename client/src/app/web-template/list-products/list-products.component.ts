@@ -81,6 +81,8 @@ export class ListProductsComponent
 
   filterValuesTemp: { [code: string]: string[] };
 
+  priceRangeTemp: number[];
+
   get inputParams(): ListProductInputParams {
 
     return this.listProductService.inputParams;
@@ -127,6 +129,10 @@ export class ListProductsComponent
 
     this.filterValuesTemp = {};
 
+    this.priceRangeTemp = [0, 1000];
+
+    this.priceRange = [0, 1000];
+
     this.filterValues = {};
 
     this.curPageIndex = 0;
@@ -139,9 +145,9 @@ export class ListProductsComponent
 
     this.sort = "gia";
 
-    this.initFilterAttributes();
+    // this.initFilterAttributes();
 
-    this.initHasFilterValues();
+    // this.initHasFilterValues();
 
     this.getListCategory();
 
@@ -274,11 +280,13 @@ export class ListProductsComponent
     this.router.navigate(["/danhSachSanPham"]);
   }
 
-  filterValuesChanged(filterValues: any): void {
+  filterChange(): void {
 
     this.filterValues = {};
 
-    Object.keys(filterValues).forEach((key) => this.filterValues[key] = filterValues[key]);
+    Object.keys(this.filterValuesTemp).forEach((key) => this.filterValues[key] = this.filterValuesTemp[key]);
+
+    this.priceRange = this.priceRangeTemp.slice();
 
     this.getListProduct();
 
@@ -309,6 +317,10 @@ export class ListProductsComponent
     this.filterValues = {};
 
     this.filterValuesTemp = {};
+
+    this.priceRange = [0, 1000];
+
+    this.priceRangeTemp = [0, 1000];
 
     this.getListProduct();
 
@@ -347,6 +359,8 @@ export class ListProductsComponent
     }
 
     this.filterAttributes = this.attributes.filter((item) => {
+
+      if (item.group != this.selectedCategory.type) return false;
 
       let values = this.filterValues[item.code];
 
