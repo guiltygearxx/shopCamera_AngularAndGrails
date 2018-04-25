@@ -7,9 +7,11 @@ import project.domain.Contact
 @Transactional
 class UpdateContactStatusService implements BaseService {
 
+    static scope = "request";
+
     private UpdateContactStatusForm form;
 
-    def updateStatus(UpdateContactStatusForm form) {
+    def Boolean updateStatus(UpdateContactStatusForm form) {
 
         this.form = form;
 

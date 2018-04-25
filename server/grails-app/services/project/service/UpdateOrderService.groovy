@@ -7,6 +7,8 @@ import project.domain.Order
 @Transactional
 class UpdateOrderService implements BaseService {
 
+    static scope = "request";
+
     private UpdateOrderForm form;
 
     private Boolean validate() {
