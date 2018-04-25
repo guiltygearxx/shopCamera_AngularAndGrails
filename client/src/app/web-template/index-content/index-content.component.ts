@@ -85,19 +85,6 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
   }
 
-  goToCategory(event: any, code: string): void {
-
-    event.preventDefault();
-
-    this.listProductService.isInputParamsChanged = true;
-
-    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
-
-    inputParams.categoryCode = code;
-
-    this.router.navigate(["/danhSachSanPham"]);
-  }
-
   goToChiTietSanPham(event: any, productView: ProductView): void {
 
     event.preventDefault();

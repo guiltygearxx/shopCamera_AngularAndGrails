@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "../../bean/menu-item";
 import {ListProductService} from "../../service/list-product.service";
@@ -9,7 +9,6 @@ import {CategoryService} from "../../service/category/category.service";
 import {ExampleObject} from "../../bean/example-object";
 import {CategoryItem} from "../../bean/category-item";
 import {isNullOrUndefined} from "util";
-import {ListProductInputParams} from "../../bean/list-product-input-params";
 
 declare var $: any;
 
@@ -18,45 +17,26 @@ declare var $: any;
   templateUrl: './web-header.component.html',
   styleUrls: ['./web-header.component.css']
 })
-export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
-
-  private bindEffectForMenuFn: (() => void);
+export class WebHeaderComponent extends WebHeaderLogic implements OnInit, AfterViewInit {
 
   menuItems: MenuItem[] = [
 
-    // new MenuItem("ttdt", "Trung tâm đào tạo"),
-    // new MenuItem("daiLy", "Đại lý"),
-    // new MenuItem("tuyenDung", "Tuyển dụng"),
     new MenuItem("giaiPhap", "Giải pháp"),
     new MenuItem("ttsk", "Tin tức"),
     new MenuItem("lienHe", "Liên hệ")
-    // new MenuItem("gioiThieu", "Giới thiệu"),
-    // new MenuItem("trangChu", "Trang chủ"),
   ]
 
   constructor(protected router: Router,
               protected listProductService: ListProductService,
               protected  gioHangService: GioHangService,
               protected categoryService: CategoryService,) {
+
     super(router, listProductService, gioHangService, categoryService);
   }
 
   ngOnInit() {
 
     this.filterForm = new WebHeaderFilterForm();
-
-    // $(document).ready(function () {
-    //   var navoffeset = $(".agileits_header").offset().top;
-    //   $(window).scroll(function () {
-    //     var scrollpos = $(window).scrollTop();
-    //     if (scrollpos >= navoffeset) {
-    //       $(".agileits_header").addClass("fixed");
-    //     } else {
-    //       $(".agileits_header").removeClass("fixed");
-    //     }
-    //   });
-    //
-    // });
 
     this.getCategorys();
 
@@ -73,29 +53,34 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
     ]
   }
 
+  ngAfterViewInit(): void {
 
-  ngAfterViewChecked(): void {
-
-    if (!isNullOrUndefined(this.bindEffectForMenuFn)) {
-
-      this.bindEffectForMenuFn();
-
-      this.bindEffectForMenuFn = null;
-    }
+    // var navoffeset = $(".agileits_header").offset().top;
+    //
+    // $(window).scroll(function () {
+    //
+    //   var scrollpos = $(window).scrollTop();
+    //
+    //   if (scrollpos >= navoffeset) {
+    //
+    //     $(".agileits_header").addClass("fixed");
+    //
+    //   } else {
+    //
+    //     $(".agileits_header").removeClass("fixed");
+    //   }
+    // });
   }
 
   goToSubCategory(event: any, category: CategoryItem, subCategory: CategoryItem): void {
 
     event.preventDefault();
 
-    this.listProductService.isInputParamsChanged = true;
+    let selectedCategoryId = isNullOrUndefined(subCategory) ? category.id : subCategory.id;
 
-    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
+    console.log(selectedCategoryId);
 
-    inputParams.categoryCode = category.code;
-    inputParams.subCategory = isNullOrUndefined(subCategory) ? null : subCategory.code;
-
-    this.router.navigate(["/danhSachSanPham"]);
+    this.router.navigate(["/danhSachSanPham/category", selectedCategoryId]);
   }
 
   getParentCategories(): CategoryItem[] {
@@ -138,4 +123,5 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
 
     $("#mySidenav").width("0px");
   }
+
 }

@@ -49,6 +49,8 @@ import {OrderDetailService} from "./service/order/order-detail.service";
 import { FilterComponent } from './web-template/filter/filter.component';
 import {AttributeService} from "./service/attribute.service";
 import { FilterSliderComponent } from './web-template/filter-slider/filter-slider.component';
+import {TrieuDongFormater} from "./common/trieu-dong-formater";
+import {SortableTableFlow} from "./common/sortable-table-flow";
 
 @NgModule({
   declarations: [
@@ -104,7 +106,9 @@ import { FilterSliderComponent } from './web-template/filter-slider/filter-slide
     GioHangService,
     FormFlowManager,
     ListProductService,
-    AttributeService
+    AttributeService,
+    TrieuDongFormater,
+    SortableTableFlow
   ],
   bootstrap: [AppComponent]
 })

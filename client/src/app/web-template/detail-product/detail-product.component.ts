@@ -43,9 +43,11 @@ export class DetailProductComponent
 
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
+
     super.afterGetListCategory(categoryItems);
 
     this.productId = this.route.snapshot.paramMap.get("productId");
+
     this.getProductById(this.productId);
   }
 

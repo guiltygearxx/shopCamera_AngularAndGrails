@@ -1,5 +1,6 @@
 package project.service
 
+import grails.gorm.DetachedCriteria
 import grails.gorm.transactions.Transactional
 import project.bean.PaginationParams
 import project.bean.TableQueryResponse
@@ -9,11 +10,18 @@ class QueryPagingService {
 
     TableQueryResponse query(Class domainClass, Closure filterClosure, PaginationParams paginationParams) {
 
-        Long itemsLength = domainClass.createCriteria().count(filterClosure);
+        return query(domainClass.where(filterClosure) as DetachedCriteria, paginationParams);
+    }
+
+    TableQueryResponse query(DetachedCriteria criteria, PaginationParams paginationParams) {
+
+        Long itemsLength = criteria.count();
 
         List items;
 
         Long pageIndex;
+
+        println itemsLength;
 
         if (itemsLength) {
 
@@ -25,7 +33,8 @@ class QueryPagingService {
 
             def pagingParams = [offset: offset, max: paginationParams.maxPageSize, sort: paginationParams.sort, order: order];
 
-            items = domainClass.createCriteria().list(pagingParams, filterClosure);
+            items = criteria.list(pagingParams);
+
         } else {
 
             pageIndex = 0;

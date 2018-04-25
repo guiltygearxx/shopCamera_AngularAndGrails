@@ -10,6 +10,8 @@ class CacheService {
 
     void cachingAttribute() {
 
+        println("CacheService. cachingAttribute")
+
         attributes = Attribute.findAllByIsDeleted(false).sort { it.order };
     }
 }

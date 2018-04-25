@@ -48,16 +48,12 @@ export class HttpService {
 
     this.loadingFlag--;
 
-    console.log(this.loadingFlag);
-
     return response;
   }
 
   private handleError(error: any): any {
 
     this.loadingFlag--;
-
-    console.log(this.loadingFlag);
 
     console.log(error);
   }

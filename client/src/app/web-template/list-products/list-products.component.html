@@ -17,13 +17,17 @@
 
     <!--Sub Category-->
     <div class="col-md-12" style="text-align: center;">
+
       <ng-container *ngFor="let subCategory of subCategoryList">
+
         <div class="col-md-2 col-xs-4 confixHoverSubCategory">
+
           <a (click)="goToSubCategory($event, subCategory)">
-            <img src="{{subCategory.imageUrl}}"
-                 class="cssHeaderSubCategoryImages">
+            <img src="{{subCategory.imageUrl}}" class="cssHeaderSubCategoryImages">
           </a>
+
           <h3 class="cssHeaderCategory">{{subCategory.name}}</h3>
+
         </div>
 
       </ng-container>
@@ -156,9 +160,11 @@
                 <div class="box-product confixPaddingTopBottom20px">
                   <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
                   </div>
-                  <div class=""><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                  <div class=""><span
+                    class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
                   </div>
-                  <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span></div>
+                  <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                  </div>
                   <div class="">
                     <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
                   </div>
@@ -209,10 +215,9 @@
                 </div>
                 <div class="confixImage">
                   <ng-container *ngFor="let listImageHighlight of getListImageHighlight(productCamera)">
-                    <img
-                      src="{{listImageHighlight}}"
-                      class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
-                      title="camera-ip-10" width="60" height="30">
+                    <img src="{{listImageHighlight}}"
+                         class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
+                         title="camera-ip-10" width="60" height="30">
                   </ng-container>
                 </div>
                 <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>
@@ -224,7 +229,8 @@
                 </div>
                 <div class="confixTextRight"><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
                 </div>
-                <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span></div>
+                <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                </div>
                 <div class="confixTextRight">
                   <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
                 </div>
@@ -235,22 +241,16 @@
         </ng-container>
 
         <div class="clearfix"></div>
-        <div class="container" style="text-align: left">
-          <ul class="pagination">
-            <li class="page-item disabled"><a class="page-link" href="#">Đầu</a></li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">Cuối</a></li>
-          </ul>
-        </div>
+
+        <app-pagination-footer [dataSize]="count" [maxPageSize]="maxPageSize" [pageIndex]="curPageIndex"
+                               (goToPage)="goToPage($event)">
+        </app-pagination-footer>
+
       </div>
-
     </div>
+
+
+    <div class="clearfix"></div>
+
   </div>
-
-
-  <div class="clearfix"></div>
-
-</div>
 

@@ -56,20 +56,8 @@ export class WebHeaderLogic{
       .subscribe((category) => this.afterGetListCategory(category));
   }
 
-  queryProduct(event: any): void {
-
-    event.preventDefault();
-
-    this.listProductService.isInputParamsChanged = true;
-
-    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
-
-    inputParams.paramsQuery = this.filterForm.paramsQuery;
-
-    this.router.navigate(["/danhSachSanPham"]);
-  }
-
   afterGetListCategory(categoryItems: CategoryItem[]): void {
+
     this.categoryListItem = categoryItems;
   }
 }

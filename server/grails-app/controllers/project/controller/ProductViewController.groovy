@@ -1,8 +1,10 @@
 package project.controller
 
+import grails.converters.JSON
+import project.bean.PaginationParams
+import project.bean.TableQueryResponse
 import project.domain.Attribute
 import project.domain.AttributeValue
-import project.domain.BaseDomain
 import project.view.ProductView
 
 class ProductViewController extends DefaultRestfulController<ProductView> {
@@ -26,9 +28,14 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
     @Override
     protected List<ProductView> _search() {
 
+        this.buildCriteria().list(params);
+    }
+
+    protected buildCriteria() {
+
         Closure filterClosure = this.buildFilterClosure();
 
-        ProductView.where({
+        return ProductView.where({
 
             def tableAlias = ProductView;
 
@@ -48,8 +55,7 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
             }
 
             delegate.with filterClosure
-
-        }).list(params);
+        })
     }
 
     @Override
@@ -66,6 +72,14 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
 
             delegate.with defaultClosure;
         }
+    }
+
+    @Override
+    def paginate(PaginationParams paginationParams) {
+
+        TableQueryResponse result = queryPagingService.query(this.buildCriteria(), paginationParams);
+
+        render(result as JSON);
     }
 }
 
