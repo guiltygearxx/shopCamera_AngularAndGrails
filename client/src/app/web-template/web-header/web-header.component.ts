@@ -55,21 +55,23 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit, AfterV
 
   ngAfterViewInit(): void {
 
-    // var navoffeset = $(".agileits_header").offset().top;
-    //
-    // $(window).scroll(function () {
-    //
-    //   var scrollpos = $(window).scrollTop();
-    //
-    //   if (scrollpos >= navoffeset) {
-    //
-    //     $(".agileits_header").addClass("fixed");
-    //
-    //   } else {
-    //
-    //     $(".agileits_header").removeClass("fixed");
-    //   }
-    // });
+    console.log("123123");
+
+    var navoffeset = $(".header-wrapper #header").offset().top;
+
+    $(window).scroll(function () {
+
+      var scrollpos = $(window).scrollTop();
+
+      if (scrollpos >= navoffeset) {
+
+        $(".header-wrapper").addClass("fixed");
+
+      } else {
+
+        $(".header-wrapper").removeClass("fixed");
+      }
+    });
   }
 
   goToSubCategory(event: any, category: CategoryItem, subCategory: CategoryItem): void {
