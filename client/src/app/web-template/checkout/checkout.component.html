@@ -56,11 +56,9 @@
             <li>{{listProduct.name}} <i>-</i> <span>{{getNumberFormatted(thanhTienProduct(listProduct))}} đ </span></li>
           </ng-container>
           <!--<li>Phí vận chuyển <i>-</i> <span> 200.000 đ</span></li>-->
-          <li class="confixByThread thayDoiCSSGiaBan">Tổng tiền <i>-</i> <span>{{getNumberFormatted(tongTienThanhToan())}} đ</span></li>
+          <li class="confixByThread thayDoiCSSGiaBan">Tổng tiền <i>-</i> <span>{{getNumberFormatted(tongTienThanhToan())}} đ</span>
+          </li>
         </ul>
-        <ng-container *ngIf="checkSuccessOrder()">
-          <div><span class="thayDoiCSSGiaBan">Mã đơn hàng của bạn: {{this.orderSuccess.code}} </span></div>
-        </ng-container>
       </div>
       <div class="col-md-8 address_form_agile">
         <h4>Đặt hàng</h4>

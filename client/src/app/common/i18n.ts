@@ -50,4 +50,6 @@ export const i18n = {
   "login.invalidUsernamePassword": "Đăng nhập thất bại. Đề nghị kiểm tra lại thông tin đăng nhập.",
   "login.username.nullable": "Email bắt buộc phải nhập.",
   "login.password.nullable": "Password bắt buộc phải nhập.",
+
+  "createOrder.success": "Đơn hàng mã [{0}] của bạn đã được tiếp nhận thành công và chờ xử lí.",
 }

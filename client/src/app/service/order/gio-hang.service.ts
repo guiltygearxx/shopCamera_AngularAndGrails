@@ -12,7 +12,6 @@ export class GioHangService {
 
   detailForms: OrderDetailForm[];
 
-
   constructor(protected applicationUtils: ApplicationUtils) {
 
     this.detailForms = [];
@@ -60,10 +59,13 @@ export class GioHangService {
 
     var index = this.detailForms.indexOf(detailForm);
 
-    this.detailForms.splice(index,1);
+    this.detailForms.splice(index, 1);
   }
 
   resetOrder(): void {
 
+    this.count = 0;
+
+    this.detailForms = [];
   }
 }

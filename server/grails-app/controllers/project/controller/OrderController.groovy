@@ -36,7 +36,7 @@ class OrderController extends DefaultRestfulController<Order> {
 
     def createOrder() {
 
-        CreateOrderForm form = bindDataCreateOrderForm(new CreateOrderForm(), request.JSON);
+        CreateOrderForm form = bindDataCreateOrderForm();
 
         this.createOrderService.createOrder(form);
 

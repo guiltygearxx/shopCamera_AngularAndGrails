@@ -25,9 +25,7 @@ grails.plugin.springsecurity.interceptUrlMap = [
 
         [pattern: '/contact.json', httpMethod: 'POST', access: ['permitAll']],
 
-//        [pattern: '/order.json', httpMethod: 'POST', access: ['permitAll']],
-//        [pattern: '/orderDetail.json', httpMethod: 'POST', access: ['permitAll']],
-        [pattern: '/order/createOrder', httpMethod: 'POST', access: ['permitAll']],
+        [pattern: '/order/createOrder', access: ['permitAll']],
 
         [pattern: '/propertiesCamera/paginate', access: ['permitAll']],
         [pattern: '/propertiesCamera/**', httpMethod: 'GET', access: ['permitAll']],
@@ -59,9 +57,7 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 
         [pattern: '/contact.json', httpMethod: 'POST', filters: 'JOINED_FILTERS'],
 
-//        [pattern: '/order.json', httpMethod: 'POST', filters: 'JOINED_FILTERS'],
-//        [pattern: '/orderDetail.json', httpMethod: 'POST', filters: 'JOINED_FILTERS'],
-        [pattern: '/order/createOrder', httpMethod: 'POST', access: ['JOINED_FILTERS']],
+        [pattern: '/order/createOrder', filters: 'JOINED_FILTERS'],
 
         [pattern: '/propertiesCamera/paginate', filters: 'JOINED_FILTERS'],
         [pattern: '/propertiesCamera/**', httpMethod: 'GET', filters: 'JOINED_FILTERS'],

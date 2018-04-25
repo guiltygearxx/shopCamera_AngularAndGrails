@@ -29,6 +29,7 @@ class UrlMappings {
 
         "/order/paginate"(controller: "order", action: "paginate", method: "GET");
         "/order/updateOrder"(controller: "order", action: "updateOrder");
+        "/order/createOrder"(controller: "order", action: "createOrder");
         "/order"(resources: "order")
 
         "/product"(resources: "product");

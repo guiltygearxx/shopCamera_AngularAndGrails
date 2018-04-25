@@ -1,10 +1,9 @@
-
 import {isNullOrUndefined, isString} from "util";
 import BigNumber from "bignumber.js";
 import {DATE_FORMAT} from "./applicationConstant";
 import * as moment from "moment";
 import {SimpleChanges} from "@angular/core";
-import {i18n} from "../../i18n";
+import {i18n} from "../../common/i18n";
 
 var Big: any;
 
