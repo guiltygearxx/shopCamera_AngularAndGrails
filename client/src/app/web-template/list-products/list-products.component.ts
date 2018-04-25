@@ -11,7 +11,6 @@ import {ApplicationUtils} from "../../common/application-utils";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {isNullOrUndefined} from "util";
-import {ExampleObject} from "../../bean/example-object";
 import {Attribute} from "../../bean/attribute";
 import {AttributeService} from "../../service/attribute.service";
 import {TrieuDongFormater} from "../../common/trieu-dong-formater";
@@ -20,6 +19,21 @@ import {SupportPaginationTable} from "../../common/support-pagination-table";
 import {SupportSortingTable} from "../../common/support-sorting-table";
 import {PaginationParams} from "../../common/pagination-params";
 import {SortableTableFlow} from "../../common/sortable-table-flow";
+import {SimpleObject} from "../../common/simple-object";
+
+const SORT_OPTIONS = [
+
+  new SimpleObject("gia;asc", "Giá tăng dần"),
+  new SimpleObject("gia;desc", "Giá giảm dần")
+];
+
+const MAXPAGESIZE_OPTIONS = [
+
+  new SimpleObject("12", "12"),
+  new SimpleObject("36", "36"),
+  new SimpleObject("60", "60"),
+  new SimpleObject("96", "96"),
+];
 
 @Component({
   selector: 'app-list-products',
@@ -31,7 +45,7 @@ export class ListProductsComponent
 
   filterForm: ListProductFilterForm;
 
-  khoangGia: ExampleObject[];
+  sortOptions: SimpleObject[];
 
   filterValues: { [code: string]: string[] };
 
@@ -82,7 +96,11 @@ export class ListProductsComponent
 
   sort: string;
 
-  private isCategoryLoaded: boolean = true;
+  sortOption: string;
+
+  maxPageSizeOptions: SimpleObject[] = MAXPAGESIZE_OPTIONS;
+
+  maxPageSizeStr: string;
 
   constructor(private router: Router,
               protected productViewService: ProductViewService,
@@ -113,7 +131,13 @@ export class ListProductsComponent
 
     this.curPageIndex = 0;
 
-    this.maxPageSize = 10;
+    this.maxPageSize = +(this.maxPageSizeStr = "12");
+
+    this.sortOption = "gia;asc";
+
+    this.order = "asc";
+
+    this.sort = "gia";
 
     this.initFilterAttributes();
 
@@ -121,10 +145,7 @@ export class ListProductsComponent
 
     this.getListCategory();
 
-    this.khoangGia = [
-      new ExampleObject("asc", "Giá tăng dần"),
-      new ExampleObject("desc", "Giá giảm dần")
-    ]
+    this.sortOptions = SORT_OPTIONS
 
     this.loadAttributes();
   }
@@ -402,8 +423,25 @@ export class ListProductsComponent
     this.sortableTableFlow.goToPage(this, pageIndex);
   }
 
-  doSort(field: string) {
+  sortOptionsChanged(event: any): void {
 
-    this.sortableTableFlow.sort(this, field);
+    this.curPageIndex = 0;
+
+    let elements = this.sortOption.split(";");
+
+    this.sort = elements[0];
+
+    this.order = elements[1];
+
+    this.doSort_();
+  }
+
+  maxPageSizeStrChanged(event: any): void {
+
+    this.maxPageSize = +this.maxPageSizeStr;
+
+    this.curPageIndex = 0;
+
+    this.doSort_();
   }
 }

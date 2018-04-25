@@ -40,27 +40,26 @@
         <div class="list-tool-sortby" style="clear:both;">
           <span class="list-tool-label">Sắp xếp:</span>
           <label class="form-select">
-            <app-select [title]="'Giá'" [(value)]="filterForm.sortBy" [placeHolder]="'Sắp xếp'"
-                        [data]="khoangGia" [optionKey]="'title'" [optionValue]="'value'">
+
+            <app-select [title]="'Giá'" [(value)]="sortOption" [placeHolder]="'Sắp xếp'"
+                        [data]="sortOptions" [optionKey]="'id'" [optionValue]="'name'"
+                        (valueChange)="sortOptionsChanged($event)">
             </app-select>
+
           </label>
         </div>
 
         <div class="list-tool-view">
 
           <span class="list-tool-label">Hiển thị:</span>
+
           <label class="form-select">
-            <select id="select_top">
 
-              <option value="12">12</option>
+            <app-select [title]="'Hiển thị:'" [(value)]="maxPageSizeStr" [placeHolder]="'Hiển thị'"
+                        [data]="maxPageSizeOptions" [optionKey]="'id'" [optionValue]="'name'"
+                        (valueChange)="maxPageSizeStrChanged($event)">
+            </app-select>
 
-              <option value="36" selected="selected">36</option>
-
-              <option value="60">60</option>
-
-              <option value="96">96</option>
-
-            </select>
           </label>
 
           <div id="view-type" class="btn-group">
