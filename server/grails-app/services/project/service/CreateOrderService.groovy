@@ -2,11 +2,13 @@ package project.service
 
 import grails.gorm.transactions.Transactional
 import project.ApplicationConstants
-import project.bean.CreateOrderForm
 import project.bean.CreateOrderDetailForm
+import project.bean.CreateOrderForm
 import project.domain.Order
 import project.domain.OrderDetail
 import project.domain.Product
+
+import java.text.DecimalFormat
 
 @Transactional
 class CreateOrderService implements BaseService {
@@ -35,7 +37,9 @@ class CreateOrderService implements BaseService {
 
     private String generateOrderCode() {
 
-        return "ORDER#${new Date().getTime()}";
+        DecimalFormat formater = new DecimalFormat("000000");
+
+        return "ORDER#${formater.format(Order.count())}";
     }
 
     private void createOrder_() {
