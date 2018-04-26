@@ -1,0 +1,42 @@
+a {
+  cursor: pointer;
+}
+
+#toolTip_Horizontal_New {
+  display: none;
+}
+
+.agile_top_brand_left_grid1:hover #toolTip_Horizontal_New{
+  display: block;
+}
+
+#toolTip_Horizontal_LienQuan {
+  display: none;
+}
+
+.agile_top_brand_left_grid1:hover #toolTip_Horizontal_LienQuan{
+  display: block;
+}
+
+.product-inner:hover #toolTip_Vertical_New{
+  display: block;
+}
+
+#toolTip_Vertical_New {
+  display: none;
+}
+
+.product-inner:hover #toolTip_Vertical_LienQuan{
+  display: block;
+}
+
+#toolTip_Vertical_LienQuan {
+  display: none;
+}
+.tooltip_sale{
+  position: absolute;
+  z-index: 999999999999;
+  top: 100px;
+  background: #fefefe;
+  width: 400px;
+}

@@ -1,0 +1,45 @@
+
+table.timetable_sub {
+  width:100%;
+  margin:0 auto;
+}
+.timetable_sub thead {
+  background: #004284;
+}
+.timetable_sub th {
+  background: #212121;
+  color: #fff !important;
+  text-transform: capitalize;
+  font-size: 13px;
+  border-right: 1px solid #ded2d2;
+}
+.timetable_sub th, .timetable_sub td {
+  text-align: center;
+  padding: 7px;
+  font-size: 14px;
+  color: #212121;
+}
+.timetable_sub td {
+  border:1px solid #CDCDCD;
+}
+td.invert-image a img {
+  width:30%;
+  margin: 0 auto;
+}
+
+.rem{
+  position:relative;
+}
+.close1,.close2,.close3 {
+  background: url('../../../assets/images/close_1.png') no-repeat 0px 0px;
+  cursor: pointer;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: 15px;
+  top: -13px;
+  -webkit-transition: color 0.2s ease-in-out;
+  -moz-transition: color 0.2s ease-in-out;
+  -o-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}

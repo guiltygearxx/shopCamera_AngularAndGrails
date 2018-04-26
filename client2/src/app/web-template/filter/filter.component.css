@@ -1,0 +1,55 @@
+h3{
+  font-size: 18px !important;
+}
+
+.box{
+  border: 1px solid #d2d6de !important;
+  margin-bottom: -1px !important;
+  border-radius: 0px !important;
+}
+
+.box-body {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding: 10px;
+}
+
+.box-header {
+  padding: 6px !important;
+}
+
+.box-header {
+  color: #444;
+  display: block;
+  padding: 10px;
+  position: relative;
+}
+
+.box-header.with-border {
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.btn-tool {
+  border-color: #055fff;
+  background-color: #69B1FA;
+  background: linear-gradient(to bottom,#69B1FA,#0D80FF);
+  color: #fff;
+  margin: 0 7px 7px auto;
+}
+
+
+.box-header > .box-tools {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
+.btn-box-tool {
+  padding: 5px;
+  font-size: 12px;
+  background: transparent;
+  background-image: none;
+  color: #97a0b3;
+}

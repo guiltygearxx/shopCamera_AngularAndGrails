@@ -1,0 +1,10 @@
+.form-control {
+
+  height: 34px !important;
+  border-radius: 0px !important;
+}
+
+::placeholder {
+  color: #c6bdc1;
+}
+

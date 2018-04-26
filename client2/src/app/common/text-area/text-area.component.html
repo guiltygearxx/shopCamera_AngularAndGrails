@@ -1,0 +1,19 @@
+<div class="form-group " [class.has-error]="isError">
+
+  <label class="cut-text" for="{{inputId}}" title="{{title}}">
+
+    <i class="fa fa-times-circle-o" *ngIf="isError"></i>
+
+    <span *ngIf="icon" class="{{icon}}"></span>
+
+    {{title}}
+
+    <span *ngIf="isRequired" class="requiredIndicator">*</span>
+  </label>
+
+  <textarea class="form-control" id="{{inputId}}" placeholder="{{placeHolder}}"
+            [(ngModel)]="value" (change)="inputValueChanged($event)" [disabled]="disabled"></textarea>
+
+  <span class="help-block" *ngIf="isError">{{errorMessage}}</span>
+
+</div>

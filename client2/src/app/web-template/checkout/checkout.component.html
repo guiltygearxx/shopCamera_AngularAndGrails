@@ -1,0 +1,130 @@
+<div id="pageContent">
+  <div class="container">
+    <!-- title -->
+    <div class="title-box">
+      <h1 class="text-center text-uppercase title-under">GIỎ HÀNG</h1>
+    </div>
+    <!-- /title -->
+    <div class="row">
+      <section class="col-md-8 col-lg-8">
+        <!-- Shopping cart table -->
+        <div class="container-widget">
+          <table class="timetable_sub">
+            <thead>
+            <tr>
+              <th>STT.</th>
+              <th>Sản phẩm</th>
+              <th>Số lượng</th>
+              <th>Tên sản phẩm</th>
+
+              <th>Giá</th>
+              <th width="10%">Xóa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let listProduct of getListGioHang(); let productIndex=index">
+              <tr class="rem1">
+                <td class="invert">{{productIndex + 1 | number}}</td>
+                <td class="invert-image"><a><img src="{{listProduct.hinhAnh}}" alt=" "
+                                                 class="img-responsive"></a></td>
+                <td class="invert">
+                  <div class="quantity">
+                    <div class="quantity-select">
+                      <!--<div class="entry value-minus">&nbsp;</div>-->
+                      <div class="entry value"><span>{{listProduct.quantity}}</span></div>
+                      <!--<div class="entry value-plus active">&nbsp;</div>-->
+                    </div>
+                  </div>
+                </td>
+                <td class="invert">{{listProduct.name}}</td>
+
+                <td class="invert">{{getNumberFormatted(listProduct.gia)}} đ</td>
+                <td class="invert">
+                  <div class="rem">
+                    <div class="close1" (click)="removeProduct($event, listProduct)"></div>
+                  </div>
+
+                </td>
+              </tr>
+            </ng-container>
+            </tbody>
+          </table>
+        </div>
+        <!-- /Shopping cart table -->
+        <!-- button -->
+        <div class="divider divider--xs"></div>
+        <div class="row shopping-cart-btns">
+          <div class="col-xs-12 col-sm-8 col-md-8">
+            <a class="btn btn--ys btn--light pull-left btn-right" (click)="goToTrangChu($event)"><span
+              class="icon icon-keyboard_arrow_left"></span>TIẾP TỤC MUA HÀNG </a>
+            <div class="divider divider--xs visible-xs"></div>
+            <a class="btn btn--ys btn--light" href="#"><span class="icon icon-delete"></span>XÓA SẠCH GIỎ HÀNG</a>
+
+          </div>
+          <div class="divider divider--xs visible-xs"></div>
+          <div class="col-xs-12 col-sm-4 col-md-4 pull-left">
+            <a class="btn btn--ys btn--light pull-right" href="#"><span class="icon icon-autorenew"></span>CẬP NHẬT GIỎ HÀNG</a>
+          </div>
+        </div>
+        <!-- /button -->
+        <div class="divider visible-sm visible-xs"></div>
+      </section>
+      <aside class="col-md-4 col-lg-4 shopping_cart-aside">
+        <!--  -->
+
+        <div class="card card--padding fill-bg">
+          <h4>ĐẶT HÀNG</h4>
+          <div class="form-group">
+            <app-input-text [title]="'Tên người mua:'" [(value)]="orderForm.tenNguoiMua" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('tenNguoiMua')">
+            </app-input-text>
+          </div>
+          <div class="form-group">
+            <app-input-text [title]="'Số điện thoại liên hệ:'" [(value)]="orderForm.sdt" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('sdt')">
+            </app-input-text>
+          </div>
+          <div class="form-group">
+            <app-input-text [title]="'Email:'" [(value)]="orderForm.email" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('email')">
+            </app-input-text>
+          </div>
+          <div class="form-group">
+            <app-input-text [title]="'Địa chỉ liên hệ: '" [(value)]="orderForm.diaChi" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('diaChi')">
+            </app-input-text>
+          </div>
+          <div class="form-group">
+            <app-input-text [title]="'Ghi chú:'" [(value)]="orderForm.moTa" [isRequired]="true"
+                            [errorMessage]="getErrorMessage('moTa')">
+            </app-input-text>
+          </div>
+        </div>
+        <!-- /DISCOUNT CODES -->
+        <div class="divider--md"></div>
+        <!-- GRAND TOTAL -->
+        <div class="card card--padding fill-bg">
+          <table class="table-total">
+            <tbody>
+            <tr>
+              <th class="text-left">MÃ ĐƠN HÀNG CỦA BẠN:</th>
+              <td class="text-right">{{this.orderSuccess.code}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>TỔNG TIỀN:</th>
+              <td>{{getNumberFormatted(tongTienThanhToan())}} Đ</td>
+            </tr>
+            </tfoot>
+          </table>
+          <a (click)="xacNhanDonHang()" class="btn btn--ys btn--full btn--xl">XÁC NHẬN<span
+            class="icon icon-reply icon--flippedX"></span></a>
+        </div>
+        <!-- /GRAND TOTAL -->
+      </aside>
+    </div>
+
+
+  </div>
+</div>

@@ -1,0 +1,275 @@
+<div id="pageContent">
+  <div style="padding-left: 20px; padding-right: 20px">
+    <!-- two columns -->
+    <div class="row">
+      <!-- left column -->
+      <app-filter [type]="this.typeOfCategory" [(filterValues)]="filterValuesTemp"
+                  (filterValuesChange)="filterValuesChanged($event)">
+      </app-filter>
+      <!-- /left column -->
+      <!-- center column -->
+      <aside class="col-md-8 col-lg-10 col-xl-10" id="centerColumn">
+        <section class="content">
+          <!-- title -->
+          <div class="col-md-12">
+            <div class="prd-body confixElementLi" [innerHTML]="this.contentCategory"></div>
+          </div>
+
+          <div class="col-md-12" style="text-align: center;">
+            <ng-container *ngFor="let subCategory of subCategoryList;let subCategoryIndex=index">
+              <div class="col-md-2 col-xs-6 confixHoverSubCategory" *ngIf="subCategoryIndex < 6">
+                <a (click)="goToSubCategory($event, subCategory)">
+                  <img src="{{subCategory.imageUrl}}"
+                       class="cssHeaderSubCategoryImages">
+                </a>
+                <h3 class="cssHeaderCategory">{{subCategory.name}}</h3>
+              </div>
+            </ng-container>
+
+          </div>
+
+          <div class="divider"></div>
+          <!-- filters row -->
+          <div class="filters-row">
+            <div class="pull-left" style="padding-left: 10px">
+              <div class="filters-row__mode">
+                <a href="#" class="btn btn--ys slide-column-open visible-xs visible-sm hidden-xl hidden-lg hidden-md">Filter</a>
+                <a (click)="changeDisplayProductListView()"
+                   class="filters-row__view active link-grid-view btn-img btn-img-view_module"><span></span></a>
+                <a (click)="changeDisplayProductGridView()"
+                   class="filters-row__view link-row-view btn-img btn-img-view_list"><span></span></a>
+              </div>
+              <div class="filters-row__select hidden-sm hidden-xs">
+                <label>Lọc theo: </label>
+                <div class="select-wrapper">
+                  <select class="select--ys sort-position">
+                    <option>Mặc định</option>
+                    <option>Giá tăng dần</option>
+                    <option>Giá giảm dần</option>
+                  </select>
+                </div>
+                <a href="#" class="sort-direction icon icon-arrow_back"></a>
+              </div>
+            </div>
+            <div class="pull-right">
+              <div class="filters-row__items hidden-sm hidden-xs">28 Sản phẩm(s)</div>
+              <div class="filters-row__select hidden-sm hidden-xs">
+                <label>Hiển thị: </label>
+                <div class="select-wrapper">
+                  <select class="select--ys show-qty">
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                  </select>
+                </div>
+                <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a>
+              </div>
+              <div class="filters-row__pagination">
+                <ul class="pagination">
+                  <li class="page-item disabled"><a class="page-link" href="#">Đầu</a></li>
+                  <li class="active page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">...</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Cuối</a></li>
+
+                </ul>
+              </div>
+            </div>
+            <ng-container *ngIf="hasFilterValues">
+              <div class="filter-choices-bar">
+                <label class="filter-choices-label" style="padding-left: 10px">Lọc:</label>
+
+                <ul class="filter-choices">
+
+                  <ng-container *ngFor="let attribute of filterAttributes">
+
+                    <li>
+                      <label class="filter-choice-title">{{attribute.title}} : </label>
+
+                      <ng-container *ngFor="let filterValue of getFilterValues(attribute)">
+                    <span class="filter-choice" (click)="removeFilterValue($event, attribute, filterValue)">
+                      {{filterValue}}
+                    </span>
+                      </ng-container>
+                    </li>
+
+                  </ng-container>
+
+                  <li class="filter-choices-button-area">
+                    <button type="button" class="btn reset_filter" id="btn_reset_filter"
+                            (click)="resetFilterValue($event)">
+                      Reset
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </ng-container>
+          </div>
+          <!-- /filters row -->
+          <div class="product-listing row">
+            <div class="agile_top_brands_grids" *ngIf="!allowDisplayProductVetical">
+
+              <!--<ul class="products product-list style-product-2">-->
+              <ng-container *ngFor="let productCamera of this.productList">
+                <div class="col-xs-12 col-md-6 col-lg-3 paddingDivAll20Px confixBorderTop">
+                  <div class="row confixPaddingProduct">
+                    <div class="col-md-12">
+                      <div class="confixImageProductHome">
+                        <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                           title="{{productCamera.name}}">
+                          <img
+                            src="{{productCamera.image1}}"
+                            class="attachment-shop_catalog size-shop_catalog wp-post-image"
+                            alt="{{productCamera.name}}">
+                        </a>
+                      </div>
+                      <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)">
+                        <span>{{productCamera.phanTramGiamGia}}%</span>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="content-product confixPadding20px">
+
+                        <h5 class="changeFontColorBlack ">
+                          <a class="title" href=""
+                             title="{{productCamera.name}}">{{productCamera.name}}</a>
+                        </h5>
+                        <div class="descrison">
+                          <p>Danh mục: {{productCamera.categoryName}}</p>
+                        </div>
+                        <!--<div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>-->
+                        <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinBoSung"></div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="box-product confixPaddingTopBottom20px">
+                        <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
+                        </div>
+                        <div class=""><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                        </div>
+                        <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                        </div>
+                        <div class="">
+                          <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+
+            <div class="agile_top_brands_grids" *ngIf="allowDisplayProductVetical">
+
+              <ng-container *ngFor="let productCamera of this.productList">
+                <div class="col-xs-12 paddingDivBottom confixBorderTop">
+
+                  <div class="col-md-3 col-hover-khuyenMai">
+                    <div class="confixPadding20px">
+                      <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                         title="{{productCamera.name}}">
+                        <img
+                          src="{{productCamera.image1}}"
+                          class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}">
+                      </a>
+                    </div>
+                    <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)" style=" margin: 26px 0px 0px 16px;">
+                      <span>{{productCamera.phanTramGiamGia}}%</span>
+                    </div>
+
+                    <div class="tooltip_sale" id="toolTip_Vertical">
+                      <div class="prd-body" [innerHTML]="productCamera.khuyenMai"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-5">
+                    <div class="content-product confixPadding20px">
+
+                      <h5 class="changeFontColorBlack ">
+                        <a class="title" href=""
+                           title="{{productCamera.name}}">{{productCamera.name}}</a>
+                      </h5>
+                      <div class="descrison">
+                        <p>Danh mục: {{productCamera.categoryName}}</p>
+                      </div>
+                      <div class="confixImage">
+                        <ng-container *ngFor="let listImageHighlight of getListImageHighlight(productCamera)">
+                          <img
+                            src="{{listImageHighlight}}"
+                            class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
+                            title="camera-ip-10" width="60" height="30">
+                        </ng-container>
+                      </div>
+                      <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="box-product confixPadding20px">
+                      <div class="confixTextRight"><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
+                      </div>
+                      <div class="confixTextRight"><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                      </div>
+                      <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                      </div>
+                      <div class="confixTextRight">
+                        <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </ng-container>
+            </div>
+          </div>
+          <!-- filters row -->
+          <div class="filters-row">
+            <div class="pull-left">
+              <div class="filters-row__mode">
+                <a href="#" class="btn btn--ys slide-column-open visible-xs visible-sm hidden-xl hidden-lg hidden-md">Filter</a>
+                <a class="filters-row__view active link-grid-view btn-img btn-img-view_module"><span></span></a>
+                <a class="filters-row__view link-row-view btn-img btn-img-view_list"><span></span></a>
+              </div>
+              <div class="filters-row__select hidden-sm hidden-xs">
+                <label>Lọc theo: </label>
+                <div class="select-wrapper">
+                  <select class="select--ys sort-position">
+                    <option>Mặc định</option>
+                    <option>Giá tăng dần</option>
+                    <option>Giá giảm dần</option>
+                  </select>
+                </div>
+                <a href="#" class="sort-direction icon icon-arrow_back"></a>
+              </div>
+            </div>
+            <div class="pull-right">
+              <div class="filters-row__items hidden-sm hidden-xs">28 Sản phẩm(s)</div>
+              <div class="filters-row__select hidden-sm hidden-xs">
+                <label>Hiển thị: </label>
+                <div class="select-wrapper">
+                  <select class="select--ys show-qty">
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                  </select>
+                </div>
+                <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a>
+              </div>
+              <div class="filters-row__pagination">
+                <ul class="pagination">
+                  <li class="page-item disabled"><a class="page-link" href="#">Đầu</a></li>
+                  <li class="active page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">...</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Cuối</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /filters row -->
+      </aside>
+      <!-- center column -->
+    </div>
+    <!-- /two columns -->
+  </div>
+</div>

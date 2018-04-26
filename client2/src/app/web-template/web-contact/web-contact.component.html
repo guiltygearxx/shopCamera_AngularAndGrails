@@ -1,0 +1,96 @@
+<div id="pageContent">
+  <!-- map -->
+  <div class="map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d96748.15352429623!2d-74.25419879353115!3d40.731667701988506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sshopping+mall+in+New+York%2C+NY%2C+United+States!5e0!3m2!1sen!2sin!4v1467205237951"
+      style="border:0"></iframe>
+  </div>
+  <!-- /map -->
+  <section class="container" style="padding-top: 20px">
+    <div class="row">
+      <div class="col-md-3 col-sm-12">
+        <h2 class="text-uppercase title-bottom">LIÊN HỆ</h2>
+        <ul class="list-icon">
+          <li>
+            <span class="icon icon-home"></span>
+            <strong>Địa chỉ :</strong> 7563 St. Vicent Place, Glasgow
+          </li>
+          <li>
+            <span class="icon icon-call"></span>
+            <strong>Phone:</strong> +777 2345 7885
+          </li>
+          <li>
+            <span class="fa fa-fax"></span>
+            <strong>Fax:</strong> +777 2345 7886
+          </li>
+          <li>
+            <span class="icon icon-schedule"></span>
+            <strong>Giờ làm việc:</strong> 7 Days a week from  10:00 am to 6:00 pm
+          </li>
+          <li>
+            <span class="icon icon-mail"></span>
+            <strong>E-mail:</strong> <a class="color" href="mailto:info@mydomain.com">info@mydomain.com</a>
+          </li>
+        </ul>
+        <div class="divider divider--sm"></div>
+        <div class="social-links social-links--large">
+          <ul>
+            <li><a class="icon fa fa-facebook" href="http://www.facebook.com/"></a></li>
+            <li><a class="icon fa fa-twitter" href="http://www.twitter.com/"></a></li>
+            <li><a class="icon fa fa-google-plus" href="http://www.google.com/"></a></li>
+            <li><a class="icon fa fa-instagram" href="https://instagram.com/"></a></li>
+            <li><a class="icon fa fa-youtube-square" href="https://www.youtube.com/"></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-9  col-sm-12">
+        <div class="divider divider--lg visible-xs"></div>
+        <h2 class="text-uppercase title-bottom">GỬI YÊU CẦU ĐẾN CHÚNG TÔI</h2>
+        <form id="contactform" class="contact-form" method="post" novalidate="novalidate" action="#">
+          <!-- input -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-input-text [title]="'Tên'" [(value)]="form.name" [isRequired]="true"
+                                [errorMessage]="getErrorMessage('name')">
+                </app-input-text>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-input-text [title]="'Email'" [(value)]="form.email" [isRequired]="true"
+                                [errorMessage]="getErrorMessage('email')">
+                </app-input-text>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-input-text [title]="'Số điện thoại'" [(value)]="form.phone" [isRequired]="true"
+                                [errorMessage]="getErrorMessage('phone')">
+                </app-input-text>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <app-input-text [title]="'Địa chỉ'" [(value)]="form.address" [isRequired]="true"
+                                [errorMessage]="getErrorMessage('address')">
+                </app-input-text>
+              </div>
+            </div>
+          </div>
+          <!-- /input -->
+          <!-- textarea -->
+          <div class="form-group">
+            <app-text-area [title]="'Nội dung yêu cầu'"
+                           [(value)]="form.comment" [errorMessage]="getErrorMessage('comment')">
+            </app-text-area>
+          </div>
+          <!-- button -->
+          <button class="btn btn--ys btn--xl btn-top" type="submit" id="submit" (click)="submit()">GỬI YÊU CẦU</button>
+          <!-- /button -->
+        </form>
+      </div>
+    </div>
+  </section>
+</div>

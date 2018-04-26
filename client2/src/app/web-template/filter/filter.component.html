@@ -1,0 +1,60 @@
+<aside class="col-md-4 col-lg-2 col-xl-2" id="leftColumn" style="padding-left: 1px !important; padding-right: 7px !important;">
+<section class="content" style="padding-left: 1px !important;">
+  <div class="box box-default">
+    <div class="box-header with-border">
+      <h3 class="box-title">Giá</h3>
+      <div class="box-tools pull-right">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+      </div>
+    </div>
+
+    <div class="box-body">
+
+      <app-filter-slider [min]="0" [max]="1000" [step]="1" (valueChange)="priceRangeChanged($event)"
+                         [(value)]="priceRange">
+      </app-filter-slider>
+
+      <ng-container *ngIf="isPriceRangeChanged">
+        <button class="btn btn-tool btn-mini filter-box-apply" style="display: block;"
+                name="fabGroup" (click)="applyFilterValues($event)">Apply
+        </button>
+      </ng-container>
+
+    </div>
+
+  </div>
+  <ng-container *ngFor="let filter of attributesFilter">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <h3 class="box-title">{{filter.title}}</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+        </div>
+      </div>
+      <div class="box-body">
+
+        <app-input-text-no-title [placeHolder]="'Tìm kiếm'" (valueChange)="filterSelectOptions($event, filter)">
+        </app-input-text-no-title>
+
+        <ng-container *ngFor="let filterOption of getFilterOptions(filter); trackBy: filterOption?.id">
+
+          <app-check-box [title]="filterOption.name" [valueWhenChecked]="filterOption.id"
+                         (valueChange)="filterValueChanged($event, filter, filterOption.id)"
+                         [value]="getFilterValue(filter, filterOption.id)">
+
+          </app-check-box>
+
+        </ng-container>
+
+        <ng-container *ngIf="isFilterValueChanged(filter)">
+          <button class="btn btn-tool btn-mini filter-box-apply" style="display: block;"
+                  name="fabGroup" (click)="applyFilterValues($event)">Apply
+          </button>
+        </ng-container>
+
+      </div>
+
+    </div>
+  </ng-container>
+</section>
+</aside>

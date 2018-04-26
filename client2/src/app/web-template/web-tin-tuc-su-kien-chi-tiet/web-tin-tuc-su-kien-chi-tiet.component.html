@@ -1,0 +1,16 @@
+<div id="pageContent">
+  <div style="padding-left: 20px; padding-right: 20px">
+    <div class="row">
+
+      <aside class="col-md-8 col-lg-9 col-xl-10" id="centerColumn">
+        <ng-container *ngIf="checkContentNews()">
+          <div class="prd-body paddingDiv" [innerHTML]="this.news.noiDungChiTiet"></div>
+        </ng-container>
+      </aside>
+
+      <aside class="col-md-4 col-lg-3 col-xl-2" id="leftColumn">
+        <app-web-right-side></app-web-right-side>
+      </aside>
+    </div>
+  </div>
+</div>

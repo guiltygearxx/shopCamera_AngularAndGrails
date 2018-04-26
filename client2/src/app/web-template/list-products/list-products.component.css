@@ -1,0 +1,265 @@
+#toolTip_Horizontal {
+  display: none;
+}
+
+.agile_top_brand_left_grid1:hover #toolTip_Horizontal {
+  display: block;
+}
+
+.col-hover-khuyenMai:hover #toolTip_Vertical {
+  display: block;
+}
+
+#toolTip_Vertical {
+  display: none;
+}
+
+.tooltip_sale {
+  position: absolute;
+  z-index: 999999999999;
+  top: 100px;
+  background: #fefefe;
+  width: 400px;
+}
+
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.list-tool-sortby {
+  float: left;
+  padding: 7px 0;
+}
+
+.form-select {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  white-space: nowrap;
+}
+
+.list-tool-label {
+  display: inline-block;
+  margin-right: 6px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.list-tools-bar {
+  padding: 0 16px;
+}
+
+.list-tools-bar {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 0 30px;
+  background: #f4f5f7;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+ul {
+  margin: 0;
+  margin-left: 0px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: normal;
+  font-family: inherit;
+  text-decoration: none;
+  -webkit-text-size-adjust: none;
+  -ms-interpolation-mode: bicubic;
+}
+
+li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: normal;
+  font-family: inherit;
+  text-decoration: none;
+  -webkit-text-size-adjust: none;
+  -ms-interpolation-mode: bicubic;
+}
+
+.reset_filter {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 10px 12px !important;
+  outline: 0;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  color: #4d4d4d;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  font-stretch: condensed;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.btnGLView {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 9px 1em;
+  outline: 0;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 3px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+  color: #4d4d4d;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  font-stretch: condensed;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.reset_filter:hover, .btnGLView:hover {
+  color: #0066ff;
+}
+
+.btn-group-cell {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.list-tool-view .btn-group {
+  margin-left: 20px;
+}
+
+.list-tool-view {
+  float: right;
+  margin-left: 20px;
+  padding: 7px 0;
+}
+
+.btn-group {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  font-size: 0;
+  zoom: 1;
+}
+
+.btn.is-current {
+  border-color: #707070;
+  background: #707070;
+  color: #fff;
+  cursor: default;
+}
+
+.btn-group-cell:first-child .btn {
+  border-left-width: 1px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+
+
+.filter-choices-bar:after {
+  content: '';
+  display: table;
+  clear: both
+}
+
+.filter-choices-bar {
+  clear: both;
+  padding: 7px 0
+}
+
+.filter-choices-label {
+  float: left;
+  padding: 7px 0;
+  font-weight: 700
+}
+
+.filter-choices {
+  margin-left: 50px;
+  letter-spacing: -.26em;
+  text-rendering: optimizeSpeed;
+  zoom: 1
+}
+
+.filter-choices > li {
+  display: inline-block;
+  margin: 0 0 5px 5px;
+  /*padding: 0 0 6px 10px;*/
+  box-sizing: border-box;
+  border: 1px solid #ded9e1;
+  background: #eaf1fa;
+  vertical-align: top;
+  letter-spacing: normal;
+  text-rendering: auto
+}
+
+.filter-choices > .filter-choices-button-area {
+  padding: 0;
+  border: 0;
+  background: 0 0
+}
+
+.filter-choice-title {
+  display: inline-block;
+  margin-right: 5px;
+  padding-top: 6px;
+  color: #000
+}
+
+.filter-choice {
+  position: relative;
+  display: inline-block;
+  margin-right: 25px;
+  padding-top: 6px;
+  color: #3c4a65;
+  font-style: italic;
+  font-weight: 700;
+  word-break: break-all;
+  cursor: pointer
+}
+
+.filter-choice:after {
+  display: inline-block;
+  content: "\f00d";
+  position: absolute;
+  top: 7px;
+  right: -15px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  color: #000;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 13px;
+  text-align: center;
+  text-transform: uppercase;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+.filter-choice:hover:after {
+  color: #C1240B
+}

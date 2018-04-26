@@ -1,0 +1,302 @@
+<!-- Slider section -->
+<div class="content offset-top-0" id="slider">
+  <!--
+            #################################
+            - THEMEPUNCH BANNER -
+            #################################
+            -->
+  <!-- START REVOLUTION SLIDER 3.1 rev5 fullwidth mode -->
+  <h2 class="hidden">Slider Section</h2>
+  <div *ngIf="allowDisplayNews" id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <ng-container *ngFor="let imageView of getListHinhAnhSanPham(); let indexImage = index">
+        <div class="item " [class.active]="activeImage(indexImage)">
+          <img id="example" src="{{imageView}}" alt=" " class="img-responsive"/>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div>
+</div>
+
+
+<!-- END REVOLUTION SLIDER -->
+<!-- CONTENT section -->
+<div id="pageContent">
+  <!-- featured products -->
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-xl-12">
+          <!-- title -->
+          <div class="title-box titleCommon">
+            <h2>GIẢM GIÁ</h2>
+          </div>
+          <!-- /title -->
+          <div class="product-listing carousel-products-mobile row">
+            <ng-container *ngFor="let productCamera of this.productListKhuyenMai">
+              <div class="col-xs-12 col-md-6 col-lg-3 paddingDivAll20Px confixBorderTop">
+                <div class="row confixPaddingProduct">
+                  <div class="col-md-12">
+                    <div class="confixImageProductHome">
+                      <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                         title="{{productCamera.name}}">
+                        <img
+                          src="{{productCamera.image1}}"
+                          class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}"
+                          title="camera-ip-10">
+                      </a>
+                    </div>
+                    <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)">
+                      <span>{{productCamera.phanTramGiamGia}}%</span>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="content-product confixPadding20px">
+
+                      <h5 class="changeFontColorBlack ">
+                        <a class="title" href=""
+                           title="{{productCamera.name}}">{{productCamera.name}}</a>
+                      </h5>
+                      <div class="descrison">
+                        <p>Danh mục: {{productCamera.categoryName}}</p>
+                      </div>
+                      <!--<div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>-->
+                      <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinBoSung"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="box-product confixPaddingTopBottom20px">
+                      <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
+                      </div>
+                      <div class=""><span
+                        class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                      </div>
+                      <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                      </div>
+                      <div class="">
+                        <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--</div>-->
+              </div>
+              <!--</li>-->
+              <!--</div>-->
+            </ng-container>
+          </div>
+        </div>
+
+        <div class="col-lg-12 col-xl-12">
+          <!-- title -->
+          <div class="title-box titleCommon">
+            <h2>SẢN PHẨM MỚI</h2>
+          </div>
+          <!-- /title -->
+          <div class="product-listing carousel-products-mobile row">
+            <ng-container *ngFor="let productCamera of this.productListSanPhamMoi">
+              <div class="col-xs-12 col-md-6 col-lg-3 paddingDivAll20Px confixBorderTop">
+                <div class="row confixPaddingProduct">
+                  <div class="col-md-12">
+                    <div class="confixImageProductHome">
+                      <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                         title="{{productCamera.name}}">
+                        <img
+                          src="{{productCamera.image1}}"
+                          class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}"
+                          title="camera-ip-10">
+                      </a>
+                    </div>
+                    <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)">
+                      <span>{{productCamera.phanTramGiamGia}}%</span>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="content-product confixPadding20px">
+
+                      <h5 class="changeFontColorBlack ">
+                        <a class="title" href=""
+                           title="{{productCamera.name}}">{{productCamera.name}}</a>
+                      </h5>
+                      <div class="descrison">
+                        <p>Danh mục: {{productCamera.categoryName}}</p>
+                      </div>
+                      <!--<div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>-->
+                      <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinBoSung"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="box-product confixPaddingTopBottom20px">
+                      <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
+                      </div>
+                      <div class=""><span
+                        class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                      </div>
+                      <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                      </div>
+                      <div class="">
+                        <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--</div>-->
+              </div>
+              <!--</li>-->
+              <!--</div>-->
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content section-indent-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+        <div class="text-header">Chấp nhận thanh toán</div>
+        <img style="width:100%;margin:10px 0;" alt="Chấp nhận thanh toán"
+             src="assets/images/payments.png">
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="content section-indent-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-4 col-lg-3">
+          <div class="social-claim">
+            <div class="claim_header">Cam kết</div>
+            <div class="claim">Sản phẩm hàng hóa chính hãng, đa dạng, phong phú</div>
+            <div class="claim">Luôn luôn giá rẻ và khuyến mại không ngừng</div>
+            <div class="claim">Dịch vụ chăm sóc khách hàng uy tín, tận tâm</div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-3">
+          <div class="social-claim2">
+            <div class="claim_header">Hỗ trợ khách hàng</div>
+            <ul>
+              <li>
+                <a (click)="goToChiTietTinTucById($event,'6af5da51-3e6b-43fe-ab9d-36bb473cb710')">Xem camera giám sát
+                  qua điện
+                  thoại</a>
+              </li>
+              <li>
+                <a (click)="goToChiTietTinTucById($event,'c82b9ffb-db34-4061-9589-64cafd269adb')">Xem camera quan sát
+                  qua máy
+                  tính</a>
+              </li>
+              <li>
+                <a (click)="goToChiTietTinTucById($event,'d0268c1e-2281-49c9-9cb9-7e1153460943')">Download tài
+                  liệu</a>
+              </li>
+              <li>
+                <a (click)="goToChiTietTinTucById($event,'e8945b63-efb0-47ba-85e1-3d49b9a484ee')">HD cài đặt phần mềm
+                  Teamviewer</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-3">
+          <div class="social-claim2">
+            <div class="claim_header">Thông tin công ty</div>
+            <ul>
+              <li>
+                <a href="http://fptcamera.vn/tin-tuc/gioi-thieu">Giới thiệu</a>
+              </li>
+              <li>
+                <a href="http://fptcamera.vn/tin-tuc/tuyen-dung">Tuyển dụng</a>
+              </li>
+              <li>
+                <a href="http://fptcamera.vn/tin-tuc/chinh-sach">Chính sách</a>
+              </li>
+            </ul>
+            <div id="social_us">
+              <div class="social_us_header">Kết nối với chúng tôi</div>
+              <div id="f_social">
+                <a target="_blank" rel="nofollow" href="https://www.facebook.com/namtv.vn">
+                  <img src="assets/images/f_fb.png">
+                </a>
+                <a target="_blank" rel="nofollow" href="https://plus.google.com//+namtv">
+                  <img src="assets/images/f_gplus.png">
+                </a>
+                <a target="_blank" rel="nofollow" href="https://www.youtube.com/c/namtv">
+                  <img src="assets/images/f_yt.png">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4 col-lg-3 hidden-md">
+          <div class="social-claim2">
+            <div class="claim_header">Tổng đài trợ giúp</div>
+            <div style="margin:10px;">
+              <table style="width: 100%;" cellspacing="1" cellpadding="1" border="0">
+                <tbody>
+                <tr>
+                  <td>
+                    <img alt="" src="assets/images/tro-giup.png" style="width: 68px; height: 81px;">
+                  </td>
+                  <td style="vertical-align: middle;">
+                    <p>
+														<span style="color:#333333;">
+															<span style="font-size:14px;">Tư vấn bán hàng</span>
+														</span>
+                    </p>
+
+                    <p>
+														<span style="color:#ba0000;">
+															<span style="font-size:20px;">
+																<strong>0984 489 688</strong>
+															</span>
+														</span>
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+                    <hr>
+                    <span style="color:#555555;">
+														<span style="font-size:13px;">
+															<img alt=""
+                                   src="assets/images/life_saver.png">&nbsp; Chăm sóc và hỗ trợ sau bán hàng</span>
+													</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="text-align: center;">
+													<span style="color:#B22222;">
+														<strong>
+															<span style="font-size:16px;">(04)6328 2964</span>
+														</strong>
+													</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2">
+													<span style="font-size:13px;">
+														<span style="color:#555555;">
+															<img alt="" src="assets/images/mailer.png">&nbsp; fptcamera.vn@gmail.com</span>
+													</span>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End CONTENT section -->

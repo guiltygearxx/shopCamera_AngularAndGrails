@@ -1,0 +1,101 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "elements-yourstore"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "styles.css",
+        "../node_modules/admin-lte/dist/css/AdminLTE.min.css",
+        "../node_modules/admin-lte/plugins/select2/select2.css",
+        "../node_modules/angular2-toaster/toaster.css",
+        "../node_modules/admin-lte/plugins/bootstrap-slider/slider.css",
+        "../node_modules/admin-lte/plugins/ionslider/ion.rangeSlider.css",
+        "../node_modules/admin-lte/plugins/ionslider/ion.rangeSlider.skinNice.css",
+        "../src/assets/external/slick/slick.css",
+        "../src/assets/external/slick/slick-theme.css",
+        "../src/assets/external/magnific-popup/magnific-popup.css",
+        "../src/assets/external/nouislider/nouislider.css",
+        "../src/assets/external/bootstrap-select/bootstrap-select.css",
+        "../src/assets/external/rs-plugin/css/settings.css",
+        "../src/assets/css/style.css",
+        "../src/assets/font/style.css",
+        "../src/assets/css/custom.css"
+      ],
+      "scripts": [
+        "../node_modules/bignumber.js/bignumber.js",
+        "../node_modules/moment/moment.js",
+        "../node_modules/admin-lte/dist/js/app.js",
+        "../node_modules/select2/dist/js/select2.js",
+        "../node_modules/admin-lte/plugins/bootstrap-slider/bootstrap-slider.js",
+        "../node_modules/admin-lte/plugins/ionslider/ion.rangeSlider.min.js",
+        "../src/assets/external/modernizr/modernizr.js",
+        "../src/assets/external/jquery/jquery-2.1.4.min.js",
+        "../src/assets/external/bootstrap/bootstrap.min.js",
+        "../src/assets/external/slick/slick.min.js",
+        "../src/assets/external/bootstrap-select/bootstrap-select.min.js",
+        "../src/assets/external/countdown/jquery.plugin.min.js",
+        "../src/assets/external/countdown/jquery.countdown.min.js",
+        "../src/assets/external/instafeed/instafeed.min.js",
+        "../src/assets/external/magnific-popup/jquery.magnific-popup.min.js",
+        "../src/assets/external/nouislider/nouislider.min.js",
+        "../src/assets/external/isotope/isotope.pkgd.min.js",
+        "../src/assets/external/imagesloaded/imagesloaded.pkgd.min.js",
+        "../src/assets/external/colorbox/jquery.colorbox-min.js",
+        "../src/assets/external/rs-plugin/js/jquery.themepunch.tools.min.js",
+        "../src/assets/external/rs-plugin/js/jquery.themepunch.revolution.min.js",
+        "../src/assets/js/custom.js",
+        "../src/assets/js/js-index-01.js",
+        "../src/assets/external/google_map/google_map_init.js"
+
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "src/tsconfig.spec.json",
+      "exclude": "**/node_modules/**"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json",
+      "exclude": "**/node_modules/**"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}
