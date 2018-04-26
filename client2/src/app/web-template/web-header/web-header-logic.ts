@@ -1,6 +1,5 @@
 import {ListProductService} from "../../service/list-product.service";
 import {GioHangService} from "../../service/order/gio-hang.service";
-import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {MenuItem} from "../../bean/menu-item";
 import {Router} from "@angular/router";
 import {WebHeaderFilterForm} from "./web-header-filter-form";
@@ -55,20 +54,8 @@ export class WebHeaderLogic {
       .subscribe((category) => this.afterGetListCategory(category));
   }
 
-  queryProduct(event: any): void {
-
-    event.preventDefault();
-
-    this.listProductService.isInputParamsChanged = true;
-
-    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
-
-    inputParams.paramsQuery = this.filterForm.paramsQuery;
-
-    this.router.navigate(["/danhSachSanPham"]);
-  }
-
   afterGetListCategory(categoryItems: CategoryItem[]): void {
+
     this.categoryListItem = categoryItems;
   }
 }

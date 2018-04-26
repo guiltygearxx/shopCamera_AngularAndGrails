@@ -4,7 +4,6 @@ import {DATE_FORMAT, DATE_TIME_FORMAT} from "./application-constants";
 import * as moment from "moment";
 import BigNumber from "bignumber.js";
 import {i18n} from "./i18n";
-import {NumberFormatter} from "../service/formator/number-formatter";
 
 @Injectable()
 export class ApplicationUtils {
@@ -13,8 +12,6 @@ export class ApplicationUtils {
 
     return Math.random();
   }
-
-  defaultNumberFormatter: NumberFormatter = new NumberFormatter();
 
   isStringEmpty(str: string): boolean {
 

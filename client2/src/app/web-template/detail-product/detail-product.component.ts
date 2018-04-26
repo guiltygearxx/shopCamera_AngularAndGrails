@@ -1,8 +1,8 @@
 import {ProductService} from "../../service/product/product.service";
 import {DetailProductLogic} from "./detail-product-logic";
-import {ActivatedRoute, Params, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
-import {AfterViewChecked, AfterViewInit, Component, OnDestroy, OnInit} from "@angular/core";
+import {AfterViewChecked, Component, OnInit} from "@angular/core";
 import {Product} from "../../bean/product";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {CategoryService} from "../../service/category/category.service";
@@ -10,8 +10,7 @@ import {ProductView} from "../../bean/product-view";
 import {CategoryItem} from "../../bean/category-item";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
-import {ApplicationUtils} from "../../common/application-utils";
-import {NumberFormatter} from "../../service/formator/number-formatter";
+import {NumberFormatter} from "../../common/formater/number-formatter";
 
 declare var $: any;
 
@@ -29,28 +28,19 @@ export class DetailProductComponent
 
   private initProductCarouselEffectFn: () => void;
 
-  ngAfterViewChecked(): void {
-
-    if (!isNullOrUndefined(this.initProductCarouselEffectFn))
-      this.initProductCarouselEffectFn();
-
-    this.initProductCarouselEffectFn = null;
-  }
-
   productId: any;
 
   detailForms: OrderDetailForm;
 
-  giaTruocKhiHa: number;
-
-  private numberFormater: NumberFormatter;
-
   private activeImageIndex: number;
 
-  constructor(private router: Router, protected productService: ProductService, protected productViewService: ProductViewService,
-              protected route: ActivatedRoute, protected categoryService: CategoryService,
+  constructor(private router: Router,
+              protected productService: ProductService,
+              protected productViewService: ProductViewService,
+              protected route: ActivatedRoute,
+              protected categoryService: CategoryService,
               protected gioHangService: GioHangService,
-              protected applicationContext: ApplicationUtils) {
+              protected  numberFormater: NumberFormatter) {
 
     super(productService, productViewService, categoryService);
   }
@@ -59,11 +49,16 @@ export class DetailProductComponent
 
     this.getListCategory();
 
-    this.numberFormater = this.applicationContext.defaultNumberFormatter;
-
     this.allowDisplayProductVetical = true;
   }
 
+  ngAfterViewChecked(): void {
+
+    if (!isNullOrUndefined(this.initProductCarouselEffectFn))
+      this.initProductCarouselEffectFn();
+
+    this.initProductCarouselEffectFn = null;
+  }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
 
@@ -139,7 +134,6 @@ export class DetailProductComponent
 
   }
 
-
   goToChiTietSanPham(event: any, productView: ProductView): void {
 
     event.preventDefault();
@@ -160,15 +154,8 @@ export class DetailProductComponent
   }
 
   getGiaKhuyenMai(product: ProductView): number {
-    if (isNullOrUndefined(product.gia)) {
-      return 0;
-    } else {
 
-      this.giaTruocKhiHa = isNullOrUndefined(product.giaTruocKhiHa) ? 0 : Number.parseInt(product.giaTruocKhiHa);
-
-
-      return (this.giaTruocKhiHa - product.gia );
-    }
+    return isNullOrUndefined(product.gia) ? 0 : ((product.giaTruocKhiHa || 0) - product.gia);
   }
 
   getNumberFormatted(val: number): string {

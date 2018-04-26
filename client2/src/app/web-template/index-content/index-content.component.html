@@ -7,14 +7,22 @@
             -->
   <!-- START REVOLUTION SLIDER 3.1 rev5 fullwidth mode -->
   <h2 class="hidden">Slider Section</h2>
-  <div *ngIf="allowDisplayNews" id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
+
       <ng-container *ngFor="let imageView of getListHinhAnhSanPham(); let indexImage = index">
-        <div class="item " [class.active]="activeImage(indexImage)">
-          <img id="example" src="{{imageView}}" alt=" " class="img-responsive"/>
+
+        <div class="item active" [class.active]="activeImage(indexImage)">
+
+          <img id="example" src="{{imageView}}" alt="" class="img-responsive"/>
+
         </div>
+
       </ng-container>
+
     </div>
 
     <!-- Controls -->
@@ -164,10 +172,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-        <div class="text-header">Chấp nhận thanh toán</div>
-        <img style="width:100%;margin:10px 0;" alt="Chấp nhận thanh toán"
-             src="assets/images/payments.png">
-      </div>
+          <div class="text-header">Chấp nhận thanh toán</div>
+          <img style="width:100%;margin:10px 0;" alt="Chấp nhận thanh toán"
+               src="assets/images/payments.png">
+        </div>
       </div>
     </div>
   </div>

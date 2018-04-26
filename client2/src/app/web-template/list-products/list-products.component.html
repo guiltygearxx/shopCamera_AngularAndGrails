@@ -3,8 +3,8 @@
     <!-- two columns -->
     <div class="row">
       <!-- left column -->
-      <app-filter [type]="this.typeOfCategory" [(filterValues)]="filterValuesTemp"
-                  (filterValuesChange)="filterValuesChanged($event)">
+      <app-filter [type]="this.typeOfCategory" [(filterValues)]="filterValuesTemp" [(priceRange)]="priceRangeTemp"
+                  (filterChange)="filterChange()">
       </app-filter>
       <!-- /left column -->
       <!-- center column -->
@@ -16,67 +16,90 @@
           </div>
 
           <div class="col-md-12" style="text-align: center;">
-            <ng-container *ngFor="let subCategory of subCategoryList;let subCategoryIndex=index">
+
+            <ng-container *ngFor="let subCategory of subCategoryList; let subCategoryIndex = index">
+
               <div class="col-md-2 col-xs-6 confixHoverSubCategory" *ngIf="subCategoryIndex < 6">
+
                 <a (click)="goToSubCategory($event, subCategory)">
-                  <img src="{{subCategory.imageUrl}}"
-                       class="cssHeaderSubCategoryImages">
+
+                  <img src="{{subCategory.imageUrl}}" class="cssHeaderSubCategoryImages">
+
                 </a>
+
                 <h3 class="cssHeaderCategory">{{subCategory.name}}</h3>
+
               </div>
+
             </ng-container>
 
           </div>
 
           <div class="divider"></div>
+
           <!-- filters row -->
           <div class="filters-row">
             <div class="pull-left" style="padding-left: 10px">
               <div class="filters-row__mode">
+
                 <a href="#" class="btn btn--ys slide-column-open visible-xs visible-sm hidden-xl hidden-lg hidden-md">Filter</a>
-                <a (click)="changeDisplayProductListView()"
+
+                <a (click)="changeDisplayProductStyle(false)"
                    class="filters-row__view active link-grid-view btn-img btn-img-view_module"><span></span></a>
-                <a (click)="changeDisplayProductGridView()"
+
+                <a (click)="changeDisplayProductStyle(true)"
                    class="filters-row__view link-row-view btn-img btn-img-view_list"><span></span></a>
+
               </div>
               <div class="filters-row__select hidden-sm hidden-xs">
+
                 <label>Lọc theo: </label>
+
                 <div class="select-wrapper">
-                  <select class="select--ys sort-position">
-                    <option>Mặc định</option>
-                    <option>Giá tăng dần</option>
-                    <option>Giá giảm dần</option>
+
+                  <select class="select--ys sort-position" [(ngModel)]="sortOption"
+                          (change)="sortOptionsChanged($event)">
+                    <option *ngFor="let item of sortOptions" [value]="item.id">{{item.name}}</option>
                   </select>
+
                 </div>
+
                 <a href="#" class="sort-direction icon icon-arrow_back"></a>
+
               </div>
             </div>
             <div class="pull-right">
-              <div class="filters-row__items hidden-sm hidden-xs">28 Sản phẩm(s)</div>
-              <div class="filters-row__select hidden-sm hidden-xs">
-                <label>Hiển thị: </label>
-                <div class="select-wrapper">
-                  <select class="select--ys show-qty">
-                    <option>25</option>
-                    <option>50</option>
-                    <option>100</option>
-                  </select>
-                </div>
-                <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a>
-              </div>
-              <div class="filters-row__pagination">
-                <ul class="pagination">
-                  <li class="page-item disabled"><a class="page-link" href="#">Đầu</a></li>
-                  <li class="active page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">...</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Cuối</a></li>
 
-                </ul>
+              <div class="filters-row__items hidden-sm hidden-xs">{{count}} Sản phẩm(s)</div>
+
+              <div class="filters-row__select hidden-sm hidden-xs">
+
+                <label>Hiển thị: </label>
+
+                <div class="select-wrapper">
+
+                  <select class="select--ys show-qty" [(ngModel)]="maxPageSizeStr"
+                          (change)="maxPageSizeStrChanged($event)">
+
+                    <option *ngFor="let item of maxPageSizeOptions" [value]="item.id">{{item.name}}</option>
+
+                  </select>
+
+                </div>
+
+                <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a>
+
               </div>
+
+              <app-pagination-footer [dataSize]="count" [maxPageSize]="maxPageSize" [pageIndex]="curPageIndex"
+                                     (goToPage)="goToPage($event)">
+              </app-pagination-footer>
+
             </div>
             <ng-container *ngIf="hasFilterValues">
+
               <div class="filter-choices-bar">
+
                 <label class="filter-choices-label" style="padding-left: 10px">Lọc:</label>
 
                 <ul class="filter-choices">
@@ -105,8 +128,10 @@
               </div>
             </ng-container>
           </div>
+
           <!-- /filters row -->
           <div class="product-listing row">
+
             <div class="agile_top_brands_grids" *ngIf="!allowDisplayProductVetical">
 
               <!--<ul class="products product-list style-product-2">-->
@@ -174,7 +199,8 @@
                           class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}">
                       </a>
                     </div>
-                    <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)" style=" margin: 26px 0px 0px 16px;">
+                    <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)"
+                         style=" margin: 26px 0px 0px 16px;">
                       <span>{{productCamera.phanTramGiamGia}}%</span>
                     </div>
 
@@ -221,50 +247,68 @@
               </ng-container>
             </div>
           </div>
+
           <!-- filters row -->
           <div class="filters-row">
-            <div class="pull-left">
+            <div class="pull-left" style="padding-left: 10px">
               <div class="filters-row__mode">
+
                 <a href="#" class="btn btn--ys slide-column-open visible-xs visible-sm hidden-xl hidden-lg hidden-md">Filter</a>
-                <a class="filters-row__view active link-grid-view btn-img btn-img-view_module"><span></span></a>
-                <a class="filters-row__view link-row-view btn-img btn-img-view_list"><span></span></a>
+
+                <a (click)="changeDisplayProductStyle(false)"
+                   class="filters-row__view active link-grid-view btn-img btn-img-view_module"><span></span></a>
+
+                <a (click)="changeDisplayProductStyle(true)"
+                   class="filters-row__view link-row-view btn-img btn-img-view_list"><span></span></a>
+
               </div>
               <div class="filters-row__select hidden-sm hidden-xs">
+
                 <label>Lọc theo: </label>
+
                 <div class="select-wrapper">
-                  <select class="select--ys sort-position">
-                    <option>Mặc định</option>
-                    <option>Giá tăng dần</option>
-                    <option>Giá giảm dần</option>
+
+                  <select class="select--ys sort-position" [(ngModel)]="sortOption"
+                          (change)="sortOptionsChanged($event)">
+                    <option *ngFor="let item of sortOptions" [value]="item.id">{{item.name}}</option>
                   </select>
+
                 </div>
+
                 <a href="#" class="sort-direction icon icon-arrow_back"></a>
+
               </div>
             </div>
             <div class="pull-right">
-              <div class="filters-row__items hidden-sm hidden-xs">28 Sản phẩm(s)</div>
+
+              <div class="filters-row__items hidden-sm hidden-xs">{{count}} Sản phẩm(s)</div>
+
               <div class="filters-row__select hidden-sm hidden-xs">
+
                 <label>Hiển thị: </label>
+
                 <div class="select-wrapper">
-                  <select class="select--ys show-qty">
-                    <option>25</option>
-                    <option>50</option>
-                    <option>100</option>
+
+                  <select class="select--ys show-qty" [(ngModel)]="maxPageSizeStr"
+                          (change)="maxPageSizeStrChanged($event)">
+
+                    <option *ngFor="let item of maxPageSizeOptions" [value]="item.id">{{item.name}}</option>
+
                   </select>
+
                 </div>
+
                 <a href="#" class="icon icon-arrow-down active"></a><a href="#" class="icon icon-arrow-up"></a>
+
               </div>
-              <div class="filters-row__pagination">
-                <ul class="pagination">
-                  <li class="page-item disabled"><a class="page-link" href="#">Đầu</a></li>
-                  <li class="active page-item"><a class="page-link" href="#">1</a></li>
-                  <li class="page-item"><a class="page-link" href="#">...</a></li>
-                  <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item"><a class="page-link" href="#">Cuối</a></li>
-                </ul>
-              </div>
+
+              <app-pagination-footer [dataSize]="count" [maxPageSize]="maxPageSize" [pageIndex]="curPageIndex"
+                                     (goToPage)="goToPage($event)">
+              </app-pagination-footer>
+
             </div>
           </div>
+
         </section>
         <!-- /filters row -->
       </aside>

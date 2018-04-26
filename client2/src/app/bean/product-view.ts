@@ -4,7 +4,7 @@ export class ProductView {
   name: string;
   image1: string;
   gia: number;
-  giaTruocKhiHa: string;
+  giaTruocKhiHa: number;
   code: string;
   categoryName: string;
   khuyenMai: string;

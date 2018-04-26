@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {IndexContentLogic} from "./index-content-logic";
+import {Component, OnInit} from '@angular/core';
 import {ProductViewService} from "../../service/product/product-view.service";
 import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
@@ -7,49 +6,50 @@ import {Router} from "@angular/router";
 import {ProductView} from "../../bean/product-view";
 import {News} from "../../bean/news";
 import {NewsService} from "../../service/news/news.service";
-import {ListProductInputParams} from "../../bean/list-product-input-params";
-import {ListProductService} from "../../service/list-product.service";
 import {isNullOrUndefined} from "util";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
-import {NumberFormatter} from "../../service/formator/number-formatter";
 import {ApplicationUtils} from "../../common/application-utils";
+import {NumberFormatter} from "../../common/formater/number-formatter";
+
+const IMAGE_URLS = [
+  "https://www.a1securitycameras.com/images/promo/30/A1-Slider-free-shipping.jpg",
+  "https://www.a1securitycameras.com/images/promo/29/A1-Slider-Outdoor.jpg",
+  "https://www.a1securitycameras.com/images/promo/30/A1-Slider-Retailer.jpg",
+  "https://www.a1securitycameras.com/images/promo/29/A1-Slider-Ip.jpg"
+];
 
 @Component({
   selector: 'app-index-content',
   templateUrl: './index-content.component.html',
   styleUrls: ['./index-content.component.css']
 })
-export class IndexContentComponent extends IndexContentLogic implements OnInit {
+export class IndexContentComponent implements OnInit {
 
-  giaTruocKhiHa: number;
-  private numberFormater: NumberFormatter;
+  activeImageIndex: number = 0;
 
-  detailForms: OrderDetailForm;
+  productListSanPhamMoi: ProductView[];
+
+  productListKhuyenMai: ProductView[];
+
+  danhSachTinTuc: News[];
+
+  categoryList: CategoryItem[];
 
   constructor(private router: Router,
               protected productViewService: ProductViewService,
               protected categoryService: CategoryService,
               protected newsService: NewsService,
-              protected listProductService: ListProductService,
-              protected gioHangService:GioHangService,
-              protected applicationUtils: ApplicationUtils) {
-
-    super(productViewService, categoryService, newsService);
+              protected gioHangService: GioHangService,
+              protected applicationUtils: ApplicationUtils,
+              protected numberFormater: NumberFormatter) {
   }
 
   ngOnInit() {
+
     this.getListCategory();
 
     this.getListNews();
-
-    this.numberFormater = this.applicationUtils.defaultNumberFormatter;
-
-    this.activeImageIndex = 0;
-    this.allowDisplayProductVetical = true;
-    this.allowDisplayNews = true;
-
-    // get list camera giam sat
   }
 
   getNumberFormatted(val: number): string {
@@ -57,39 +57,18 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
     return this.numberFormater.format(val);
   }
 
-  getGiaKhuyenMai(product:ProductView):number{
-    if(isNullOrUndefined(product.gia)){
-      return 0;
-    }else {
+  getGiaKhuyenMai(product: ProductView): number {
 
-      this.giaTruocKhiHa = isNullOrUndefined(product.giaTruocKhiHa)? 0: Number.parseInt(product.giaTruocKhiHa);
-
-
-      return (this.giaTruocKhiHa - product.gia );
-    }
+    return isNullOrUndefined(product.gia) ? 0 : ((product.giaTruocKhiHa || 0) - product.gia);
   }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
 
-    super.afterGetListCategory(categoryItems);
+    this.categoryList = categoryItems;
 
     this.getListProductSanPhamMoi("9a40cd52-99fe-42cc-bda3-5e43fb1f5439");
 
     this.getListProductKhuyenMai("f2ea6507-8169-455a-92cd-0dfbeeee796c");
-
-  }
-
-  goToCategory(event: any, code: string): void {
-
-    event.preventDefault();
-
-    this.listProductService.isInputParamsChanged = true;
-
-    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
-
-    inputParams.categoryCode = code;
-
-    this.router.navigate(["/danhSachSanPham"]);
   }
 
   goToChiTietSanPham(event: any, productView: ProductView): void {
@@ -115,9 +94,9 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
   addProductToOrder(productView: ProductView): void {
 
-    this.detailForms = this.converterProductView(productView);
+    let detailForms: OrderDetailForm = this.converterProductView(productView);
 
-    return this.gioHangService.addOrderDetail(this.detailForms);
+    return this.gioHangService.addOrderDetail(detailForms);
   }
 
   private converterProductView(productView: ProductView): OrderDetailForm {
@@ -133,11 +112,96 @@ export class IndexContentComponent extends IndexContentLogic implements OnInit {
 
   }
 
-  kiemTraGiamGia(product:ProductView):boolean{
+  kiemTraGiamGia(product: ProductView): boolean {
 
-    if(isNullOrUndefined(product.phanTramGiamGia)) return false;
+    if (isNullOrUndefined(product.phanTramGiamGia)) return false;
 
     return true;
   }
 
+  getListProductSanPhamMoi(categoryId: string) {
+
+    let subCategoryIds = this.categoryList
+      .filter((category) => category.parentCategoryId == categoryId)
+      .map((category) => category.id);
+
+    let categoryIds = [categoryId];
+
+    if (!isNullOrUndefined(subCategoryIds))
+      categoryIds = categoryIds.concat(subCategoryIds)
+
+    let params = {categoryIds: categoryIds.join(";"), max: 12, sort: 'lastModifiedTime', order: 'desc'};
+
+    this.productViewService
+      .get(params)
+      .subscribe((productView) => this.afterGetListProductSanPhamMoi(productView));
+
+  }
+
+  getListProductKhuyenMai(categoryId: string) {
+
+    let subCategoryIds = this.categoryList
+      .filter((category) => category.parentCategoryId == categoryId)
+      .map((category) => category.id);
+
+    let categoryIds = [categoryId];
+
+    if (!isNullOrUndefined(subCategoryIds))
+      categoryIds = categoryIds.concat(subCategoryIds)
+
+    let params = {categoryIds: categoryIds.join(";"), max: 12, sort: 'phanTramGiamGia', order: 'desc'};
+
+    this.productViewService
+      .get(params)
+      .subscribe((productView) => this.afterGetListProductKhuyenMai(productView));
+
+  }
+
+  getListCategory() {
+
+    let getMaxItem: string = '30';
+
+    let params = {max: getMaxItem};
+
+    this.categoryService
+      .get(params)
+      .subscribe((category) => this.afterGetListCategory(category));
+  }
+
+  getListNews() {
+    let getMaxItem: string = '8';
+
+    let params = {max: getMaxItem};
+
+    this.newsService
+      .get(params)
+      .subscribe((news) => this.afterGetListNews(news));
+  }
+
+  getListHinhAnhSanPham(): string[] {
+
+    let imageList: string[] = IMAGE_URLS;
+
+    return imageList;
+  }
+
+  activeImage(imageIndex: number): boolean {
+
+    return imageIndex == this.activeImageIndex;
+  }
+
+  protected afterGetListNews(newsItems: News[]): void {
+
+    this.danhSachTinTuc = newsItems;
+  }
+
+  protected afterGetListProductSanPhamMoi(productViews: ProductView[]): void {
+
+    this.productListSanPhamMoi = productViews;
+  }
+
+  protected afterGetListProductKhuyenMai(productViews: ProductView[]): void {
+
+    this.productListKhuyenMai = productViews;
+  }
 }

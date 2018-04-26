@@ -5,6 +5,8 @@ import {isNullOrUndefined} from 'util';
 import {environment} from '../../environments/environment';
 import {AUTHENTICATION_TYPE} from './application-constants';
 import {ApplicationService} from './application.service';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class HttpService {
@@ -12,6 +14,8 @@ export class HttpService {
   constructor(protected http: HttpClient,
               protected applicationService: ApplicationService) {
   }
+
+  loadingFlag: number = 0;
 
   private buildHttpHeader(httpHeaders: HttpHeaders): HttpHeaders {
 
@@ -40,16 +44,37 @@ export class HttpService {
     return params_;
   }
 
+  private handleResponse(response: any): any {
+
+    this.loadingFlag--;
+
+    return response;
+  }
+
+  private handleError(error: any): any {
+
+    this.loadingFlag--;
+
+    console.log(error);
+  }
+
   get(url: string, params: any): Observable<any> {
+
+    this.loadingFlag++;
 
     var url = environment.serviceBaseURL + url;
 
     let httpHeaders = this.buildHttpHeader(new HttpHeaders());
 
-    return this.http.get<any>(url, {params: this.initParams(params), responseType: 'json', headers: httpHeaders});
+    return this.http
+      .get<any>(url, {params: this.initParams(params), responseType: 'json', headers: httpHeaders})
+      .map((response) => this.handleResponse(response))
+      .catch((error) => this.handleError(error));
   }
 
   post(url: string, body: any, params: any): Observable<any> {
+
+    this.loadingFlag++;
 
     var url = environment.serviceBaseURL + url;
 
@@ -59,24 +84,34 @@ export class HttpService {
       params: this.initParams(params),
       responseType: 'json',
       headers: httpHeaders
-    });
+    })
+      .map((response) => this.handleResponse(response))
+      .catch((error) => this.handleError(error));
   }
 
   put(url: string, body: any, params: any): Observable<any> {
 
+    this.loadingFlag++;
+
     var url = environment.serviceBaseURL + url;
 
     let httpHeaders = this.buildHttpHeader(new HttpHeaders());
 
-    return this.http.put<any>(url, body, {params: this.initParams(params), responseType: 'json', headers: httpHeaders});
+    return this.http.put<any>(url, body, {params: this.initParams(params), responseType: 'json', headers: httpHeaders})
+      .map((response) => this.handleResponse(response))
+      .catch((error) => this.handleError(error));
   }
 
   delete(url: string, params: any): Observable<any> {
 
+    this.loadingFlag++;
+
     var url = environment.serviceBaseURL + url;
 
     let httpHeaders = this.buildHttpHeader(new HttpHeaders());
 
-    return this.http.delete<any>(url, {params: this.initParams(params), responseType: 'json', headers: httpHeaders});
+    return this.http.delete<any>(url, {params: this.initParams(params), responseType: 'json', headers: httpHeaders})
+      .map((response) => this.handleResponse(response))
+      .catch((error) => this.handleError(error));
   }
 }

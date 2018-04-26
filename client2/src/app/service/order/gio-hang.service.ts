@@ -1,4 +1,3 @@
-import {OrderForm} from "../../bean/order-form";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {Injectable} from "@angular/core";
 import {isNullOrUndefined} from "util";
@@ -11,7 +10,6 @@ export class GioHangService {
   count: number;
 
   detailForms: OrderDetailForm[];
-
 
   constructor(protected applicationUtils: ApplicationUtils) {
 
@@ -58,14 +56,15 @@ export class GioHangService {
 
   removeOrderDetail(detailForm: OrderDetailForm): void {
 
-    console.log(detailForm);
-
     var index = this.detailForms.indexOf(detailForm);
 
-    this.detailForms.splice(index,1);
+    this.detailForms.splice(index, 1);
   }
 
   resetOrder(): void {
 
+    this.count = 0;
+
+    this.detailForms = [];
   }
 }
