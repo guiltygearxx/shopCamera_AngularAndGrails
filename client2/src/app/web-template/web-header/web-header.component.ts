@@ -1,13 +1,12 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "../../bean/menu-item";
 import {ListProductService} from "../../service/list-product.service";
 import {GioHangService} from "../../service/order/gio-hang.service";
-import {WebHeaderLogic} from "./web-header-logic";
-import {WebHeaderFilterForm} from "./web-header-filter-form";
 import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
 import {isNullOrUndefined} from "util";
+import {ExampleObject} from "../../bean/example-object";
 
 declare var $: any;
 
@@ -16,7 +15,7 @@ declare var $: any;
   templateUrl: './web-header.component.html',
   styleUrls: ['./web-header.component.css']
 })
-export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
+export class WebHeaderComponent implements OnInit {
 
   menuItems: MenuItem[] = [
 
@@ -25,17 +24,15 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
     new MenuItem("lienHe", "Liên hệ")
   ]
 
+  categoryListItem: CategoryItem[];
+
   constructor(protected router: Router,
               protected listProductService: ListProductService,
-              protected  gioHangService: GioHangService,
+              protected gioHangService: GioHangService,
               protected categoryService: CategoryService,) {
-
-    super(router, listProductService, gioHangService, categoryService);
   }
 
   ngOnInit() {
-
-    this.filterForm = new WebHeaderFilterForm();
 
     this.getCategorys();
   }
@@ -46,13 +43,13 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
 
     let selectedCategoryId = isNullOrUndefined(subCategory) ? category.id : subCategory.id;
 
-    console.log(selectedCategoryId);
+    this.listProductService.isParamChanged = true;
 
-    this.router.navigate(["/danhSachSanPham/category", selectedCategoryId]);
+    this.router.navigate(["/danhSachSanPham/", selectedCategoryId]);
   }
 
-  getParentCategories(): CategoryItem[] {
 
+  getParentCategories(): CategoryItem[] {
     if (isNullOrUndefined(this.categoryListItem)) return null;
 
     let categories = this.categoryListItem.filter((category) => isNullOrUndefined(category.parentCategoryId));
@@ -72,5 +69,42 @@ export class WebHeaderComponent extends WebHeaderLogic implements OnInit {
     event.preventDefault();
 
     this.router.navigate(["/trangChu"]);
+  }
+
+  khoangGia: ExampleObject[];
+
+  getSoLuongTrongGioHang(): number {
+
+    return this.gioHangService.getOrderDetail();
+  }
+
+  goToMenuIndex(event: any, menuItem: MenuItem): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/" + menuItem.id]);
+  }
+
+  goToOrder(event: any): void {
+
+    event.preventDefault();
+
+    this.router.navigate(["/gioHangSanPham"]);
+  }
+
+  afterGetListCategory(categoryItems: CategoryItem[]): void {
+
+    this.categoryListItem = categoryItems;
+  }
+
+  protected getCategorys(): void {
+
+    let getMaxItem: string = '30';
+
+    let params = {max: getMaxItem};
+
+    this.categoryService
+      .get(params)
+      .subscribe((category) => this.afterGetListCategory(category));
   }
 }

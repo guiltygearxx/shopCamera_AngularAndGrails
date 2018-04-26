@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductView} from "../../bean/product-view";
 import {CategoryService} from "../../service/category/category.service";
@@ -6,7 +6,6 @@ import {CategoryItem} from "../../bean/category-item";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {ListProductService} from "../../service/list-product.service";
 import {ListProductFilterForm} from "../../bean/list-product-filter-form";
-import {ListProductInputParams} from "../../bean/list-product-input-params";
 import {ApplicationUtils} from "../../common/application-utils";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {OrderDetailForm} from "../../bean/order-detail-form";
@@ -41,7 +40,7 @@ const MAXPAGESIZE_OPTIONS = [
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent
-  implements OnInit, SupportPaginationTable, SupportSortingTable {
+  implements OnInit, SupportPaginationTable, SupportSortingTable, AfterContentChecked {
 
   filterForm: ListProductFilterForm;
 
@@ -95,11 +94,6 @@ export class ListProductsComponent
 
   maxPageSizeStr: string;
 
-  get inputParams(): ListProductInputParams {
-
-    return this.listProductService.inputParams;
-  }
-
   constructor(private router: Router,
               protected productViewService: ProductViewService,
               protected categoryService: CategoryService,
@@ -121,8 +115,6 @@ export class ListProductsComponent
 
     this.filterForm = new ListProductFilterForm();
 
-    this.filterForm.categoryId = this.route.snapshot.paramMap.get("categoryId");
-
     this.filterValuesTemp = {};
 
     this.priceRangeTemp = [0, 1000];
@@ -135,21 +127,25 @@ export class ListProductsComponent
 
     this.maxPageSize = +(this.maxPageSizeStr = "10");
 
-    // this.sortOption = "gia;asc";
-
-    // this.order = "asc";
-    //
-    // this.sort = "gia";
-
     this.sortOption = "";
 
     this.sort = this.order = null;
 
-    this.getListCategory();
-
     this.sortOptions = SORT_OPTIONS
+  }
 
-    this.loadAttributes();
+  ngAfterContentChecked(): void {
+
+    if (this.listProductService.isParamChanged) {
+
+      this.listProductService.isParamChanged = false;
+
+      this.filterForm.categoryId = this.route.snapshot.paramMap.get("categoryId");
+
+      this.getListCategory();
+
+      this.loadAttributes();
+    }
   }
 
   changeDisplayProductStyle(style: boolean): boolean {
@@ -172,19 +168,6 @@ export class ListProductsComponent
   getGiaKhuyenMai(product: ProductView): number {
 
     return isNullOrUndefined(product.gia) ? 0 : ((product.giaTruocKhiHa || 0) - product.gia);
-  }
-
-  private converterProductView(productView: ProductView): OrderDetailForm {
-
-    let orderDetail = new OrderDetailForm();
-
-    orderDetail.productId = productView.id;
-    orderDetail.name = productView.name;
-    orderDetail.hinhAnh = productView.image1
-    orderDetail.gia = productView.gia.toString();
-
-    return orderDetail;
-
   }
 
   goToChiTietSanPham(event: any, productView: ProductView): void {
@@ -235,22 +218,16 @@ export class ListProductsComponent
 
   kiemTraGiamGia(product: ProductView): boolean {
 
-    if (isNullOrUndefined(product.phanTramGiamGia)) return false;
-
-    return true;
+    return !isNullOrUndefined(product.phanTramGiamGia);
   }
 
   goToSubCategory(event: any, subCategory: CategoryItem): void {
 
     event.preventDefault();
 
-    this.listProductService.isInputParamsChanged = true;
+    this.listProductService.isParamChanged = true;
 
-    let inputParams: ListProductInputParams = this.listProductService.inputParams = new ListProductInputParams();
-
-    inputParams.subCategory = isNullOrUndefined(subCategory) ? null : subCategory.code;
-
-    this.router.navigate(["/danhSachSanPham"]);
+    this.router.navigate(["/danhSachSanPham/", subCategory.id]);
   }
 
   filterChange(): void {
@@ -302,6 +279,79 @@ export class ListProductsComponent
     this.initHasFilterValues();
   }
 
+  getListImageHighlight(productView: ProductView): string[] {
+
+    if (isNullOrUndefined(productView) || this.applicationUtils.isStringEmpty(productView.hinhAnhTrucQuan)) return null;
+
+    let dateElements: string[] = productView.hinhAnhTrucQuan.split(",");
+
+    return dateElements;
+  }
+
+  getListCategory() {
+
+    this.categoryService.get({max: 30}).subscribe((category) => this.afterGetListCategory(category));
+  }
+
+  _goToPage(): void {
+
+    this.getListProduct();
+  }
+
+  doSort_(): void {
+
+    this.getListProduct();
+  }
+
+  goToPage(event: any): void {
+
+    let pageIndex: number = event;
+
+    this.sortableTableFlow.goToPage(this, pageIndex);
+  }
+
+  sortOptionsChanged(event: any): void {
+
+    this.curPageIndex = 0;
+
+    if (this.applicationUtils.isStringEmpty(this.sortOption)) {
+
+      this.sort = this.order = null;
+
+    } else {
+
+      let elements = this.sortOption.split(";");
+
+      this.sort = elements[0];
+
+      this.order = elements[1];
+    }
+
+    this.doSort_();
+  }
+
+  maxPageSizeStrChanged(event: any): void {
+
+    this.maxPageSize = +this.maxPageSizeStr;
+
+    this.curPageIndex = 0;
+
+    this.doSort_();
+  }
+
+  private converterProductView(productView: ProductView): OrderDetailForm {
+
+    let orderDetail = new OrderDetailForm();
+
+    orderDetail.productId = productView.id;
+    orderDetail.name = productView.name;
+    orderDetail.hinhAnh = productView.image1
+    orderDetail.gia = productView.gia.toString();
+
+    return orderDetail;
+
+  }
+
   protected removeFilterValue_(filterValues: { [code: string]: string[] },
                                attribute: Attribute, filterValue: string): void {
 
@@ -331,9 +381,11 @@ export class ListProductsComponent
       return;
     }
 
+    let categoryType = isNullOrUndefined(this.selectedCategory) ? null : this.selectedCategory.type;
+
     this.filterAttributes = this.attributes.filter((item) => {
 
-      if (item.group != this.selectedCategory.type) return false;
+      if (item.group != categoryType) return false;
 
       let values = this.filterValues[item.code];
 
@@ -374,68 +426,8 @@ export class ListProductsComponent
     params["toPrice"] = isNullOrUndefined(this.priceRange) ? null : this.priceRange[1];
   }
 
-  getListImageHighlight(productView: ProductView): string[] {
-
-    if (isNullOrUndefined(productView) || this.applicationUtils.isStringEmpty(productView.hinhAnhTrucQuan)) return null;
-
-    let dateElements: string[] = productView.hinhAnhTrucQuan.split(",");
-
-    return dateElements;
-  }
-
-  getListCategory() {
-
-    this.categoryService.get({max: 30}).subscribe((category) => this.afterGetListCategory(category));
-  }
-
-  _goToPage(): void {
-
-    this.getListProduct();
-  }
-
-  doSort_(): void {
-
-    this.getListProduct();
-  }
-
   private buildPaginationParams(): PaginationParams {
 
     return this.sortableTableFlow.buildPaginationParams(this);
-  }
-
-  goToPage(event: any): void {
-
-    let pageIndex: number = event;
-
-    this.sortableTableFlow.goToPage(this, pageIndex);
-  }
-
-  sortOptionsChanged(event: any): void {
-
-    this.curPageIndex = 0;
-
-    if (this.applicationUtils.isStringEmpty(this.sortOption)) {
-
-      this.sort = this.order = null;
-
-    } else {
-
-      let elements = this.sortOption.split(";");
-
-      this.sort = elements[0];
-
-      this.order = elements[1];
-    }
-
-    this.doSort_();
-  }
-
-  maxPageSizeStrChanged(event: any): void {
-
-    this.maxPageSize = +this.maxPageSizeStr;
-
-    this.curPageIndex = 0;
-
-    this.doSort_();
   }
 }
