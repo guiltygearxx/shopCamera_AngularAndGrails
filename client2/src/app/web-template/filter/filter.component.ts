@@ -79,6 +79,10 @@ export class FilterComponent
     this.afterContentCheckCallbacks = [
 
       new OnChangeCallBack(["type"], (() => this.buildAttributeFiler())),
+
+      new OnChangeCallBack(["priceRange"], (() => this.isPriceRangeChanged = false)),
+
+      new OnChangeCallBack(["filterValues"], (() => this.filterValuesChangeMap = {})),
     ];
   }
 

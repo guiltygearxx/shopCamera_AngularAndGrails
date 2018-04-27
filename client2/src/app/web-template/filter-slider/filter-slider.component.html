@@ -1,23 +1,27 @@
 <!--<div class="form-group">-->
-  <!--<input #inputElement type="text" class="slider"/>-->
+<!--<input #inputElement type="text" class="slider"/>-->
 <!--</div>-->
 
 
-<div class="collapse-block__content">
-  <div id="priceSlider" class="price-slider"></div>
-  <form action="#">
-    <div class="price-input">
-      <label>From:</label>
-      <input type="text" id="priceMin" />
-    </div>
-    <div class="price-input-divider">-</div>
-    <div class="price-input">
-      <label>To:</label>
-      <input type="text" id="priceMax" />
-    </div>
-    <div class="price-input">
-      <button type="submit" class="btn btn--ys btn--md">Filter</button>
-    </div>
-  </form>
+<div class="">
+
+  <div class="price-slider" #priceSlider></div>
+
+  <div class="price-input">
+    <label>From:</label>
+    <input #fromValueInput type="text" id="priceMin" (change)="rangeValueChanged($event)"/>
+  </div>
+
+  <div class="price-input-divider">-</div>
+
+  <div class="price-input">
+    <label>To:</label>
+    <input #toValueInput type="text" id="priceMax" (change)="rangeValueChanged($event)"/>
+  </div>
+
+  <!--<div class="price-input">-->
+  <!--<button type="submit" class="btn btn&#45;&#45;ys btn&#45;&#45;md">Filter</button>-->
+  <!--</div>-->
+
 </div>
 

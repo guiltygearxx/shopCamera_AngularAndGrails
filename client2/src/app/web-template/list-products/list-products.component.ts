@@ -109,6 +109,8 @@ export class ListProductsComponent
 
   ngOnInit() {
 
+    this.sortOptions = SORT_OPTIONS;
+
     this.categoryList = [];
 
     this.allowDisplayProductVetical = false;
@@ -131,20 +133,36 @@ export class ListProductsComponent
 
     this.sort = this.order = null;
 
-    this.sortOptions = SORT_OPTIONS
+    this.listProductService.isParamChanged = true;
   }
 
   ngAfterContentChecked(): void {
 
     if (this.listProductService.isParamChanged) {
 
-      this.listProductService.isParamChanged = false;
+      this.filterValuesTemp = {};
+
+      this.priceRangeTemp = [0, 1000];
+
+      this.priceRange = [0, 1000];
+
+      this.filterValues = {};
+
+      this.curPageIndex = 0;
+
+      this.maxPageSize = +(this.maxPageSizeStr = "10");
+
+      this.sortOption = "";
+
+      this.sort = this.order = null;
 
       this.filterForm.categoryId = this.route.snapshot.paramMap.get("categoryId");
 
       this.getListCategory();
 
       this.loadAttributes();
+
+      this.listProductService.isParamChanged = false;
     }
   }
 
@@ -234,7 +252,7 @@ export class ListProductsComponent
 
     this.filterValues = {};
 
-    Object.keys(this.filterValuesTemp).forEach((key) => this.filterValues[key] = this.filterValuesTemp[key]);
+    Object.keys(this.filterValuesTemp).forEach((key) => this.filterValues[key] = (this.filterValuesTemp[key] || []).slice());
 
     this.priceRange = this.priceRangeTemp.slice();
 
@@ -337,6 +355,21 @@ export class ListProductsComponent
     this.curPageIndex = 0;
 
     this.doSort_();
+  }
+
+  getPriceRangeLabel(): string {
+
+    return [this.applicationUtils.formatNumber2(this.priceRange[0], 2),
+      this.applicationUtils.formatNumber2(this.priceRange[1], 2)].join(" - ") + (" triệu");
+  }
+
+  resetPriceRange(event): void {
+
+    event.preventDefault();
+
+    this.priceRange = [0, 1000];
+
+    this.priceRangeTemp = [0, 1000];
   }
 
   private converterProductView(productView: ProductView): OrderDetailForm {

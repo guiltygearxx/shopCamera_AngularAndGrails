@@ -111,8 +111,6 @@ export class CheckoutComponent implements OnInit {
 
     let orderCode = resultBean.result.orderCode;
 
-    console.log(this.applicationUtils.message("createOrder.success", [orderCode]));
-
     alert(this.applicationUtils.message("createOrder.success", [orderCode]));
 
     this.gioHangService.resetOrder();
