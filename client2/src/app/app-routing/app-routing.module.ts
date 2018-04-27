@@ -16,7 +16,7 @@ import {WebGioiThieuComponent} from "../web-template/web-gioi-thieu/web-gioi-thi
     RouterModule.forRoot([
       {path: '', redirectTo: 'trangChu', pathMatch: 'full'},
       {path: 'trangChu', component: IndexContentComponent},
-      {path: 'danhSachSanPham/category/:categoryId', component: ListProductsComponent},
+      {path: 'danhSachSanPham/:categoryId', component: ListProductsComponent},
       {path: 'chiTietSanPham/:productId', component: DetailProductComponent},
       {path: 'gioHangSanPham', component: CheckoutComponent},
       {path: 'lienHe', component: WebContactComponent},
