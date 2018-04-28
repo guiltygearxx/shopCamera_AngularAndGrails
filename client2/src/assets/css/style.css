@@ -8158,6 +8158,9 @@ hr.hr-lg {
 /****************************************
 * loader
 *****************************************/
+
+#loader-wrapper.isLoading { opacity: 100 !important; visibility: visible !important }
+
 #loader-wrapper {
   position: fixed;
   top: 0;

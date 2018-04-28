@@ -10,6 +10,8 @@ declare var $: any;
 })
 export class AppComponent {
 
+  isLoading: boolean = false;
+
   toasterConfig: ToasterConfig = new ToasterConfig({
 
     positionClass: 'toast-top-right'
