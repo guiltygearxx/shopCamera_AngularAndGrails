@@ -192,7 +192,11 @@ export class ListProductsComponent
 
     event.preventDefault();
 
-    this.router.navigate(["/chiTietSanPham", productView.id]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/chiTietSanPham", productView.id]);
+    });
+
   }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
@@ -245,7 +249,10 @@ export class ListProductsComponent
 
     this.listProductService.isParamChanged = true;
 
-    this.router.navigate(["/danhSachSanPham/", subCategory.id]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/danhSachSanPham/", subCategory.id]);
+    });
   }
 
   filterChange(): void {

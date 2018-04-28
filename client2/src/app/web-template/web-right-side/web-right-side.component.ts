@@ -40,14 +40,20 @@ export class WebRightSideComponent extends WebRightSideLogic implements OnInit {
 
     event.preventDefault();
 
-    this.router.navigate(["/chiTietSanPham", productView.id]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/chiTietSanPham", productView.id]);
+    });
   }
 
   goToChiTietTinTuc(event: any, news: News): void {
 
     event.preventDefault();
 
-    this.router.navigate(["/chiTietTinTuc", news.id]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/chiTietTinTuc", news.id]);
+    });
   }
 
   getNumberFormatted(val: number): string {

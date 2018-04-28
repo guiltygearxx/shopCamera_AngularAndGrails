@@ -53,7 +53,10 @@ export class CheckoutComponent implements OnInit {
 
     event.preventDefault();
 
-    this.router.navigate(["/trangChu"]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
   }
 
   getSoLuongTrongGioHang(): number {
@@ -115,7 +118,10 @@ export class CheckoutComponent implements OnInit {
 
     this.gioHangService.resetOrder();
 
-    this.router.navigate(["/trangChu"]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
   }
 
   private convertToSubmitForm(): CreateOrderForm {
