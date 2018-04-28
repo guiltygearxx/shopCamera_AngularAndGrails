@@ -12,9 +12,9 @@
 
       <div class="box-body">
 
-        <!--<app-filter-slider [min]="0" [max]="1000" [step]="1" (valueChange)="priceRangeChanged($event)"-->
-        <!--[(value)]="priceRange">-->
-        <!--</app-filter-slider>-->
+        <app-filter-slider [min]="0" [max]="1000" [step]="1" (valueChange)="priceRangeChanged($event)"
+                           [(value)]="priceRange">
+        </app-filter-slider>
 
         <ng-container *ngIf="isPriceRangeChanged">
           <button class="btn btn-tool btn-mini filter-box-apply" style="display: block;"

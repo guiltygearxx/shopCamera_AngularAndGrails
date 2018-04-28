@@ -1,29 +1,43 @@
 import {
+  AfterContentChecked,
+  AfterContentInit,
   AfterViewChecked,
   AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
-  Input, OnChanges,
+  Input,
+  OnChanges,
   OnInit,
   Output,
   SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {ApplicationUtils} from "../../common/application-utils";
-import {isArray, isNullOrUndefined} from "util";
 import {SupportOnChangesComponentModal} from "../../common/support-on-changes-component-modal";
 import {OnChangeCallBack} from "../../common/on-change-call-back";
 import {ComponentUtils} from "../../common/component-utils";
 
 declare var $: any;
 
+declare var noUiSlider: any;
+
 @Component({
   selector: 'app-filter-slider',
   templateUrl: './filter-slider.component.html',
   styleUrls: ['./filter-slider.component.css']
 })
-export class FilterSliderComponent implements OnInit, AfterViewInit, SupportOnChangesComponentModal, AfterViewChecked, OnChanges {
+export class FilterSliderComponent
+  implements OnInit, AfterViewInit, SupportOnChangesComponentModal, AfterViewChecked, OnChanges, AfterContentInit, AfterContentChecked {
+
+  @ViewChild("priceSlider")
+  priceSlider: ElementRef;
+
+  @ViewChild("fromValueInput")
+  fromValueInput: ElementRef;
+
+  @ViewChild("toValueInput")
+  toValueInput: ElementRef;
 
   afterContentCheckCallbacks: OnChangeCallBack[];
 
@@ -51,6 +65,9 @@ export class FilterSliderComponent implements OnInit, AfterViewInit, SupportOnCh
   @Input()
   value: number[];
 
+  fromValue: number;
+  toValue: number;
+
   constructor(protected applicationUtils: ApplicationUtils,
               protected componentUtils: ComponentUtils) {
   }
@@ -60,6 +77,15 @@ export class FilterSliderComponent implements OnInit, AfterViewInit, SupportOnCh
     this.afterViewCheckCallbacks = [
 
       new OnChangeCallBack(["value"], (() => this.updateSlider("value"))),
+    ];
+
+    this.afterContentCheckCallbacks = [
+
+      new OnChangeCallBack(["value"], (() => {
+
+        this.fromValue = this.value[0];
+        this.toValue = this.value[1];
+      })),
     ];
   }
 
@@ -78,72 +104,58 @@ export class FilterSliderComponent implements OnInit, AfterViewInit, SupportOnCh
     this.componentUtils.runAfterViewCheckedCallback(this);
   }
 
+  ngAfterContentChecked(): void {
+
+    this.componentUtils.runAfterContentCheckedCallback(this);
+  }
+
+  ngAfterContentInit(): void {
+
+    this.fromValue = this.value[0];
+    this.toValue = this.value[1];
+  }
+
+  rangeValueChanged(event: any): void {
+
+    var fromValueStr = $(this.fromValueInput.nativeElement).val();
+    var toValueStr = $(this.toValueInput.nativeElement).val();
+
+    this.priceSlider.nativeElement.noUiSlider.set([fromValueStr, toValueStr]);
+  }
+
   private initSlider(): void {
 
-    let value_ = this.value;
+    noUiSlider.create(this.priceSlider.nativeElement, {
+      start: [this.fromValue, this.toValue], connect: true, step: this.step, range: {'min': this.min, 'max': this.max}
+    });
 
-    if (isNullOrUndefined(value_)) value_ = [this.min, this.max];
+    this.priceSlider.nativeElement.noUiSlider.on('change', (values, handle) => {
 
-    $(this.inputElement.nativeElement)
-      .bootstrapSlider({
-        min: this.min, max: this.max, step: this.step, value: value_,
-        formatter: ((value) => this.format(value))
-      })
-      .on('change', ((event) => this.rangeChanged_(event)));
+      var value = values[handle];
+
+      (handle) ? (this.toValue = value) : (this.fromValue = value);
+
+      this.value[0] = this.fromValue;
+      this.value[1] = this.toValue;
+
+      this.valueChange.emit(this.value);
+    });
+
+    this.priceSlider.nativeElement.noUiSlider.on('update', (values, handle) => {
+
+      var value = values[handle];
+
+      (handle) ? ($(this.toValueInput.nativeElement).val(value)) : ($(this.fromValueInput.nativeElement).val(value));
+    });
   }
 
   private updateSlider(inputParam: string): void {
 
     switch (inputParam) {
 
-      case "max":
-        $(this.inputElement.nativeElement).data('bootstrapSlider').max = this.max;
-        break;
-
-      case "min":
-        $(this.inputElement.nativeElement).data('bootstrapSlider').min = this.min;
-        break;
-
-      case "step":
-        $(this.inputElement.nativeElement).data('bootstrapSlider').step = this.step;
-        break;
-
       case "value":
-        let value_ = this.value;
-        if (isNullOrUndefined(value_)) value_ = [this.min, this.max];
-        $(this.inputElement.nativeElement).bootstrapSlider("setValue", value_);
+        this.priceSlider.nativeElement.noUiSlider.set(this.value);
         return;
     }
-
-    $(this.inputElement.nativeElement).bootstrapSlider("refresh");
   }
-
-  private rangeChanged_(event: any): void {
-
-    this.valueChange.emit(event.value.newValue);
-  }
-
-  private format(value: (number | number[])): string {
-
-    if (!isArray(value)) return value.toString();
-
-    let from = value[0];
-
-    let to = value[1];
-
-    return [this.formatCurrency(from), this.formatCurrency(to)].join(" - ");
-  }
-
-  private formatCurrency(value: number): string {
-
-    if (value >= 1000) {
-
-      return this.applicationUtils.formatNumber2(value / 1000, 2) + " tỉ";
-
-    } else {
-
-      return value.toString() + " triệu";
-    }
-  }
-
 }
