@@ -5,6 +5,8 @@ import * as moment from "moment";
 import BigNumber from "bignumber.js";
 import {i18n} from "./i18n";
 
+declare var $: any;
+
 @Injectable()
 export class ApplicationUtils {
 
@@ -141,5 +143,10 @@ export class ApplicationUtils {
   getShortContent(value: string, maxLength: number): string {
 
     return !this.isStringEmpty(value) && value.length > maxLength ? (value.substr(0, maxLength - 3) + "...") : value;
+  }
+
+  scrollTopTop(completeFn: (() => void)): void {
+
+    $("html, body").stop().animate({scrollTop: 0}, 500, 'swing', completeFn);
   }
 }

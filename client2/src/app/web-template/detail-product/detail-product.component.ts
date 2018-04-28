@@ -11,6 +11,7 @@ import {CategoryItem} from "../../bean/category-item";
 import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {NumberFormatter} from "../../common/formater/number-formatter";
+import {ApplicationUtils} from "../../common/application-utils";
 
 declare var $: any;
 
@@ -40,7 +41,8 @@ export class DetailProductComponent
               protected route: ActivatedRoute,
               protected categoryService: CategoryService,
               protected gioHangService: GioHangService,
-              protected  numberFormater: NumberFormatter) {
+              protected  numberFormater: NumberFormatter,
+              protected applicationUtils: ApplicationUtils) {
 
     super(productService, productViewService, categoryService);
   }
@@ -141,8 +143,13 @@ export class DetailProductComponent
     // this.router.navigate(["/chiTietSanPham", productView.id]);
 
     let id: string = productView.id;
+
     let link: any[] = ['/chiTietSanPham', id];
-    this.router.navigate(link);
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(link);
+    });
   }
 
 

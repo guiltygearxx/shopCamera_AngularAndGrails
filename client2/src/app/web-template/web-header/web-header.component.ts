@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "../../bean/menu-item";
 import {ListProductService} from "../../service/list-product.service";
@@ -7,15 +7,18 @@ import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
 import {isNullOrUndefined} from "util";
 import {ExampleObject} from "../../bean/example-object";
+import {ApplicationUtils} from "../../common/application-utils";
 
 declare var $: any;
+
+declare var stuckNav: any;
 
 @Component({
   selector: 'app-web-header',
   templateUrl: './web-header.component.html',
   styleUrls: ['./web-header.component.css']
 })
-export class WebHeaderComponent implements OnInit {
+export class WebHeaderComponent implements OnInit, AfterViewInit {
 
   menuItems: MenuItem[] = [
 
@@ -29,12 +32,18 @@ export class WebHeaderComponent implements OnInit {
   constructor(protected router: Router,
               protected listProductService: ListProductService,
               protected gioHangService: GioHangService,
-              protected categoryService: CategoryService,) {
+              protected categoryService: CategoryService,
+              protected applicationUtils: ApplicationUtils) {
   }
 
   ngOnInit() {
 
     this.getCategorys();
+  }
+
+  ngAfterViewInit(): void {
+
+    stuckNav();
   }
 
   goToSubCategory(event: any, category: CategoryItem, subCategory: CategoryItem): void {
@@ -45,7 +54,10 @@ export class WebHeaderComponent implements OnInit {
 
     this.listProductService.isParamChanged = true;
 
-    this.router.navigate(["/danhSachSanPham/", selectedCategoryId]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/danhSachSanPham/", selectedCategoryId])
+    });
   }
 
 
@@ -68,7 +80,10 @@ export class WebHeaderComponent implements OnInit {
 
     event.preventDefault();
 
-    this.router.navigate(["/trangChu"]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
   }
 
   khoangGia: ExampleObject[];
@@ -82,14 +97,20 @@ export class WebHeaderComponent implements OnInit {
 
     event.preventDefault();
 
-    this.router.navigate(["/" + menuItem.id]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/" + menuItem.id]);
+    });
   }
 
   goToOrder(event: any): void {
 
     event.preventDefault();
 
-    this.router.navigate(["/gioHangSanPham"]);
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/gioHangSanPham"]);
+    });
   }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
@@ -107,4 +128,6 @@ export class WebHeaderComponent implements OnInit {
       .get(params)
       .subscribe((category) => this.afterGetListCategory(category));
   }
+
+
 }

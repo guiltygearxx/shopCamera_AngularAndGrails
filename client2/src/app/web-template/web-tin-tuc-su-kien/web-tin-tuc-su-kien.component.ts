@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {News} from "../../bean/news";
 import {NewsService} from "../../service/news/news.service";
 import {Router} from "@angular/router";
 import {WebTinTucSuKienLogic} from "./web-tin-tuc-su-kien-logic";
+import {ApplicationUtils} from "../../common/application-utils";
 
 @Component({
   selector: 'app-web-tin-tuc-su-kien',
@@ -11,7 +12,10 @@ import {WebTinTucSuKienLogic} from "./web-tin-tuc-su-kien-logic";
 })
 export class WebTinTucSuKienComponent extends WebTinTucSuKienLogic implements OnInit {
 
-  constructor(private router: Router, protected newsService: NewsService) {
+  constructor(private router: Router,
+              protected newsService: NewsService,
+              protected applicationUtils: ApplicationUtils) {
+
     super(newsService);
   }
 
@@ -25,7 +29,11 @@ export class WebTinTucSuKienComponent extends WebTinTucSuKienLogic implements On
 
     event.preventDefault();
 
-    this.router.navigate(["/chiTietTinTuc", news.id]);
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/chiTietTinTuc", news.id]);
+    });
   }
 
 }
