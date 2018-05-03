@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "../../bean/menu-item";
 import {ListProductService} from "../../service/list-product.service";
@@ -9,9 +9,8 @@ import {isNullOrUndefined} from "util";
 import {ExampleObject} from "../../bean/example-object";
 import {ApplicationUtils} from "../../common/application-utils";
 
-declare var $: any;
-
 declare var stuckNav: any;
+declare var $j: any;
 
 @Component({
   selector: 'app-web-header',
@@ -46,20 +45,19 @@ export class WebHeaderComponent implements OnInit, AfterViewInit {
     stuckNav();
   }
 
+  goToSubCategoryMobile(event: any, category: CategoryItem, subCategory: CategoryItem): void {
+
+    $j("#cboxClose").trigger("click");
+
+    this.goToSubCategory_(category, subCategory);
+  }
+
   goToSubCategory(event: any, category: CategoryItem, subCategory: CategoryItem): void {
 
     event.preventDefault();
 
-    let selectedCategoryId = isNullOrUndefined(subCategory) ? category.id : subCategory.id;
-
-    this.listProductService.isParamChanged = true;
-
-    this.applicationUtils.scrollTopTop(() => {
-
-      this.router.navigate(["/danhSachSanPham/", selectedCategoryId])
-    });
+    this.goToSubCategory_(category, subCategory);
   }
-
 
   getParentCategories(): CategoryItem[] {
     if (isNullOrUndefined(this.categoryListItem)) return null;
@@ -76,9 +74,23 @@ export class WebHeaderComponent implements OnInit, AfterViewInit {
     return subCategory;
   }
 
+  goToTrangChuMobile(event: any): void {
+
+    event.preventDefault();
+
+    $j("#cboxClose").trigger("click");
+
+    this.goToTrangChu_();
+  }
+
   goToTrangChu(event: any): void {
 
     event.preventDefault();
+
+    this.goToTrangChu_();
+  }
+
+  protected goToTrangChu_(): void {
 
     this.applicationUtils.scrollTopTop(() => {
 
@@ -86,16 +98,28 @@ export class WebHeaderComponent implements OnInit, AfterViewInit {
     });
   }
 
-  khoangGia: ExampleObject[];
-
   getSoLuongTrongGioHang(): number {
 
     return this.gioHangService.getOrderDetail();
   }
 
+  goToMenuIndexMobile(event: any, menuItem: MenuItem): void {
+
+    event.preventDefault();
+
+    $j("#cboxClose").trigger("click");
+
+    this.goToMenuIndex_(menuItem);
+  }
+
   goToMenuIndex(event: any, menuItem: MenuItem): void {
 
     event.preventDefault();
+
+    this.goToMenuIndex_(menuItem);
+  }
+
+  protected goToMenuIndex_(menuItem: MenuItem): void {
 
     this.applicationUtils.scrollTopTop(() => {
 
@@ -129,5 +153,15 @@ export class WebHeaderComponent implements OnInit, AfterViewInit {
       .subscribe((category) => this.afterGetListCategory(category));
   }
 
+  protected goToSubCategory_(category: CategoryItem, subCategory: CategoryItem): void {
 
+    let selectedCategoryId = isNullOrUndefined(subCategory) ? category.id : subCategory.id;
+
+    this.listProductService.isParamChanged = true;
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/danhSachSanPham/", selectedCategoryId])
+    });
+  }
 }

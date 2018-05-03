@@ -1,5 +1,4 @@
 import {ProductService} from "../../service/product/product.service";
-import {DetailProductLogic} from "./detail-product-logic";
 import {ActivatedRoute, Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
 import {AfterViewChecked, Component, OnInit} from "@angular/core";
@@ -24,8 +23,15 @@ declare var productCarousel: any;
   templateUrl: './detail-product.component.html',
   styleUrls: ['./detail-product.component.css']
 })
-export class DetailProductComponent
-  extends DetailProductLogic implements OnInit, AfterViewChecked {
+export class DetailProductComponent implements OnInit, AfterViewChecked {
+
+  allowDisplayProductVetical: boolean;
+
+  product: Product;
+
+  productLienQuan: ProductView[];
+
+  categoryList: CategoryItem[];
 
   private initProductCarouselEffectFn: () => void;
 
@@ -43,8 +49,6 @@ export class DetailProductComponent
               protected gioHangService: GioHangService,
               protected  numberFormater: NumberFormatter,
               protected applicationUtils: ApplicationUtils) {
-
-    super(productService, productViewService, categoryService);
   }
 
   ngOnInit() {
@@ -64,7 +68,7 @@ export class DetailProductComponent
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
 
-    super.afterGetListCategory(categoryItems);
+    this.categoryList = categoryItems;
 
     this.productId = this.route.snapshot.paramMap.get("productId");
 
@@ -79,11 +83,16 @@ export class DetailProductComponent
   }
 
   listHinhAnhSanPham(product: Product): string[] {
+
+    if (isNullOrUndefined(product)) return [];
+
     let imageList: string[] = [];
+
     if (!isNullOrUndefined(product.image1)) imageList[0] = product.image1;
     if (!isNullOrUndefined(product.image2)) imageList[1] = product.image2;
     if (!isNullOrUndefined(product.image3)) imageList[2] = product.image3;
     if (!isNullOrUndefined(product.image4)) imageList[3] = product.image4;
+
     return imageList;
   }
 
@@ -104,7 +113,7 @@ export class DetailProductComponent
 
   protected afterGetListProduct(product: Product): void {
 
-    super.afterGetListProduct(product);
+    this.product = product;
 
     this.activeImageIndex = 0;
 
@@ -170,4 +179,47 @@ export class DetailProductComponent
     return this.numberFormater.format(val);
   }
 
+  getProductById(productId: string) {
+
+    this.productService
+      .getById(productId)
+      .subscribe((product) => this.afterGetListProduct(product));
+
+  }
+
+  getListProduct(categoryId: string) {
+
+    let subCategoryIds = this.categoryList
+      .filter((category) => category.parentCategoryId == categoryId)
+      .map((category) => category.id);
+
+
+    let categoryIds = [categoryId];
+
+    if (!isNullOrUndefined(subCategoryIds))
+      categoryIds = categoryIds.concat(subCategoryIds)
+
+    let params = {categoryIds: categoryIds.join(";"), max: 8};
+
+    this.productViewService
+      .get(params)
+      .subscribe((productView) => this.afterGetListProductView(productView));
+
+  }
+
+  getListCategory() {
+
+    let getMaxItem: string = '30';
+
+    let params = {max: getMaxItem};
+
+
+    this.categoryService
+      .get(params)
+      .subscribe((category) => this.afterGetListCategory(category));
+  }
+
+  protected afterGetListProductView(productViews: ProductView[]): void {
+    this.productLienQuan = productViews;
+  }
 }

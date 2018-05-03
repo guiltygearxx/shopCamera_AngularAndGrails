@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ApplicationUtils} from "../../common/application-utils";
 
 @Component({
   selector: 'app-web-footer',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WebFooterComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected applicationUtils: ApplicationUtils) {
+  }
 
   ngOnInit() {
   }
 
+  backToTop(event: any): void {
+
+    event.preventDefault();
+
+    this.applicationUtils.scrollTopTop();
+  }
 }
