@@ -251,32 +251,38 @@
 	  }
 	})
 
+  function initMobileMenuEffect() {
+
+    $j("#off-canvas-menu .expander-list").find("ul").hide().end().find(" .expander").text("+").end().find(".active").each(function () {
+      $j(this).parents("li ").each(function () {
+        var $jthis = $j(this),
+          $jul = $jthis.find("> ul"),
+
+          $jexpander = $jthis.find("> .name .expander");
+        $jul.show();
+
+        $jexpander.html("&minus;")
+      })
+    }).end().find(" .expander").each(function () {
+      var $jthis = $j(this),
+        hide = $jthis.text() === "+",
+        $jul = $jthis.parent(".name").next("ul"),
+        $jname = $jthis.next("a");
+      $jthis.click(function () {
+        if ($jul.css("display") ==
+          "block") $jul.slideUp("slow");
+        else $jul.slideDown("slow");
+        $j(this).html(hide ? "&minus;" : "+");
+        hide = !hide
+      })
+    })
+  }
 
 	jQuery(function($j) {
-	    "use strict";
-	    $j("#off-canvas-menu .expander-list").find("ul").hide().end().find(" .expander").text("+").end().find(".active").each(function() {
-	        $j(this).parents("li ").each(function() {
-	            var $jthis = $j(this),
-	                $jul = $jthis.find("> ul"),
 
-	                $jexpander = $jthis.find("> .name .expander");
-	            $jul.show();
+    "use strict";
 
-	            $jexpander.html("&minus;")
-	        })
-	    }).end().find(" .expander").each(function() {
-	        var $jthis = $j(this),
-	            hide = $jthis.text() === "+",
-	            $jul = $jthis.parent(".name").next("ul"),
-	            $jname = $jthis.next("a");
-	        $jthis.click(function() {
-	            if ($jul.css("display") ==
-	                "block") $jul.slideUp("slow");
-	            else $jul.slideDown("slow");
-	            $j(this).html(hide ? "&minus;" : "+");
-	            hide = !hide
-	        })
-	    })
+    initMobileMenuEffect();
 	});
 	//end mobile
 

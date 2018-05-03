@@ -5927,7 +5927,7 @@ h6.small {
 /* /side-offset */
 /* dividers */
 .divider {
-  height: 30px;
+  height: 20px;
   clear: both;
   overflow: hidden;
   width: 100%;
@@ -8158,6 +8158,9 @@ hr.hr-lg {
 /****************************************
 * loader
 *****************************************/
+
+#loader-wrapper.isLoading { opacity: 100 !important; visibility: visible !important }
+
 #loader-wrapper {
   position: fixed;
   top: 0;
@@ -23310,7 +23313,7 @@ h4.title-default {
 }
 .title-under {
   position: relative;
-  margin-bottom: 2.667em;
+  margin-bottom: 1.667em;
 }
 .title-under:after {
   content: "";

@@ -1,3 +1,9 @@
 .backGroundColorOrange{
   background: #ff8600 !important;
 }
+.slogan a{
+  text-decoration: none;
+}
+.slogan a:hover{
+  text-decoration: none;
+}

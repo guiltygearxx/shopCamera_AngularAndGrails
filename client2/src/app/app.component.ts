@@ -12,6 +12,8 @@ declare var backToTop: any;
 })
 export class AppComponent implements AfterViewInit {
 
+  isLoading: boolean = false;
+
   toasterConfig: ToasterConfig = new ToasterConfig({
 
     positionClass: 'toast-top-right'

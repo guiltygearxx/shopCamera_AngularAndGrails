@@ -145,7 +145,7 @@ export class ApplicationUtils {
     return !this.isStringEmpty(value) && value.length > maxLength ? (value.substr(0, maxLength - 3) + "...") : value;
   }
 
-  scrollTopTop(completeFn: (() => void)): void {
+  scrollTopTop(completeFn ?: (() => void)): void {
 
     $("html, body").stop().animate({scrollTop: 0}, 500, 'swing', completeFn);
   }

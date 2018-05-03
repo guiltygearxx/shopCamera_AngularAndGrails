@@ -2,30 +2,27 @@
   <div style="padding-left: 20px; padding-right: 20px">
     <div class="row">
 
-      <aside class="col-md-8 col-lg-9 col-xl-10" id="centerColumn">
-        <table class="tablenews margin-top-20 border-style-table-giaiphap" width="100%" cellspacing="0" cellpadding="0">
-          <tbody>
-          <ng-container *ngFor="let news of tinTuc">
-            <tr class="border-style-table-giaiphap">
-              <td valign="top" width="105">
-                <div class="newpic">
-                  <a (click)="goToChiTietTinTuc($event,news)">
-                    <img src="{{news.hinhAnh}}" border="0" hspace="5" vspace="5" width="120" height="80"/>
-                  </a>
-                </div>
-              </td>
-              <td style="padding-right: 5px;" align="left" valign="top">
-                <h4><a (click)="goToChiTietTinTuc($event,news)">{{news.tieuDe}}</a></h4>
-                <div>{{news.noiDungNgan}}</div>
-                <p class="viewmore" align="right"><a (click)="goToChiTietTinTuc($event,news)">Xem tiếp</a></p>
-              </td>
-            </tr>
-          </ng-container>
-          </tbody>
-        </table>
+      <aside class="col-md-8 col-lg-9 col-xl-10 paddingDiv" id="centerColumn">
+        <ng-container *ngFor="let news of tinTuc">
+          <div class="row configAttributeRow" (click)="goToChiTietTinTuc($event,news)">
+            <div class="col-sm-12 col-md-3 col-sm-center">
+              <div class="divider divider--lg hidden-xl"></div>
+              <img src="{{news.hinhAnh}}" class="img-responsive" alt="">
+            </div>
+            <div class="col-md-12 col-md-9 col-sm-center">
+              <div class="divider visible-xl"></div>
+              <div class="divider hidden-xl"></div>
+              <h3 class="title-under">{{news.tieuDe}}</h3>
+              <p>
+                {{news.noiDungNgan}}
+              </p>
+              <div class="divider"></div>
+            </div>
+          </div>
+        </ng-container>
       </aside>
 
-      <aside class="col-md-4 col-lg-3 col-xl-2" id="leftColumn">
+      <aside class="col-md-4 col-lg-3 col-xl-2 paddingDiv" id="leftColumn">
         <app-web-right-side></app-web-right-side>
       </aside>
     </div>

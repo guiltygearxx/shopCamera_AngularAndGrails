@@ -9,7 +9,7 @@
   </div>
 </div>
 <!-- /breadcrumbs -->
-<div id="pageContent">
+<div *ngIf="product != null" id="pageContent">
   <section class="content offset-top-0">
     <div class="container">
       <div class="row product-info-outer">
@@ -20,92 +20,51 @@
 
               <!-- carousel -->
               <div class="carousel-products" id="megaMenuCarousel1">
-                <div>
-                  <!-- product -->
-                  <div class="product">
-                    <div class="product__inside">
-                      <!-- product image -->
-                      <div class="product__inside__image">
-                        <a href="product.html"> <img src="assets/images/product/product-20.jpg" alt=""> </a>
+                <ng-container *ngFor="let imageView of listHinhAnhSanPham(this.product); let indexImage = index">
+                  <div>
+                    <!-- product -->
+                    <div class="product">
+                      <div class="product__inside">
+                        <!-- product image -->
+                        <div class="product__inside__image">
+                          <a> <img [src]="imageView" alt=""> </a>
+                        </div>
+                        <!-- /product image -->
+                        <!-- product name -->
+                        <!--<div class="product__inside__name">-->
+                          <!--<h2><a href="product.html">Mauris lacinia lectus</a></h2>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash; /product name &ndash;&gt;-->
+                        <!--&lt;!&ndash; product price &ndash;&gt;-->
+                        <!--<div class="product__inside__price price-box">$77.00</div>-->
+                        <!-- /product price -->
                       </div>
-                      <!-- /product image -->
-                      <!-- product name -->
-                      <div class="product__inside__name">
-                        <h2><a href="product.html">Mauris lacinia lectus</a></h2>
-                      </div>
-                      <!-- /product name -->
-                      <!-- product price -->
-                      <div class="product__inside__price price-box">$77.00</div>
-                      <!-- /product price -->
                     </div>
+                    <!-- /product -->
                   </div>
-                  <!-- /product -->
-                </div>
-                <div>
-                  <!-- product -->
-                  <div class="product">
-                    <div class="product__inside">
-                      <!-- product image -->
-                      <div class="product__inside__image">
-                        <a href="product.html"> <img src="assets/images/product/product-2.jpg" alt=""> </a>
-                      </div>
-                      <!-- /product image -->
-                      <!-- product name -->
-                      <div class="product__inside__name">
-                        <h2><a href="product.html">Mauris lacinia lectus</a></h2>
-                      </div>
-                      <!-- /product name -->
-                      <!-- product price -->
-                      <div class="product__inside__price price-box">$77.00</div>
-                      <!-- /product price -->
-                    </div>
-                  </div>
-                  <!-- /product -->
-                </div>
-                <div>
-                  <!-- product -->
-                  <div class="product">
-                    <div class="product__inside">
-                      <!-- product image -->
-                      <div class="product__inside__image">
-                        <a href="product.html"> <img src="assets/images/product/product-4.jpg" alt=""> </a>
-
-                      </div>
-                      <!-- /product image -->
-                      <!-- product name -->
-                      <div class="product__inside__name">
-                        <h2><a href="product.html">Mauris lacinia lectus</a></h2>
-                      </div>
-                      <!-- /product name -->
-                      <!-- product price -->
-                      <div class="product__inside__price price-box">$77.00</div>
-                      <!-- /product price -->
-                    </div>
-                  </div>
-                  <!-- /product -->
-                </div>
+                </ng-container>
               </div>
               <!-- /carousel -->
 
 
               <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
-                <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
-                <!--<div class="carousel-inner">-->
-                  <!--<ng-container *ngFor="let imageView of listHinhAnhSanPham(this.product); let indexImage = index">-->
-                    <!--<div class="item " [class.active]="activeImage(indexImage)">-->
-                      <!--<img id="example" src="{{imageView}}" alt=" " class="img-responsive" style="margin: auto;"-->
-                           <!--width="500" height="500"/>-->
-                    <!--</div>-->
-                  <!--</ng-container>-->
-                <!--</div>-->
+              <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
+              <!--<div class="carousel-inner">-->
+              <!--<ng-container *ngFor="let imageView of listHinhAnhSanPham(this.product); let indexImage = index">-->
+              <!--<div class="item " [class.active]="activeImage(indexImage)">-->
+              <!--<img id="example" src="{{imageView}}" alt=" " class="img-responsive" style="margin: auto;"-->
+              <!--width="500" height="500"/>-->
+              <!--</div>-->
+              <!--</ng-container>-->
+              <!--</div>-->
 
-                <!--&lt;!&ndash; Controls &ndash;&gt;-->
-                <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">-->
-                  <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-                <!--</a>-->
-                <!--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">-->
-                  <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
-                <!--</a>-->
+              <!--&lt;!&ndash; Controls &ndash;&gt;-->
+              <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">-->
+              <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+              <!--</a>-->
+              <!--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">-->
+              <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+              <!--</a>-->
               <!--</div>-->
               <!-- /carousel -->
             </div>
@@ -121,9 +80,9 @@
                   </ng-container>
                 </ul>
               </div>
-              <div class="price-box product-info__price"><span class="price-box__new">{{this.product.gia}} Đ</span>
+              <div class="price-box product-info__price"><span class="price-box__new">{{getNumberFormatted(this.product.gia)}} Đ</span>
                 <span
-                  class="price-box__old">{{this.product.giaTruocKhiHa}} Đ</span></div>
+                  class="price-box__old">{{getNumberFormatted(this.product.giaTruocKhiHa)}} Đ</span></div>
               <div class="product-info__review">
                 <div class="rating"><span class="icon-star"></span> <span class="icon-star"></span> <span
                   class="icon-star"></span> <span class="icon-star"></span> <span class="icon-star empty-star"></span>
@@ -350,7 +309,8 @@
                 <div class="box-product confixPaddingTopBottom20px">
                   <div class=""><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
                   </div>
-                  <div class=""><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                  <div class=""><span
+                    class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
                   </div>
                   <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
                   </div>
