@@ -104,13 +104,14 @@
 
               <ul class="filter-choices">
 
-                <li>
+                <li *ngIf="isEnablePriceRangeFilterChoice()">
 
                   <label class="filter-choice-title">Giá : </label>
 
                   <span class="filter-choice" (click)="resetPriceRange($event)">{{getPriceRangeLabel()}}</span>
 
                 </li>
+
                 <ng-container *ngIf="hasFilterValues">
 
                   <ng-container *ngFor="let attribute of filterAttributes">

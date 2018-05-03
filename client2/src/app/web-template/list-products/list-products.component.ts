@@ -377,6 +377,13 @@ export class ListProductsComponent
     this.priceRange = [0, 1000];
 
     this.priceRangeTemp = [0, 1000];
+
+    this.getListProduct();
+  }
+
+  isEnablePriceRangeFilterChoice(): boolean {
+
+    return this.priceRange[0] != 0 || this.priceRange[1] != 1000;
   }
 
   private converterProductView(productView: ProductView): OrderDetailForm {
