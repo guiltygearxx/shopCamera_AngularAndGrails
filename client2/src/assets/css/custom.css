@@ -1051,3 +1051,7 @@ h6 .text_align_left {
   font-weight: bolder;
   color: #db501d;
 }
+
+.paddingTopSlider{
+  padding-top: 10px;
+}

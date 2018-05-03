@@ -4,18 +4,17 @@
 
 
 <div class="">
-
   <div class="price-slider" #priceSlider></div>
-
+  <div class="paddingTopSlider"></div>
   <div class="price-input">
-    <label>From:</label>
+    <label>Từ:</label>
     <input #fromValueInput type="text" id="priceMin" (change)="rangeValueChanged($event)"/>
   </div>
 
   <div class="price-input-divider">-</div>
 
   <div class="price-input">
-    <label>To:</label>
+    <label>Đến:</label>
     <input #toValueInput type="text" id="priceMax" (change)="rangeValueChanged($event)"/>
   </div>
 
