@@ -1,9 +1,14 @@
 import {
-  AfterContentChecked, Component, EventEmitter, Input, OnChanges, OnInit, Output,
-  SimpleChanges
+  AfterContentChecked, AfterViewChecked,
+  Component, ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges, ViewChild
 } from '@angular/core';
 import {AttributeService} from "../../service/attribute.service";
-import {FilterLogic} from "./filter-logic";
 import {Attribute} from "../../bean/attribute";
 import {SupportOnChangesComponentModal} from "../../common/support-on-changes-component-modal";
 import {OnChangeCallBack} from "../../common/on-change-call-back";
@@ -21,7 +26,14 @@ declare var $: any;
   styleUrls: ['./filter.component.css']
 })
 export class FilterComponent
-  extends FilterLogic implements OnInit, AfterContentChecked, SupportOnChangesComponentModal, OnChanges {
+  implements OnInit, AfterContentChecked, SupportOnChangesComponentModal, OnChanges, AfterViewChecked {
+
+  @ViewChild("contentSection")
+  contentSection: ElementRef;
+
+  initBoxCollapseExpandEffectFn: (() => void);
+
+  attributes: Attribute[];
 
   contentChangedAttrs: string[];
 
@@ -62,8 +74,6 @@ export class FilterComponent
   constructor(protected attributeService: AttributeService,
               protected componentUtils: ComponentUtils,
               protected applicationUtils: ApplicationUtils) {
-
-    super(attributeService);
   }
 
   ngOnInit() {
@@ -96,15 +106,14 @@ export class FilterComponent
     this.componentUtils.runAfterContentCheckedCallback(this);
   }
 
-  afterGetListAttribute(attributes: Attribute[]): void {
+  ngAfterViewChecked(): void {
 
-    super.afterGetListAttribute(attributes);
+    if (!isNullOrUndefined(this.initBoxCollapseExpandEffectFn)) {
 
-    this.buildAttributeConfigs();
+      this.initBoxCollapseExpandEffectFn();
 
-    this.buildAttributeFiler();
-
-    this.initFilterOptions();
+      this.initBoxCollapseExpandEffectFn = null;
+    }
   }
 
   getAttributeConfig(attribute: Attribute): AttributeConfig {
@@ -177,6 +186,15 @@ export class FilterComponent
     this.isPriceRangeChanged = true;
   }
 
+  protected getAttribute() {
+
+    let params = {max: 200};
+
+    this.attributeService
+      .get(params)
+      .subscribe((attribute) => this.afterGetListAttribute(attribute));
+  }
+
   protected buildAttributeFiler(): void {
 
     this.attributesFilter = isNullOrUndefined(this.attributes) ? null : this.attributes.filter((attribute) => attribute.group == this.type);
@@ -213,5 +231,37 @@ export class FilterComponent
 
       this.filterOptions[item.code] = this.attributeConfigs[item.code].items
     )
+  }
+
+  protected afterGetListAttribute(attributes: Attribute[]): void {
+
+    this.attributes = attributes;
+
+    this.buildAttributeConfigs();
+
+    this.buildAttributeFiler();
+
+    this.initFilterOptions();
+
+    this.initBoxCollapseExpandEffectFn = (() => setTimeout(() => this.initBoxCollapseExpandEffect(), 500));
+  }
+
+  protected initBoxCollapseExpandEffect(): void {
+
+    $(this.contentSection.nativeElement).find(".box").each((index, box) => {
+
+      $(box).find(".box-header").click((event) => {
+
+        $(box).find(".box-body").slideToggle({
+
+          complete: () => {
+
+            $(box).find(".btn-box-tool i")
+              .toggleClass("fa-angle-up")
+              .toggleClass("fa-angle-down");
+          }
+        })
+      })
+    })
   }
 }

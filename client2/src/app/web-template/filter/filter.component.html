@@ -1,16 +1,18 @@
 <aside class="col-md-4 col-lg-2 col-xl-2" id="leftColumn"
        style="padding-left: 1px !important; padding-right: 7px !important;">
 
-  <section class="content" style="padding-left: 1px !important;">
+  <section class="content" style="padding-left: 1px !important;" #contentSection>
+
     <div class="box box-default">
+
       <div class="box-header with-border">
         <h3 class="box-title">Giá</h3>
         <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i></button>
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-down"></i></button>
         </div>
       </div>
 
-      <div class="box-body">
+      <div class="box-body" style="display: none">
 
         <app-filter-slider [min]="0" [max]="1000" [step]="1" (valueChange)="priceRangeChanged($event)"
                            [(value)]="priceRange">
@@ -30,11 +32,11 @@
         <div class="box-header with-border">
           <h3 class="box-title">{{filter.title}}</h3>
           <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-up"></i>
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-angle-down"></i>
             </button>
           </div>
         </div>
-        <div class="box-body">
+        <div class="box-body" style="display: none">
 
           <app-input-text-no-title [placeHolder]="'Tìm kiếm'" (valueChange)="filterSelectOptions($event, filter)">
           </app-input-text-no-title>
