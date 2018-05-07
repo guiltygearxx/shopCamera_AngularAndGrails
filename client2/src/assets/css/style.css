@@ -6204,7 +6204,7 @@ body.fullwidth .container,
 }
 /* content */
 .content {
-  margin-top: 35px;
+  margin-top: 30px;
 }
 @media (max-width: 767px) {
   .content {
