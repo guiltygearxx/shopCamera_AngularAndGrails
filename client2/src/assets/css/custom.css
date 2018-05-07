@@ -1055,3 +1055,18 @@ h6 .text_align_left {
 .paddingTopSlider{
   padding-top: 10px;
 }
+
+#preloaderKDZ.isLoading {  display: none !important }
+
+#preloaderKDZ {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  overflow: hidden;
+  background: #ffffff url(../images/load/loading.gif) center no-repeat;
+}
+
