@@ -12,7 +12,7 @@ declare var backToTop: any;
 })
 export class AppComponent implements AfterViewInit {
 
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   toasterConfig: ToasterConfig = new ToasterConfig({
 
