@@ -21,7 +21,7 @@
                         <!-- /product image -->
                         <!-- product name -->
                         <!--<div class="product__inside__name">-->
-                          <!--<h2><a href="product.html">Mauris lacinia lectus</a></h2>-->
+                        <!--<h2><a href="product.html">Mauris lacinia lectus</a></h2>-->
                         <!--</div>-->
                         <!--&lt;!&ndash; /product name &ndash;&gt;-->
                         <!--&lt;!&ndash; product price &ndash;&gt;-->
@@ -81,12 +81,15 @@
               <div class="divider divider--xs product-info__divider hidden-xs"></div>
 
               <div class="wrapper">
-                <div class="pull-left"><span class="option-label cauHinhSuDungFontMoiD">Hãng sản xuất:</span> {{this.product.hangSanXuat}}
+                <div class="pull-left"><span class="option-label cauHinhSuDungFontMoiD">Hãng sản xuất:</span>
+                  {{this.product.hangSanXuat}}
                 </div>
               </div>
 
               <div class="wrapper">
-                <div class="pull-left"><span class="option-label cauHinhSuDungFontMoiD">Bảo hành:</span> {{this.product.baoHanh}}</div>
+                <div class="pull-left"><span class="option-label cauHinhSuDungFontMoiD">Bảo hành:</span>
+                  {{this.product.baoHanh}}
+                </div>
               </div>
 
               <div class="divider divider--xs product-info__divider"></div>
@@ -108,14 +111,14 @@
                 <div class="pull-left">
                   <!--  -->
                   <div class="number input-counter">
-                    <span class="minus-btn"></span>
-                    <input type="text" value="1" size="5"/>
-                    <span class="plus-btn"></span>
+                    <span class="minus-btn" (click)="addProduct(-1)"></span>
+                    <input type="text" maxlength="3" [ngModel]="productCount" (change)="productCountChanged($event)"/>
+                    <span class="plus-btn" (click)="addProduct(1)"></span>
                   </div>
                   <!-- / -->
                 </div>
                 <div class="pull-left">
-                  <button type="submit" class="btn btn--ys btn--xxl">
+                  <button type="submit" class="btn btn--ys btn--xxl" (click)="addProductToOrder($event)">
                     <span class="icon icon-shopping_basket"></span>
                     MUA NGAY
                   </button>
@@ -304,7 +307,7 @@
                   <div class=""><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
                   </div>
                   <div class="">
-                    <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">Mua ngay</button>
+                    <button class="btn btn-warning" (click)="addProductViewToOrder($event, productCamera)">Mua ngay</button>
                   </div>
                 </div>
               </div>

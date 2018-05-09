@@ -27,7 +27,7 @@ export class GioHangService {
       orderDetailForm = new OrderDetailForm();
 
       orderDetailForm.productId = detailForm.productId;
-      orderDetailForm.quantity = '1';
+      orderDetailForm.quantity = detailForm.quantity || "1";
       orderDetailForm.name = detailForm.name;
       orderDetailForm.hinhAnh = detailForm.hinhAnh;
       orderDetailForm.gia = detailForm.gia;
@@ -36,7 +36,7 @@ export class GioHangService {
 
     } else {
 
-      orderDetailForm.quantity = (parseInt(orderDetailForm.quantity) + 1).toString();
+      orderDetailForm.quantity = (parseInt(orderDetailForm.quantity) + parseInt(detailForm.quantity || "1")).toString();
     }
   }
 

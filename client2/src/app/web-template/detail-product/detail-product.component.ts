@@ -37,9 +37,9 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
 
   productId: any;
 
-  detailForms: OrderDetailForm;
-
   private activeImageIndex: number;
+
+  productCount: number = 1;
 
   constructor(private router: Router,
               protected productService: ProductService,
@@ -110,39 +110,22 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
     return imageIndex == this.activeImageIndex;
   }
 
+  addProductToOrder(event: any): void {
 
-  protected afterGetListProduct(product: Product): void {
+    event.preventDefault();
 
-    this.product = product;
+    let detailForms: OrderDetailForm = this.converterProduct(this.product);
 
-    this.activeImageIndex = 0;
-
-    this.getListProduct(product.categoryId);
-
-    this.initProductCarouselEffectFn = (() => {
-
-      productCarousel($j('#megaMenuCarousel1'), 1, 1, 1, 1, 1, 'productCarousel');
-    });
+    return this.gioHangService.addOrderDetail(detailForms);
   }
 
-  addProductToOrder(productView: ProductView): void {
+  addProductViewToOrder(event: any, product: ProductView): void {
 
-    this.detailForms = this.converterProductView(productView);
+    event.preventDefault();
 
-    return this.gioHangService.addOrderDetail(this.detailForms);
-  }
+    let detailForms: OrderDetailForm = this.converterProductView(product);
 
-  private converterProductView(productView: ProductView): OrderDetailForm {
-
-    let orderDetail = new OrderDetailForm();
-
-    orderDetail.productId = productView.id;
-    orderDetail.name = productView.name;
-    orderDetail.hinhAnh = productView.image1
-    orderDetail.gia = productView.gia.toString();
-
-    return orderDetail;
-
+    return this.gioHangService.addOrderDetail(detailForms);
   }
 
   goToChiTietSanPham(event: any, productView: ProductView): void {
@@ -160,7 +143,6 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
       this.router.navigate(link);
     });
   }
-
 
   kiemTraGiamGia(product: ProductView): boolean {
 
@@ -219,7 +201,69 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
       .subscribe((category) => this.afterGetListCategory(category));
   }
 
+  addProduct(amount: number): void {
+
+    this.productCount = (this.productCount + amount + 1000) % 1000;
+  }
+
+  productCountChanged(event: any): void {
+
+    let val = $(event.target).val();
+
+    if (isNaN(val)) {
+
+      this.productCount = 1;
+      return;
+    }
+
+    let intVal = parseInt(val);
+
+    this.productCount = (intVal + 1000) % 1000;
+  }
+
   protected afterGetListProductView(productViews: ProductView[]): void {
     this.productLienQuan = productViews;
+  }
+
+  protected afterGetListProduct(product: Product): void {
+
+    this.product = product;
+
+    this.activeImageIndex = 0;
+
+    this.getListProduct(product.categoryId);
+
+    this.initProductCarouselEffectFn = (() => {
+
+      productCarousel($j('#megaMenuCarousel1'), 1, 1, 1, 1, 1, 'productCarousel');
+    });
+  }
+
+  private converterProduct(product: Product): OrderDetailForm {
+
+    let orderDetail = new OrderDetailForm();
+
+    orderDetail.productId = product.id;
+    orderDetail.name = product.name;
+    orderDetail.hinhAnh = product.image1
+    orderDetail.gia = product.gia.toString();
+    orderDetail.quantity = this.productCount.toString();
+
+    return orderDetail;
+
+  }
+
+  private converterProductView(product: ProductView): OrderDetailForm {
+
+    let orderDetail = new OrderDetailForm();
+
+    orderDetail.productId = product.id;
+    orderDetail.name = product.name;
+    orderDetail.hinhAnh = product.image1
+    orderDetail.gia = product.gia.toString();
+    // orderDetail.quantity = this.productCount.toString();
+
+    return orderDetail;
+
   }
 }

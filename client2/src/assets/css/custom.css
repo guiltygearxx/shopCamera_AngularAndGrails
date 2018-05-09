@@ -1056,10 +1056,8 @@ h6 .text_align_left {
   padding-top: 10px;
 }
 
-#preloaderKDZ.isLoading {  display: none !important }
-
 #preloaderKDZ {
-  display: block;
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
@@ -1068,6 +1066,10 @@ h6 .text_align_left {
   z-index: 999999;
   overflow: hidden;
   background: #ffffff url(../images/load/loading.gif) center no-repeat;
+}
+
+#preloaderKDZ.isLoading {
+  display: block !important
 }
 
 .cauHinhSuDungFontMoiD{

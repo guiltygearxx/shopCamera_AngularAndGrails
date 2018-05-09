@@ -11,6 +11,8 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class HttpService {
 
+  loadingHandleFn: (loadingFlag: number) => void;
+
   constructor(protected http: HttpClient,
               protected applicationService: ApplicationService) {
   }
@@ -48,6 +50,8 @@ export class HttpService {
 
     this.loadingFlag--;
 
+    if (!isNullOrUndefined(this.loadingHandleFn)) this.loadingHandleFn(this.loadingFlag);
+
     return response;
   }
 
@@ -55,12 +59,16 @@ export class HttpService {
 
     this.loadingFlag--;
 
+    if (!isNullOrUndefined(this.loadingHandleFn)) this.loadingHandleFn(this.loadingFlag);
+
     console.log(error);
   }
 
   get(url: string, params: any): Observable<any> {
 
     this.loadingFlag++;
+
+    if (!isNullOrUndefined(this.loadingHandleFn)) this.loadingHandleFn(this.loadingFlag);
 
     var url = environment.serviceBaseURL + url;
 
@@ -75,6 +83,8 @@ export class HttpService {
   post(url: string, body: any, params: any): Observable<any> {
 
     this.loadingFlag++;
+
+    if (!isNullOrUndefined(this.loadingHandleFn)) this.loadingHandleFn(this.loadingFlag);
 
     var url = environment.serviceBaseURL + url;
 
@@ -93,6 +103,8 @@ export class HttpService {
 
     this.loadingFlag++;
 
+    if (!isNullOrUndefined(this.loadingHandleFn)) this.loadingHandleFn(this.loadingFlag);
+
     var url = environment.serviceBaseURL + url;
 
     let httpHeaders = this.buildHttpHeader(new HttpHeaders());
@@ -105,6 +117,8 @@ export class HttpService {
   delete(url: string, params: any): Observable<any> {
 
     this.loadingFlag++;
+
+    if (!isNullOrUndefined(this.loadingHandleFn)) this.loadingHandleFn(this.loadingFlag);
 
     var url = environment.serviceBaseURL + url;
 
