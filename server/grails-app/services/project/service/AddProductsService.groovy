@@ -142,6 +142,8 @@ class AddProductsService implements BaseService {
                     thongTinChiTiet: item.thongTinChiTiet,
                     thongSoKiThuat: item.thongSoKiThuat,
                     khuyenMai: item.khuyenMai,
+                    thongTinMoRong: item.thongTinMoRong,
+                    thongTinBoSung: item.thongTinBoSung,
 
                     isDeleted: false,
                     lastModifiedTime: new Date(),

@@ -25,9 +25,7 @@ class RestfulQueryService {
 
             example.properties.each { String key, def value ->
 
-                if (value == null) return;
-
-                eq(key, value);
+                if (value != null) eq(key, value);
             }
         }
     }

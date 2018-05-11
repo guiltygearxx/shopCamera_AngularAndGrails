@@ -22,4 +22,6 @@ export class Product implements BaseDomain {
   thongSoKiThuat: string;
   khuyenMai: string;
   phanTramGiamGia: number;
+  thongTinMoRong: string;//chuong trinh dac biet;
+  thongTinBoSung: string; //highlight;
 }

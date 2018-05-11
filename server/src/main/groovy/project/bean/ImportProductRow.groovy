@@ -17,6 +17,8 @@ class ImportProductRow {
     String thongTinChiTiet;
     String thongSoKiThuat;
     String khuyenMai;
+    String thongTinMoRong;
+    String thongTinBoSung;
 
     Map attribute;
 }

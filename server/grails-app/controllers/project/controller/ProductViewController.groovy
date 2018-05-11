@@ -5,6 +5,7 @@ import project.bean.PaginationParams
 import project.bean.TableQueryResponse
 import project.domain.Attribute
 import project.domain.AttributeValue
+import project.domain.Category
 import project.view.ProductView
 
 class ProductViewController extends DefaultRestfulController<ProductView> {
@@ -33,17 +34,19 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
 
     protected buildCriteria() {
 
-        Closure filterClosure = this.buildFilterClosure();
+        String categoryGroup = params.categoryGroup;
 
         return ProductView.where({
 
             def tableAlias = ProductView;
 
-            cacheService.attributes.each { Attribute attribute ->
+            cacheService.attributes.findAll {
+
+                it.group == categoryGroup && params.getList(it.code)
+
+            }.each { Attribute attribute ->
 
                 List values = params.getList(attribute.code);
-
-                if (!values) return;
 
                 exists(AttributeValue.where {
 
@@ -54,23 +57,21 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
                 }.id());
             }
 
-            delegate.with filterClosure
-        })
+            delegate.with this.buildFilterClosure();
+        });
     }
 
     @Override
     protected Closure buildFilterClosure() {
 
-        Closure defaultClosure = super.buildFilterClosure();
-
         return {
 
-            (params.productIds) && (inList("id", params.productIds.split(";")));
-            (params.categoryIds) && (inList("categoryId", params.categoryIds.split(";")));
-            (params.fromPrice) && (ge("gia", (new BigDecimal(params.fromPrice) * 1000 * 1000)))
-            (params.toPrice) && (le("gia", (new BigDecimal(params.toPrice) * 1000 * 1000)))
+            if (params.productIds) (inList("id", params.productIds.split(";")));
+            if (params.categoryIds) (inList("categoryId", params.categoryIds.split(";")));
+            if (params.fromPrice) (ge("gia", (new BigDecimal(params.fromPrice) * 1000 * 1000)))
+            if (params.toPrice) (le("gia", (new BigDecimal(params.toPrice) * 1000 * 1000)))
 
-            delegate.with defaultClosure;
+            delegate.with super.buildFilterClosure();
         }
     }
 

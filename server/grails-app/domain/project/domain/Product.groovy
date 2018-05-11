@@ -18,9 +18,9 @@ class Product implements BaseDomain {
     String thongSoKiThuat;
     String khuyenMai;
     BigDecimal phanTramGiamGia;
-    String thongTinMoRong;
+    String thongTinMoRong;//chuong trinh dac biet;
     String hinhAnhTrucQuan;
-    String thongTinBoSung;
+    String thongTinBoSung; //highlight;
 
     static constraints = {
 

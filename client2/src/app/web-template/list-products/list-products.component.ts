@@ -471,6 +471,8 @@ export class ListProductsComponent
     params["fromPrice"] = isNullOrUndefined(this.priceRange) ? null : this.priceRange[0];
 
     params["toPrice"] = isNullOrUndefined(this.priceRange) ? null : this.priceRange[1];
+
+    params["categoryGroup"] = this.selectedCategory.type;
   }
 
   private buildPaginationParams(): PaginationParams {

@@ -6,7 +6,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   OnInit,
   Output,
   SimpleChanges,
@@ -36,7 +36,7 @@ declare var $: any;
 })
 export class SelectComponent
   implements OnInit, BaseInputModal, SupportValidateInputModal,
-    AdminLteInputModal, SupportOnChangesComponentModal, OnChanges, AfterContentChecked, AfterViewChecked, AfterViewInit {
+    AdminLteInputModal, SupportOnChangesComponentModal, OnChanges, AfterContentChecked, AfterViewChecked, AfterViewInit, OnDestroy {
 
   viewChangedAttrs: string[];
 
@@ -93,6 +93,8 @@ export class SelectComponent
 
   private select2SettingOptions: any;
 
+  private refreshTimer: any;
+
   constructor(protected componentUtils: ComponentUtils,
               protected applicationUtils: ApplicationUtils) {
   }
@@ -101,22 +103,21 @@ export class SelectComponent
 
     this.componentUtils.generateInputId(this);
 
-    this.select2SettingOptions = {minimumResultsForSearch: 5};
+    this.select2SettingOptions = {liveSearch: 'true', noneSelectedText: this.placeHolder};
 
     this.afterContentCheckCallbacks = [
 
       new OnChangeCallBack(['errorMessage'], (() => this.isError = !this.applicationUtils.isStringEmpty(this.errorMessage))),
 
-      new OnChangeCallBack(['optionKey', 'optionValue', 'data', 'autoSort'], (() => this.buildSelectOptions())),
-
-      new OnChangeCallBack(
-        ['placeHolder'], (() => this.select2SettingOptions.placeholder = {id: null, text: this.placeHolder})
-      ),
+      new OnChangeCallBack(['optionKey', 'optionValue', 'data', 'autoSort', 'placeHolder'], (() => this.buildSelectOptions())),
     ];
 
     this.afterViewCheckCallbacks = [
 
-      new OnChangeCallBack(['optionKey', 'optionValue', 'data', 'autoSort', 'value'], (() => this.refreshSelectPicker())),
+      new OnChangeCallBack(['optionKey', 'optionValue', 'data', 'autoSort', 'placeHolder', 'value'], (() => {
+
+        setTimeout(() => $(this.inputElement.nativeElement).selectpicker('refresh'), 100);
+      })),
     ];
   }
 
@@ -137,12 +138,22 @@ export class SelectComponent
 
   ngAfterViewInit(): void {
 
-    $(this.inputElement.nativeElement).change((event: any) => {
+    $(this.inputElement.nativeElement).selectpicker(this.select2SettingOptions);
+  }
 
-      this.value = $(event.target).val();
+  ngOnDestroy(): void {
 
-      this.valueChange.emit(this.value);
-    });
+    if (this.refreshTimer) {
+
+      clearTimeout(this.refreshTimer);
+
+      this.refreshTimer = null;
+    }
+  }
+
+  valueChanged(event: any): void {
+
+    this.valueChange.emit($(event.target).val());
   }
 
   private buildSelectOptions(): void {
@@ -163,6 +174,11 @@ export class SelectComponent
         this.applicationUtils.compareString(item1.name, item2.name)
       );
     }
+
+    if (this.placeHolder) {
+
+      this.selectOptions = [new SelectOption(null, this.placeHolder)].concat(this.selectOptions || []);
+    }
   }
 
   private getOptionKeyValue(item: any, optionKeyValue: (OptionKeyType | OptionValueType)): any {
@@ -178,6 +194,13 @@ export class SelectComponent
 
   private refreshSelectPicker(): void {
 
-    $(this.inputElement.nativeElement).select2(this.select2SettingOptions).trigger('change.select2');
+    if (this.refreshTimer) clearTimeout(this.refreshTimer);
+
+    this.refreshTimer = setTimeout(() => {
+
+      $(this.inputElement.nativeElement).selectpicker('refresh'), 100;
+
+      this.refreshTimer = null;
+    });
   }
 }

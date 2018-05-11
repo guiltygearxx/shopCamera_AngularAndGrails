@@ -98,9 +98,10 @@ environments:
     development:
         dataSource:
             dbCreate: none
-            url: jdbc:mysql://localhost:3306/myapp
-            username: admin
-            password: admin
+            url: jdbc:mysql://103.235.212.243:3306/myapp
+            username: huynq
+            password: huynq@123456
+            logSql: false
 
         uploadFile:
             baseDir: d:/uploadFile/
@@ -113,8 +114,8 @@ environments:
         dataSource:
             dbCreate: none
             url: jdbc:mysql://localhost:3306/myapp
-            username: root
-            password: root
+            username: admin
+            password: d0e3gAO9D2mQ
             properties:
                 jmxEnabled: true
                 initialSize: 5

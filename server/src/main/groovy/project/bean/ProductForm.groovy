@@ -19,7 +19,9 @@ class ProductForm implements Validateable {
     String thongTinChiTiet;
     String thongSoKiThuat;
     String khuyenMai;
-    String phanTramGiamGia
+    String phanTramGiamGia;
+    String thongTinBoSung;
+    String thongTinMoRong;
 
     Map attributes;
 
@@ -42,5 +44,7 @@ class ProductForm implements Validateable {
         khuyenMai nullable: true;
         phanTramGiamGia nullable: true;
         attributes nullable: true;
+        thongTinBoSung nullable: true;
+        thongTinMoRong nullable: true;
     }
 }

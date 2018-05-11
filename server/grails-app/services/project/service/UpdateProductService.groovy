@@ -105,9 +105,9 @@ class UpdateProductService implements BaseService {
 
     private void deleteUnUpdatedAttributeValues() {
 
-        (attributeValues - updatedAttributeValues).each { Attribute attribute ->
+        (attributeValues - updatedAttributeValues).each { AttributeValue attributeValue ->
 
-            attribute.with {
+            attributeValue.with {
 
                 isDeleted = true;
                 lastModifiedTime = new Date();
@@ -137,6 +137,8 @@ class UpdateProductService implements BaseService {
             thongTinChiTiet = form.thongTinChiTiet;
             thongSoKiThuat = form.thongSoKiThuat;
             khuyenMai = form.khuyenMai;
+            thongTinMoRong = form.thongTinMoRong;
+            thongTinBoSung = form.thongTinBoSung;
             phanTramGiamGia = applicationUtilsService.convertToBigDecimal(form.phanTramGiamGia);
 
             isDeleted = false;

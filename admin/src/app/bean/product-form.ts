@@ -21,6 +21,8 @@ export class ProductForm implements Validateable {
   thongSoKiThuat: string;
   khuyenMai: string;
   phanTramGiamGia: string;
+  thongTinMoRong: string;
+  thongTinBoSung: string;
   attributes: { [code: string]: string };
 
   static constraints = {
@@ -39,6 +41,8 @@ export class ProductForm implements Validateable {
     thongTinChiTiet: {nullable: true},
     thongSoKiThuat: {nullable: true},
     khuyenMai: {nullable: true},
+    thongTinMoRong: {nullable: true},
+    thongTinBoSung: {nullable: true},
     phanTramGiamGia: {nullable: true, min: 0, max: 100},
     attributes: {nullable: true},
   };
