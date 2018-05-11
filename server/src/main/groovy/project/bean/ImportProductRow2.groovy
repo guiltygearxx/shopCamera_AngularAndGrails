@@ -21,5 +21,7 @@ class ImportProductRow2 extends ImportProductRow implements Validateable {
         thongTinChiTiet nullable: true;
         thongSoKiThuat nullable: true;
         khuyenMai nullable: true;
+        thongTinMoRong nullable: true;
+        thongTinBoSung nullable: true;
     }
 }

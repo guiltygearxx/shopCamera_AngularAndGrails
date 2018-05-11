@@ -17,6 +17,8 @@ class ImportProductService extends AbstractExcelImporter {
 
     static scope = "request";
 
+    public static final int DEFAULT_COLUMN_COUNT = 16;
+
     def excelImportService;
     def cacheService;
 
@@ -43,6 +45,8 @@ class ImportProductService extends AbstractExcelImporter {
                     "L": "thongTinChiTiet",
                     "M": "thongSoKiThuat",
                     "N": "khuyenMai",
+                    "O": "thongTinBoSung",
+                    "P": "thongTinMoRong",
             ]
     ];
 
@@ -64,7 +68,7 @@ class ImportProductService extends AbstractExcelImporter {
 
         }?.eachWithIndex { Attribute attribute, int index ->
 
-            importConfig.columnMap << [(CellReference.convertNumToColString(index + 14)): attribute.code];
+            importConfig.columnMap << [(CellReference.convertNumToColString(index + DEFAULT_COLUMN_COUNT)): attribute.code];
         }
 
         println importConfig as JSON;

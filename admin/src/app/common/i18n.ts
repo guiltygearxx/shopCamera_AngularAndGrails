@@ -57,6 +57,8 @@ export const i18n = {
   'product.field.thongTinChiTiet': 'Thông tin chi tiết',
   'product.field.thongSoKiThuat': 'Thông số kĩ thuật',
   'product.field.khuyenMai': 'Khuyến mại',
+  'product.field.thongTinBoSung': 'Highlight',
+  'product.field.thongTinMoRong': 'Chương trình đặc biệt',
 
   'importProduct.template.camera': 'Camera',
   'importProduct.template.daughi': 'Đầu ghi',

@@ -137,6 +137,8 @@ class UpdateProductService implements BaseService {
             thongTinChiTiet = form.thongTinChiTiet;
             thongSoKiThuat = form.thongSoKiThuat;
             khuyenMai = form.khuyenMai;
+            thongTinMoRong = form.thongTinMoRong;
+            thongTinBoSung = form.thongTinBoSung;
             phanTramGiamGia = applicationUtilsService.convertToBigDecimal(form.phanTramGiamGia);
 
             isDeleted = false;

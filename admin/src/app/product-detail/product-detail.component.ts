@@ -223,8 +223,8 @@ export class ProductDetailComponent
     form.categoryId = product.categoryId;
     form.image1 = product.image1;
     form.image2 = product.image2;
-    form.image2 = product.image2;
-    form.image2 = product.image2;
+    form.image3 = product.image3;
+    form.image4 = product.image4;
     form.hangSanXuat = product.hangSanXuat;
     form.baoHanh = product.baoHanh;
     form.khoHang = product.khoHang;
@@ -234,6 +234,8 @@ export class ProductDetailComponent
     form.gia = this.applicationUtils.formatNumber2(product.gia, 2);
     form.giaTruocKhiHa = this.applicationUtils.formatNumber2(product.giaTruocKhiHa, 2);
     form.phanTramGiamGia = this.applicationUtils.formatNumber2(product.phanTramGiamGia, 2);
+    form.thongTinBoSung = product.thongTinBoSung;
+    form.thongTinMoRong = product.thongTinMoRong;
 
     form.attributes = {};
 

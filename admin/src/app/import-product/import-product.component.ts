@@ -19,7 +19,8 @@ import {Attribute} from '../bean/attribute';
 import {GroupByWrapper} from '../common/group-by-wrapper';
 
 const COL_HEADERS_CODE = ['categoryName', 'name', 'image1', 'image2', 'image3', 'image4', 'hangSanXuat', 'baoHanh',
-  'khoHang', 'giaTruocKhiHa', 'phanTramGiamGia', 'gia', 'thongTinChiTiet', 'thongSoKiThuat', 'khuyenMai'];
+  'khoHang', 'giaTruocKhiHa', 'phanTramGiamGia', 'gia', 'thongTinChiTiet', 'thongSoKiThuat', 'khuyenMai', 'thongTinBoSung',
+  'thongTinMoRong'];
 
 const COL_CONFIG = [
   {data: 'categoryName'},
@@ -37,6 +38,8 @@ const COL_CONFIG = [
   {data: 'thongTinChiTiet'},
   {data: 'thongSoKiThuat'},
   {data: 'khuyenMai'},
+  {data: 'thongTinBoSung'},
+  {data: 'thongTinMoRong'},
 ];
 
 const TEMPLATE_URL_CAMERA = 'assets/importProductTemplateCamera.xlsx';
@@ -227,9 +230,9 @@ export class ImportProductComponent
 
   protected buildHotTableColumns(): void {
 
-    this.colHeaders.splice(COL_HEADERS_CODE.length - 1);
-
-    this.columns.splice(COL_CONFIG.length - 1);
+    // this.colHeaders.splice(COL_HEADERS_CODE.length - 1);
+    //
+    // this.columns.splice(COL_CONFIG.length - 1);
 
     if (!isNullOrUndefined(this.attributes)) {
 

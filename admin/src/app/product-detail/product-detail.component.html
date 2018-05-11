@@ -127,6 +127,14 @@
                      [errorMessage]="getErrorMessage('khuyenMai')">
       </app-text-area>
 
+      <app-text-area [title]="'Highlight'" [placeHolder]="'Highlight'" [(value)]="form.thongTinBoSung"
+                     [errorMessage]="getErrorMessage('thongTinBoSung')">
+      </app-text-area>
+
+      <app-text-area [title]="'Chương trình đặc biệt'" [placeHolder]="'Chương trình đặc biệt'" [(value)]="form.thongTinMoRong"
+                     [errorMessage]="getErrorMessage('thongTinMoRong')">
+      </app-text-area>
+
     </div>
 
     <div class="box-footer">
