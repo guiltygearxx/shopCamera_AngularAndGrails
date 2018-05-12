@@ -19,6 +19,7 @@ import {Attribute} from '../bean/attribute';
 import {AttributeValue} from '../bean/attribute-value';
 import {isNullOrUndefined} from 'util';
 import {GroupByWrapper} from '../common/group-by-wrapper';
+import {SimpleObject} from '../common/simple-object';
 
 @Component({
   selector: 'app-product-detail',
@@ -36,6 +37,8 @@ export class ProductDetailComponent
   displayAttributes: Attribute[];
 
   attributeMapById: GroupByWrapper<Attribute>;
+
+  attributeJsonConfigMapById: GroupByWrapper<any>;
 
   selectedCategory: Category;
 
@@ -125,6 +128,14 @@ export class ProductDetailComponent
 
       (this.attributeMapById = new GroupByWrapper<Attribute>()).groupBy(attributes, [(item) => item.id]);
 
+      (this.attributeJsonConfigMapById = new GroupByWrapper<any>()).groupBy(
+        (attributes || []).map((item) => {
+          return {id: item.id, config: JSON.parse(item.jsonConfig)};
+        }),
+
+        [(item) => item.id]
+      );
+
       if (!this.applicationUtils.isStringEmpty(this.id)) {
 
         this.loadAttributeValues();
@@ -144,6 +155,15 @@ export class ProductDetailComponent
   protected getAttributeById(id: string): Attribute {
 
     return isNullOrUndefined(this.attributeMapById) ? null : this.attributeMapById.getItem([id]);
+  }
+
+  protected getAttributeItems(attribute: Attribute): any[] {
+
+    if (isNullOrUndefined(this.attributeJsonConfigMapById)) return null;
+
+    let item = this.attributeJsonConfigMapById.getItem([attribute.id]);
+
+    return isNullOrUndefined(item) ? null : item.config.items;
   }
 
   protected loadAttributeValues(): void {
@@ -253,9 +273,9 @@ export class ProductDetailComponent
     return form;
   }
 
-  protected initForEdit(): void {
+  protected afterGetById(object: Product): void {
 
-    super.initForEdit();
+    super.afterGetById(object);
 
     this.loadAttributeValues();
 

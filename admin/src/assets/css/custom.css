@@ -1,4 +1,12 @@
-.padding-right20px{
+.padding-right20px {
   padding-right: 20px;
   width: 300px;
+}
+
+.bootstrap-select {
+  padding: 0px !important;
+}
+
+.bootstrap-select .btn-default {
+  background: none !important;
 }

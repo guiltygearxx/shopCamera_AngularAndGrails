@@ -107,9 +107,11 @@
         <ng-container *ngFor="let attribute of displayAttributes; trackBy: attribute?.id">
 
           <div class="col-md-3">
-            <app-input-text [title]="attribute.title" [placeHolder]="attribute.title"
-                            [(value)]="form.attributes[attribute.code]">
-            </app-input-text>
+            <app-select [title]="attribute.title" [value]="form.attributes[attribute.code] || null"
+                        (valueChange)="form.attributes[attribute.code] = $event"
+                        [placeHolder]="'Select an item'"
+                        [data]="getAttributeItems(attribute)" [optionKey]="'id'" [optionValue]="'name'">
+            </app-select>
           </div>
 
         </ng-container>
@@ -131,7 +133,8 @@
                      [errorMessage]="getErrorMessage('thongTinBoSung')">
       </app-text-area>
 
-      <app-text-area [title]="'Chương trình đặc biệt'" [placeHolder]="'Chương trình đặc biệt'" [(value)]="form.thongTinMoRong"
+      <app-text-area [title]="'Chương trình đặc biệt'" [placeHolder]="'Chương trình đặc biệt'"
+                     [(value)]="form.thongTinMoRong"
                      [errorMessage]="getErrorMessage('thongTinMoRong')">
       </app-text-area>
 
