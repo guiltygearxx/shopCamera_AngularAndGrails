@@ -134,6 +134,8 @@ export class ListProductsComponent
     this.sort = this.order = null;
 
     this.listProductService.isParamChanged = true;
+
+    this.listProductService.selectedCategoryId = this.listProductService.selectedCategoryId || this.route.snapshot.paramMap.get("categoryId");
   }
 
   ngAfterContentChecked(): void {
@@ -156,7 +158,7 @@ export class ListProductsComponent
 
       this.sort = this.order = null;
 
-      this.filterForm.categoryId = this.route.snapshot.paramMap.get("categoryId");
+      this.filterForm.categoryId = this.listProductService.selectedCategoryId;
 
       this.getListCategory();
 
@@ -248,6 +250,8 @@ export class ListProductsComponent
     event.preventDefault();
 
     this.listProductService.isParamChanged = true;
+
+    this.listProductService.selectedCategoryId = subCategory.id;
 
     this.applicationUtils.scrollTopTop(() => {
 

@@ -159,6 +159,8 @@ export class WebHeaderComponent implements OnInit, AfterViewInit {
 
     this.listProductService.isParamChanged = true;
 
+    this.listProductService.selectedCategoryId = selectedCategoryId;
+
     this.applicationUtils.scrollTopTop(() => {
 
       this.router.navigate(["/danhSachSanPham/", selectedCategoryId])

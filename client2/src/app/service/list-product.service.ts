@@ -4,4 +4,6 @@ import {Injectable} from "@angular/core";
 export class ListProductService {
 
   isParamChanged: boolean;
+
+  selectedCategoryId: string;
 }
