@@ -105,9 +105,9 @@ class UpdateProductService implements BaseService {
 
     private void deleteUnUpdatedAttributeValues() {
 
-        (attributeValues - updatedAttributeValues).each { Attribute attribute ->
+        (attributeValues - updatedAttributeValues).each { AttributeValue attributeValue ->
 
-            attribute.with {
+            attributeValue.with {
 
                 isDeleted = true;
                 lastModifiedTime = new Date();
