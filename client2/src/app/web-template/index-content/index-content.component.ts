@@ -139,7 +139,7 @@ export class IndexContentComponent implements OnInit {
     if (!isNullOrUndefined(subCategoryIds))
       categoryIds = categoryIds.concat(subCategoryIds)
 
-    let params = {categoryIds: categoryIds.join(";"), max: 12, sort: 'lastModifiedTime', order: 'desc'};
+    let params = {max: 12, sort: 'lastModifiedTime', order: 'desc'};
 
     this.productViewService
       .get(params)
@@ -158,7 +158,7 @@ export class IndexContentComponent implements OnInit {
     if (!isNullOrUndefined(subCategoryIds))
       categoryIds = categoryIds.concat(subCategoryIds)
 
-    let params = {categoryIds: categoryIds.join(";"), max: 12, sort: 'phanTramGiamGia', order: 'desc'};
+    let params = {max: 12, sort: 'phanTramGiamGia', order: 'desc'};
 
     this.productViewService
       .get(params)
