@@ -456,11 +456,11 @@ h6 .text_align_left {
 }
 
 .confixPadding20px {
-  padding: 20px 0px 0px 0px;
+  padding: 10px 0px 0px 0px;
 }
 
 .confixPaddingTopBottom20px {
-  padding: 20px 0px 10px 0px;
+  padding: 10px 0px 10px 0px;
 }
 
 .confixMargin20px {
@@ -474,6 +474,11 @@ h6 .text_align_left {
 
 .changeFontColorBlack a:hover {
   text-decoration: underline;
+}
+
+.fixheight{
+  height: 100px;
+  overflow: hidden;
 }
 
 .agile_top_brand_left_grid1 h4, .agileinfo_single_right_snipcart h4 {
