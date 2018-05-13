@@ -106,16 +106,18 @@ class AddProductsService implements BaseService {
         return isOk;
     }
 
-    private Attribute getAttribute(String code) {
+    private Attribute getAttribute(String code, String group) {
 
-        return this.attributeMapByCode.get(code)?.get(0);
+        return this.attributeMapByCode.get(code)?.get(group)?.get(0);
     }
 
     private void updateAttributeValue(Product product, ImportProductRow item) {
 
+        Category category = Category.get(product.categoryId);
+
         item.attribute?.each { String key, String value ->
 
-            AttributeValue attributeValue = new AttributeValue(referenceId: product.id, attributeId: getAttribute(key)?.id, value: value,
+            AttributeValue attributeValue = new AttributeValue(referenceId: product.id, attributeId: getAttribute(key, category.type)?.id, value: value,
                     isDeleted: false, lastModifiedTime: new Date(), lastModifiedUser: "admin");
 
             attributeValue.save(flush: true);
@@ -158,7 +160,7 @@ class AddProductsService implements BaseService {
 
     Boolean addProducts(ImportProductsForm form) {
 
-        this.attributeMapByCode = cacheService.attributes.groupBy { it.code };
+        this.attributeMapByCode = cacheService.attributes.groupBy({ it.code }, { it.group });
 
         this.form = form;
 

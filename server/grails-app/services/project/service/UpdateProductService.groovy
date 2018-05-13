@@ -4,6 +4,7 @@ import grails.gorm.transactions.Transactional
 import project.bean.ProductForm
 import project.domain.Attribute
 import project.domain.AttributeValue
+import project.domain.Category
 import project.domain.Product
 
 @Transactional
@@ -65,9 +66,9 @@ class UpdateProductService implements BaseService {
         return true;
     }
 
-    private Attribute getAttributeByCode(String code) {
+    private Attribute getAttributeByCode(String code, String group) {
 
-        return attributeMapByCode.get(code)?.get(0);
+        return attributeMapByCode.get(code)?.get(group)?.get(0);
     }
 
     private AttributeValue getOldAttributeValue(String attributeId) {
@@ -75,9 +76,9 @@ class UpdateProductService implements BaseService {
         return this.attributeValues?.find { it.attributeId == attributeId };
     }
 
-    private void updateAttributeValue(String code, String value_) {
+    private void updateAttributeValue(String code, String value_, String attributeGroup) {
 
-        Attribute attribute = this.getAttributeByCode(code);
+        Attribute attribute = this.getAttributeByCode(code, attributeGroup);
 
         AttributeValue attributeValue = this.getOldAttributeValue(attribute.id);
 
@@ -148,9 +149,11 @@ class UpdateProductService implements BaseService {
             save(flush: true);
         }
 
+        Category category = Category.get(product.categoryId);
+
         form.attributes?.each { String key, String value ->
 
-            updateAttributeValue(key, value);
+            updateAttributeValue(key, value, category.type);
         }
 
         deleteUnUpdatedAttributeValues();
@@ -160,7 +163,7 @@ class UpdateProductService implements BaseService {
 
         attributes = cacheService.attributes;
 
-        this.attributeMapByCode = attributes?.groupBy { it.code };
+        this.attributeMapByCode = attributes?.groupBy({ it.code }, { it.group });
 
         this.form = form;
 
