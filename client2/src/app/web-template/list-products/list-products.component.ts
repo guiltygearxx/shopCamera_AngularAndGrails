@@ -213,7 +213,7 @@ export class ListProductsComponent
 
     this.selectedCategory = categoryItems.find((item) => item.id == selectedCategoryId);
 
-    this.subCategoryList = categoryItems.filter((item) => item.parentCategoryId == selectedCategoryId);
+    this.subCategoryList = categoryItems.filter((item) => item.id == selectedCategoryId);
 
     this.contentCategory = this.selectedCategory.content;
 
