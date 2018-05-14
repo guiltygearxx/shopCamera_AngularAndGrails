@@ -43,6 +43,7 @@ import {WebRightSideComponent} from './web-template/web-right-side/web-right-sid
 import {ContactService} from "./service/contact/contact.service";
 import {SortableTableFlow} from "./common/sortable-table-flow";
 import {TrieuDongFormater} from "./common/trieu-dong-formater";
+import {DetailProductService} from "./service/product/detail-product.service";
 
 
 @NgModule({
@@ -94,6 +95,7 @@ import {TrieuDongFormater} from "./common/trieu-dong-formater";
     ContactService,
     SortableTableFlow,
     TrieuDongFormater,
+    DetailProductService,
   ],
   bootstrap: [AppComponent]
 })

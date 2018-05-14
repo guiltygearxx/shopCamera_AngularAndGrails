@@ -1,7 +1,7 @@
 import {ProductService} from "../../service/product/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
-import {AfterViewChecked, Component, OnInit} from "@angular/core";
+import {AfterContentChecked, AfterViewChecked, AfterViewInit, Component, OnInit} from "@angular/core";
 import {Product} from "../../bean/product";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {CategoryService} from "../../service/category/category.service";
@@ -11,6 +11,7 @@ import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {NumberFormatter} from "../../common/formater/number-formatter";
 import {ApplicationUtils} from "../../common/application-utils";
+import {DetailProductService} from "../../service/product/detail-product.service";
 
 declare var $: any;
 
@@ -23,7 +24,7 @@ declare var productCarousel: any;
   templateUrl: './detail-product.component.html',
   styleUrls: ['./detail-product.component.css']
 })
-export class DetailProductComponent implements OnInit, AfterViewChecked {
+export class DetailProductComponent implements OnInit, AfterViewChecked, AfterContentChecked {
 
   allowDisplayProductVetical: boolean;
 
@@ -41,6 +42,8 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
 
   productCount: number = 1;
 
+  private isSlickWidgetInitialized: boolean = false;
+
   constructor(private router: Router,
               protected productService: ProductService,
               protected productViewService: ProductViewService,
@@ -48,12 +51,15 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
               protected categoryService: CategoryService,
               protected gioHangService: GioHangService,
               protected  numberFormater: NumberFormatter,
-              protected applicationUtils: ApplicationUtils) {
+              protected applicationUtils: ApplicationUtils,
+              protected detailProductService: DetailProductService) {
   }
 
   ngOnInit() {
 
     this.getListCategory();
+
+    this.productId = this.detailProductService.productId = this.route.snapshot.paramMap.get("productId");
 
     this.allowDisplayProductVetical = true;
   }
@@ -66,11 +72,19 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
     this.initProductCarouselEffectFn = null;
   }
 
+  ngAfterContentChecked(): void {
+
+    if (this.detailProductService.isParamChanged) {
+
+      this.detailProductService.isParamChanged = false;
+
+      this.getProductById(this.productId = this.detailProductService.productId)
+    }
+  }
+
   afterGetListCategory(categoryItems: CategoryItem[]): void {
 
     this.categoryList = categoryItems;
-
-    this.productId = this.route.snapshot.paramMap.get("productId");
 
     this.getProductById(this.productId);
   }
@@ -132,15 +146,13 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
 
     event.preventDefault();
 
-    // this.router.navigate(["/chiTietSanPham", productView.id]);
+    this.detailProductService.isParamChanged = true;
 
-    let id: string = productView.id;
-
-    let link: any[] = ['/chiTietSanPham', id];
+    this.detailProductService.productId = productView.id;
 
     this.applicationUtils.scrollTopTop(() => {
 
-      this.router.navigate(link);
+      this.router.navigate(['/chiTietSanPham', productView.id]);
     });
   }
 
@@ -235,7 +247,16 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
 
     this.initProductCarouselEffectFn = (() => {
 
-      productCarousel($j('#megaMenuCarousel1'), 1, 1, 1, 1, 1, 'productCarousel');
+      if (!this.isSlickWidgetInitialized) {
+
+        productCarousel($j('#megaMenuCarousel1'), 1, 1, 1, 1, 1, 'productCarousel');
+
+        this.isSlickWidgetInitialized = true;
+
+      } else {
+
+        $j('#megaMenuCarousel1').slick("refresh");
+      }
     });
   }
 
@@ -266,4 +287,6 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
     return orderDetail;
 
   }
+
+
 }

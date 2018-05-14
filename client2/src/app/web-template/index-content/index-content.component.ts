@@ -11,6 +11,7 @@ import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {ApplicationUtils} from "../../common/application-utils";
 import {NumberFormatter} from "../../common/formater/number-formatter";
+import {DetailProductService} from "../../service/product/detail-product.service";
 
 const IMAGE_URLS = [
   "https://www.a1securitycameras.com/images/promo/30/A1-Slider-free-shipping.jpg",
@@ -42,7 +43,8 @@ export class IndexContentComponent implements OnInit {
               protected newsService: NewsService,
               protected gioHangService: GioHangService,
               protected applicationUtils: ApplicationUtils,
-              protected numberFormater: NumberFormatter) {
+              protected numberFormater: NumberFormatter,
+              protected detailProductService: DetailProductService) {
   }
 
   ngOnInit() {
@@ -75,9 +77,13 @@ export class IndexContentComponent implements OnInit {
 
     event.preventDefault();
 
+    this.detailProductService.isParamChanged = true;
+
+    this.detailProductService.productId = productView.id;
+
     this.applicationUtils.scrollTopTop(() => {
 
-      this.router.navigate(["/chiTietSanPham", productView.id]);
+      this.router.navigate(['/chiTietSanPham', productView.id]);
     });
   }
 

@@ -18,6 +18,7 @@ import {SupportSortingTable} from "../../common/support-sorting-table";
 import {PaginationParams} from "../../common/pagination-params";
 import {SortableTableFlow} from "../../common/sortable-table-flow";
 import {SimpleObject} from "../../common/simple-object";
+import {DetailProductService} from "../../service/product/detail-product.service";
 
 const SORT_OPTIONS = [
 
@@ -103,7 +104,8 @@ export class ListProductsComponent
               protected attributeService: AttributeService,
               protected numberFormater: NumberFormatter,
               protected sortableTableFlow: SortableTableFlow,
-              protected route: ActivatedRoute) {
+              protected route: ActivatedRoute,
+              protected detailProductService: DetailProductService) {
 
   }
 
@@ -194,9 +196,13 @@ export class ListProductsComponent
 
     event.preventDefault();
 
+    this.detailProductService.isParamChanged = true;
+
+    this.detailProductService.productId = productView.id;
+
     this.applicationUtils.scrollTopTop(() => {
 
-      this.router.navigate(["/chiTietSanPham", productView.id]);
+      this.router.navigate(['/chiTietSanPham', productView.id]);
     });
 
   }
