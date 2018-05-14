@@ -390,6 +390,17 @@ export class ListProductsComponent
     return this.priceRange[0] != 0 || this.priceRange[1] != 1000;
   }
 
+
+  goToTrangChu(event: any) {
+
+    event.preventDefault();
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
+  }
+
   private converterProductView(productView: ProductView): OrderDetailForm {
 
     let orderDetail = new OrderDetailForm();

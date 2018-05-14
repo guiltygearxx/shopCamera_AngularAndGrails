@@ -1,3 +1,8 @@
+a {
+  cursor: pointer;
+}
+
+
 #toolTip_Horizontal {
   display: none;
 }

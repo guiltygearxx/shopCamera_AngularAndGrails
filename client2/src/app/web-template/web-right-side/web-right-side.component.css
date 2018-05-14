@@ -1,5 +1,10 @@
+a {
+  cursor: pointer;
+}
+
+
 .header3 {
-  border: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
   color: #5c5c5c;
   margin: 12px 0;
   position: relative;

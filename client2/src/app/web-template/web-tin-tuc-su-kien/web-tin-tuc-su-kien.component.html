@@ -1,8 +1,18 @@
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb--ys pull-left">
+      <li class="home-link"><a (click)="goToTrangChu($event)" class="icon icon-home"></a></li>
+      <li class="active fontsizeHyperLink">Danh sách tin tức</li>
+    </ol>
+  </div>
+</div>
+<!-- /breadcrumbs -->
 <div id="pageContent">
   <div style="padding-left: 20px; padding-right: 20px">
     <div class="row">
 
-      <aside class="col-md-8 col-lg-9 col-xl-10 paddingDiv" id="centerColumn">
+      <aside class="col-md-8 col-lg-9 col-xl-10" id="centerColumn">
         <ng-container *ngFor="let news of tinTuc">
           <div class="row configAttributeRow" (click)="goToChiTietTinTuc($event,news)">
             <div class="col-sm-12 col-md-3 col-sm-center">
@@ -22,7 +32,7 @@
         </ng-container>
       </aside>
 
-      <aside class="col-md-4 col-lg-3 col-xl-2 paddingDiv" id="leftColumn">
+      <aside class="col-md-4 col-lg-3 col-xl-2" id="leftColumn">
         <app-web-right-side></app-web-right-side>
       </aside>
     </div>

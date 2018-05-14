@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {WebGiaiphapChitietLogic} from "./web-giaiphap-chitiet-logic";
 import {SolutionService} from "../../service/solution/solution.service";
 import {isNullOrUndefined} from "util";
+import {ApplicationUtils} from "../../common/application-utils";
 
 @Component({
   selector: 'app-web-giai-phap-chi-tiet',
@@ -13,7 +14,10 @@ export class WebGiaiPhapChiTietComponent extends WebGiaiphapChitietLogic impleme
 
   solutionId: any;
 
-  constructor(protected route: ActivatedRoute, protected solutionService: SolutionService) {
+  constructor(private router: Router,
+              protected route: ActivatedRoute,
+              protected solutionService: SolutionService,
+              protected applicationUtils: ApplicationUtils) {
 
     super(solutionService);
   }
@@ -27,6 +31,16 @@ export class WebGiaiPhapChiTietComponent extends WebGiaiphapChitietLogic impleme
   checkContentSolution() {
     if (isNullOrUndefined(this.solution)) return false;
     return true;
+  }
+
+  goToTrangChu(event: any) {
+
+    event.preventDefault();
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
   }
 
 }

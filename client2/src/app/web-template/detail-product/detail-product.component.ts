@@ -221,6 +221,16 @@ export class DetailProductComponent implements OnInit, AfterViewChecked {
     this.productCount = (intVal + 1000) % 1000;
   }
 
+  goToTrangChu(event: any) {
+
+    event.preventDefault();
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
+  }
+
   protected afterGetListProductView(productViews: ProductView[]): void {
     this.productLienQuan = productViews;
   }

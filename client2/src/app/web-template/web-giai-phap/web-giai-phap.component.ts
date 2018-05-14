@@ -34,4 +34,14 @@ export class WebGiaiPhapComponent extends WebGiaiPhapLogic implements OnInit {
     });
   }
 
+  goToTrangChu(event: any) {
+
+    event.preventDefault();
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
+  }
+
 }

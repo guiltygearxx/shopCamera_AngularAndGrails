@@ -36,4 +36,15 @@ export class WebTinTucSuKienComponent extends WebTinTucSuKienLogic implements On
     });
   }
 
+
+  goToTrangChu(event: any) {
+
+    event.preventDefault();
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
+  }
+
 }

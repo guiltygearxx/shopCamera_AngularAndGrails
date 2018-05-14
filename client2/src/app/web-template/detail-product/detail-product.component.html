@@ -1,3 +1,15 @@
+<!-- breadcrumbs -->
+<div *ngIf="product != null" class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb--ys pull-left">
+      <li class="home-link"><a (click)="goToTrangChu($event)" class="icon icon-home"></a></li>
+      <li class="fontsizeHyperLink">Chi tiết sản phẩm</li>
+      <li class="active fontsizeHyperLink">Camera: 1080p Full HD Wireless Security Camera</li>
+    </ol>
+  </div>
+</div>
+<!-- /breadcrumbs -->
+
 <div *ngIf="product != null" id="pageContent">
   <section class="content offset-top-0">
     <div class="container">

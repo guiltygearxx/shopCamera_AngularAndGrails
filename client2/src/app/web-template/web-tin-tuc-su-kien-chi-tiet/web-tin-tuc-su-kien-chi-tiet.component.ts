@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {WebTintucsukienChitietLogic} from "./web-tintucsukien-chitiet-logic";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NewsService} from "../../service/news/news.service";
 import {isNullOrUndefined} from "util";
+import {ApplicationUtils} from "../../common/application-utils";
 
 @Component({
   selector: 'app-web-tin-tuc-su-kien-chi-tiet',
@@ -13,7 +14,8 @@ export class WebTinTucSuKienChiTietComponent extends WebTintucsukienChitietLogic
 
   newsId: string;
 
-  constructor(protected route: ActivatedRoute, protected newsService:NewsService) {
+  constructor(private router: Router,protected route: ActivatedRoute, protected newsService:NewsService,
+              protected applicationUtils: ApplicationUtils) {
 
     super(newsService);
   }
@@ -29,4 +31,13 @@ export class WebTinTucSuKienChiTietComponent extends WebTintucsukienChitietLogic
     return true;
   }
 
+  goToTrangChu(event: any) {
+
+    event.preventDefault();
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
+  }
 }

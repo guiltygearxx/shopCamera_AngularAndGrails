@@ -5,6 +5,7 @@ import {ContactService} from "../../service/contact/contact.service";
 import {ValidateUtils} from "../../common/validate/validate-utils";
 import {FormFlowManager} from "../../common/form-flow-manager";
 import {ApplicationUtils} from "../../common/application-utils";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-web-contact',
@@ -13,7 +14,8 @@ import {ApplicationUtils} from "../../common/application-utils";
 })
 export class WebContactComponent extends WebContactLogic implements OnInit {
 
-  constructor(protected validateUtils: ValidateUtils,
+  constructor(private router: Router,
+              protected validateUtils: ValidateUtils,
               protected contactService: ContactService,
               protected formFlowManager: FormFlowManager,
               protected applicationUtils: ApplicationUtils) {
@@ -33,6 +35,16 @@ export class WebContactComponent extends WebContactLogic implements OnInit {
   getErrorMessage(field: string): string {
 
     return this.validateUtils.getFieldErrorMessage(field, this.form);
+  }
+
+  goToTrangChu(event: any) {
+
+    event.preventDefault();
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/trangChu"]);
+    });
   }
 
   // sentRequest(){

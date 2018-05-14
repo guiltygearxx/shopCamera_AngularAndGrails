@@ -481,6 +481,18 @@ h6 .text_align_left {
   overflow: hidden;
 }
 
+.fixheightCategoryName{
+  height: 45px;
+  overflow: hidden;
+}
+.fixheightHighlightProduct {
+  height: 13em;
+  overflow: hidden;
+}
+
+.fontsizeHyperLink{
+  font-size: 15px;
+}
 .agile_top_brand_left_grid1 h4, .agileinfo_single_right_snipcart h4 {
   font-size: 20px !important;
   color: #ec252d !important;
