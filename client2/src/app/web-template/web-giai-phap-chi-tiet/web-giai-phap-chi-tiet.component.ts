@@ -4,6 +4,7 @@ import {WebGiaiphapChitietLogic} from "./web-giaiphap-chitiet-logic";
 import {SolutionService} from "../../service/solution/solution.service";
 import {isNullOrUndefined} from "util";
 import {ApplicationUtils} from "../../common/application-utils";
+import {MenuItem} from "../../bean/menu-item";
 
 @Component({
   selector: 'app-web-giai-phap-chi-tiet',
@@ -40,6 +41,21 @@ export class WebGiaiPhapChiTietComponent extends WebGiaiphapChitietLogic impleme
     this.applicationUtils.scrollTopTop(() => {
 
       this.router.navigate(["/trangChu"]);
+    });
+  }
+
+  goToMenuIndex(event: any, menuItem: string): void {
+
+    event.preventDefault();
+
+    this.goToMenuIndex_(menuItem);
+  }
+
+  protected goToMenuIndex_(menuItem: string): void {
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/" + menuItem]);
     });
   }
 
