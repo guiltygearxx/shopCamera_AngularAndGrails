@@ -3,8 +3,8 @@
   <div class="container">
     <ol class="breadcrumb breadcrumb--ys pull-left">
       <li class="home-link"><a (click)="goToTrangChu($event)" class="icon icon-home"></a></li>
-      <li class="fontsizeHyperLink">Chi tiết giải pháp </li>
-      <li class="active fontsizeHyperLink">Giải pháp an ninh cho khách sạn</li>
+      <li class="fontsizeHyperLink"><a (click)="goToMenuIndex($event, 'giaiPhap')">Giải pháp</a></li>
+      <li class="active fontsizeHyperLink">{{solution.tieuDe}}</li>
     </ol>
   </div>
 </div>

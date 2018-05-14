@@ -40,4 +40,19 @@ export class WebTinTucSuKienChiTietComponent extends WebTintucsukienChitietLogic
       this.router.navigate(["/trangChu"]);
     });
   }
+
+  goToMenuIndex(event: any, menuItem: string): void {
+
+    event.preventDefault();
+
+    this.goToMenuIndex_(menuItem);
+  }
+
+  protected goToMenuIndex_(menuItem: string): void {
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/" + menuItem]);
+    });
+  }
 }
