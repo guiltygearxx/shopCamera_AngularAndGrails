@@ -1,0 +1,17 @@
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb--ys pull-left">
+
+      <li class="home-link"><a (click)="goToTrangChu($event)" class="icon icon-home"></a></li>
+
+      <ng-container *ngFor="let item of breadcrumbs; let itemIndex = index">
+        <li class="fontsizeHyperLink" [class.active]="itemIndex == breadcrumbs.length - 1">
+          <a (click)="goToBreadcrumb($event, item, itemIndex)">
+            {{item.title}}
+          </a>
+        </li>
+      </ng-container>
+
+    </ol>
+  </div>
+</div>

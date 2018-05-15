@@ -1,13 +1,6 @@
 <!-- breadcrumbs -->
-<div class="breadcrumbs">
-  <div class="container">
-    <ol class="breadcrumb breadcrumb--ys pull-left">
-      <li class="home-link"><a (click)="goToTrangChu($event)" class="icon icon-home"></a></li>
-      <li class="fontsizeHyperLink"><a (click)="goToSubCategory($event, selectedCategory.id)">{{selectedCategory.name}}</a></li>
-      <li class="active fontsizeHyperLink"><a (click)="goToSubCategory($event, selectedCategory.id)">SubCategoriName</a></li>
-    </ol>
-  </div>
-</div>
+<app-breadcrumbs [breadcrumbs]="breadcrumbs" (breadcrumbSelected)="breadcrumbSelected($event)">
+</app-breadcrumbs>
 <!-- /breadcrumbs -->
 
 <div id="pageContent">
@@ -113,7 +106,8 @@
 
             <div class="filter-choices-bar">
 
-              <label class="filter-choices-label" style="padding-left: 10px" *ngIf="hasFilterValues || isEnablePriceRangeFilterChoice()">Lọc:</label>
+              <label class="filter-choices-label" style="padding-left: 10px"
+                     *ngIf="hasFilterValues || isEnablePriceRangeFilterChoice()">Lọc:</label>
 
               <ul class="filter-choices">
 
@@ -191,7 +185,8 @@
                           <p>Danh mục: {{productCamera.categoryName}}</p>
                         </div>
                         <!--<div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>-->
-                        <div class="prd-body fixheightHighlightProduct confixElementLi" [innerHTML]="productCamera.thongTinBoSung"></div>
+                        <div class="prd-body fixheightHighlightProduct confixElementLi"
+                             [innerHTML]="productCamera.thongTinBoSung"></div>
                       </div>
                     </div>
                     <div class="col-md-12">

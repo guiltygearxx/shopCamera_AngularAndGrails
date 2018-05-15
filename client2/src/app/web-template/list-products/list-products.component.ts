@@ -19,6 +19,9 @@ import {PaginationParams} from "../../common/pagination-params";
 import {SortableTableFlow} from "../../common/sortable-table-flow";
 import {SimpleObject} from "../../common/simple-object";
 import {DetailProductService} from "../../service/product/detail-product.service";
+import {SupportBreadcrumbs} from "../../common/support-breadcrumbs";
+import {Breadcrumb} from "../../bean/breadcrumb";
+import {BreadcrumbsUtilsService} from "../../common/breadcrumbs-utils.service";
 
 const SORT_OPTIONS = [
 
@@ -41,7 +44,9 @@ const MAXPAGESIZE_OPTIONS = [
   styleUrls: ['./list-products.component.css']
 })
 export class ListProductsComponent
-  implements OnInit, SupportPaginationTable, SupportSortingTable, AfterContentChecked {
+  implements OnInit, SupportPaginationTable, SupportSortingTable, AfterContentChecked, SupportBreadcrumbs {
+
+  breadcrumbs: Breadcrumb[];
 
   filterForm: ListProductFilterForm;
 
@@ -105,7 +110,8 @@ export class ListProductsComponent
               protected numberFormater: NumberFormatter,
               protected sortableTableFlow: SortableTableFlow,
               protected route: ActivatedRoute,
-              protected detailProductService: DetailProductService) {
+              protected detailProductService: DetailProductService,
+              protected breadcrumbsUtils: BreadcrumbsUtilsService) {
 
   }
 
@@ -170,6 +176,11 @@ export class ListProductsComponent
     }
   }
 
+  breadcrumbSelected(breadcrumb: Breadcrumb): void {
+
+    this.breadcrumbsUtils.breadcrumbSelected(breadcrumb);
+  }
+
   changeDisplayProductStyle(style: boolean): boolean {
 
     return this.allowDisplayProductVetical = style;
@@ -211,7 +222,7 @@ export class ListProductsComponent
 
     let selectedCategoryId = this.filterForm.categoryId;
 
-    this.selectedCategory = categoryItems.find((item) => item.id == selectedCategoryId);
+    let selectedCategory = this.selectedCategory = categoryItems.find((item) => item.id == selectedCategoryId);
 
     this.subCategoryList = categoryItems.filter((item) => item.parentCategoryId == selectedCategoryId);
 
@@ -226,6 +237,13 @@ export class ListProductsComponent
     this.filterForm.categoryIds = [selectedCategoryId].concat(subCategoryIds).join(";");
 
     this.getListProduct();
+
+    let parentCategoryItem = categoryItems.find((item) => item.id == selectedCategory.parentCategoryId);
+
+    this.breadcrumbs = this.breadcrumbsUtils.generateBreadcrumbs(
+      "danhSachSanPham",
+      parentCategoryItem ? [parentCategoryItem, selectedCategory] : [selectedCategory]
+    );
   }
 
   getListProduct(): void {
@@ -396,16 +414,6 @@ export class ListProductsComponent
     return this.priceRange[0] != 0 || this.priceRange[1] != 1000;
   }
 
-
-  goToTrangChu(event: any) {
-
-    event.preventDefault();
-
-    this.applicationUtils.scrollTopTop(() => {
-
-      this.router.navigate(["/trangChu"]);
-    });
-  }
 
   private converterProductView(productView: ProductView): OrderDetailForm {
 

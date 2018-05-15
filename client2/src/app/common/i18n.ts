@@ -52,4 +52,13 @@ export const i18n = {
   "login.password.nullable": "Password bắt buộc phải nhập.",
 
   "createOrder.success": "Đơn hàng mã [{0}] của bạn đã được tiếp nhận thành công và chờ xử lí.",
+
+  "breadcrumbs.giaiPhap": "Giải pháp",
+  "breadcrumbs.chiTietGiaiPhap": "Chi tiết giải pháp",
+
+  "breadcrumbs.ttsk": "Tin tức",
+  "breadcrumbs.chiTietTinTuc": "Chi tiết tin tức",
+
+  "breadcrumbs.lienHe": "Liên hệ",
+  "breadcrumbs.gioiThieu": "Giới thiệu",
 }

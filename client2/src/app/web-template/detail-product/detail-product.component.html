@@ -1,14 +1,6 @@
 <!-- breadcrumbs -->
-<div *ngIf="product != null" class="breadcrumbs">
-  <div class="container">
-    <ol class="breadcrumb breadcrumb--ys pull-left">
-      <li class="home-link"><a (click)="goToTrangChu($event)" class="icon icon-home"></a></li>
-      <li class="fontsizeHyperLink">Camera An Ninh</li>
-      <li class="fontsizeHyperLink">Giải pháp bảo mật</li>
-      <li class="active fontsizeHyperLink">Camera: 1080p Full HD Wireless Security Camera</li>
-    </ol>
-  </div>
-</div>
+<app-breadcrumbs [breadcrumbs]="breadcrumbs" (breadcrumbSelected)="breadcrumbSelected($event)">
+</app-breadcrumbs>
 <!-- /breadcrumbs -->
 
 <div *ngIf="product != null" id="pageContent">

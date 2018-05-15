@@ -1,14 +1,8 @@
 <!-- breadcrumbs -->
-<div class="breadcrumbs">
-  <div class="container">
-    <ol class="breadcrumb breadcrumb--ys pull-left">
-      <li class="home-link"><a (click)="goToTrangChu($event)" class="icon icon-home"></a></li>
-      <li class="fontsizeHyperLink"><a (click)="goToMenuIndex($event, 'ttsk')">Tin tức</a></li>
-      <li class="active fontsizeHyperLink">{{news.tieuDe}}</li>
-    </ol>
-  </div>
-</div>
+<app-breadcrumbs [breadcrumbs]="breadcrumbs" (breadcrumbSelected)="breadcrumbSelected($event)">
+</app-breadcrumbs>
 <!-- /breadcrumbs -->
+
 <div id="pageContent">
   <div style="padding-left: 20px; padding-right: 20px">
     <div class="row">

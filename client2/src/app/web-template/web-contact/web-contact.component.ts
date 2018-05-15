@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {WebContactLogic} from "./web-contact-logic";
 import {WebContactForm} from "./web-contact-form";
 import {ContactService} from "../../service/contact/contact.service";
@@ -6,20 +6,28 @@ import {ValidateUtils} from "../../common/validate/validate-utils";
 import {FormFlowManager} from "../../common/form-flow-manager";
 import {ApplicationUtils} from "../../common/application-utils";
 import {Router} from "@angular/router";
+import {SupportBreadcrumbs} from "../../common/support-breadcrumbs";
+import {BreadcrumbsUtilsService} from "../../common/breadcrumbs-utils.service";
+import {Breadcrumb} from "../../bean/breadcrumb";
 
 @Component({
   selector: 'app-web-contact',
   templateUrl: './web-contact.component.html',
   styleUrls: ['./web-contact.component.css']
 })
-export class WebContactComponent extends WebContactLogic implements OnInit {
+export class WebContactComponent
+  extends WebContactLogic implements OnInit, SupportBreadcrumbs, AfterContentInit {
+
+  breadcrumbs: Breadcrumb[];
 
   constructor(private router: Router,
               protected validateUtils: ValidateUtils,
               protected contactService: ContactService,
               protected formFlowManager: FormFlowManager,
-              protected applicationUtils: ApplicationUtils) {
-    super(validateUtils,contactService,formFlowManager,applicationUtils);
+              protected applicationUtils: ApplicationUtils,
+              protected breadcrumbsUtilsService: BreadcrumbsUtilsService) {
+
+    super(validateUtils, contactService, formFlowManager, applicationUtils);
   }
 
   statusRequest: any;
@@ -37,23 +45,13 @@ export class WebContactComponent extends WebContactLogic implements OnInit {
     return this.validateUtils.getFieldErrorMessage(field, this.form);
   }
 
-  goToTrangChu(event: any) {
+  breadcrumbSelected(breadcrumb: Breadcrumb): void {
 
-    event.preventDefault();
-
-    this.applicationUtils.scrollTopTop(() => {
-
-      this.router.navigate(["/trangChu"]);
-    });
+    this.breadcrumbsUtilsService.breadcrumbSelected(breadcrumb);
   }
 
-  // sentRequest(){
-  //
-  //
-  //   this.contactService.post(this.form).subscribe((status) => this.aftetSentRequest(status))
-  // }
+  ngAfterContentInit(): void {
 
-  // protected aftetSentRequest(statusRequest:any):void {
-  //   this.statusRequest = statusRequest;
-  // }
+    this.breadcrumbs = this.breadcrumbsUtilsService.generateBreadcrumbs("lienHe", null);
+  }
 }

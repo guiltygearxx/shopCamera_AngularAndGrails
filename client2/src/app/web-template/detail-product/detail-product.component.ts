@@ -12,6 +12,9 @@ import {GioHangService} from "../../service/order/gio-hang.service";
 import {NumberFormatter} from "../../common/formater/number-formatter";
 import {ApplicationUtils} from "../../common/application-utils";
 import {DetailProductService} from "../../service/product/detail-product.service";
+import {SupportBreadcrumbs} from "../../common/support-breadcrumbs";
+import {Breadcrumb} from "../../bean/breadcrumb";
+import {BreadcrumbsUtilsService} from "../../common/breadcrumbs-utils.service";
 
 declare var $: any;
 
@@ -24,7 +27,8 @@ declare var productCarousel: any;
   templateUrl: './detail-product.component.html',
   styleUrls: ['./detail-product.component.css']
 })
-export class DetailProductComponent implements OnInit, AfterViewChecked, AfterContentChecked {
+export class DetailProductComponent
+  implements OnInit, AfterViewChecked, AfterContentChecked, SupportBreadcrumbs {
 
   allowDisplayProductVetical: boolean;
 
@@ -44,6 +48,8 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
 
   private isSlickWidgetInitialized: boolean = false;
 
+  breadcrumbs: Breadcrumb[];
+
   constructor(private router: Router,
               protected productService: ProductService,
               protected productViewService: ProductViewService,
@@ -52,7 +58,8 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
               protected gioHangService: GioHangService,
               protected  numberFormater: NumberFormatter,
               protected applicationUtils: ApplicationUtils,
-              protected detailProductService: DetailProductService) {
+              protected detailProductService: DetailProductService,
+              protected breadcrumbsUtilsService: BreadcrumbsUtilsService) {
   }
 
   ngOnInit() {
@@ -80,6 +87,11 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
 
       this.getProductById(this.productId = this.detailProductService.productId)
     }
+  }
+
+  breadcrumbSelected(breadcrumb: Breadcrumb): void {
+
+    this.breadcrumbsUtilsService.breadcrumbSelected(breadcrumb);
   }
 
   afterGetListCategory(categoryItems: CategoryItem[]): void {
@@ -178,7 +190,6 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
     this.productService
       .getById(productId)
       .subscribe((product) => this.afterGetListProduct(product));
-
   }
 
   getListProduct(categoryId: string) {
@@ -186,7 +197,6 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
     let subCategoryIds = this.categoryList
       .filter((category) => category.parentCategoryId == categoryId)
       .map((category) => category.id);
-
 
     let categoryIds = [categoryId];
 
@@ -201,12 +211,11 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
 
   }
 
-  getListCategory() {
+  getListCategory(): void {
 
     let getMaxItem: string = '30';
 
     let params = {max: getMaxItem};
-
 
     this.categoryService
       .get(params)
@@ -231,16 +240,6 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
     let intVal = parseInt(val);
 
     this.productCount = (intVal + 1000) % 1000;
-  }
-
-  goToTrangChu(event: any) {
-
-    event.preventDefault();
-
-    this.applicationUtils.scrollTopTop(() => {
-
-      this.router.navigate(["/trangChu"]);
-    });
   }
 
   protected afterGetListProductView(productViews: ProductView[]): void {
@@ -268,6 +267,28 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
         $j('#megaMenuCarousel1').slick("refresh");
       }
     });
+
+    this.initBreadcrumbs();
+  }
+
+  private initBreadcrumbs(): void {
+
+    let categoryId: string = this.product.categoryId;
+
+    let categoryItems: CategoryItem[] = [];
+
+    while (categoryId) {
+
+      let category = this.categoryList.find((item) => item.id == categoryId);
+
+      categoryItems.push(category);
+
+      categoryId = category.parentCategoryId;
+    }
+
+    categoryItems = categoryItems.reverse();
+
+    this.breadcrumbs = this.breadcrumbsUtilsService.generateBreadcrumbs("chiTietSanPham", [categoryItems, this.product])
   }
 
   private converterProduct(product: Product): OrderDetailForm {
@@ -297,6 +318,4 @@ export class DetailProductComponent implements OnInit, AfterViewChecked, AfterCo
     return orderDetail;
 
   }
-
-
 }

@@ -3,7 +3,8 @@ import {News} from "../../bean/news";
 
 export class WebTintucsukienChitietLogic {
 
-  constructor(protected newsService: NewsService) {}
+  constructor(protected newsService: NewsService) {
+  }
 
   news: News;
 

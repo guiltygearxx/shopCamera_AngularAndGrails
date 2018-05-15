@@ -44,6 +44,8 @@ import {ContactService} from "./service/contact/contact.service";
 import {SortableTableFlow} from "./common/sortable-table-flow";
 import {TrieuDongFormater} from "./common/trieu-dong-formater";
 import {DetailProductService} from "./service/product/detail-product.service";
+import {BreadcrumbsComponent} from './web-template/breadcrumbs/breadcrumbs.component';
+import {BreadcrumbsUtilsService} from "./common/breadcrumbs-utils.service";
 
 
 @NgModule({
@@ -64,7 +66,8 @@ import {DetailProductService} from "./service/product/detail-product.service";
     WebTinTucSuKienChiTietComponent,
     WebGiaiPhapChiTietComponent,
     WebGioiThieuComponent,
-    WebRightSideComponent
+    WebRightSideComponent,
+    BreadcrumbsComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +99,7 @@ import {DetailProductService} from "./service/product/detail-product.service";
     SortableTableFlow,
     TrieuDongFormater,
     DetailProductService,
+    BreadcrumbsUtilsService
   ],
   bootstrap: [AppComponent]
 })

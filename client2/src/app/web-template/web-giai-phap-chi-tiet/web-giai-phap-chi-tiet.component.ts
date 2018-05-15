@@ -1,24 +1,32 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {WebGiaiphapChitietLogic} from "./web-giaiphap-chitiet-logic";
 import {SolutionService} from "../../service/solution/solution.service";
 import {isNullOrUndefined} from "util";
 import {ApplicationUtils} from "../../common/application-utils";
 import {MenuItem} from "../../bean/menu-item";
+import {SupportBreadcrumbs} from "../../common/support-breadcrumbs";
+import {Breadcrumb} from "../../bean/breadcrumb";
+import {BreadcrumbsUtilsService} from "../../common/breadcrumbs-utils.service";
+import {Solution} from "../../bean/solution";
 
 @Component({
   selector: 'app-web-giai-phap-chi-tiet',
   templateUrl: './web-giai-phap-chi-tiet.component.html',
   styleUrls: ['./web-giai-phap-chi-tiet.component.css']
 })
-export class WebGiaiPhapChiTietComponent extends WebGiaiphapChitietLogic implements OnInit {
+export class WebGiaiPhapChiTietComponent
+  extends WebGiaiphapChitietLogic implements OnInit, SupportBreadcrumbs {
 
   solutionId: any;
+
+  breadcrumbs: Breadcrumb[];
 
   constructor(private router: Router,
               protected route: ActivatedRoute,
               protected solutionService: SolutionService,
-              protected applicationUtils: ApplicationUtils) {
+              protected applicationUtils: ApplicationUtils,
+              protected breadcrumbsUtilsService: BreadcrumbsUtilsService) {
 
     super(solutionService);
   }
@@ -26,37 +34,25 @@ export class WebGiaiPhapChiTietComponent extends WebGiaiphapChitietLogic impleme
   ngOnInit() {
 
     this.solutionId = this.route.snapshot.paramMap.get("solutionId");
+
     this.getSolutionById(this.solutionId);
   }
 
-  checkContentSolution() {
-    if (isNullOrUndefined(this.solution)) return false;
-    return true;
+  checkContentSolution(): boolean {
+
+    return !isNullOrUndefined(this.solution);
   }
 
-  goToTrangChu(event: any) {
+  breadcrumbSelected(breadcrumb: Breadcrumb): void {
 
-    event.preventDefault();
-
-    this.applicationUtils.scrollTopTop(() => {
-
-      this.router.navigate(["/trangChu"]);
-    });
+    this.breadcrumbsUtilsService.breadcrumbSelected(breadcrumb);
   }
 
-  goToMenuIndex(event: any, menuItem: string): void {
 
-    event.preventDefault();
+  protected afterGetDetailSolution(solution: Solution): void {
 
-    this.goToMenuIndex_(menuItem);
+    super.afterGetDetailSolution(solution);
+
+    this.breadcrumbs = this.breadcrumbsUtilsService.generateBreadcrumbs("chiTietGiaiPhap", [solution])
   }
-
-  protected goToMenuIndex_(menuItem: string): void {
-
-    this.applicationUtils.scrollTopTop(() => {
-
-      this.router.navigate(["/" + menuItem]);
-    });
-  }
-
 }
