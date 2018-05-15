@@ -259,12 +259,14 @@ export class DetailProductComponent
       if (!this.isSlickWidgetInitialized) {
 
         productCarousel($j('#megaMenuCarousel1'), 1, 1, 1, 1, 1, 'productCarousel');
+        productCarousel($j('#mobileGallery'), 1, 1, 1, 1, 1, 'productCarousel');
 
         this.isSlickWidgetInitialized = true;
 
       } else {
 
         $j('#megaMenuCarousel1').slick("refresh");
+        $j('#mobileGallery').slick("refresh");
       }
     });
 
