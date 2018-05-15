@@ -5,11 +5,17 @@
       <li class="home-link"><a (click)="goToTrangChu($event)" class="icon icon-home"></a></li>
 
       <ng-container *ngFor="let item of breadcrumbs; let itemIndex = index">
-        <li class="fontsizeHyperLink" [class.active]="itemIndex == breadcrumbs.length - 1">
+
+        <li *ngIf="itemIndex != breadcrumbs.length - 1" class="fontsizeHyperLink">
           <a (click)="goToBreadcrumb($event, item, itemIndex)">
             {{item.title}}
           </a>
         </li>
+
+        <li *ngIf="itemIndex == breadcrumbs.length - 1" class="fontsizeHyperLink active">
+          {{item.title}}
+        </li>
+
       </ng-container>
 
     </ol>
