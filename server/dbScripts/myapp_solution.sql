@@ -15,7 +15,7 @@ CREATE TABLE myapp.solution
     comment varchar(1000),
     name varchar(1000),
     email varchar(255)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO myapp.solution (id, version, tieu_de, is_deleted, ngay_tao, last_modified_user, noi_dung_chi_tiet, hinh_anh, noi_dung_ngan, last_modified_time, phone, address, comment, name, email) VALUES ('09b1999d-5d5d-49c9-9909-a9536002e035', 0, 'Giải pháp an ninh sử dụng Smart Line Series của Optex', false, '2018-03-14 20:28:11', 'Admin', '<h1 id="detailnews" class="titledetail">Giải ph&aacute;p an ninh sử dụng Smart Line Series của Optex</h1>
 <div class="clear">&nbsp;</div>
 <div class="news_hits"><span class="blue">&nbsp;&nbsp;Lượt xem:</span>&nbsp;&nbsp;<span class="grey">2338</span></div>

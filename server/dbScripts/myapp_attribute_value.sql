@@ -8,4 +8,4 @@ CREATE TABLE myapp.attribute_value
     reference_id varchar(255) NOT NULL,
     value varchar(255),
     last_modified_time datetime
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

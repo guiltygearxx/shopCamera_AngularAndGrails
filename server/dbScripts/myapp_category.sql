@@ -11,7 +11,7 @@ CREATE TABLE myapp.category
     content text,
     image_url varchar(1000),
     type varchar(255)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO myapp.category (id, version, is_deleted, code, last_modified_user, parent_category_id, name, last_modified_time, content, image_url, type) VALUES ('067fdb0a-c192-47d4-829e-f683438d1fd7', 0, false, 'Camera', 'admin', null, 'Camera trọn bộ', '2018-03-02 17:01:28', '<div class="page-title category-title">
 <h1>Security A</h1>
 </div>

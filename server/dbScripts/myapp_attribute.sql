@@ -10,7 +10,7 @@ CREATE TABLE myapp.attribute
     order_ int(11) NOT NULL,
     title varchar(255) NOT NULL,
     last_modified_time datetime
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO myapp.attribute (id, version, is_deleted, code, last_modified_user, json_config, group_, order_, title, last_modified_time) VALUES ('001', 0, false, 'thuongHieu', 'admin', '{"items":[{"id":"HIKVISION","name":"HIKVISION"},{"id":"PANASONIC","name":"PANASONIC"},{"id":"PANASONIC","name":"PANASONIC"},{"id":"SAMSUNG","name":"SAMSUNG"},{"id":"DAHUA","name":"DAHUA"},{"id":"KBVISION","name":"KBVISION"},{"id":"ESCORT","name":"ESCORT"},{"id":"AVTECH","name":"AVTECH"},{"id":"VANTECH","name":"VANTECH"},{"id":"QUESTEK","name":"QUESTEK"},{"id":"SAMTECH","name":"SAMTECH"},{"id":"PICOTECH","name":"PICOTECH"},{"id":"HONEYWELL","name":"HONEYWELL"},{"id":"EZVIZ","name":"EZVIZ"}]}', 'camera', 0, 'Thương hiệu', '2018-03-31 10:06:39');
 INSERT INTO myapp.attribute (id, version, is_deleted, code, last_modified_user, json_config, group_, order_, title, last_modified_time) VALUES ('002', 0, false, 'phanGiai', 'admin', '{"items":[{"id":"1MP","name":"1MP"},{"id":"2MP","name":"2MP"},{"id":"3MP","name":"3MP"},{"id":"4MP","name":"4MP"},{"id":"more4MP","name":"> 4MP"}]}', 'camera', 0, 'Phân giải', '2018-03-31 10:06:39');
 INSERT INTO myapp.attribute (id, version, is_deleted, code, last_modified_user, json_config, group_, order_, title, last_modified_time) VALUES ('003', 0, false, 'len', 'admin', '{"items":[{"id":"Fixed_Lens","name":"Cố định ống kính"},{"id":"Automatic","name":"Tự động"},{"id":"(Manual","name":"Thủ công"}]}', 'camera', 0, 'Loại Len', '2018-03-31 10:06:39');
