@@ -510,7 +510,6 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`huynq`@`%` SQL SECURITY DEFINER */
 /*!50001 VIEW `v_product` AS select `p`.`id` AS `id`,`p`.`version` AS `version`,`p`.`bao_hanh` AS `bao_hanh`,`p`.`is_deleted` AS `is_deleted`,`p`.`gia_truoc_khi_ha` AS `gia_truoc_khi_ha`,`p`.`last_modified_user` AS `last_modified_user`,`p`.`image4` AS `image4`,`p`.`image2` AS `image2`,`p`.`image3` AS `image3`,`p`.`hang_san_xuat` AS `hang_san_xuat`,`p`.`kho_hang` AS `kho_hang`,`p`.`image1` AS `image1`,`p`.`name` AS `name`,`p`.`gia` AS `gia`,`p`.`category_id` AS `category_id`,`p`.`last_modified_time` AS `last_modified_time`,`c`.`name` AS `category_name`,`p`.`phan_tram_giam_gia` AS `phan_tram_giam_gia`,`p`.`thong_tin_mo_rong` AS `thong_tin_mo_rong`,`p`.`hinh_anh_truc_quan` AS `hinh_anh_truc_quan`,`p`.`thong_tin_bo_sung` AS `thong_tin_bo_sung` from (`product` `p` join `category` `c` on((`c`.`id` = `p`.`category_id`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
