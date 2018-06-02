@@ -12,4 +12,4 @@ CREATE TABLE myapp.order_
     mo_ta varchar(1000),
     dia_chi varchar(255) NOT NULL,
     status varchar(255) NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

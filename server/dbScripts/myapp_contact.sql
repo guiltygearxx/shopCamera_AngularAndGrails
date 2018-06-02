@@ -11,4 +11,4 @@ CREATE TABLE myapp.contact
     status varchar(255) NOT NULL,
     email varchar(255),
     last_modified_time datetime
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

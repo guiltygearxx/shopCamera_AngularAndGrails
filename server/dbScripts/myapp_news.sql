@@ -10,7 +10,7 @@ CREATE TABLE myapp.news
     hinh_anh varchar(1000),
     noi_dung_ngan text,
     last_modified_time datetime
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 INSERT INTO myapp.news (id, version, tieu_de, is_deleted, ngay_tao, last_modified_user, noi_dung_chi_tiet, hinh_anh, noi_dung_ngan, last_modified_time) VALUES ('49652057-c7bf-43e4-9f61-7059f45e1a4b', 0, 'Một số hình ảnh trong buổi giới thiệu sản phẩm an ninh hỗ trợ cho lực lượng hành pháp', false, '2018-03-09', 'admin', '<h2 class="sapo_detail">(TinTheThao.com.vn) - D&ugrave; được đ&aacute;nh gi&aacute; cao hơn rất nhiều nhưng L&yacute; Ho&agrave;ng Nam đ&atilde; bất ngờ để thua tay vợt chủ nh&agrave; Arjun Kadhe ở trận tứ kết đơn nam India Futures F2 2018 v&agrave;o trưa nay 08/03.</h2>
 <article id="content_detail">
 <div class="exp_content">

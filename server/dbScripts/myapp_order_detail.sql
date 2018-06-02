@@ -9,4 +9,4 @@ CREATE TABLE myapp.order_detail
     is_deleted bit(1),
     last_modified_user varchar(255),
     last_modified_time datetime
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

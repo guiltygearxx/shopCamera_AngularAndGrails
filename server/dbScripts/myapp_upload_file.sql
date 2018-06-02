@@ -8,4 +8,4 @@ CREATE TABLE myapp.upload_file
     extension varchar(5),
     name varchar(255) NOT NULL,
     last_modified_time datetime NOT NULL
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
