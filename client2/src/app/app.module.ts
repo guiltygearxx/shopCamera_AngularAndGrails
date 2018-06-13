@@ -46,6 +46,7 @@ import {TrieuDongFormater} from "./common/trieu-dong-formater";
 import {DetailProductService} from "./service/product/detail-product.service";
 import {BreadcrumbsComponent} from './web-template/breadcrumbs/breadcrumbs.component';
 import {BreadcrumbsUtilsService} from "./common/breadcrumbs-utils.service";
+import {HomeService} from "./service/home.service";
 
 
 @NgModule({
@@ -99,7 +100,8 @@ import {BreadcrumbsUtilsService} from "./common/breadcrumbs-utils.service";
     SortableTableFlow,
     TrieuDongFormater,
     DetailProductService,
-    BreadcrumbsUtilsService
+    BreadcrumbsUtilsService,
+    HomeService
   ],
   bootstrap: [AppComponent]
 })

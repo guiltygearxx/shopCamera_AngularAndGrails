@@ -7,6 +7,32 @@
   <div style="padding-left: 20px; padding-right: 20px">
     <div class="row">
 
+      <div class="col-md-12 padding10px" *ngIf="this.contentCategory != null">
+        <div class="prd-body" [innerHTML]="this.contentCategory"></div>
+      </div>
+
+      <div class="col-md-12" style="text-align: center;">
+
+        <ng-container *ngFor="let subCategory of subCategoryList; let subCategoryIndex = index">
+
+          <div class="col-md-2 col-xs-6 confixHoverSubCategory" *ngIf="subCategoryIndex < 6">
+
+            <a (click)="goToSubCategory($event, subCategory)">
+
+              <img src="{{subCategory.imageUrl}}" class="cssHeaderSubCategoryImages">
+
+            </a>
+
+            <h3 class="cssHeaderCategory">{{subCategory.name}}</h3>
+
+          </div>
+
+        </ng-container>
+
+      </div>
+
+      <div class="divider"></div>
+
       <aside class="col-md-8 col-lg-9 col-xl-10" id="centerColumn">
         <ng-container *ngFor="let solution of solutionList">
           <div class="row configAttributeRow" (click)="goToChiTietGiaiPhap($event,solution)">

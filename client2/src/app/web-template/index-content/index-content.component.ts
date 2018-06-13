@@ -12,12 +12,33 @@ import {GioHangService} from "../../service/order/gio-hang.service";
 import {ApplicationUtils} from "../../common/application-utils";
 import {NumberFormatter} from "../../common/formater/number-formatter";
 import {DetailProductService} from "../../service/product/detail-product.service";
+import {HomeHeader} from "./home-header";
+import {SolutionService} from "../../service/solution/solution.service";
+import {HomeService} from "../../service/home.service";
+import {Solution} from "../../bean/solution";
+import {ListProductService} from "../../service/list-product.service";
+import {SimpleObject} from "../../common/simple-object";
 
 const IMAGE_URLS = [
   "https://www.a1securitycameras.com/images/promo/30/A1-Slider-free-shipping.jpg",
   "https://www.a1securitycameras.com/images/promo/29/A1-Slider-Outdoor.jpg",
   "https://www.a1securitycameras.com/images/promo/30/A1-Slider-Retailer.jpg",
   "https://www.a1securitycameras.com/images/promo/29/A1-Slider-Ip.jpg"
+];
+
+const SORT_OPTIONS = [
+
+  new SimpleObject("", "Mặc định"),
+  new SimpleObject("gia;asc", "Giá tăng dần"),
+  new SimpleObject("gia;desc", "Giá giảm dần")
+];
+
+const MAXPAGESIZE_OPTIONS = [
+
+  new SimpleObject("10", "10"),
+  new SimpleObject("20", "20"),
+  new SimpleObject("30", "30"),
+  new SimpleObject("40", "40"),
 ];
 
 @Component({
@@ -37,6 +58,33 @@ export class IndexContentComponent implements OnInit {
 
   categoryList: CategoryItem[];
 
+  subCategoryList: CategoryItem[];
+
+  listHomeHeader: HomeHeader[];
+
+  contentCategory: string;
+
+  allowDisplayProductVetical: boolean;
+
+  count: number;
+
+  curPageIndex: number;
+
+  maxPageSize: number;
+
+  order: string;
+
+  sort: string;
+
+  sortOptions: SimpleObject[];
+
+  sortOption: string;
+
+  maxPageSizeOptions: SimpleObject[] = MAXPAGESIZE_OPTIONS;
+
+  maxPageSizeStr: string;
+
+
   constructor(private router: Router,
               protected productViewService: ProductViewService,
               protected categoryService: CategoryService,
@@ -44,19 +92,48 @@ export class IndexContentComponent implements OnInit {
               protected gioHangService: GioHangService,
               protected applicationUtils: ApplicationUtils,
               protected numberFormater: NumberFormatter,
-              protected detailProductService: DetailProductService) {
+              protected detailProductService: DetailProductService,
+              protected homeHeaderService: HomeService,
+              protected listProductService: ListProductService) {
   }
 
   ngOnInit() {
 
+    this.sortOptions = SORT_OPTIONS;
+
     this.getListCategory();
 
     this.getListNews();
+
+    this.getListHomeHeader();
   }
 
   getNumberFormatted(val: number): string {
 
     return this.numberFormater.format(val);
+  }
+
+  getListHomeHeader() {
+
+    let getMaxItem: string = '100';
+
+    let params = {max: getMaxItem};
+
+
+    this.homeHeaderService.get(params)
+      .subscribe((homeHeader) => this.afterGetListHomeHeader(homeHeader));
+  }
+
+  afterGetListHomeHeader(homeHeaderItems: HomeHeader[]): void {
+    this.listHomeHeader = homeHeaderItems;
+
+    if(this.listHomeHeader != null){
+
+      let homeHeader = this.listHomeHeader.find((item) => item.flag == true && item.nameHeader == 'home');
+
+      this.contentCategory = homeHeader.contentHeader;
+
+    }
   }
 
   getGiaKhuyenMai(product: ProductView): number {
@@ -71,6 +148,8 @@ export class IndexContentComponent implements OnInit {
     this.getListProductSanPhamMoi("9a40cd52-99fe-42cc-bda3-5e43fb1f5439");
 
     this.getListProductKhuyenMai("f2ea6507-8169-455a-92cd-0dfbeeee796c");
+
+    this.getSubCategory(this.categoryList);
   }
 
   goToChiTietSanPham(event: any, productView: ProductView): void {
@@ -172,6 +251,44 @@ export class IndexContentComponent implements OnInit {
 
   }
 
+
+  getSubCategory(categoryList: CategoryItem[]): void{
+
+    let subCategoryIds = categoryList
+      .filter((category) => category.parentCategoryId != null);
+
+    this.subCategoryList = subCategoryIds;
+
+  }
+
+  getListImageHighlight(productView: ProductView): string[] {
+
+    if (isNullOrUndefined(productView) || this.applicationUtils.isStringEmpty(productView.hinhAnhTrucQuan)) return null;
+
+    let dateElements: string[] = productView.hinhAnhTrucQuan.split(",");
+
+    return dateElements;
+  }
+
+  goToSubCategory(event: any, subCategory: CategoryItem): void {
+
+    event.preventDefault();
+
+    this.listProductService.isParamChanged = true;
+
+    this.listProductService.selectedCategoryId = subCategory.id;
+
+    this.applicationUtils.scrollTopTop(() => {
+
+      this.router.navigate(["/danhSachSanPham/", subCategory.id]);
+    });
+  }
+
+  changeDisplayProductStyle(style: boolean): boolean {
+
+    return this.allowDisplayProductVetical = style;
+  }
+
   getListCategory() {
 
     let getMaxItem: string = '30';
@@ -218,5 +335,25 @@ export class IndexContentComponent implements OnInit {
   protected afterGetListProductKhuyenMai(productViews: ProductView[]): void {
 
     this.productListKhuyenMai = productViews;
+  }
+
+  sortOptionsChanged(event: any): void {
+
+    this.curPageIndex = 0;
+
+    if (this.applicationUtils.isStringEmpty(this.sortOption)) {
+
+      this.sort = this.order = null;
+
+    } else {
+
+      let elements = this.sortOption.split(";");
+
+      this.sort = elements[0];
+
+      this.order = elements[1];
+    }
+
+    // this.doSort_();
   }
 }

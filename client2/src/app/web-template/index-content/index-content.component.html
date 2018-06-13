@@ -43,13 +43,76 @@
   <div class="content">
     <div class="container">
       <div class="row">
+
+        <div class="col-md-12 padding10px" *ngIf="this.contentCategory != null">
+          <div class="prd-body" [innerHTML]="this.contentCategory"></div>
+        </div>
+
+        <div class="col-md-12" style="text-align: center;">
+
+          <ng-container *ngFor="let subCategory of subCategoryList; let subCategoryIndex = index">
+
+            <div class="col-md-2 col-xs-6 confixHoverSubCategory" *ngIf="subCategoryIndex < 6">
+
+              <a (click)="goToSubCategory($event, subCategory)">
+
+                <img src="{{subCategory.imageUrl}}" class="cssHeaderSubCategoryImages">
+
+              </a>
+
+              <h3 class="cssHeaderCategory">{{subCategory.name}}</h3>
+
+            </div>
+
+          </ng-container>
+
+        </div>
+
+
+        <div class="filters-row">
+          <div class="pull-left" style="padding-left: 10px">
+            <div class="filters-row__mode">
+
+              <a href="#" class="btn btn--ys slide-column-open visible-xs visible-sm hidden-xl hidden-lg hidden-md">Filter</a>
+
+              <a (click)="changeDisplayProductStyle(false)"
+                 class="filters-row__view active link-grid-view btn-img btn-img-view_module"><span></span></a>
+
+              <a (click)="changeDisplayProductStyle(true)"
+                 class="filters-row__view link-row-view btn-img btn-img-view_list"><span></span></a>
+            </div>
+
+          </div>
+          <div class="pull-right">
+
+            <div class="filters-row__select hidden-sm hidden-xs">
+
+              <label>Lọc theo: </label>
+
+              <div class="select-wrapper">
+
+                <select class="select--ys sort-position" [(ngModel)]="sortOption"
+                        (change)="sortOptionsChanged($event)">
+                  <option *ngFor="let item of sortOptions" [value]="item.id">{{item.name}}</option>
+                </select>
+
+              </div>
+
+              <a href="#" class="sort-direction icon icon-arrow_back"></a>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
         <div class="col-lg-12 col-xl-12">
           <!-- title -->
           <div class="title-box titleCommon">
             <h2>GIẢM GIÁ</h2>
           </div>
           <!-- /title -->
-          <div class="product-listing carousel-products-mobile row">
+          <div class="product-listing carousel-products-mobile row" *ngIf="!allowDisplayProductVetical">
             <ng-container *ngFor="let productCamera of this.productListKhuyenMai">
               <div class="col-xs-12 col-md-12 col-lg-3 paddingDivAll20Px confixBorderTop">
                 <div class="row confixPaddingProduct">
@@ -102,6 +165,68 @@
               <!--</div>-->
             </ng-container>
           </div>
+
+          <div class="product-listing carousel-products-mobile row" *ngIf="allowDisplayProductVetical">
+
+            <ng-container *ngFor="let productCamera of this.productListKhuyenMai">
+              <div class="col-xs-12 paddingDivBottom confixBorderTop" style="display: inline-block !important;">
+
+                <div class="col-md-3 col-hover-khuyenMai">
+                  <div class="confixPadding20px">
+                    <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                       title="{{productCamera.name}}">
+                      <img
+                        src="{{productCamera.image1}}"
+                        class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}">
+                    </a>
+                  </div>
+                  <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)"
+                       style=" margin: 26px 0px 0px 16px;">
+                    <span>{{productCamera.phanTramGiamGia}}%</span>
+                  </div>
+
+                  <div class="tooltip_sale">
+                    <div class="prd-body" [innerHTML]="productCamera.khuyenMai"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="content-product confixPadding20px">
+
+                    <h5 class="changeFontColorBlack">
+                      <a class="title" (click)="goToChiTietSanPham($event, productCamera)"
+                         title="{{productCamera.name}}">{{productCamera.name}}</a>
+                    </h5>
+                    <div class="descrison">
+                      <p>Danh mục: {{productCamera.categoryName}}</p>
+                    </div>
+                    <div class="confixImage">
+                      <ng-container *ngFor="let listImageHighlight of getListImageHighlight(productCamera)">
+                        <img
+                          src="{{listImageHighlight}}"
+                          class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
+                          title="camera-ip-10" width="60" height="30">
+                      </ng-container>
+                    </div>
+                    <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="box-product confixPadding20px">
+                    <div class="confixTextRight"><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
+                    </div>
+                    <div class="confixTextRight"><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                    </div>
+                    <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                    </div>
+                    <div class="confixTextRight">
+                      <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">THÊM VÀO GIỎ HÀNG</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </ng-container>
+          </div>
         </div>
 
         <div class="col-lg-12 col-xl-12">
@@ -110,7 +235,7 @@
             <h2>SẢN PHẨM MỚI</h2>
           </div>
           <!-- /title -->
-          <div class="product-listing carousel-products-mobile row">
+          <div class="product-listing carousel-products-mobile row" *ngIf="!allowDisplayProductVetical">
             <ng-container *ngFor="let productCamera of this.productListSanPhamMoi">
               <div class="col-xs-12 col-md-6 col-lg-3 paddingDivAll20Px confixBorderTop">
                 <div class="row confixPaddingProduct">
@@ -161,6 +286,68 @@
               </div>
               <!--</li>-->
               <!--</div>-->
+            </ng-container>
+          </div>
+
+          <div class="product-listing carousel-products-mobile row" *ngIf="allowDisplayProductVetical">
+
+            <ng-container *ngFor="let productCamera of this.productListSanPhamMoi">
+              <div class="col-xs-12 paddingDivBottom confixBorderTop" style="display: inline-block !important;">
+
+                <div class="col-md-3 col-hover-khuyenMai">
+                  <div class="confixPadding20px">
+                    <a class="img hover-zoom" (click)="goToChiTietSanPham($event, productCamera)"
+                       title="{{productCamera.name}}">
+                      <img
+                        src="{{productCamera.image1}}"
+                        class="attachment-shop_catalog size-shop_catalog wp-post-image" alt="{{productCamera.name}}">
+                    </a>
+                  </div>
+                  <div class="product-sale discount confixMargin20px" *ngIf="kiemTraGiamGia(productCamera)"
+                       style=" margin: 26px 0px 0px 16px;">
+                    <span>{{productCamera.phanTramGiamGia}}%</span>
+                  </div>
+
+                  <div class="tooltip_sale">
+                    <div class="prd-body" [innerHTML]="productCamera.khuyenMai"></div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="content-product confixPadding20px">
+
+                    <h5 class="changeFontColorBlack">
+                      <a class="title" (click)="goToChiTietSanPham($event, productCamera)"
+                         title="{{productCamera.name}}">{{productCamera.name}}</a>
+                    </h5>
+                    <div class="descrison">
+                      <p>Danh mục: {{productCamera.categoryName}}</p>
+                    </div>
+                    <div class="confixImage">
+                      <ng-container *ngFor="let listImageHighlight of getListImageHighlight(productCamera)">
+                        <img
+                          src="{{listImageHighlight}}"
+                          class="attachment-shop_catalog size-shop_catalog wp-post-image" alt=""
+                          title="camera-ip-10" width="60" height="30">
+                      </ng-container>
+                    </div>
+                    <div class="prd-body confixElementLi" [innerHTML]="productCamera.thongTinMoRong"></div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="box-product confixPadding20px">
+                    <div class="confixTextRight"><span class="thayDoiCSSGiaTruocKhiHa">Giá gốc: {{getNumberFormatted(productCamera.giaTruocKhiHa)}} đ</span>
+                    </div>
+                    <div class="confixTextRight"><span class="thayDoiCSSGiaBan">Giá bán: {{getNumberFormatted(productCamera.gia)}} đ</span>
+                    </div>
+                    <div class="confixTextRight"><span class="thayDoiCSSGiaKhuyenMai">Tiết kiệm: {{getNumberFormatted(getGiaKhuyenMai(productCamera))}} đ</span>
+                    </div>
+                    <div class="confixTextRight">
+                      <button class="btn btn-warning" (click)="addProductToOrder(productCamera)">THÊM VÀO GIỎ HÀNG</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </ng-container>
           </div>
         </div>
