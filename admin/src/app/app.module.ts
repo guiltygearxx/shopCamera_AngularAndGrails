@@ -62,6 +62,8 @@ import {ConfigurationUiWebComponent} from './configuration-ui-web/configuration-
 import {BannerComponent} from './banner/banner.component';
 import {AttributeService} from './service/attribute.service';
 import {AttributeValueService} from './service/attribute-value.service';
+import {HomeService} from "./service/home.service";
+import {AddNewHeaderComponent} from "./configuration-ui-web/add-new-header/add-new-header.component";
 
 @NgModule({
 
@@ -92,6 +94,7 @@ import {AttributeValueService} from './service/attribute-value.service';
     CategoryDetailComponent,
     ConfigurationUiWebComponent,
     BannerComponent,
+    AddNewHeaderComponent,
   ],
 
   imports: [
@@ -135,6 +138,7 @@ import {AttributeValueService} from './service/attribute-value.service';
     UserService,
     AttributeService,
     AttributeValueService,
+    HomeService
   ],
 
   bootstrap: [AppComponent],

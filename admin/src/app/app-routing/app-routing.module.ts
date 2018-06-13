@@ -21,6 +21,7 @@ import {CategoryIndexComponent} from '../category-index/category-index.component
 import {CategoryDetailComponent} from '../category-detail/category-detail.component';
 import {ConfigurationUiWebComponent} from "../configuration-ui-web/configuration-ui-web.component";
 import {BannerComponent} from "../banner/banner.component";
+import {AddNewHeaderComponent} from "../configuration-ui-web/add-new-header/add-new-header.component";
 
 @NgModule({
   imports: [
@@ -62,6 +63,7 @@ import {BannerComponent} from "../banner/banner.component";
 
 
           {path: 'configurationUi', component: ConfigurationUiWebComponent},
+          {path: 'addNewHeader', component: AddNewHeaderComponent},
           {path: 'banner', component: BannerComponent},
 
           {path: 'example', component: FormComponent},

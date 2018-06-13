@@ -2,7 +2,7 @@
 <section class="content-header">
   <h1>
     Cấu hình giao diện
-    <small>Cấu hình giao diện Web bán hàng</small>
+    <small>Cấu hình thêm UI</small>
   </h1>
 </section>
 
@@ -15,35 +15,55 @@
   <div class="box">
 
     <div class="box-body">
+
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-primary btn-md" (click)="addNew($event)">Thêm mới</button>
+        </div>
+      </div>
+
+      <br>
+
+
       <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
-      <ul class="todo-list ui-sortable">
-        <li class="">
+      <div class="col-sm-6">
 
-              <span class="handle ui-sortable-handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
+        <table id="example2" class="table table-bordered table-hover dataTable" role="grid"
+               aria-describedby="example2_info">
+          <thead>
+          <tr role="row">
 
-          <input value="" type="radio">
-          <span class="text padding-right20px">Sử dụng bảng Quảng cáo lớn (Trang chủ)</span>
+            <th>Loại</th>
+            <th>Nội dung</th>
+            <th>Trạng thái</th>
+            <th></th>
 
-          <input value="" type="radio">
-          <span class="text">Sử dụng bảng Nội dung tin tức (Trang chủ)</span>
-        </li>
-        <li class="">
+          </tr>
+          </thead>
+          <tbody>
 
-              <span class="handle ui-sortable-handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
+          <ng-container *ngFor="let homeHeader of listHomeHeader; trackBy: homeHeader?.id">
+            <tr role="row">
 
-          <input value="" type="radio">
-          <span class="text padding-right20px">Hiển thị sản phẩm dọc</span>
+              <td>{{homeHeader.nameHeader}}</td>
+              <td>{{homeHeader.contentHeader}}</td>
+              <td><app-check-box [value]="homeHeader.flag" (valueChange)="changeHomeView(homeHeader)"></app-check-box></td>
+              <td class="text-center">
 
-          <input value="" type="radio">
-          <span class="text">Hiển thị sản phẩm ngang</span>
-        </li>
-      </ul>
+                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                   title="Xóa sản phẩm">
+                  <i class="fa fa-remove"></i>
+                </a>
+              </td>
+
+            </tr>
+          </ng-container>
+
+          </tbody>
+
+        </table>
+
+      </div>
     </div>
 
   </div>
