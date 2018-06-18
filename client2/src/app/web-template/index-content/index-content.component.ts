@@ -13,11 +13,10 @@ import {ApplicationUtils} from "../../common/application-utils";
 import {NumberFormatter} from "../../common/formater/number-formatter";
 import {DetailProductService} from "../../service/product/detail-product.service";
 import {HomeHeader} from "./home-header";
-import {SolutionService} from "../../service/solution/solution.service";
 import {HomeService} from "../../service/home.service";
-import {Solution} from "../../bean/solution";
 import {ListProductService} from "../../service/list-product.service";
 import {SimpleObject} from "../../common/simple-object";
+import {SupportSortingTable} from "../../common/support-sorting-table";
 
 const IMAGE_URLS = [
   "https://www.a1securitycameras.com/images/promo/30/A1-Slider-free-shipping.jpg",
@@ -46,7 +45,7 @@ const MAXPAGESIZE_OPTIONS = [
   templateUrl: './index-content.component.html',
   styleUrls: ['./index-content.component.css']
 })
-export class IndexContentComponent implements OnInit {
+export class IndexContentComponent implements OnInit, SupportSortingTable {
 
   activeImageIndex: number = 0;
 
@@ -69,8 +68,6 @@ export class IndexContentComponent implements OnInit {
   count: number;
 
   curPageIndex: number;
-
-  maxPageSize: number;
 
   order: string;
 
@@ -101,6 +98,8 @@ export class IndexContentComponent implements OnInit {
 
     this.sortOptions = SORT_OPTIONS;
 
+    this.sortOption = ""; //sort theo mặc định;
+
     this.getListCategory();
 
     this.getListNews();
@@ -127,7 +126,7 @@ export class IndexContentComponent implements OnInit {
   afterGetListHomeHeader(homeHeaderItems: HomeHeader[]): void {
     this.listHomeHeader = homeHeaderItems;
 
-    if(this.listHomeHeader != null){
+    if (this.listHomeHeader != null) {
 
       let homeHeader = this.listHomeHeader.find((item) => item.flag == true && item.nameHeader == 'home');
 
@@ -145,9 +144,9 @@ export class IndexContentComponent implements OnInit {
 
     this.categoryList = categoryItems;
 
-    this.getListProductSanPhamMoi("9a40cd52-99fe-42cc-bda3-5e43fb1f5439");
+    this.getListProductSanPhamMoi();
 
-    this.getListProductKhuyenMai("f2ea6507-8169-455a-92cd-0dfbeeee796c");
+    this.getListProductKhuyenMai();
 
     this.getSubCategory(this.categoryList);
   }
@@ -213,46 +212,29 @@ export class IndexContentComponent implements OnInit {
     return true;
   }
 
-  getListProductSanPhamMoi(categoryId: string) {
+  getListProductSanPhamMoi() {
 
-    let subCategoryIds = this.categoryList
-      .filter((category) => category.parentCategoryId == categoryId)
-      .map((category) => category.id);
-
-    let categoryIds = [categoryId];
-
-    if (!isNullOrUndefined(subCategoryIds))
-      categoryIds = categoryIds.concat(subCategoryIds)
-
-    let params = {max: 12, sort: 'lastModifiedTime', order: 'desc'};
+    let params = this.applicationUtils.isStringEmpty(this.sort) ?
+      {max: 12, sort: "lastModifiedTime", order: "desc"} :
+      {max: 12, sorts: ['lastModifiedTime', this.sort], orders: ['desc', this.order]};
 
     this.productViewService
       .get(params)
       .subscribe((productView) => this.afterGetListProductSanPhamMoi(productView));
-
   }
 
-  getListProductKhuyenMai(categoryId: string) {
+  getListProductKhuyenMai(): void {
 
-    let subCategoryIds = this.categoryList
-      .filter((category) => category.parentCategoryId == categoryId)
-      .map((category) => category.id);
-
-    let categoryIds = [categoryId];
-
-    if (!isNullOrUndefined(subCategoryIds))
-      categoryIds = categoryIds.concat(subCategoryIds)
-
-    let params = {max: 12, sort: 'phanTramGiamGia', order: 'desc'};
+    let params = this.applicationUtils.isStringEmpty(this.sort) ?
+      {max: 12, sort: "phanTramGiamGia", order: "desc"} :
+      {max: 12, sorts: ['phanTramGiamGia', this.sort], orders: ['desc', this.order]};
 
     this.productViewService
       .get(params)
       .subscribe((productView) => this.afterGetListProductKhuyenMai(productView));
-
   }
 
-
-  getSubCategory(categoryList: CategoryItem[]): void{
+  getSubCategory(categoryList: CategoryItem[]): void {
 
     let subCategoryIds = categoryList
       .filter((category) => category.parentCategoryId != null);
@@ -301,6 +283,7 @@ export class IndexContentComponent implements OnInit {
   }
 
   getListNews() {
+
     let getMaxItem: string = '8';
 
     let params = {max: getMaxItem};
@@ -354,6 +337,13 @@ export class IndexContentComponent implements OnInit {
       this.order = elements[1];
     }
 
-    // this.doSort_();
+    this.doSort_();
+  }
+
+  doSort_(): void {
+
+    this.getListProductKhuyenMai();
+
+    this.getListProductSanPhamMoi();
   }
 }
