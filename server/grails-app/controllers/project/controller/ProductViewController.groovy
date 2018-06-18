@@ -1,6 +1,7 @@
 package project.controller
 
 import grails.converters.JSON
+import grails.gorm.DetachedCriteria
 import project.bean.PaginationParams
 import project.bean.TableQueryResponse
 import project.domain.Attribute
@@ -29,10 +30,28 @@ class ProductViewController extends DefaultRestfulController<ProductView> {
     @Override
     protected List<ProductView> _search() {
 
-        this.buildCriteria().list(params);
+        List<String> sorts = this.params.getList("sorts");
+
+        DetachedCriteria<ProductView> criteria = this.buildCriteria();
+
+        if (!sorts) {
+
+            return criteria.list(params);
+
+        } else {
+
+            List<String> orders = this.params.getList("orders");
+
+            sorts.eachWithIndex { String sort, int index ->
+
+                criteria = criteria.order(sort, orders[index]);
+            }
+
+            return criteria.list(params);
+        }
     }
 
-    protected buildCriteria() {
+    protected DetachedCriteria<ProductView> buildCriteria() {
 
         String categoryGroup = params.categoryGroup;
 
