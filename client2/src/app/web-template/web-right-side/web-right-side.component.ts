@@ -7,7 +7,6 @@ import {News} from "../../bean/news";
 import {Router} from "@angular/router";
 import {ApplicationUtils} from "../../common/application-utils";
 import {NumberFormatter} from "../../common/formater/number-formatter";
-import {DetailProductService} from "../../service/product/detail-product.service";
 
 @Component({
   selector: 'app-web-right-side',
@@ -20,8 +19,7 @@ export class WebRightSideComponent extends WebRightSideLogic implements OnInit {
               protected productViewService: ProductViewService,
               protected newsService: NewsService,
               protected applicationUtils: ApplicationUtils,
-              protected numberFormater: NumberFormatter,
-              protected detailProductService: DetailProductService) {
+              protected numberFormater: NumberFormatter) {
 
     super(productViewService, newsService);
   }
@@ -41,10 +39,6 @@ export class WebRightSideComponent extends WebRightSideLogic implements OnInit {
   goToChiTietSanPham(event: any, productView: ProductView): void {
 
     event.preventDefault();
-
-    this.detailProductService.isParamChanged = true;
-
-    this.detailProductService.productId = productView.id;
 
     this.applicationUtils.scrollTopTop(() => {
 

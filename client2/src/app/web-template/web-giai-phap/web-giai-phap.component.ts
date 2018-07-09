@@ -11,7 +11,6 @@ import {HomeHeader} from "../index-content/home-header";
 import {HomeService} from "../../service/home.service";
 import {CategoryItem} from "../../bean/category-item";
 import {CategoryService} from "../../service/category/category.service";
-import {ListProductService} from "../../service/list-product.service";
 
 @Component({
   selector: 'app-web-giai-phap',
@@ -36,8 +35,7 @@ export class WebGiaiPhapComponent
               protected applicationUtils: ApplicationUtils,
               protected breadcrumbsUtilsService: BreadcrumbsUtilsService,
               protected homeHeaderService: HomeService,
-              protected categoryService: CategoryService,
-              protected listProductService: ListProductService) {
+              protected categoryService: CategoryService) {
 
     super(solutionService);
   }
@@ -125,10 +123,6 @@ export class WebGiaiPhapComponent
   goToSubCategory(event: any, subCategory: CategoryItem): void {
 
     event.preventDefault();
-
-    this.listProductService.isParamChanged = true;
-
-    this.listProductService.selectedCategoryId = subCategory.id;
 
     this.applicationUtils.scrollTopTop(() => {
 

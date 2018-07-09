@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterContentInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {WebGiaiphapChitietLogic} from "./web-giaiphap-chitiet-logic";
 import {SolutionService} from "../../service/solution/solution.service";
@@ -16,7 +16,7 @@ import {Solution} from "../../bean/solution";
   styleUrls: ['./web-giai-phap-chi-tiet.component.css']
 })
 export class WebGiaiPhapChiTietComponent
-  extends WebGiaiphapChitietLogic implements OnInit, SupportBreadcrumbs {
+  extends WebGiaiphapChitietLogic implements OnInit, SupportBreadcrumbs, AfterContentChecked {
 
   solutionId: any;
 
@@ -32,10 +32,18 @@ export class WebGiaiPhapChiTietComponent
   }
 
   ngOnInit() {
+  }
 
-    this.solutionId = this.route.snapshot.paramMap.get("solutionId");
+  ngAfterContentChecked(): void {
 
-    this.getSolutionById(this.solutionId);
+    let currentSolutionId: string = this.route.snapshot.paramMap.get("solutionId")
+
+    if (this.solutionId != currentSolutionId) {
+
+      this.solutionId = currentSolutionId;
+
+      this.getSolutionById(this.solutionId);
+    }
   }
 
   checkContentSolution(): boolean {

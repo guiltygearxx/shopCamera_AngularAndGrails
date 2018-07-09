@@ -1,12 +1,10 @@
-import {AfterViewChecked, AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {MenuItem} from "../../bean/menu-item";
-import {ListProductService} from "../../service/list-product.service";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
 import {isNullOrUndefined} from "util";
-import {ExampleObject} from "../../bean/example-object";
 import {ApplicationUtils} from "../../common/application-utils";
 
 declare var stuckNav: any;
@@ -29,7 +27,6 @@ export class WebHeaderComponent implements OnInit, AfterViewInit {
   categoryListItem: CategoryItem[];
 
   constructor(protected router: Router,
-              protected listProductService: ListProductService,
               protected gioHangService: GioHangService,
               protected categoryService: CategoryService,
               protected applicationUtils: ApplicationUtils) {
@@ -156,10 +153,6 @@ export class WebHeaderComponent implements OnInit, AfterViewInit {
   protected goToSubCategory_(category: CategoryItem, subCategory: CategoryItem): void {
 
     let selectedCategoryId = isNullOrUndefined(subCategory) ? category.id : subCategory.id;
-
-    this.listProductService.isParamChanged = true;
-
-    this.listProductService.selectedCategoryId = selectedCategoryId;
 
     this.applicationUtils.scrollTopTop(() => {
 

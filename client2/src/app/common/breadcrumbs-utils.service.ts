@@ -3,7 +3,6 @@ import {Breadcrumb} from "../bean/breadcrumb";
 import {ApplicationUtils} from "./application-utils";
 import {CategoryItem} from "../bean/category-item";
 import {Router} from "@angular/router";
-import {ListProductService} from "../service/list-product.service";
 import {News} from "../bean/news";
 import {Solution} from "../bean/solution";
 import {Product} from "../bean/product";
@@ -12,8 +11,7 @@ import {Product} from "../bean/product";
 export class BreadcrumbsUtilsService {
 
   constructor(protected applicationUtils: ApplicationUtils,
-              private router: Router,
-              protected listProductService: ListProductService) {
+              private router: Router) {
   }
 
   generateBreadcrumbs(code: string, params: any): Breadcrumb[] {
@@ -52,9 +50,6 @@ export class BreadcrumbsUtilsService {
       case "danhSachSanPham":
 
         let selectedCategoryId = breadcrumb.params[0];
-
-        this.listProductService.isParamChanged = true;
-        this.listProductService.selectedCategoryId = selectedCategoryId;
 
         this.navigate(["/danhSachSanPham/", selectedCategoryId]);
 

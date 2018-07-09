@@ -11,7 +11,6 @@ import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {NumberFormatter} from "../../common/formater/number-formatter";
 import {ApplicationUtils} from "../../common/application-utils";
-import {DetailProductService} from "../../service/product/detail-product.service";
 import {SupportBreadcrumbs} from "../../common/support-breadcrumbs";
 import {Breadcrumb} from "../../bean/breadcrumb";
 import {BreadcrumbsUtilsService} from "../../common/breadcrumbs-utils.service";
@@ -58,15 +57,12 @@ export class DetailProductComponent
               protected gioHangService: GioHangService,
               protected  numberFormater: NumberFormatter,
               protected applicationUtils: ApplicationUtils,
-              protected detailProductService: DetailProductService,
               protected breadcrumbsUtilsService: BreadcrumbsUtilsService) {
   }
 
   ngOnInit() {
 
     this.getListCategory();
-
-    this.productId = this.detailProductService.productId = this.route.snapshot.paramMap.get("productId");
 
     this.allowDisplayProductVetical = true;
   }
@@ -81,11 +77,11 @@ export class DetailProductComponent
 
   ngAfterContentChecked(): void {
 
-    if (this.detailProductService.isParamChanged) {
+    let currentProductId: string = this.route.snapshot.paramMap.get("productId");
 
-      this.detailProductService.isParamChanged = false;
+    if (currentProductId != this.productId) {
 
-      this.getProductById(this.productId = this.detailProductService.productId)
+      this.getProductById(this.productId = currentProductId);
     }
   }
 
@@ -157,10 +153,6 @@ export class DetailProductComponent
   goToChiTietSanPham(event: any, productView: ProductView): void {
 
     event.preventDefault();
-
-    this.detailProductService.isParamChanged = true;
-
-    this.detailProductService.productId = productView.id;
 
     this.applicationUtils.scrollTopTop(() => {
 

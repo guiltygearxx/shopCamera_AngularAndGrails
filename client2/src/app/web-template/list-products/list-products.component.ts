@@ -4,7 +4,6 @@ import {ProductView} from "../../bean/product-view";
 import {CategoryService} from "../../service/category/category.service";
 import {CategoryItem} from "../../bean/category-item";
 import {ProductViewService} from "../../service/product/product-view.service";
-import {ListProductService} from "../../service/list-product.service";
 import {ListProductFilterForm} from "../../bean/list-product-filter-form";
 import {ApplicationUtils} from "../../common/application-utils";
 import {GioHangService} from "../../service/order/gio-hang.service";
@@ -18,7 +17,6 @@ import {SupportSortingTable} from "../../common/support-sorting-table";
 import {PaginationParams} from "../../common/pagination-params";
 import {SortableTableFlow} from "../../common/sortable-table-flow";
 import {SimpleObject} from "../../common/simple-object";
-import {DetailProductService} from "../../service/product/detail-product.service";
 import {SupportBreadcrumbs} from "../../common/support-breadcrumbs";
 import {Breadcrumb} from "../../bean/breadcrumb";
 import {BreadcrumbsUtilsService} from "../../common/breadcrumbs-utils.service";
@@ -104,13 +102,11 @@ export class ListProductsComponent
               protected productViewService: ProductViewService,
               protected categoryService: CategoryService,
               protected gioHangService: GioHangService,
-              protected listProductService: ListProductService,
               protected applicationUtils: ApplicationUtils,
               protected attributeService: AttributeService,
               protected numberFormater: NumberFormatter,
               protected sortableTableFlow: SortableTableFlow,
               protected route: ActivatedRoute,
-              protected detailProductService: DetailProductService,
               protected breadcrumbsUtils: BreadcrumbsUtilsService) {
 
   }
@@ -140,15 +136,13 @@ export class ListProductsComponent
     this.sortOption = "";
 
     this.sort = this.order = null;
-
-    this.listProductService.isParamChanged = true;
-
-    this.listProductService.selectedCategoryId = this.listProductService.selectedCategoryId || this.route.snapshot.paramMap.get("categoryId");
   }
 
   ngAfterContentChecked(): void {
 
-    if (this.listProductService.isParamChanged) {
+    let currentCategoryId: string = this.route.snapshot.paramMap.get("categoryId");
+
+    if (currentCategoryId != this.filterForm.categoryId) {
 
       this.filterValuesTemp = {};
 
@@ -166,13 +160,11 @@ export class ListProductsComponent
 
       this.sort = this.order = null;
 
-      this.filterForm.categoryId = this.listProductService.selectedCategoryId;
+      this.filterForm.categoryId = currentCategoryId;
 
       this.getListCategory();
 
       this.loadAttributes();
-
-      this.listProductService.isParamChanged = false;
     }
   }
 
@@ -206,10 +198,6 @@ export class ListProductsComponent
   goToChiTietSanPham(event: any, productView: ProductView): void {
 
     event.preventDefault();
-
-    this.detailProductService.isParamChanged = true;
-
-    this.detailProductService.productId = productView.id;
 
     this.applicationUtils.scrollTopTop(() => {
 
@@ -272,10 +260,6 @@ export class ListProductsComponent
   goToSubCategory(event: any, subCategory: CategoryItem): void {
 
     event.preventDefault();
-
-    this.listProductService.isParamChanged = true;
-
-    this.listProductService.selectedCategoryId = subCategory.id;
 
     this.applicationUtils.scrollTopTop(() => {
 

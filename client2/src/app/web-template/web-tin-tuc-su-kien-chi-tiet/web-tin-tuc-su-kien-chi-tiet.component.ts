@@ -1,4 +1,4 @@
-import {AfterContentInit, Component, OnInit} from '@angular/core';
+import {AfterContentChecked, AfterContentInit, Component, OnInit} from '@angular/core';
 import {WebTintucsukienChitietLogic} from "./web-tintucsukien-chitiet-logic";
 import {ActivatedRoute, Router} from "@angular/router";
 import {NewsService} from "../../service/news/news.service";
@@ -15,7 +15,7 @@ import {News} from "../../bean/news";
   styleUrls: ['./web-tin-tuc-su-kien-chi-tiet.component.css']
 })
 export class WebTinTucSuKienChiTietComponent
-  extends WebTintucsukienChitietLogic implements OnInit, SupportBreadcrumbs {
+  extends WebTintucsukienChitietLogic implements OnInit, SupportBreadcrumbs, AfterContentChecked {
 
   newsId: string;
 
@@ -31,10 +31,18 @@ export class WebTinTucSuKienChiTietComponent
   }
 
   ngOnInit() {
+  }
 
-    this.newsId = this.route.snapshot.paramMap.get("newsId");
+  ngAfterContentChecked(): void {
 
-    this.getNewsById(this.newsId);
+    let currentNewsId: string = this.route.snapshot.paramMap.get("newsId")
+
+    if (this.newsId != currentNewsId) {
+
+      this.newsId = currentNewsId;
+
+      this.getNewsById(this.newsId);
+    }
   }
 
   breadcrumbSelected(breadcrumb: Breadcrumb): void {

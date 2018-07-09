@@ -114,8 +114,8 @@ environments:
         dataSource:
             dbCreate: none
             url: jdbc:mysql://localhost:3306/myapp?useUnicode=yes&characterEncoding=UTF-8
-            username: admin
-            password: "!9JrveL%BJ"
+            username: root
+            password: ']*zL`\4s6n?M<]!k'
             properties:
                 jmxEnabled: true
                 initialSize: 5

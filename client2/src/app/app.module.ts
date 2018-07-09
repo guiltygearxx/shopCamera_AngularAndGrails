@@ -11,7 +11,6 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {AppRoutingModule} from "./app-routing/app-routing.module";
-import {ListProductService} from "./service/list-product.service";
 import {GioHangService} from "./service/order/gio-hang.service";
 import {ApplicationUtils} from "./common/application-utils";
 import {CategoryService} from "./service/category/category.service";
@@ -43,7 +42,6 @@ import {WebRightSideComponent} from './web-template/web-right-side/web-right-sid
 import {ContactService} from "./service/contact/contact.service";
 import {SortableTableFlow} from "./common/sortable-table-flow";
 import {TrieuDongFormater} from "./common/trieu-dong-formater";
-import {DetailProductService} from "./service/product/detail-product.service";
 import {BreadcrumbsComponent} from './web-template/breadcrumbs/breadcrumbs.component';
 import {BreadcrumbsUtilsService} from "./common/breadcrumbs-utils.service";
 import {HomeService} from "./service/home.service";
@@ -80,7 +78,6 @@ import {HomeService} from "./service/home.service";
     BrowserAnimationsModule
   ],
   providers: [
-    ListProductService,
     GioHangService,
     ApplicationUtils,
     CategoryService,
@@ -99,7 +96,6 @@ import {HomeService} from "./service/home.service";
     ContactService,
     SortableTableFlow,
     TrieuDongFormater,
-    DetailProductService,
     BreadcrumbsUtilsService,
     HomeService
   ],

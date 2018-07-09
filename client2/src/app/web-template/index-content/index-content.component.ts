@@ -11,10 +11,8 @@ import {OrderDetailForm} from "../../bean/order-detail-form";
 import {GioHangService} from "../../service/order/gio-hang.service";
 import {ApplicationUtils} from "../../common/application-utils";
 import {NumberFormatter} from "../../common/formater/number-formatter";
-import {DetailProductService} from "../../service/product/detail-product.service";
 import {HomeHeader} from "./home-header";
 import {HomeService} from "../../service/home.service";
-import {ListProductService} from "../../service/list-product.service";
 import {SimpleObject} from "../../common/simple-object";
 import {SupportSortingTable} from "../../common/support-sorting-table";
 
@@ -89,9 +87,7 @@ export class IndexContentComponent implements OnInit, SupportSortingTable {
               protected gioHangService: GioHangService,
               protected applicationUtils: ApplicationUtils,
               protected numberFormater: NumberFormatter,
-              protected detailProductService: DetailProductService,
-              protected homeHeaderService: HomeService,
-              protected listProductService: ListProductService) {
+              protected homeHeaderService: HomeService) {
   }
 
   ngOnInit() {
@@ -154,10 +150,6 @@ export class IndexContentComponent implements OnInit, SupportSortingTable {
   goToChiTietSanPham(event: any, productView: ProductView): void {
 
     event.preventDefault();
-
-    this.detailProductService.isParamChanged = true;
-
-    this.detailProductService.productId = productView.id;
 
     this.applicationUtils.scrollTopTop(() => {
 
@@ -255,10 +247,6 @@ export class IndexContentComponent implements OnInit, SupportSortingTable {
   goToSubCategory(event: any, subCategory: CategoryItem): void {
 
     event.preventDefault();
-
-    this.listProductService.isParamChanged = true;
-
-    this.listProductService.selectedCategoryId = subCategory.id;
 
     this.applicationUtils.scrollTopTop(() => {
 
