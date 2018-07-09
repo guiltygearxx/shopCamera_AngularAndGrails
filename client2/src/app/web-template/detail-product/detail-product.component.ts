@@ -1,7 +1,7 @@
 import {ProductService} from "../../service/product/product.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {isNullOrUndefined} from "util";
-import {AfterContentChecked, AfterViewChecked, AfterViewInit, Component, OnInit} from "@angular/core";
+import {AfterContentChecked, AfterViewChecked, Component, OnInit} from "@angular/core";
 import {Product} from "../../bean/product";
 import {ProductViewService} from "../../service/product/product-view.service";
 import {CategoryService} from "../../service/category/category.service";
@@ -94,7 +94,9 @@ export class DetailProductComponent
 
     this.categoryList = categoryItems;
 
-    this.getProductById(this.productId);
+    this.getListProduct(this.product.categoryId);
+
+    this.initBreadcrumbs();
   }
 
   isAvailbaleProduct(): boolean {
@@ -181,10 +183,12 @@ export class DetailProductComponent
 
     this.productService
       .getById(productId)
-      .subscribe((product) => this.afterGetListProduct(product));
+      .subscribe((product) => this.afterGetProductId(product));
   }
 
-  getListProduct(categoryId: string) {
+  getListProduct(categoryId: string): void {
+
+    if (isNullOrUndefined(this.categoryList)) return;
 
     let subCategoryIds = this.categoryList
       .filter((category) => category.parentCategoryId == categoryId)
@@ -235,10 +239,11 @@ export class DetailProductComponent
   }
 
   protected afterGetListProductView(productViews: ProductView[]): void {
+
     this.productLienQuan = productViews;
   }
 
-  protected afterGetListProduct(product: Product): void {
+  protected afterGetProductId(product: Product): void {
 
     this.product = product;
 
@@ -266,6 +271,8 @@ export class DetailProductComponent
   }
 
   private initBreadcrumbs(): void {
+
+    if (isNullOrUndefined(this.categoryList) || isNullOrUndefined(this.product)) return;
 
     let categoryId: string = this.product.categoryId;
 
