@@ -8,13 +8,20 @@ import {ValidateUtils} from "../../common/validate/validate-utils";
 import {FormFlowManager} from "../../common/form-flow-manager";
 import {HomeService} from "../../service/home.service";
 import {SimpleObject} from "../../common/simple-object";
+import {RequestErrorHandler} from "../../common/request-error-handler";
 
 @Component({
   selector: 'app-add-new-header',
   templateUrl: './add-new-header.component.html',
   styleUrls: ['./add-new-header.component.css']
 })
-export class AddNewHeaderComponent extends DefaultDetailComponent<AddNewHeaderForm, HomeHeader> {
+export class AddNewHeaderComponent extends DefaultDetailComponent<AddNewHeaderForm, HomeHeader>
+  implements RequestErrorHandler {
+
+  handle(error: any): void {
+
+    this.formFlowManager.defaultHandleError(error);
+  }
 
   templateTypeOptions: SimpleObject[];
 
@@ -32,16 +39,10 @@ export class AddNewHeaderComponent extends DefaultDetailComponent<AddNewHeaderFo
 
     this.form = new AddNewHeaderForm();
 
+
     this.templateTypeOptions = [{id: "home", name:"Tiêu đề trang chủ"},{id: "solution", name:"Tiêu đề giải pháp"} ];
 
     super.ngOnInit();
-  }
-
-  save(event: any): void {
-
-    event.preventDefault();
-
-    console.log("vao day ????");
   }
 
   protected bindDataToForm(object: HomeHeader): AddNewHeaderForm {
@@ -68,6 +69,8 @@ export class AddNewHeaderComponent extends DefaultDetailComponent<AddNewHeaderFo
   }
 
   protected getDetailFormConstraints(): any {
+
+    this.form.flag = false;
 
     return AddNewHeaderForm.constraints;
   }

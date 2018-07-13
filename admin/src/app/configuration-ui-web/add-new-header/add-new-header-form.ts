@@ -12,7 +12,7 @@ export class AddNewHeaderForm implements Validateable{
   static constraints = {
 
     nameHeader: {nullable: false, maxSize: 255},
-    contentHeader: {nullable: true, maxSize: 5000},
+    contentHeader: {nullable: false, maxSize: 5000},
     flag: {nullable: false},
   };
 }

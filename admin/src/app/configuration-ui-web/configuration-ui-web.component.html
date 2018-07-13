@@ -50,7 +50,7 @@
               <td><app-check-box [value]="homeHeader.flag" (valueChange)="changeHomeView(homeHeader)"></app-check-box></td>
               <td class="text-center">
 
-                <a class="btn btn-social-icon btn-bitbucket btn-xs"
+                <a class="btn btn-social-icon btn-bitbucket btn-xs" (click)="deleteHomeHeader($event, homeHeader)"
                    title="Xóa sản phẩm">
                   <i class="fa fa-remove"></i>
                 </a>
